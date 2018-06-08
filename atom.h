@@ -1,8 +1,21 @@
+#ifndef ATOM_H
+#define ATOM_H
+
 #include <vector>
+#include "system.h"
 
 class Atom{
-    std::vector< std::vector<double> > pos[3];
-    std::vector< std::vector<double> > vel[3];
-    int charge;
-    double mass;
+    public:
+        Atom();
+
+        static int num_of_atoms;
+        
+        Eigen::Vector2d pos;
+        Eigen::Vector2d vel;
+        Eigen::Vector2d old_force;
+        int charge;
+        double radius;
+        double mass;
 };
+
+#endif
