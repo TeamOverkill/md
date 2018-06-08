@@ -1,39 +1,47 @@
-#include "atom.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include <random>
 #include "integrators.h"
-#include "system.h"
+#include "base.h"
 
 //int Atom::num_of_atoms = 0;
+int Base::box_dim = 5;
+int Base::num_of_atoms = 2;
+int Base::iterations = 20;
 
 int main(int argc, char *argv[]){
 
-    int num = 2;
-    int boxDim = 10;
-    int iter = 100;
+    int num = 5;
     double energy;
 
     Eigen::Vector2d force;
 
     Atom **atoms;
     atoms = (Atom**) malloc(num * sizeof(Atom*));
+    Frame **frames;
+    frames = (Frame**) malloc(Base::iterations * sizeof(Frame*));
 
     //Initializer
-    for(int i = 0; i < num; i++){
+    for(int i = 0; i < Base::num_of_atoms; i++){
         atoms[i] = new Atom();
-        atoms[i]->pos[0] = rand() * boxDim;
-        atoms[i]->pos[1] = rand() * boxDim;
+        atoms[i]->pos[0] = rand() * Base::box_dim;
+        atoms[i]->pos[1] = rand() * Base::box_dim;
+        atoms[i]->pos[2] = 0;
 
         atoms[i]->vel[0] = rand();
         atoms[i]->vel[1] = rand();
+        atoms[i]->vel[2] = 0;
 
         atoms[i]->old_force[0] = 0;
         atoms[i]->old_force[1] = 0;
+        atoms[i]->old_force[2] = 0;
     }
-    for(int i = 0; i < iter; i++){
+    for(int i = 0; i < Base::iterations; i++){
         integrators::velocityVerlet(atoms);
         printf("Iteration %i\n", i);
+        frames[i] = new Frame();
+        //frames[i]->saveCoordinates(atoms);
+        if(i % 2 == 0){
+            //std::cout << "asd" << std::endl;
+        }
     }
     return 0;
 }

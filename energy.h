@@ -1,11 +1,11 @@
 #ifndef ENERGY_H
 #define ENERGY_H
 
-#include "system.h"
+#include "base.h"
 #include "atom.h"
 
 namespace energy{
-    Eigen::Vector2d forces(Atom **atoms);
+    Eigen::Vector3d forces(Atom **atoms);
 }
 
 #endif
