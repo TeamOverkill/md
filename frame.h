@@ -1,14 +1,16 @@
 #ifndef FRAME_H
 #define FRAME_H
 
-#include "atom.h"
 #include "base.h"
+#include <vector>
 
 class Frame{
-    Eigen::MatrixXf coordinates;
+    std::vector<std::vector < double > > coordinates;
     public:
         Frame();
-        //void saveCoordinates(Atom **atoms);
+        static int num_of_frames;
+        void saveCoordinates(Atom **atoms);
+        static void save_to_file(Frame **frames);
 };
 
 #endif

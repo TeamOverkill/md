@@ -1,7 +1,7 @@
 #ifndef ATOM_H
 #define ATOM_H
 
-#include "base.h"
+#include <eigen3/Eigen/Dense>
 
 class Atom{
     public:
@@ -10,6 +10,7 @@ class Atom{
         Eigen::Vector3d pos;
         Eigen::Vector3d vel;
         Eigen::Vector3d old_force;
+        Eigen::Vector3d force;
         int charge;
         double radius;
         double mass;
