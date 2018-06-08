@@ -6,6 +6,7 @@
 
 namespace energy{
     Eigen::Vector3d forces(Atom **atoms);
+    Eigen::Vector3d forces_LJ(Atom **atoms);
 }
 
 #endif
