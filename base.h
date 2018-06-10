@@ -7,10 +7,9 @@
 #include <stdlib.h>
 #include <iostream>
 
-class Base{
-    public:
-        static double box_dim;
-        static int num_of_atoms;
-        static int iterations;
+namespace base{
+    extern double boxDim;
+    extern int numOfAtoms;
+    extern int iterations;
 };
 #endif

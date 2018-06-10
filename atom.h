@@ -9,7 +9,7 @@ class Atom{
         
         Eigen::Vector3d pos;
         Eigen::Vector3d vel;
-        Eigen::Vector3d old_force;
+        Eigen::Vector3d oldForce;
         Eigen::Vector3d force;
         int charge;
         double radius;

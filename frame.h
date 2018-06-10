@@ -8,8 +8,8 @@ class Frame{
     std::vector<std::vector < double > > coordinates;
     public:
         Frame();
-        static int num_of_frames;
-        void saveCoordinates(Atom **atoms);
+        static int numOfFrames;
+        void save_coordinates(Atom **atoms);
         static void save_to_file(Frame **frames);
 };
 
