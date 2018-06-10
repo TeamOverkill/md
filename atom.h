@@ -4,16 +4,18 @@
 #include <eigen3/Eigen/Dense>
 
 class Atom{
+    /*
+    Atom class
+    */
     public:
         Atom();
         
-        Eigen::Vector3d pos;
-        Eigen::Vector3d vel;
-        Eigen::Vector3d oldForce;
-        Eigen::Vector3d force;
+        Eigen::Vector3d pos;        //Positions
+        Eigen::Vector3d vel;        //Velocities
+        Eigen::Vector3d oldForce;   //Force from previous iteration
+        Eigen::Vector3d force;      //Current force
         int charge;
-        double radius;
-        double mass;
+        double radius, mass;
 };
 
 #endif

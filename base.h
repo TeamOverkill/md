@@ -8,8 +8,12 @@
 #include <iostream>
 
 namespace base{
-    extern double boxDim;
-    extern int numOfAtoms;
-    extern int iterations;
+    /*
+    This namespace should hold all 'global' variables
+    */
+
+    extern double boxDim;   //Box dimension, currently only cubic boxes
+    extern int numOfAtoms;  //number of atoms
+    extern int iterations;  //number of iterations
 };
 #endif

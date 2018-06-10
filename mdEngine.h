@@ -3,22 +3,26 @@
 #include "atom.h"
 
 namespace mdEngine {
+    /*
+    This namespace should hold all MD specific algorithms, hence the 'engine' of the program
+    */
+
     template<typename F, typename I>
     void run(I&& integrator_1, I&& integrator_2, F&& force_function, Atom **atoms, Frame **frames, int fStep){
+        /*
+        Template run function to allow user specific integrators and energy functions
+        */
+       
         int frameCounter = 0;
         for(int i = 0; i < base::iterations; i++){
-            //printf("Iteration %i\n", i);
-            integrator_1(atoms);
-            force_function(atoms);
-            integrator_2(atoms);
+            integrator_1(atoms);    //First half step of integrator
+            force_function(atoms);  //Calculate new forces
+            integrator_2(atoms);    //Second half step of integrator
             if(i % fStep == 0){
-                //ss << "#";
-                //bar = ss.str();
-                //printf("iteration: %i\n", i);
                 printf("Done: %lf%%, iteration %i\r", (double) i/base::iterations * 100, i);
                 fflush(stdout);
                 frames[frameCounter] = new Frame();
-                frames[frameCounter]->save_coordinates(atoms);
+                frames[frameCounter]->save_state(atoms);
                 frameCounter++;
             }
         }

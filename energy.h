@@ -5,8 +5,12 @@
 
 namespace energy{ namespace LJ {
     inline void forces(Atom **atoms){
-        double epsilon = 10;
-        double sigma2 = 5;
+        /*
+        Calculate the forces using a Lennard-Jones potential
+        */
+
+        double epsilon = 10;    //LJ parameter epsilon
+        double sigma2 = 5;      //LJ parameter sigma
 
         double fjx = 0;
         double fjy = 0;
@@ -26,13 +30,8 @@ namespace energy{ namespace LJ {
                     double fr6 = fr2 * fr2 * fr2;                          // LJ sextic
                     double fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;     // LJ magnitude
 
-
                     // Apply direction
                     force += fr * dr;
-
-                    // fjx -= fr * dx;
-                    // fjy -= fr * dy;
-                    // fjz -= fr * dz;
                 }
             }
             atoms[i]->force = force;

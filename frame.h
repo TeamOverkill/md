@@ -5,12 +5,16 @@
 #include <vector>
 
 class Frame{
-    std::vector<std::vector < double > > coordinates;
+    /*
+    Frame object which contains positions and velocities
+    */
+
+    std::vector<std::vector < double > > state;
     public:
-        Frame();
-        static int numOfFrames;
-        void save_coordinates(Atom **atoms);
-        static void save_to_file(Frame **frames);
+        Frame();                                    //Constructor
+        static int numOfFrames;                     //holds the total number of objects (frames) created
+        void save_state(Atom **atoms);              //Saves the current state
+        static void save_to_file(Frame **frames);   //Writes all frames to a file
 };
 
 #endif
