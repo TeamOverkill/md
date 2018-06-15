@@ -38,3 +38,42 @@ double Atom::distance(Atom* otherAtom){
 double Atom::kinetic_energy(){
     return this->mass * this->vel.dot(this->vel) * 0.5;
 }
+/*
+void Atom::equilibrate(Atom **atoms){
+    int overlaps = 0;
+    double diameter2 = pow(atoms[0]->radius, 2);
+    Eigen::Vector3d oldPos;
+    double random;
+    double stepSize = 5;
+    int p;
+
+    for(int i = 0; i < base::numOfAtoms; i++){
+        for(int j = i + 1; j < base::numOfAtoms; j++){
+            if(atoms[i]->distance(atoms[j]) < atoms[i]->radius + atoms[j]->radius){
+                overlaps++;
+            }
+        }
+    }
+
+    //Move particles to prevent overlap
+    while(overlaps > 0){
+        random = (double)rand() / (RAND_MAX) * Atom::numOfAtoms;
+        p =  random * base::numOfAtoms;
+        oldPos = atoms[p]->pos;
+        //atoms[p]->random_move(5);
+        for(int i = 0; i < base::numOfAtoms; i++){
+            if(!atoms[p]->distance(atoms[i])) || atoms[p]->pos[0] < atoms[p]->radius ||
+                                                 atoms[p]->pos[0] > base::boxDim - atoms[p]->radius ||
+                                                 atoms[p]->pos[1] < atoms[p]->radius ||
+                                                 atoms[p]->pos[1] > base::boxDim - atoms[p]->radius ||
+                                                 atoms[p]->pos[2] < atoms[p]->radius ||
+                                                 atoms[p]->pos[2] > base::boxDim - atoms[p]->radius){
+                atoms[p]->pos = oldPos;
+            }
+            else{
+                overlaps--;
+            }
+        }
+    }
+}
+ */

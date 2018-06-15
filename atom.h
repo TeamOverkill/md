@@ -5,8 +5,8 @@
 //#include "base.h"
 
 class Atom{
-    /*
-    Atom class
+    /*!
+    *   Atom class
     */
     public:
         Atom();

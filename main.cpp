@@ -3,24 +3,25 @@
 #include "energy.h"
 #include "base.h"
 #include "mdEngine.h"
-#include <ctime>
+#include <time.h>
+#include "ran_uniform.h"
 
-//int Atom::num_of_atoms = 0;
+//Simulation variables
 double base::boxDim = 50;
-int base::numOfAtoms = 15;
-int base::iterations = 10000000;
-double base::kineticEnergies[10000];
-double base::potentialEnergies[10000];
-double base::totalEnergies[10000];
+int base::numOfAtoms = 60;
+int base::iterations = 1000000;
+double base::kineticEnergies[1000];
+double base::potentialEnergies[1000];
+double base::totalEnergies[1000];
 
-int Frame::numOfFrames = 0;
 Eigen::MatrixXd Atom::forceMatrix;
 
 int main(int argc, char *argv[]){
-
-    double energy;
-    int numberOfFrames = 10000;                       //Number of frames to be printed in the resulting trajectory file
-    int fStep = base::iterations/numberOfFrames;    //Save frame to trajectory every fStep iteration
+    InitializeRandomNumberGenerator(time(0l));
+    double random = RandomNumber();
+    srand( (unsigned)time( NULL ) );
+    int numberOfFrames = 1000;                       //Number of frames saved in trajectory file
+    Frame::initialize(numberOfFrames);                //Initialize variables in Frame
 
     //Allocate memory to hold atom array:
     Atom **atoms;
@@ -29,7 +30,8 @@ int main(int argc, char *argv[]){
     //Allocate memory to hold array of frames:
     Frame **frames;
     frames = (Frame**) malloc(numberOfFrames * sizeof(Frame*));
-
+    //printf("%lf\n", double(rand() % 2));
+    std::cout << random << std::endl;
     //Initialize atom variables
     for(int i = 0; i < base::numOfAtoms; i++){
         atoms[i] = new Atom();
@@ -53,12 +55,13 @@ int main(int argc, char *argv[]){
         atoms[i]->radius = 1;
     }
 
+    //Initialize the force matrix
     Atom::forceMatrix.resize(base::numOfAtoms, base::numOfAtoms);
 
-    //Call run() with the specified integrator and energy function
     time_t start = time(NULL);
 
-    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &energy::LJ::forces, atoms, frames, fStep);
+    //Call run() with the specified integrator and energy function
+    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &energy::LJ::forces, atoms, frames);
     printf("Time: %lu\n", time(NULL) - start);
     Frame::save_to_file(frames);                //Save frames to trajectory file
 
@@ -67,8 +70,8 @@ int main(int argc, char *argv[]){
         printf("Can't open file!\n");
         exit(1);
     }
-    for(int j = 0; j < 10000; j++){
-        fprintf(f, "%i    %lf    %lf    %lf\n", j * 10000, base::potentialEnergies[j], base::kineticEnergies[j], base::totalEnergies[j]);
+    for(int j = 0; j < 1000; j++){
+        fprintf(f, "%i    %lf    %lf    %lf\n", j * 1000, base::potentialEnergies[j], base::kineticEnergies[j], base::totalEnergies[j]);
 
     }
     fclose(f);
