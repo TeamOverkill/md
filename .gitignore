@@ -1,3 +1,7 @@
+# User defined ignore
+*.png
+*.gro
+
 # Created by https://www.gitignore.io/api/c,c++,linux,macos,python
 ### CMAKE ###
 CMakeCache.txt
@@ -20,7 +24,6 @@ build
 *.ko
 *.obj
 *.elf
-*.gro
 
 # Linker output
 *.ilk
