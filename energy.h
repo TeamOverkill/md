@@ -2,12 +2,20 @@
 #define ENERGY_H
 
 #include "base.h"
-
-namespace energy{ namespace LJ {
+/*!
+ *  \addtogroup Energy
+ *  @{
+ */
+namespace energy{
+    /*!
+     *  \addtogroup Lennard-Jones
+     *  @{
+     */
+    namespace LJ {
 
     namespace {
-        double epsilon = 1.5;    /*!< LJ parameter epsilon */
-        double sigma = 1;      /*!< LJ parameter sigma */
+        double epsilon = 1.5;    //! LJ parameter epsilon
+        double sigma = 1;      //! LJ parameter sigma
     }
 
     inline void forces(Atom **atoms){
@@ -32,7 +40,6 @@ namespace energy{ namespace LJ {
                 double fr6 = fr2 * fr2 * fr2;
                 double fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;
 
-                // Apply direction
                 atoms[i]->force += fr * dr;
                 atoms[j]->force -= fr * dr;
                 Atom::forceMatrix(i, j) = (fr * dr).norm();
@@ -52,10 +59,10 @@ namespace energy{ namespace LJ {
             for (int j = i + 1; j < base::numOfAtoms; j++) {
                 dr = atoms[i]->pos - atoms[j]->pos;
                 distance = dr.norm();
-                double fr = sigma / distance;                /*!< LJ quadratic */
+                double fr = sigma / distance;
                 double fr2 = fr * fr;
-                double fr6 = fr2 * fr2 * fr2;                  /*!< LJ sextic */
-                energy += 4 * epsilon * fr6 * (fr6 - 1);     /*!< LJ */
+                double fr6 = fr2 * fr2 * fr2;
+                energy += 4 * epsilon * fr6 * (fr6 - 1);
             }
         }
         return energy;

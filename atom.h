@@ -2,7 +2,10 @@
 #define ATOM_H
 
 #include <eigen3/Eigen/Dense>
-
+/*!
+ *  \addtogroup Atom
+ *  @{
+ */
 class Atom{
     /*!
     *   Atom class
