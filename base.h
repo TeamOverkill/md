@@ -15,5 +15,8 @@ namespace base{
     extern double boxDim;   //Box dimension, currently only cubic boxes
     extern int numOfAtoms;  //number of atoms
     extern int iterations;  //number of iterations
+    extern double potentialEnergies[10000];
+    extern double kineticEnergies[10000];
+    extern double totalEnergies[10000];
 };
 #endif

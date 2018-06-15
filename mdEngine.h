@@ -19,7 +19,13 @@ namespace mdEngine {
             force_function(atoms);  //Calculate new forces
             integrator_2(atoms);    //Second half step of integrator
             if(i % fStep == 0){
+                for(int i = 0; i < base::numOfAtoms; i++){
+                    base::kineticEnergies[frameCounter] += atoms[i]->kinetic_energy();
+                }
+                base::potentialEnergies[frameCounter] = energy::LJ::energy(atoms);
+                base::totalEnergies[frameCounter] = base::potentialEnergies[frameCounter] + base::kineticEnergies[frameCounter];
                 printf("Done: %lf%%, iteration %i\r", (double) i/base::iterations * 100, i);
+                printf("Energy is: %lf\n", energy::LJ::energy(atoms));
                 fflush(stdout);
                 frames[frameCounter] = new Frame();
                 frames[frameCounter]->save_state(atoms);
