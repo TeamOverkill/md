@@ -1,6 +1,7 @@
 # User defined ignore
 *.png
 *.gro
+*.txt
 
 # Created by https://www.gitignore.io/api/c,c++,linux,macos,python
 ### CMAKE ###
