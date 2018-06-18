@@ -1,7 +1,7 @@
 #ifndef ATOM_H
 #define ATOM_H
 
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 /*!
  *  \addtogroup Atom
  *  @{
