@@ -1,6 +1,7 @@
 #ifndef BASE_H
 #define BASE_H
 #include <Eigen/Dense>
+#include "constants.h"
 #include "atom.h"
 #include "frame.h"
 #include <stdio.h>
@@ -19,5 +20,6 @@ namespace base{
     extern double *potentialEnergies;
     extern double *kineticEnergies;
     extern double *totalEnergies;
+    extern double *temperatures;
 };
 #endif
