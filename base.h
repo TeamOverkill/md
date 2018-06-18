@@ -1,6 +1,6 @@
 #ifndef BASE_H
 #define BASE_H
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 #include "atom.h"
 #include "frame.h"
 #include <stdio.h>

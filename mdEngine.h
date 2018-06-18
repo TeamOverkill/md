@@ -9,7 +9,7 @@ namespace mdEngine {
     void get_temperature(Atom **atoms){
         double temp = 0;
         for(int i = 0; i < base::numOfAtoms; i++){
-            temp = atoms[i]->mass * atoms[i]->vel.dot(atoms[i]->vel.dot) / 3;
+            //temp = atoms[i]->mass * atoms[i]->vel.dot(atoms[i]->vel.dot) / 3;
         }
 
     }
