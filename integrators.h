@@ -1,7 +1,7 @@
-#ifndef INTEGRATOR_H
-#define INTEGRATOR_H
+#pragma once
 
 #include "base.h"
+#include "atom.h"
 
 namespace integrators{
     double tStep = 0.001;
@@ -50,5 +50,3 @@ namespace integrators{
         }
     }
 }
-
-#endif

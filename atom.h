@@ -1,7 +1,7 @@
-#ifndef ATOM_H
-#define ATOM_H
+#pragma once
 
-#include <Eigen/Dense>
+#include "base.h"
+
 /*!
  *  \addtogroup Atom
  *  @{
@@ -22,6 +22,5 @@ class Atom{
         double radius, mass;
         double distance(Atom* otherAtom);
         double kinetic_energy();
+        static void initialize(Atom **atoms);
 };
-
-#endif

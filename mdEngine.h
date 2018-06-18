@@ -1,6 +1,6 @@
 #pragma once
+
 #include "base.h"
-#include "atom.h"
 
 namespace mdEngine {
     /*!
@@ -21,6 +21,8 @@ namespace mdEngine {
         */
         double temperature;
         int frameCounter = 0;
+
+        /*!< Main MD loop */
         for(int i = 0; i < base::iterations; i++){
             integrator_1(atoms);    /*!< First half step of integrator */
             force_function(atoms);  /*!< Calculate new forces */
@@ -35,7 +37,6 @@ namespace mdEngine {
                 base::potentialEnergies[frameCounter] = energy::LJ::energy(atoms);
                 base::totalEnergies[frameCounter] = base::potentialEnergies[frameCounter] + base::kineticEnergies[frameCounter];
                 printf("Progress: %lf%% Temperature: %lf\r", (double)i/base::iterations * 100.0, temperature);
-                //printf("Energy is: %lf\n", energy::LJ::energy(atoms));
                 fflush(stdout);
                 frames[frameCounter] = new Frame();
                 frames[frameCounter]->save_state(atoms);

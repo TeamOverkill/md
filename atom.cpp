@@ -30,6 +30,44 @@ Atom** Atom::create_atoms() {
 }
  */
 
+void Atom::initialize(Atom** atoms){
+    for(int i = 0; i < base::numOfAtoms; i++) {
+        atoms[i] = new Atom();
+
+        atoms[i]->mass = 0.000000000000000000000001;
+        atoms[i]->radius = 1;
+
+        atoms[i]->pos[0] = ran2::get_random() * base::boxDim;
+        atoms[i]->pos[1] = ran2::get_random() * base::boxDim;
+        atoms[i]->pos[2] = ran2::get_random() * base::boxDim;
+
+        /*!< Maxwell-Boltzmann velocity distribution*/
+        double ran_u = ran2::get_random();
+        double random_vel =
+                sqrt(-2 * log(ran_u)) * sin(2 * constants::PI * ran_u);
+        atoms[i]->vel[0] = random_vel * sqrt(constants::K * 300 / atoms[i]->mass);
+
+        ran_u = ran2::get_random();
+        random_vel =
+                sqrt(-2 * log(ran_u)) * sin(2 * constants::PI * ran_u);
+        atoms[i]->vel[1] = random_vel * sqrt(constants::K * 300 / atoms[i]->mass);
+
+        ran_u = ran2::get_random();
+        random_vel =
+                sqrt(-2 * log(ran_u)) * sin(2 * constants::PI * ran_u);
+        atoms[i]->vel[2] = random_vel * sqrt(constants::K * 300 / atoms[i]->mass);
+
+        /*!< Set initial forces*/
+        atoms[i]->oldForce[0] = 0;
+        atoms[i]->oldForce[1] = 0;
+        atoms[i]->oldForce[2] = 0;
+
+        atoms[i]->force[0] = 0;
+        atoms[i]->force[1] = 0;
+        atoms[i]->force[2] = 0;
+    }
+}
+
 double Atom::distance(Atom* otherAtom){
     Eigen::Vector3d disp = this->pos - otherAtom->pos;
     return disp.norm();

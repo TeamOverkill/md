@@ -1,8 +1,8 @@
-#ifndef FRAME_H
-#define FRAME_H
+#pragma once
 
 #include "base.h"
 #include <vector>
+#include "atom.h"
 
 class Frame{
     /*
@@ -19,5 +19,3 @@ class Frame{
         static void save_to_file(Frame **frames);   //Writes all frames to a file
         static void initialize(int numberOfFrames);
 };
-
-#endif

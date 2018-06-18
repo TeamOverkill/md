@@ -1,10 +1,11 @@
-#include <random>
 #include "integrators.h"
 #include "energy.h"
+#include "frame.h"
 #include "base.h"
 #include "mdEngine.h"
 #include <time.h>
-#include "ran_uniform.h"
+#include "atom.h"
+
 
 
 /*!< Simulation variables */
@@ -22,9 +23,7 @@ double *base::temperatures = (double*) malloc(base::iterations * sizeof(double))
 Eigen::MatrixXd Atom::forceMatrix;
 
 int main(int argc, char *argv[]){
-    InitializeRandomNumberGenerator(time(0l));
-    double random = RandomNumber();
-    srand( (unsigned)time( NULL ) );
+
     Frame::initialize(base::outFreq);                /*!< Initialize variables in Frame */
 
     /*!< Allocate memory to hold atom array: */
@@ -36,31 +35,7 @@ int main(int argc, char *argv[]){
     frames = (Frame**) malloc(base::outFreq * sizeof(Frame*));
 
     /*!< Initialize atom variables */
-    for(int i = 0; i < base::numOfAtoms; i++){
-        atoms[i] = new Atom();
-
-        atoms[i]->mass = 0.000000000000000000000001;
-        atoms[i]->radius = 1;
-
-        atoms[i]->pos[0] = (double)rand() / (RAND_MAX) * base::boxDim;
-        atoms[i]->pos[1] = (double)rand() / (RAND_MAX) * base::boxDim;
-        atoms[i]->pos[2] = (double)rand() / (RAND_MAX) * base::boxDim;
-
-        double random_vel = sqrt(-2 * log((double)rand() / (RAND_MAX))) * sin(2 * constants::PI * (double)rand() / (RAND_MAX));
-        atoms[i]->vel[0] = random_vel * sqrt(constants::K * 300/atoms[i]->mass);
-        random_vel = sqrt(-2 * log((double)rand() / (RAND_MAX))) * sin(2 * constants::PI * (double)rand() / (RAND_MAX));
-        atoms[i]->vel[1] = random_vel * sqrt(constants::K * 300/atoms[i]->mass);
-        random_vel = sqrt(-2 * log((double)rand() / (RAND_MAX))) * sin(2 * constants::PI * (double)rand() / (RAND_MAX));
-        atoms[i]->vel[2] = random_vel * sqrt(constants::K * 300/atoms[i]->mass);
-        std::cout << atoms[i]->vel << std::endl;
-        atoms[i]->oldForce[0] = 0;
-        atoms[i]->oldForce[1] = 0;
-        atoms[i]->oldForce[2] = 0;
-
-        atoms[i]->force[0] = 0;
-        atoms[i]->force[1] = 0;
-        atoms[i]->force[2] = 0;
-    }
+    Atom::initialize(atoms);
 
     /*!< Initialize the force matrix */
     Atom::forceMatrix.resize(base::numOfAtoms, base::numOfAtoms);

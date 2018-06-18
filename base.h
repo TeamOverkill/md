@@ -1,12 +1,12 @@
-#ifndef BASE_H
-#define BASE_H
-#include <Eigen/Dense>
-#include "constants.h"
-#include "atom.h"
-#include "frame.h"
+#pragma once
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <Eigen/Dense>
+#include "constants.h"
+#include "ran2_lib.cpp"
+
 
 namespace base{
     /*!
@@ -22,4 +22,3 @@ namespace base{
     extern double *totalEnergies;
     extern double *temperatures;
 };
-#endif
