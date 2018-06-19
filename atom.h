@@ -10,6 +10,7 @@ class Atom{
     /*!
     *   Atom class
     */
+
     public:
         Atom();
         //static Atom** create_atoms();
@@ -22,5 +23,6 @@ class Atom{
         double radius, mass;
         double distance(Atom* otherAtom);
         double kinetic_energy();
+        void set_velocity();
         static void initialize(Atom **atoms);
 };

@@ -8,6 +8,7 @@ namespace constants{
     const double E = 1.6021766208E-19;    //! Coulomb
     const double K = 0.3806485279E-26;    //! kJ/K
     const double NA = 6.02214085774E23;   //! 1/mol
+    //const double K = 1;
 }
 
 

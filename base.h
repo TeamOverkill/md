@@ -17,6 +17,8 @@ namespace base{
     extern int numOfAtoms;  /*!< number of atoms */
     extern int iterations;  /*!< number of iterations */
     extern int outFreq;
+    extern double tStep;
+    extern double temperature;
     extern double *potentialEnergies;
     extern double *kineticEnergies;
     extern double *totalEnergies;

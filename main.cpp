@@ -1,4 +1,5 @@
 #include "integrators.h"
+#include "thermostats.h"
 #include "energy.h"
 #include "frame.h"
 #include "base.h"
@@ -11,8 +12,10 @@
 /*!< Simulation variables */
 double base::boxDim = 10;
 int base::numOfAtoms = 10;
-int base::iterations = 100000;
+int base::iterations = 1000000;
 int base::outFreq = 1000;
+double base::temperature = 300;
+double base::tStep = 0.001;
 
 /*!< Initialize arrays */
 double *base::kineticEnergies = (double*) malloc(base::outFreq * sizeof(double));
@@ -43,7 +46,9 @@ int main(int argc, char *argv[]){
     time_t start = time(NULL);
 
     /*!< Call run() with the specified integrator and energy function */
-    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &energy::LJ::forces, atoms, frames);
+    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &energy::LJ::forces,
+                 atoms, frames);
+
     printf("Time: %lu\n", time(NULL) - start);
     Frame::save_to_file(frames);                /*!< Save frames to trajectory file */
 
