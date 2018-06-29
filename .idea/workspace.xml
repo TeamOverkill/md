@@ -11,64 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41d8bacb-4d7d-47b1-a686-798a279e094b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Doxyfile" beforeDir="false" afterPath="$PROJECT_DIR$/Doxyfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/atom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/atom.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/atom.h" beforeDir="false" afterPath="$PROJECT_DIR$/atom.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compile.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/energy.h" beforeDir="false" afterPath="$PROJECT_DIR$/energy.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frame.h" beforeDir="false" afterPath="$PROJECT_DIR$/frame.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/annotated.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/annotated.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/atom_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/atom_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/base_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/base_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/class_atom-members.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/class_atom-members.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/class_atom.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/class_atom.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/class_frame-members.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/class_frame-members.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/class_frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/class_frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/classes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/energy_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/energy_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/files.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/files.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/frame_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/frame_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/functions.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/functions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/functions_func.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/functions_func.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/functions_vars.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/functions_vars.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/group___atom.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/group___atom.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/group___energy.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/group___energy.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/group___lennard-_jones.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/group___lennard-_jones.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/integrators_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/integrators_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/md_engine_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/md_engine_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/menudata.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/menudata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/modules.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/ran__uniform_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/ran__uniform_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/all_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/all_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/all_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/all_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/all_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/all_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/all_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/all_3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/all_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/all_4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/all_5.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/all_5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/all_6.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/all_6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/functions_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/functions_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/groups_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/groups_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/searchdata.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/searchdata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/variables_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/variables_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/variables_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/variables_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/variables_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/variables_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/search/variables_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/search/variables_3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integrators.h" beforeDir="false" afterPath="$PROJECT_DIR$/integrators.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/annotated.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latex/annotated.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/class_atom.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latex/class_atom.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/class_frame.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latex/class_frame.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/group___atom.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latex/group___atom.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/group___energy.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latex/group___energy.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/modules.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latex/modules.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/refman.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latex/refman.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main" beforeDir="false" afterPath="$PROJECT_DIR$/main" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mdEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/mdEngine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/thermostats.h" beforeDir="false" afterPath="$PROJECT_DIR$/thermostats.h" afterDir="false" />
-    </list>
+    <list default="true" id="41d8bacb-4d7d-47b1-a686-798a279e094b" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -80,18 +23,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mdEngine.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mdEngine.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-              <folding>
-                <element signature="e#1126#1150#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Doxyfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Doxyfile">
           <provider selected="true" editor-type-id="text-editor">
@@ -113,10 +44,15 @@
       <file leaf-file-name="conf.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+            <state relative-caret-position="375">
+              <caret line="112" column="23" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="23" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/home.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="index.rst" pinned="false" current-in-tab="false">
@@ -146,7 +82,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.rst" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.rst" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/source/home.rst">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
@@ -190,6 +126,7 @@
       <find>generate</find>
       <find>generate_XML</find>
       <find>theme</find>
+      <find>html</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -254,12 +191,6 @@
               <item name="md" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="md" type="b2602c69:ProjectViewProjectNode" />
-              <item name="md" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -308,16 +239,15 @@
       <workItem from="1528914262788" duration="421000" />
       <workItem from="1528914754733" duration="8000" />
       <workItem from="1528995018327" duration="8504000" />
-      <workItem from="1529068577280" duration="46726000" />
+      <workItem from="1529068577280" duration="47082000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56178000" />
+    <option name="totallyTimeSpent" value="56534000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-210" y="-1200" width="1920" height="1200" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16197917" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -346,16 +276,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/frame.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#33#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frame.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -618,13 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/source/classes.rst">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -676,6 +589,16 @@
           <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="112" column="23" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/home.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
