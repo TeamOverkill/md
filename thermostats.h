@@ -3,10 +3,10 @@ namespace thermostats{
         void set_velocity(Atom **atoms){
             double ran_u;
             double randomMaxwell;
-            double freq = 1000;
+            double freq = 0.1;
             for(int i = 0; i < base::numOfAtoms; i++){
                 ran_u = ran2::get_random();
-                if(ran_u < freq * base::tStep){
+                if(ran_u < freq){
 
                     double ran_u1 = ran2::get_random();
                     double ran_u2 = ran2::get_random();

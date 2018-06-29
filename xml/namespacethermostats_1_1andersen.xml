@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespacethermostats_1_1andersen" kind="namespace" language="C++">
+    <compoundname>thermostats::andersen</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="thermostats_8h_1afa64229a2b2ba2ad40f5ec293ea0da62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void thermostats::andersen::set_velocity</definition>
+        <argsstring>(Atom **atoms)</argsstring>
+        <name>set_velocity</name>
+        <param>
+          <type><ref refid="class_atom" kindref="compound">Atom</ref> **</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="thermostats.h" line="3" column="1" bodyfile="thermostats.h" bodystart="3" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="thermostats.h" line="2" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="classran2" kind="class" language="C++" prot="public">
+    <compoundname>ran2</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classran2_1a1774f26575de5341fe11d9e7af60c6b3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double ran2::get_random</definition>
+        <argsstring>()</argsstring>
+        <name>get_random</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ran2_lib.cpp" line="15" column="1" bodyfile="ran2_lib.cpp" bodystart="15" bodyend="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="ran2_lib.cpp" line="13" column="1" bodyfile="ran2_lib.cpp" bodystart="13" bodyend="20"/>
+    <listofallmembers>
+      <member refid="classran2_1a1774f26575de5341fe11d9e7af60c6b3" prot="public" virt="non-virtual"><scope>ran2</scope><name>get_random</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="base_8cpp" kind="file" language="C++">
+    <compoundname>base.cpp</compoundname>
+    <includes refid="base_8h" local="yes">base.h</includes>
+    <incdepgraph>
+      <node id="22">
+        <label>stdlib.h</label>
+      </node>
+      <node id="19">
+        <label>base.cpp</label>
+        <link refid="base_8cpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="20">
+        <label>base.h</label>
+        <link refid="base_8h_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>iostream</label>
+      </node>
+      <node id="21">
+        <label>stdio.h</label>
+      </node>
+      <node id="25">
+        <label>constants.h</label>
+        <link refid="constants_8h_source"/>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;base.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*base::kineticEnergies<sp/>=<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*)<sp/>malloc(base::outFreq<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*base::potentialEnergies<sp/>=<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*)<sp/>malloc(base::outFreq<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*base::totalEnergies<sp/>=<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*)<sp/>malloc(base::outFreq<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*base::temperatures<sp/>=<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*)<sp/>malloc(base::iterations<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">));</highlight></codeline>
+    </programlisting>
+    <location file="base.cpp"/>
+  </compounddef>
+</doxygen>

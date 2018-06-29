@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespaceconstants" kind="namespace" language="C++">
+    <compoundname>constants</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="constants_8h_1aaa77429e27a7630917c26d9dcdd02d37" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double constants::PI</definition>
+        <argsstring></argsstring>
+        <name>PI</name>
+        <initializer>= 3.141592653589793238462643383279502884197169</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="constants.h" line="7" column="1" bodyfile="constants.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="constants_8h_1a9c026ed46cc6df304fd4ae0f4a6aa374" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double constants::E</definition>
+        <argsstring></argsstring>
+        <name>E</name>
+        <initializer>= 1.6021766208E-19</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="constants.h" line="8" column="1" bodyfile="constants.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="constants_8h_1aca22d2dbeb67464297eceacef47125c7" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double constants::K</definition>
+        <argsstring></argsstring>
+        <name>K</name>
+        <initializer>= 0.3806485279E-26</initializer>
+        <briefdescription>
+<para>Coulomb. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="constants.h" line="9" column="1" bodyfile="constants.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="constants_8h_1ae2c7ade7bbc5547bd496d747df58828f" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double constants::NA</definition>
+        <argsstring></argsstring>
+        <name>NA</name>
+        <initializer>= 6.02214085774E23</initializer>
+        <briefdescription>
+<para>kJ/K </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="constants.h" line="10" column="1" bodyfile="constants.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="constants.h" line="6" column="1"/>
+  </compounddef>
+</doxygen>

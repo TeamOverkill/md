@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['energy',['energy',['../group___lennard-_jones.html#ga100c4be2b148a0f7f68f6af3dac4135a',1,'energy::LJ::energy()'],['../group___energy.html',1,'(Global Namespace)']]]
+  ['distances',['distances',['../class_atom.html#a7ac21eb5765267ccafe658634c7cc45f',1,'Atom']]]
 ];

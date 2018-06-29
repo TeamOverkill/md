@@ -1,27 +1,30 @@
 var indexSectionsWithContent =
 {
-  0: "aeflopv",
-  1: "af",
-  2: "aef",
-  3: "fopv",
-  4: "ael"
+  0: "adefgilmoprsv",
+  1: "afr",
+  2: "em",
+  3: "aefgirs",
+  4: "dfopv",
+  5: "aeflm"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "functions",
-  3: "variables",
-  4: "groups"
+  2: "namespaces",
+  3: "functions",
+  4: "variables",
+  5: "groups"
 };
 
 var indexSectionLabels =
 {
   0: "All",
   1: "Classes",
-  2: "Functions",
-  3: "Variables",
-  4: "Modules"
+  2: "Namespaces",
+  3: "Functions",
+  4: "Variables",
+  5: "Modules"
 };
 

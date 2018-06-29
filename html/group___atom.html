@@ -12,6 +12,12 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -62,9 +68,7 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
 <div class="title">Atom</div>  </div>
 </div><!--header-->
@@ -74,122 +78,8 @@ $(function() {
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atom.html">Atom</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:gaa0147d7e49ab90f559b66e38d3d12863"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___atom.html#gaa0147d7e49ab90f559b66e38d3d12863">Atom::Atom</a> ()</td></tr>
-<tr class="separator:gaa0147d7e49ab90f559b66e38d3d12863"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga90a4da89f562cb57f576078e5580a0a8"><td class="memItemLeft" align="right" valign="top"><a id="ga90a4da89f562cb57f576078e5580a0a8"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>Atom::distance</b> (<a class="el" href="class_atom.html">Atom</a> *otherAtom)</td></tr>
-<tr class="separator:ga90a4da89f562cb57f576078e5580a0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4cc117bd6f7a2ce6f1af407283aff4b2"><td class="memItemLeft" align="right" valign="top"><a id="ga4cc117bd6f7a2ce6f1af407283aff4b2"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>Atom::kinetic_energy</b> ()</td></tr>
-<tr class="separator:ga4cc117bd6f7a2ce6f1af407283aff4b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ga9c44a53717ca3857065c0a36787359e1"><td class="memItemLeft" align="right" valign="top">Eigen::Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___atom.html#ga9c44a53717ca3857065c0a36787359e1">Atom::pos</a></td></tr>
-<tr class="separator:ga9c44a53717ca3857065c0a36787359e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaabc1e87e4ed861ae02f781d3f43d8481"><td class="memItemLeft" align="right" valign="top">Eigen::Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___atom.html#gaabc1e87e4ed861ae02f781d3f43d8481">Atom::vel</a></td></tr>
-<tr class="separator:gaabc1e87e4ed861ae02f781d3f43d8481"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf5b2daf8c6f32465b0ab1aecab57915b"><td class="memItemLeft" align="right" valign="top">Eigen::Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___atom.html#gaf5b2daf8c6f32465b0ab1aecab57915b">Atom::oldForce</a></td></tr>
-<tr class="separator:gaf5b2daf8c6f32465b0ab1aecab57915b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga33b530b8900b57bfa933ae79c7e95d71"><td class="memItemLeft" align="right" valign="top">Eigen::Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___atom.html#ga33b530b8900b57bfa933ae79c7e95d71">Atom::force</a></td></tr>
-<tr class="separator:ga33b530b8900b57bfa933ae79c7e95d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8fadf04e83f1558c13192f91eee5348a"><td class="memItemLeft" align="right" valign="top"><a id="ga8fadf04e83f1558c13192f91eee5348a"></a>
-static Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><b>Atom::forceMatrix</b></td></tr>
-<tr class="separator:ga8fadf04e83f1558c13192f91eee5348a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga482b093515f1ad043b35646669445bda"><td class="memItemLeft" align="right" valign="top"><a id="ga482b093515f1ad043b35646669445bda"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Atom::charge</b></td></tr>
-<tr class="separator:ga482b093515f1ad043b35646669445bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3f68fa5a0bd341c3c6b73826da8e9302"><td class="memItemLeft" align="right" valign="top"><a id="ga3f68fa5a0bd341c3c6b73826da8e9302"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>Atom::radius</b></td></tr>
-<tr class="separator:ga3f68fa5a0bd341c3c6b73826da8e9302"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga90e6f00ca3ae2fda9b87cb27aac5929d"><td class="memItemLeft" align="right" valign="top"><a id="ga90e6f00ca3ae2fda9b87cb27aac5929d"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>Atom::mass</b></td></tr>
-<tr class="separator:ga90e6f00ca3ae2fda9b87cb27aac5929d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="gaa0147d7e49ab90f559b66e38d3d12863"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa0147d7e49ab90f559b66e38d3d12863">&#9670;&nbsp;</a></span>Atom()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Atom::Atom </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p><a class="el" href="class_atom.html">Atom</a> class </p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ga33b530b8900b57bfa933ae79c7e95d71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga33b530b8900b57bfa933ae79c7e95d71">&#9670;&nbsp;</a></span>force</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Vector3d Atom::force</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Current force </p>
-
-</div>
-</div>
-<a id="gaf5b2daf8c6f32465b0ab1aecab57915b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf5b2daf8c6f32465b0ab1aecab57915b">&#9670;&nbsp;</a></span>oldForce</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Vector3d Atom::oldForce</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Force from previous iteration </p>
-
-</div>
-</div>
-<a id="ga9c44a53717ca3857065c0a36787359e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9c44a53717ca3857065c0a36787359e1">&#9670;&nbsp;</a></span>pos</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Vector3d Atom::pos</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Positions </p>
-
-</div>
-</div>
-<a id="gaabc1e87e4ed861ae02f781d3f43d8481"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaabc1e87e4ed861ae02f781d3f43d8481">&#9670;&nbsp;</a></span>vel</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Vector3d Atom::vel</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Velocities </p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -12,16 +12,10 @@
 /*!< Simulation variables */
 double base::boxDim = 10;
 int base::numOfAtoms = 10;
-int base::iterations = 1000000;
+int base::iterations = 100000;
 int base::outFreq = 1000;
 double base::temperature = 300;
 double base::tStep = 0.001;
-
-/*!< Initialize arrays */
-double *base::kineticEnergies = (double*) malloc(base::outFreq * sizeof(double));
-double *base::potentialEnergies = (double*) malloc(base::outFreq * sizeof(double));
-double *base::totalEnergies = (double*) malloc(base::outFreq * sizeof(double));
-double *base::temperatures = (double*) malloc(base::iterations * sizeof(double));
 
 Eigen::MatrixXd Atom::forceMatrix;
 

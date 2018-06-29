@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespaceintegrators" kind="namespace" language="C++">
+    <compoundname>integrators</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="integrators_8h_1a217be128a03eaac3dc05bdbd22bc8809" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void integrators::velocity_verlet_first</definition>
+        <argsstring>(Atom **atoms)</argsstring>
+        <name>velocity_verlet_first</name>
+        <param>
+          <type><ref refid="class_atom" kindref="compound">Atom</ref> **</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Velocity Verlet integrator First half step</para>        </inbodydescription>
+        <location file="integrators.h" line="7" column="1" bodyfile="integrators.h" bodystart="7" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="integrators_8h_1ac25456f7247f7b73b5db97108cd7583e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void integrators::velocity_verlet_second</definition>
+        <argsstring>(Atom **atoms)</argsstring>
+        <name>velocity_verlet_second</name>
+        <param>
+          <type><ref refid="class_atom" kindref="compound">Atom</ref> **</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Velocity Verlet integrator Second half step</para>        </inbodydescription>
+        <location file="integrators.h" line="44" column="1" bodyfile="integrators.h" bodystart="44" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="integrators.h" line="6" column="1"/>
+  </compounddef>
+</doxygen>

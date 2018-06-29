@@ -12,6 +12,12 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -68,17 +74,20 @@ $(function() {
 
 <p>This is the complete list of members for <a class="el" href="class_atom.html">Atom</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="group___atom.html#gaa0147d7e49ab90f559b66e38d3d12863">Atom</a>()</td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_atom.html#aa0147d7e49ab90f559b66e38d3d12863">Atom</a>()</td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>charge</b> (defined in <a class="el" href="class_atom.html">Atom</a>)</td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>distance</b>(Atom *otherAtom) (defined in <a class="el" href="class_atom.html">Atom</a>)</td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="group___atom.html#ga33b530b8900b57bfa933ae79c7e95d71">force</a></td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>forceMatrix</b> (defined in <a class="el" href="class_atom.html">Atom</a>)</td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_atom.html#a7ac21eb5765267ccafe658634c7cc45f">distances</a></td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_atom.html#a33b530b8900b57bfa933ae79c7e95d71">force</a></td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_atom.html#a8fadf04e83f1558c13192f91eee5348a">forceMatrix</a></td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>initialize</b>(Atom **atoms) (defined in <a class="el" href="class_atom.html">Atom</a>)</td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>kinetic_energy</b>() (defined in <a class="el" href="class_atom.html">Atom</a>)</td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>mass</b> (defined in <a class="el" href="class_atom.html">Atom</a>)</td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="group___atom.html#gaf5b2daf8c6f32465b0ab1aecab57915b">oldForce</a></td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="group___atom.html#ga9c44a53717ca3857065c0a36787359e1">pos</a></td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_atom.html#af5b2daf8c6f32465b0ab1aecab57915b">oldForce</a></td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_atom.html#a9c44a53717ca3857065c0a36787359e1">pos</a></td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>radius</b> (defined in <a class="el" href="class_atom.html">Atom</a>)</td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="group___atom.html#gaabc1e87e4ed861ae02f781d3f43d8481">vel</a></td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>set_velocity</b>() (defined in <a class="el" href="class_atom.html">Atom</a>)</td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_atom.html#aabc1e87e4ed861ae02f781d3f43d8481">vel</a></td><td class="entry"><a class="el" href="class_atom.html">Atom</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

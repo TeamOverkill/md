@@ -6,6 +6,8 @@
  *  \addtogroup Energy
  *  @{
  */
+
+//! Potentials and force functions
 namespace energy{
     /*!
      *  \addtogroup Lennard-Jones

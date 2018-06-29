@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lennard_2djones',['Lennard-Jones',['../group___lennard-_jones.html',1,'']]]
+  ['frame',['Frame',['../group___frame.html',1,'']]]
 ];

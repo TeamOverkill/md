@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['force',['force',['../group___atom.html#ga33b530b8900b57bfa933ae79c7e95d71',1,'Atom']]]
+  ['distances',['distances',['../class_atom.html#a7ac21eb5765267ccafe658634c7cc45f',1,'Atom']]]
 ];

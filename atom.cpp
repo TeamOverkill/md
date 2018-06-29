@@ -34,16 +34,16 @@ void Atom::initialize(Atom** atoms){
     for(int i = 0; i < base::numOfAtoms; i++) {
         atoms[i] = new Atom();
 
-        //atoms[i]->mass = 0.000000000000000000000001;
-        //atoms[i]->mass = 1.0;
-        atoms[i]->mass = 0.00000000000000000001;
+        //atoms[i]->mass = 0.000000000000000000000000001;
+        //atoms[i]->mass = 1;
+        atoms[i]->mass = 0.000000000000000000001;
         atoms[i]->radius = 1;
 
         atoms[i]->pos[0] = ran2::get_random() * base::boxDim;
         atoms[i]->pos[1] = ran2::get_random() * base::boxDim;
         atoms[i]->pos[2] = ran2::get_random() * base::boxDim;
 
-        /*!< Maxwell-Boltzmann velocity distribution*/
+        /* Maxwell-Boltzmann velocity distribution*/
         double ran_u1 = ran2::get_random();
         double ran_u2 = ran2::get_random();
         double random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
@@ -59,7 +59,7 @@ void Atom::initialize(Atom** atoms){
         random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
         atoms[i]->vel[2] = random_gauss * sqrt(constants::K * 300 / atoms[i]->mass);
 
-        /*!< Set initial forces*/
+        /* Set initial forces*/
         atoms[i]->oldForce[0] = 0;
         atoms[i]->oldForce[1] = 0;
         atoms[i]->oldForce[2] = 0;
@@ -70,10 +70,12 @@ void Atom::initialize(Atom** atoms){
     }
 }
 
+
 double Atom::distance(Atom* otherAtom){
     Eigen::Vector3d disp = this->pos - otherAtom->pos;
     return disp.norm();
 }
+
 
 double Atom::kinetic_energy(){
     return this->mass * this->vel.dot(this->vel) * 0.5;
