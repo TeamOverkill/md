@@ -26,7 +26,7 @@ import sys
 # If your documentation needs a minimal Sphinx version, state it here.
 #
 # needs_sphinx = '1.0'
-sys.path.append( "/Users/samuel/Documents/md/breathe/" )
+sys.path.append( "/Users/samuel/Documents/breathe/" )
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
@@ -34,7 +34,7 @@ extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
     'breathe']
-breathe_projects = { "MolecularOverkill": "/Users/samuel/Documents/md/xml/" }
+breathe_projects = { "MolecularOverkill": "/Users/samuel/Documents/md/docs/xml/" }
 breathe_default_project = "MolecularOverkill"
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
