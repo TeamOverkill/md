@@ -13,15 +13,3 @@ Welcome to MolecularOverkill's documentation!
    home
    classes
    namespaces
-
-.. autodoxygenindex::
-   :project: auto
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

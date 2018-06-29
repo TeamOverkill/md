@@ -6,17 +6,21 @@
  *  @{
  */
 
- //! Molecular Dynamics Engine
+/*! Molecular Dynamics Engine*/
 namespace mdEngine {
-    /*
-    * This namespace should hold all MD specific algorithms, hence the 'engine' of the program
-    */
+   /*
+   * This namespace should hold all MD specific algorithms, hence the 'engine' of the program
+   */
 
+    /*!
+    * Calculate the temperature based on the equipartition theorem
+    * where the temperature is given by
+    \f[
+      T = \sum^{N-1}_{i=0}m_i * v_i^2
+    \f]
+    */
     double get_temperature(Atom **atoms){
-        /*!
-        * Calculate the temperature based on the equipartition theorem
-        * where the temperature is \f$T = \sum^N_{i=1}a[i].mass * a[i].velocity^2\f$
-        */
+
 
         double temp = 0;
         for(int i = 0; i < base::numOfAtoms; i++){
@@ -25,19 +29,24 @@ namespace mdEngine {
         return temp/base::numOfAtoms * 1 / (3 * constants::K);
     }
 
+    /*!
+    * Calculate the pressure based on the virial expansion
+    \f[
+        P=\rho k_B T + \frac{1}{dV}\left<\sum_{i=0}^{N-1}\sum_{j = i + 1}^{N-1} f(r_{ij})r_{ij}\right>
+    \f]
+    */
     double get_pressure(){
-        /*!
-        * Calculate the pressure based on the virial expansion
-        */
+
         double pressure = 0;
 
     }
 
+    /*!
+    * This function contains the main loop of the program
+    */
     template<typename F, typename I>
     void run(I&& integrator_1, I&& integrator_2, F&& force_function, Atom **atoms, Frame **frames){
-        /*!
-        * This function contains the main loop of the program
-        */
+
 
         double temperature;
         int frameCounter = 0;

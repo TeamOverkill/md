@@ -189,22 +189,30 @@
 <dl class="type">
 <dt id="_CPPv28mdEngine">
 <span id="mdEngine"></span><span class="target" id="namespacemd_engine"></span><em class="property">namespace </em><code class="descname">mdEngine</code><a class="headerlink" href="#_CPPv28mdEngine" title="Permalink to this definition">¶</a><br /></dt>
-<dd><div class="breathe-sectiondef docutils container">
+<dd><p>Molecular Dynamics Engine </p>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
 <dt id="_CPPv2N8mdEngine15get_temperatureEPP4Atom">
 <span id="mdEngine::get_temperature__AtomPP"></span><span class="target" id="group___main__modules_1ga5f8cc3610166e26157ab48c1905bd2b7"></span>double <code class="descname">get_temperature</code><span class="sig-paren">(</span><a class="reference internal" href="classes.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8mdEngine15get_temperatureEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Calculate the temperature based on the equipartition theorem where the temperature is given by <div class="math">
+\[ T = \sum^{N-1}_{i=0}m_i * v_i^2 \]</div>
+ </p>
+</dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N8mdEngine12get_pressureEv">
 <span id="mdEngine::get_pressure"></span><span class="target" id="group___main__modules_1ga43703c5bde3f0a0ffd916e8c030d5d33"></span>double <code class="descname">get_pressure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8mdEngine12get_pressureEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Calculate the pressure based on the virial expansion <div class="math">
+\[ P=\rho k_B T + \frac{1}{dV}\left&lt;\sum_{i=0}^{N-1}\sum_{j = i + 1}^{N-1} f(r_{ij})r_{ij}\right&gt; \]</div>
+ </p>
+</dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N8mdEngine3runERR1IRR1IRR1FPP4AtomPP5Frame">
 <span id="mdEngine::run__IRR.IRR.FRR.AtomPP.FramePP"></span><em class="property">template </em>&lt;<em class="property">typename</em> F, <em class="property">typename</em> I&gt;<br /><span class="target" id="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94"></span>void <code class="descname">run</code><span class="sig-paren">(</span>I &amp;&amp;<em>integrator_1</em>, I &amp;&amp;<em>integrator_2</em>, F &amp;&amp;<em>force_function</em>, <a class="reference internal" href="classes.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em>, <a class="reference internal" href="classes.html#_CPPv25Frame" title="Frame">Frame</a> **<em>frames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8mdEngine3runERR1IRR1IRR1FPP4AtomPP5Frame" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<dd><p>This function contains the main loop of the program </p>
+</dd></dl>
 
 </div>
 </dd></dl>

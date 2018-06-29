@@ -16,4 +16,4 @@ mdEngine
 .. doxygennamespace:: mdEngine
    :project: MolecularOverkill
    :members:
-   :outline:
+   :undoc-members:
