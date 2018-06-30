@@ -13,20 +13,42 @@
   <component name="ChangeListManager">
     <list default="true" id="41d8bacb-4d7d-47b1-a686-798a279e094b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Doxyfile" beforeDir="false" afterPath="$PROJECT_DIR$/Doxyfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/atom.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atom.h" beforeDir="false" afterPath="$PROJECT_DIR$/atom.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.doctrees/classes.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.doctrees/classes.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.doctrees/home.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.doctrees/home.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.doctrees/index.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.doctrees/namespaces.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.doctrees/namespaces.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/classes.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/namespaces.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/namespaces.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/namespaces.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/search.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/classes.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/home.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/home.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/namespaces.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/namespaces.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/namespaces.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/atom_8cpp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/atom_8cpp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/atom_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/atom_8h.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/class_atom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/class_atom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/class_frame.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/class_frame.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/energy_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/energy_8h.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/frame_8cpp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/frame_8cpp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/frame_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/frame_8h.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/group___lennard-_jones.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/group___lennard-_jones.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/xml/group___main__modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/group___main__modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/xml/md_engine_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/md_engine_8h.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/namespaceenergy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/namespaceenergy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/namespaceenergy_1_1_l_j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/namespaceenergy_1_1_l_j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/xml/namespaceenergy_1_1_l_j_1_1_0D5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/namespaceenergy_1_1_l_j_1_1_0D5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/xml/namespacemd_engine.xml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/xml/namespacemd_engine.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/energy.h" beforeDir="false" afterPath="$PROJECT_DIR$/energy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frame.h" beforeDir="false" afterPath="$PROJECT_DIR$/frame.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mdEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/mdEngine.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -40,43 +62,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Doxyfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Doxyfile">
+      <file leaf-file-name="home.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/home.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="692">
-              <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="energy.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/energy.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="conf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="75" selection-start-line="36" selection-start-column="75" selection-end-line="36" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/home.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="mdEngine.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mdEngine.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="78" selection-start-line="34" selection-start-column="78" selection-end-line="34" selection-end-column="78" />
+            <state relative-caret-position="15">
+              <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -84,26 +74,53 @@
       <file leaf-file-name="index.rst" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="330">
+              <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="namespaces.rst" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/namespaces.rst">
+      <file leaf-file-name="installation.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/installation.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            <state>
+              <caret column="12" selection-start-column="12" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.rst" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/home.rst">
+      <file leaf-file-name="frame.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/frame.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+            <state relative-caret-position="105">
+              <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="energy.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/energy.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mdEngine.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/mdEngine.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="atom.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/atom.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -111,8 +128,8 @@
       <file leaf-file-name="frame.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frame.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="78" selection-start-line="20" selection-start-column="78" selection-end-line="20" selection-end-column="78" />
+            <state relative-caret-position="210">
+              <caret line="14" column="75" selection-start-line="14" selection-start-column="75" selection-end-line="14" selection-end-column="75" />
               <folding>
                 <element signature="e#14#31#0" expanded="true" />
               </folding>
@@ -123,8 +140,17 @@
       <file leaf-file-name="atom.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/atom.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="55" />
+            <state relative-caret-position="405">
+              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="atom.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/atom.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="81" column="44" selection-start-line="81" selection-start-column="44" selection-end-line="81" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -145,6 +171,7 @@
       <find>html</find>
       <find>generate</find>
       <find>output</find>
+      <find>extract</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,18 +189,24 @@
         <option value="$PROJECT_DIR$/thermostats.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/base.cpp" />
-        <option value="$PROJECT_DIR$/atom.cpp" />
-        <option value="$PROJECT_DIR$/energy.h" />
-        <option value="$PROJECT_DIR$/atom.h" />
-        <option value="$PROJECT_DIR$/docs/source/frame.rst" />
-        <option value="$PROJECT_DIR$/docs/source/classes.rst" />
-        <option value="$PROJECT_DIR$/frame.h" />
-        <option value="$PROJECT_DIR$/docs/source/home.rst" />
-        <option value="$PROJECT_DIR$/Doxyfile" />
         <option value="$PROJECT_DIR$/docs/source/conf.py" />
-        <option value="$PROJECT_DIR$/docs/source/index.rst" />
         <option value="$PROJECT_DIR$/docs/source/namespaces.rst" />
         <option value="$PROJECT_DIR$/mdEngine.h" />
+        <option value="$PROJECT_DIR$/Doxyfile" />
+        <option value="$PROJECT_DIR$/docs/source/classes.rst" />
+        <option value="$PROJECT_DIR$/frame.h" />
+        <option value="$PROJECT_DIR$/energy.h" />
+        <option value="$PROJECT_DIR$/docs/source/modules.rtd" />
+        <option value="$PROJECT_DIR$/docs/source/installation.rst" />
+        <option value="$PROJECT_DIR$/docs/source/mdEngine.rst" />
+        <option value="$PROJECT_DIR$/docs/source/frame.rst" />
+        <option value="$PROJECT_DIR$/docs/source/modules.rst" />
+        <option value="$PROJECT_DIR$/docs/source/energy.rst" />
+        <option value="$PROJECT_DIR$/docs/source/home.rst" />
+        <option value="$PROJECT_DIR$/docs/source/index.rst" />
+        <option value="$PROJECT_DIR$/docs/source/atom.rst" />
+        <option value="$PROJECT_DIR$/atom.h" />
+        <option value="$PROJECT_DIR$/atom.cpp" />
       </list>
     </option>
   </component>
@@ -187,10 +220,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="-210" />
-    <option name="y" value="-1200" />
-    <option name="width" value="1920" />
-    <option name="height" value="1200" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -263,18 +294,19 @@
       <workItem from="1528914262788" duration="421000" />
       <workItem from="1528914754733" duration="8000" />
       <workItem from="1528995018327" duration="8504000" />
-      <workItem from="1529068577280" duration="49399000" />
+      <workItem from="1529068577280" duration="49622000" />
+      <workItem from="1530364761152" duration="4428000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58851000" />
+    <option name="totallyTimeSpent" value="63502000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-210" y="-1200" width="1920" height="1200" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16197917" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16180556" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="CMake" order="7" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -288,10 +320,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.28773585" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.28773585" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,49 +333,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/frame.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" selection-start-line="29" selection-end-line="44" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/energy.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/energy.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/integrators.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mdEngine.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -442,9 +431,7 @@
     <entry file="file://$PROJECT_DIR$/ran_uniform.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/energies.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/energies.txt" />
     <entry file="file://$PROJECT_DIR$/frame.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -520,67 +507,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/atom.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/frame.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/classes.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" selection-start-line="12" selection-end-line="17" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/energy.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/atom.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frame.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="78" selection-start-line="20" selection-start-column="78" selection-end-line="20" selection-end-column="78" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/home.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/home.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Doxyfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -589,24 +517,128 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+    <entry file="file://$PROJECT_DIR$/Doxyfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="475">
+          <caret line="444" column="28" selection-start-line="444" selection-start-column="28" selection-end-line="444" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/classes.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mdEngine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/energy.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/classes.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="19" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/modules.rtd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/installation.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/source/namespaces.rst">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+          <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mdEngine.h">
+    <entry file="file://$PROJECT_DIR$/docs/source/mdEngine.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="78" selection-start-line="34" selection-start-column="78" selection-end-line="34" selection-end-column="78" />
+        <state relative-caret-position="90">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/modules.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/energy.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/home.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frame.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="75" selection-start-line="14" selection-start-column="75" selection-end-line="14" selection-end-column="75" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/atom.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/frame.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/atom.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/atom.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="81" column="44" selection-start-line="81" selection-start-column="44" selection-end-line="81" selection-end-column="44" />
         </state>
       </provider>
     </entry>

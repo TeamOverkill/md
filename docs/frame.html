@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Frame &mdash; MolecularOverkill 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="mdEngine" href="mdEngine.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MolecularOverkill
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="home.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="atom.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdEngine.html">mdEngine</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Frame</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MolecularOverkill</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Frame</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/frame.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="frame">
+<h1>Frame<a class="headerlink" href="#frame" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv25Frame">
+<span id="Frame"></span><span class="target" id="class_frame"></span><em class="property">class </em><code class="descname">Frame</code><a class="headerlink" href="#_CPPv25Frame" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An instance of the <a class="reference internal" href="#class_frame"><span class="std std-ref">Frame</span></a> class is created at each interval specified by the variable fStep. In each instance the phase space coordinate at the current time step is saved. All frames are then saved to a file which can be displayed as a trajectory in some visualization software. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv2N5Frame5FrameEv">
+<span id="Frame::Frame"></span><span class="target" id="class_frame_1ad2e5946cf41d4817e750500acf05d02b"></span><code class="descname">Frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame5FrameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5Frame10save_stateEPP4Atom">
+<span id="Frame::save_state__AtomPP"></span><span class="target" id="class_frame_1a03b0febb7a423f343a97f5b937ca74bb"></span>void <code class="descname">save_state</code><span class="sig-paren">(</span><a class="reference internal" href="atom.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame10save_stateEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save current state in a frame </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Functions</p>
+<dl class="function">
+<dt id="_CPPv2N5Frame12save_to_fileEPP5Frame">
+<span id="Frame::save_to_file__FramePP"></span><span class="target" id="class_frame_1aa3523e2ec8247c6c5f2bb102d5016971"></span>void <code class="descname">save_to_file</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv25Frame" title="Frame">Frame</a> **<em>frames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame12save_to_fileEPP5Frame" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write all frames to a file </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N5Frame10initializeEi">
+<span id="Frame::initialize__i"></span><span class="target" id="class_frame_1a78558e230dba7e5bf57916d38af7536c"></span>void <code class="descname">initialize</code><span class="sig-paren">(</span>int <em>numberOfFrames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame10initializeEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize the frames </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Attributes</p>
+<dl class="member">
+<dt id="_CPPv2N5Frame5fStepE">
+<span id="Frame::fStep__i"></span><span class="target" id="class_frame_1ae7615c7221ced614d59ce461deed3a5f"></span>int <code class="descname">fStep</code><a class="headerlink" href="#_CPPv2N5Frame5fStepE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Save a frame each fStep iteration </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Private Members</p>
+<dl class="member">
+<dt id="_CPPv2N5Frame5stateE">
+<span id="Frame::state__std::vector:std::vector:double::"></span><span class="target" id="class_frame_1a623c130d550f3ac4800c23460fb059bb"></span>std::vector&lt;std::vector&lt;double&gt;&gt; <code class="descname">state</code><a class="headerlink" href="#_CPPv2N5Frame5stateE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Matrix which holds the position and velocities of all atoms (state of the system) </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Private Static Attributes</p>
+<dl class="member">
+<dt id="_CPPv2N5Frame12frameCounterE">
+<span id="Frame::frameCounter__i"></span><span class="target" id="class_frame_1a713a115abb228c919e8ab3462b308bb2"></span>int <code class="descname">frameCounter</code><a class="headerlink" href="#_CPPv2N5Frame12frameCounterE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counts the number of frames </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="mdEngine.html" class="btn btn-neutral" title="mdEngine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Samuel Stenberg, Vidar Aspelin, Stefan Hansen.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

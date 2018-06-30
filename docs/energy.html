@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>About &mdash; MolecularOverkill 1.0 documentation</title>
+  <title>Energy &mdash; MolecularOverkill 1.0 documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation" href="installation.html" />
-    <link rel="prev" title="Welcome to MolecularOverkill’s documentation!" href="index.html" /> 
+    <link rel="next" title="mdEngine" href="mdEngine.html" />
+    <link rel="prev" title="Atom" href="atom.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -83,14 +83,14 @@
             
             
               <p class="caption"><span class="caption-text">Introduction:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">About</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="home.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modules:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="atom.html">Atom</a></li>
-<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mdEngine.html">mdEngine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="frame.html">Frame</a></li>
 </ul>
@@ -138,13 +138,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>About</li>
+      <li>Energy</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/home.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/energy.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -157,13 +157,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="about">
-<h1>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
-<p>MolecularOverkill is a molecular dynamics simulation software bla bla bla.</p>
-<div class="figure align-right" id="id1">
-<img alt="alternate text" src="_images/team_overkill.jpg" />
-<p class="caption"><span class="caption-text">Team Overkill outside the headquarters</span></p>
+  <div class="section" id="energy">
+<h1>Energy<a class="headerlink" href="#energy" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="_CPPv26energy">
+<span class="target" id="namespaceenergy"></span><em class="property">namespace </em><code class="descname">energy</code><a class="headerlink" href="#_CPPv26energy" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The energy namespace contains the various potentials. Each potential has a corresponding force function which calculates the force by differentiating the potential function </p>
+<dl class="type">
+<dt id="_CPPv2N6energy2LJE">
+<span id="energy::LJ"></span><span class="target" id="namespaceenergy_1_1_l_j"></span><em class="property">namespace </em><code class="descname">LJ</code><a class="headerlink" href="#_CPPv2N6energy2LJE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt id="_CPPv2N6energy2LJ6forcesEPP4Atom">
+<span id="energy::LJ::forces__AtomPP"></span><span class="target" id="group___lennard-_jones_1ga964e5b1db9c2f1cfaf64663b2fa92e90"></span>void <code class="descname">forces</code><span class="sig-paren">(</span><a class="reference internal" href="atom.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6energy2LJ6forcesEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>dgfghh </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6energy2LJ6energyEPP4Atom">
+<span id="energy::LJ::energy__AtomPP"></span><span class="target" id="group___lennard-_jones_1ga100c4be2b148a0f7f68f6af3dac4135a"></span>double <code class="descname">energy</code><span class="sig-paren">(</span><a class="reference internal" href="atom.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6energy2LJ6energyEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Calculate the energy using a Lennard-Jones potential which is given by <div class="math">
+\[ U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right) \]</div>
+ </p>
+</dd></dl>
+
 </div>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -174,10 +197,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mdEngine.html" class="btn btn-neutral float-right" title="mdEngine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to MolecularOverkill’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="atom.html" class="btn btn-neutral" title="Atom" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

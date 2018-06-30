@@ -42,7 +42,16 @@ namespace mdEngine {
     }
 
     /*!
-    * This function contains the main loop of the program
+    * This function contains the main loop of the program which in essence is structured as follows:
+    \code{.cpp}
+     for(int i = 0; i < numberOfIterations; i++){
+        integrator_1(atoms);                            // First half step of integrator
+        force_function(atoms);                          // Calculate forces
+        integrator_2(atoms);                            // Second half step of integrator
+        thermostat(atoms);                              // Apply thermostat
+        barostat(atoms);                                // Apply barostat
+      }
+    \endcode
     */
     template<typename F, typename I>
     void run(I&& integrator_1, I&& integrator_2, F&& force_function, Atom **atoms, Frame **frames){

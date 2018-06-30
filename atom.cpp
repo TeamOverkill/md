@@ -70,13 +70,19 @@ void Atom::initialize(Atom** atoms){
     }
 }
 
-
+/*! Calculates the distance between two atoms:
+\f[ r_{ij}=\sqrt{(x_i-x_j)^2 + (y_i-y_j)^2 + (z_i-z_j)^2}
+\f]
+*/
 double Atom::distance(Atom* otherAtom){
     Eigen::Vector3d disp = this->pos - otherAtom->pos;
     return disp.norm();
 }
 
-
+/*! Calculates the kinetic energy of an atom:
+\f[ K = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2}
+\f]
+*/
 double Atom::kinetic_energy(){
     return this->mass * this->vel.dot(this->vel) * 0.5;
 }

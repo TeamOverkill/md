@@ -17,7 +17,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Calculate the temperature based on the equipartition theorem where the temperature is given by <formula id="0">\[ T = \sum^{N-1}_{i=0}m_i * v_i^2 \]</formula> </para>        </detaileddescription>
+<para>Calculate the temperature based on the equipartition theorem where the temperature is given by <formula id="3">\[ T = \sum^{N-1}_{i=0}m_i * v_i^2 \]</formula> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="mdEngine.h" line="22" column="1" bodyfile="mdEngine.h" bodystart="22" bodyend="30"/>
@@ -30,7 +30,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Calculate the pressure based on the virial expansion <formula id="1">\[ P=\rho k_B T + \frac{1}{dV}\left&lt;\sum_{i=0}^{N-1}\sum_{j = i + 1}^{N-1} f(r_{ij})r_{ij}\right&gt; \]</formula> </para>        </detaileddescription>
+<para>Calculate the pressure based on the virial expansion <formula id="4">\[ P=\rho k_B T + \frac{1}{dV}\left&lt;\sum_{i=0}^{N-1}\sum_{j = i + 1}^{N-1} f(r_{ij})r_{ij}\right&gt; \]</formula> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="mdEngine.h" line="38" column="1" bodyfile="mdEngine.h" bodystart="38" bodyend="42"/>
@@ -71,10 +71,17 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>This function contains the main loop of the program </para>        </detaileddescription>
+<para>This function contains the main loop of the program which in essence is structured as follows: <programlisting filename=".cpp"><codeline><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>numberOfIterations;<sp/>i++){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>integrator_1(atoms);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>First<sp/>half<sp/>step<sp/>of<sp/>integrator</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>force_function(atoms);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>forces</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>integrator_2(atoms);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Second<sp/>half<sp/>step<sp/>of<sp/>integrator</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>thermostat(atoms);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Apply<sp/>thermostat</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>barostat(atoms);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Apply<sp/>barostat</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/>}</highlight></codeline>
+</programlisting> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="mdEngine.h" line="48" column="1" bodyfile="mdEngine.h" bodystart="48" bodyend="88"/>
+        <location file="mdEngine.h" line="57" column="1" bodyfile="mdEngine.h" bodystart="57" bodyend="97"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

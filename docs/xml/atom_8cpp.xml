@@ -124,55 +124,53 @@
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="71"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Atom::distance(<ref refid="class_atom" kindref="compound">Atom</ref>*<sp/>otherAtom){</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>disp<sp/>=<sp/>this-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref><sp/>-<sp/>otherAtom-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref>;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>disp.norm();</highlight></codeline>
-<codeline lineno="77"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Atom::kinetic_energy(){</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;mass<sp/>*<sp/>this-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>.dot(this-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>)<sp/>*<sp/>0.5;</highlight></codeline>
-<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="84"><highlight class="comment">void<sp/>Atom::equilibrate(Atom<sp/>**atoms){</highlight></codeline>
-<codeline lineno="85"><highlight class="comment"><sp/><sp/><sp/><sp/>int<sp/>overlaps<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="86"><highlight class="comment"><sp/><sp/><sp/><sp/>double<sp/>diameter2<sp/>=<sp/>pow(atoms[0]-&gt;radius,<sp/>2);</highlight></codeline>
-<codeline lineno="87"><highlight class="comment"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>oldPos;</highlight></codeline>
-<codeline lineno="88"><highlight class="comment"><sp/><sp/><sp/><sp/>double<sp/>random;</highlight></codeline>
-<codeline lineno="89"><highlight class="comment"><sp/><sp/><sp/><sp/>double<sp/>stepSize<sp/>=<sp/>5;</highlight></codeline>
-<codeline lineno="90"><highlight class="comment"><sp/><sp/><sp/><sp/>int<sp/>p;</highlight></codeline>
-<codeline lineno="91"><highlight class="comment"></highlight></codeline>
-<codeline lineno="92"><highlight class="comment"><sp/><sp/><sp/><sp/>for(int<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>base::numOfAtoms;<sp/>i++){</highlight></codeline>
-<codeline lineno="93"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(int<sp/>j<sp/>=<sp/>i<sp/>+<sp/>1;<sp/>j<sp/>&lt;<sp/>base::numOfAtoms;<sp/>j++){</highlight></codeline>
-<codeline lineno="94"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(atoms[i]-&gt;distance(atoms[j])<sp/>&lt;<sp/>atoms[i]-&gt;radius<sp/>+<sp/>atoms[j]-&gt;radius){</highlight></codeline>
-<codeline lineno="95"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>overlaps++;</highlight></codeline>
-<codeline lineno="96"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="97"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="98"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="99"><highlight class="comment"></highlight></codeline>
-<codeline lineno="100"><highlight class="comment"><sp/><sp/><sp/><sp/>//Move<sp/>particles<sp/>to<sp/>prevent<sp/>overlap</highlight></codeline>
-<codeline lineno="101"><highlight class="comment"><sp/><sp/><sp/><sp/>while(overlaps<sp/>&gt;<sp/>0){</highlight></codeline>
-<codeline lineno="102"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>random<sp/>=<sp/>(double)rand()<sp/>/<sp/>(RAND_MAX)<sp/>*<sp/>Atom::numOfAtoms;</highlight></codeline>
-<codeline lineno="103"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p<sp/>=<sp/><sp/>random<sp/>*<sp/>base::numOfAtoms;</highlight></codeline>
-<codeline lineno="104"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oldPos<sp/>=<sp/>atoms[p]-&gt;pos;</highlight></codeline>
-<codeline lineno="105"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//atoms[p]-&gt;random_move(5);</highlight></codeline>
-<codeline lineno="106"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(int<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>base::numOfAtoms;<sp/>i++){</highlight></codeline>
-<codeline lineno="107"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(!atoms[p]-&gt;distance(atoms[i]))<sp/>||<sp/>atoms[p]-&gt;pos[0]<sp/>&lt;<sp/>atoms[p]-&gt;radius<sp/>||</highlight></codeline>
-<codeline lineno="108"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos[0]<sp/>&gt;<sp/>base::boxDim<sp/>-<sp/>atoms[p]-&gt;radius<sp/>||</highlight></codeline>
-<codeline lineno="109"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos[1]<sp/>&lt;<sp/>atoms[p]-&gt;radius<sp/>||</highlight></codeline>
-<codeline lineno="110"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos[1]<sp/>&gt;<sp/>base::boxDim<sp/>-<sp/>atoms[p]-&gt;radius<sp/>||</highlight></codeline>
-<codeline lineno="111"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos[2]<sp/>&lt;<sp/>atoms[p]-&gt;radius<sp/>||</highlight></codeline>
-<codeline lineno="112"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos[2]<sp/>&gt;<sp/>base::boxDim<sp/>-<sp/>atoms[p]-&gt;radius){</highlight></codeline>
-<codeline lineno="113"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos<sp/>=<sp/>oldPos;</highlight></codeline>
-<codeline lineno="114"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="115"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else{</highlight></codeline>
-<codeline lineno="116"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>overlaps--;</highlight></codeline>
-<codeline lineno="117"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="118"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="119"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="120"><highlight class="comment">}</highlight></codeline>
-<codeline lineno="121"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_atom_1a90a4da89f562cb57f576078e5580a0a8" kindref="member">Atom::distance</ref>(<ref refid="class_atom" kindref="compound">Atom</ref>*<sp/>otherAtom){</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>disp<sp/>=<sp/>this-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref><sp/>-<sp/>otherAtom-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>disp.norm();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_atom_1a4cc117bd6f7a2ce6f1af407283aff4b2" kindref="member">Atom::kinetic_energy</ref>(){</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;mass<sp/>*<sp/>this-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>.dot(this-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>)<sp/>*<sp/>0.5;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="90"><highlight class="comment">void<sp/>Atom::equilibrate(Atom<sp/>**atoms){</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/><sp/><sp/><sp/>int<sp/>overlaps<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/><sp/><sp/><sp/>double<sp/>diameter2<sp/>=<sp/>pow(atoms[0]-&gt;radius,<sp/>2);</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>oldPos;</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/><sp/><sp/><sp/>double<sp/>random;</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/><sp/><sp/><sp/>double<sp/>stepSize<sp/>=<sp/>5;</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/><sp/><sp/><sp/>int<sp/>p;</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"></highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/><sp/><sp/><sp/>for(int<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>base::numOfAtoms;<sp/>i++){</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(int<sp/>j<sp/>=<sp/>i<sp/>+<sp/>1;<sp/>j<sp/>&lt;<sp/>base::numOfAtoms;<sp/>j++){</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(atoms[i]-&gt;distance(atoms[j])<sp/>&lt;<sp/>atoms[i]-&gt;radius<sp/>+<sp/>atoms[j]-&gt;radius){</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>overlaps++;</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"></highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/><sp/><sp/><sp/>//Move<sp/>particles<sp/>to<sp/>prevent<sp/>overlap</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/><sp/><sp/><sp/>while(overlaps<sp/>&gt;<sp/>0){</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>random<sp/>=<sp/>(double)rand()<sp/>/<sp/>(RAND_MAX)<sp/>*<sp/>Atom::numOfAtoms;</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p<sp/>=<sp/><sp/>random<sp/>*<sp/>base::numOfAtoms;</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oldPos<sp/>=<sp/>atoms[p]-&gt;pos;</highlight></codeline>
+<codeline lineno="111"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//atoms[p]-&gt;random_move(5);</highlight></codeline>
+<codeline lineno="112"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(int<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>base::numOfAtoms;<sp/>i++){</highlight></codeline>
+<codeline lineno="113"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(!atoms[p]-&gt;distance(atoms[i]))<sp/>||<sp/>atoms[p]-&gt;pos[0]<sp/>&lt;<sp/>atoms[p]-&gt;radius<sp/>||</highlight></codeline>
+<codeline lineno="114"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos[0]<sp/>&gt;<sp/>base::boxDim<sp/>-<sp/>atoms[p]-&gt;radius<sp/>||</highlight></codeline>
+<codeline lineno="115"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos[1]<sp/>&lt;<sp/>atoms[p]-&gt;radius<sp/>||</highlight></codeline>
+<codeline lineno="116"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos[1]<sp/>&gt;<sp/>base::boxDim<sp/>-<sp/>atoms[p]-&gt;radius<sp/>||</highlight></codeline>
+<codeline lineno="117"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos[2]<sp/>&lt;<sp/>atoms[p]-&gt;radius<sp/>||</highlight></codeline>
+<codeline lineno="118"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos[2]<sp/>&gt;<sp/>base::boxDim<sp/>-<sp/>atoms[p]-&gt;radius){</highlight></codeline>
+<codeline lineno="119"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[p]-&gt;pos<sp/>=<sp/>oldPos;</highlight></codeline>
+<codeline lineno="120"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else{</highlight></codeline>
+<codeline lineno="122"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>overlaps--;</highlight></codeline>
+<codeline lineno="123"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="comment">}</highlight></codeline>
+<codeline lineno="127"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="atom.cpp"/>
   </compounddef>

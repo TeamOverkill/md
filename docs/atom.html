@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Classes &mdash; MolecularOverkill 1.0 documentation</title>
+  <title>Atom &mdash; MolecularOverkill 1.0 documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Namespaces" href="namespaces.html" />
-    <link rel="prev" title="Introduction" href="home.html" /> 
+    <link rel="next" title="Energy" href="energy.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -82,15 +82,17 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="home.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Classes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#frame">Frame</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#atom">Atom</a></li>
+              <p class="caption"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="home.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="namespaces.html">Namespaces</a></li>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdEngine.html">mdEngine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frame.html">Frame</a></li>
 </ul>
 
             
@@ -136,13 +138,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Classes</li>
+      <li>Atom</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/classes.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/atom.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -155,52 +157,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="classes">
-<h1>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h1>
-<p>These are all the classes used by the program.</p>
-<div class="section" id="frame">
-<h2>Frame<a class="headerlink" href="#frame" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="_CPPv25Frame">
-<span id="Frame"></span><span class="target" id="class_frame"></span><em class="property">class </em><code class="descname">Frame</code><a class="headerlink" href="#_CPPv25Frame" title="Permalink to this definition">¶</a><br /></dt>
-<dd><div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
-<dl class="function">
-<dt id="_CPPv2N5Frame10save_stateEPP4Atom">
-<span id="Frame::save_state__AtomPP"></span><span class="target" id="class_frame_1a03b0febb7a423f343a97f5b937ca74bb"></span>void <code class="descname">save_state</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame10save_stateEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Save current state in a frame </p>
-</dd></dl>
-
-</div>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Static Functions</p>
-<dl class="function">
-<dt id="_CPPv2N5Frame12save_to_fileEPP5Frame">
-<span id="Frame::save_to_file__FramePP"></span><span class="target" id="class_frame_1aa3523e2ec8247c6c5f2bb102d5016971"></span>void <code class="descname">save_to_file</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv25Frame" title="Frame">Frame</a> **<em>frames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame12save_to_fileEPP5Frame" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Write all frames to a file </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N5Frame10initializeEi">
-<span id="Frame::initialize__i"></span><span class="target" id="class_frame_1a78558e230dba7e5bf57916d38af7536c"></span>void <code class="descname">initialize</code><span class="sig-paren">(</span>int <em>numberOfFrames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame10initializeEi" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Initialize the frames </p>
-</dd></dl>
-
-</div>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Static Attributes</p>
-<dl class="member">
-<dt id="_CPPv2N5Frame5fStepE">
-<span id="Frame::fStep__i"></span><span class="target" id="class_frame_1ae7615c7221ced614d59ce461deed3a5f"></span>int <code class="descname">fStep</code><a class="headerlink" href="#_CPPv2N5Frame5fStepE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Save a frame each fStep iteration </p>
-</dd></dl>
-
-</div>
-</dd></dl>
-
-</div>
-<div class="section" id="atom">
-<h2>Atom<a class="headerlink" href="#atom" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="atom">
+<h1>Atom<a class="headerlink" href="#atom" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="_CPPv24Atom">
 <span id="Atom"></span><span class="target" id="class_atom"></span><em class="property">class </em><code class="descname">Atom</code><a class="headerlink" href="#_CPPv24Atom" title="Permalink to this definition">¶</a><br /></dt>
@@ -211,6 +169,27 @@
 <span id="Atom::Atom"></span><span class="target" id="class_atom_1aa0147d7e49ab90f559b66e38d3d12863"></span><code class="descname">Atom</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom4AtomEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><a class="reference internal" href="#class_atom"><span class="std std-ref">Atom</span></a> class </p>
 </dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Atom8distanceEP4Atom">
+<span id="Atom::distance__AtomP"></span><span class="target" id="class_atom_1a90a4da89f562cb57f576078e5580a0a8"></span>double <code class="descname">distance</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv24Atom" title="Atom">Atom</a> *<em>otherAtom</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom8distanceEP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Calculates the distance between two atoms: <div class="math">
+\[ r_{ij}=\sqrt{(x_i-x_j)^2 + (y_i-y_j)^2 + (z_i-z_j)^2} \]</div>
+ </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Atom14kinetic_energyEv">
+<span id="Atom::kinetic_energy"></span><span class="target" id="class_atom_1a4cc117bd6f7a2ce6f1af407283aff4b2"></span>double <code class="descname">kinetic_energy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom14kinetic_energyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Calculates the kinetic energy of an atom: <div class="math">
+\[ K = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2} \]</div>
+ </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Atom12set_velocityEv">
+<span id="Atom::set_velocity"></span><span class="target" id="class_atom_1a181411015bc90a5e6993ddb006017de9"></span>void <code class="descname">set_velocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom12set_velocityEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
@@ -239,6 +218,29 @@
 <dd><p>Current force </p>
 </dd></dl>
 
+<dl class="member">
+<dt id="_CPPv2N4Atom6chargeE">
+<span id="Atom::charge__i"></span><span class="target" id="class_atom_1a482b093515f1ad043b35646669445bda"></span>int <code class="descname">charge</code><a class="headerlink" href="#_CPPv2N4Atom6chargeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Atom6radiusE">
+<span id="Atom::radius__double"></span><span class="target" id="class_atom_1a3f68fa5a0bd341c3c6b73826da8e9302"></span>double <code class="descname">radius</code><a class="headerlink" href="#_CPPv2N4Atom6radiusE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Atom4massE">
+<span id="Atom::mass__double"></span><span class="target" id="class_atom_1a90e6f00ca3ae2fda9b87cb27aac5929d"></span>double <code class="descname">mass</code><a class="headerlink" href="#_CPPv2N4Atom4massE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Functions</p>
+<dl class="function">
+<dt id="_CPPv2N4Atom10initializeEPP4Atom">
+<span id="Atom::initialize__AtomPP"></span><span class="target" id="class_atom_1ac711a82c0e5c4ada4cacec38e64c00d7"></span>void <code class="descname">initialize</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom10initializeEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Static Attributes</p>
@@ -258,7 +260,6 @@
 </dd></dl>
 
 </div>
-</div>
 
 
            </div>
@@ -268,10 +269,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="namespaces.html" class="btn btn-neutral float-right" title="Namespaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="energy.html" class="btn btn-neutral float-right" title="Energy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="home.html" class="btn btn-neutral" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

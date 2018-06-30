@@ -1,5 +1,5 @@
-Introduction
-============
+About
+=====
 
 MolecularOverkill is a molecular dynamics simulation software bla bla bla.
 

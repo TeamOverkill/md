@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Namespaces &mdash; MolecularOverkill 1.0 documentation</title>
+  <title>mdEngine &mdash; MolecularOverkill 1.0 documentation</title>
   
 
   
@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Classes" href="classes.html" /> 
+    <link rel="next" title="Frame" href="frame.html" />
+    <link rel="prev" title="Energy" href="energy.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -81,15 +82,17 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="home.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classes.html">Classes</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Namespaces</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#energy">Energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mdengine">mdEngine</a></li>
+              <p class="caption"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="home.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
-</li>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="atom.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">mdEngine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frame.html">Frame</a></li>
 </ul>
 
             
@@ -135,13 +138,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Namespaces</li>
+      <li>mdEngine</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/namespaces.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/mdEngine.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -154,38 +157,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="namespaces">
-<h1>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline">¶</a></h1>
-<p>These are all the namespaces used by the program.</p>
-<div class="section" id="energy">
-<h2>Energy<a class="headerlink" href="#energy" title="Permalink to this headline">¶</a></h2>
-<dl class="type">
-<dt id="_CPPv26energy">
-<span class="target" id="namespaceenergy"></span><em class="property">namespace </em><code class="descname">energy</code><a class="headerlink" href="#_CPPv26energy" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Potentials and force functions. </p>
-<dl class="type">
-<dt id="_CPPv2N6energy2LJE">
-<span id="energy::LJ"></span><span class="target" id="namespaceenergy_1_1_l_j"></span><em class="property">namespace </em><code class="descname">LJ</code><a class="headerlink" href="#_CPPv2N6energy2LJE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt id="_CPPv2N6energy2LJ6forcesEPP4Atom">
-<span id="energy::LJ::forces__AtomPP"></span><span class="target" id="group___lennard-_jones_1ga964e5b1db9c2f1cfaf64663b2fa92e90"></span>void <code class="descname">forces</code><span class="sig-paren">(</span><a class="reference internal" href="classes.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6energy2LJ6forcesEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N6energy2LJ6energyEPP4Atom">
-<span id="energy::LJ::energy__AtomPP"></span><span class="target" id="group___lennard-_jones_1ga100c4be2b148a0f7f68f6af3dac4135a"></span>double <code class="descname">energy</code><span class="sig-paren">(</span><a class="reference internal" href="classes.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6energy2LJ6energyEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-</div>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="mdengine">
-<h2>mdEngine<a class="headerlink" href="#mdengine" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="mdengine">
+<h1>mdEngine<a class="headerlink" href="#mdengine" title="Permalink to this headline">¶</a></h1>
 <dl class="type">
 <dt id="_CPPv28mdEngine">
 <span id="mdEngine"></span><span class="target" id="namespacemd_engine"></span><em class="property">namespace </em><code class="descname">mdEngine</code><a class="headerlink" href="#_CPPv28mdEngine" title="Permalink to this definition">¶</a><br /></dt>
@@ -194,7 +167,7 @@
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
 <dt id="_CPPv2N8mdEngine15get_temperatureEPP4Atom">
-<span id="mdEngine::get_temperature__AtomPP"></span><span class="target" id="group___main__modules_1ga5f8cc3610166e26157ab48c1905bd2b7"></span>double <code class="descname">get_temperature</code><span class="sig-paren">(</span><a class="reference internal" href="classes.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8mdEngine15get_temperatureEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<span id="mdEngine::get_temperature__AtomPP"></span><span class="target" id="group___main__modules_1ga5f8cc3610166e26157ab48c1905bd2b7"></span>double <code class="descname">get_temperature</code><span class="sig-paren">(</span><a class="reference internal" href="atom.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8mdEngine15get_temperatureEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Calculate the temperature based on the equipartition theorem where the temperature is given by <div class="math">
 \[ T = \sum^{N-1}_{i=0}m_i * v_i^2 \]</div>
  </p>
@@ -210,14 +183,22 @@
 
 <dl class="function">
 <dt id="_CPPv2N8mdEngine3runERR1IRR1IRR1FPP4AtomPP5Frame">
-<span id="mdEngine::run__IRR.IRR.FRR.AtomPP.FramePP"></span><em class="property">template </em>&lt;<em class="property">typename</em> F, <em class="property">typename</em> I&gt;<br /><span class="target" id="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94"></span>void <code class="descname">run</code><span class="sig-paren">(</span>I &amp;&amp;<em>integrator_1</em>, I &amp;&amp;<em>integrator_2</em>, F &amp;&amp;<em>force_function</em>, <a class="reference internal" href="classes.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em>, <a class="reference internal" href="classes.html#_CPPv25Frame" title="Frame">Frame</a> **<em>frames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8mdEngine3runERR1IRR1IRR1FPP4AtomPP5Frame" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>This function contains the main loop of the program </p>
+<span id="mdEngine::run__IRR.IRR.FRR.AtomPP.FramePP"></span><em class="property">template </em>&lt;<em class="property">typename</em> F, <em class="property">typename</em> I&gt;<br /><span class="target" id="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94"></span>void <code class="descname">run</code><span class="sig-paren">(</span>I &amp;&amp;<em>integrator_1</em>, I &amp;&amp;<em>integrator_2</em>, F &amp;&amp;<em>force_function</em>, <a class="reference internal" href="atom.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em>, <a class="reference internal" href="frame.html#_CPPv25Frame" title="Frame">Frame</a> **<em>frames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8mdEngine3runERR1IRR1IRR1FPP4AtomPP5Frame" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function contains the main loop of the program which in essence is structured as follows: <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numberOfIterations</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+   <span class="n">integrator_1</span><span class="p">(</span><span class="n">atoms</span><span class="p">);</span>                            <span class="o">//</span> <span class="n">First</span> <span class="n">half</span> <span class="n">step</span> <span class="n">of</span> <span class="n">integrator</span>
+   <span class="n">force_function</span><span class="p">(</span><span class="n">atoms</span><span class="p">);</span>                          <span class="o">//</span> <span class="n">Calculate</span> <span class="n">forces</span>
+   <span class="n">integrator_2</span><span class="p">(</span><span class="n">atoms</span><span class="p">);</span>                            <span class="o">//</span> <span class="n">Second</span> <span class="n">half</span> <span class="n">step</span> <span class="n">of</span> <span class="n">integrator</span>
+   <span class="n">thermostat</span><span class="p">(</span><span class="n">atoms</span><span class="p">);</span>                              <span class="o">//</span> <span class="n">Apply</span> <span class="n">thermostat</span>
+   <span class="n">barostat</span><span class="p">(</span><span class="n">atoms</span><span class="p">);</span>                                <span class="o">//</span> <span class="n">Apply</span> <span class="n">barostat</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+ </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
 </div>
 
 
@@ -228,8 +209,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="frame.html" class="btn btn-neutral float-right" title="Frame" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="classes.html" class="btn btn-neutral" title="Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="energy.html" class="btn btn-neutral" title="Energy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

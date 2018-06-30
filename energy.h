@@ -7,19 +7,21 @@
  *  @{
  */
 
-//! Potentials and force functions
+/*! The energy namespace contains the various potentials. Each potential has a corresponding
+ * force function which calculates the force by differentiating the potential function
+ */
 namespace energy{
     /*!
      *  \addtogroup Lennard-Jones
      *  @{
-     */
+    */
     namespace LJ {
-
     namespace {
         double epsilon = 1.5;    //! LJ parameter epsilon
         double sigma = 1;      //! LJ parameter sigma
     }
 
+    /*! dgfghh */
     inline void forces(Atom **atoms){
         /*!
         * Calculate the forces using a Lennard-Jones potential
@@ -48,6 +50,12 @@ namespace energy{
             }
         }
     }
+
+    /*! Calculate the energy using a Lennard-Jones potential which is given by
+    \f[
+        U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right)
+    \f]
+    */
     inline double energy(Atom **atoms){
         /*!
         * Calculate the energy using a Lennard-Jones potential

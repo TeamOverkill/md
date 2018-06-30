@@ -149,10 +149,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Calculates the distance between two atoms: <formula id="0">\[ r_{ij}=\sqrt{(x_i-x_j)^2 + (y_i-y_j)^2 + (z_i-z_j)^2} \]</formula> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="27" column="1" bodyfile="atom.cpp" bodystart="74" bodyend="77"/>
+        <location file="atom.h" line="28" column="1" bodyfile="atom.cpp" bodystart="77" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="class_atom_1a4cc117bd6f7a2ce6f1af407283aff4b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -162,10 +162,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Calculates the kinetic energy of an atom: <formula id="1">\[ K = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2} \]</formula> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="28" column="1" bodyfile="atom.cpp" bodystart="80" bodyend="82"/>
+        <location file="atom.h" line="29" column="1" bodyfile="atom.cpp" bodystart="86" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="class_atom_1a181411015bc90a5e6993ddb006017de9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -178,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="29" column="1"/>
+        <location file="atom.h" line="30" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -197,14 +197,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="30" column="1" bodyfile="atom.cpp" bodystart="33" bodyend="71"/>
+        <location file="atom.h" line="31" column="1" bodyfile="atom.cpp" bodystart="33" bodyend="71"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="atom.h" line="9" column="1" bodyfile="atom.h" bodystart="9" bodyend="31"/>
+    <location file="atom.h" line="9" column="1" bodyfile="atom.h" bodystart="9" bodyend="32"/>
     <listofallmembers>
       <member refid="class_atom_1aa0147d7e49ab90f559b66e38d3d12863" prot="public" virt="non-virtual"><scope>Atom</scope><name>Atom</name></member>
       <member refid="class_atom_1a482b093515f1ad043b35646669445bda" prot="public" virt="non-virtual"><scope>Atom</scope><name>charge</name></member>

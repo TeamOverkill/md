@@ -24,6 +24,7 @@ class Atom{
 
         int charge;
         double radius, mass;
+
         double distance(Atom* otherAtom);
         double kinetic_energy();
         void set_velocity();
