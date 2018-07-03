@@ -36,8 +36,8 @@ void Atom::initialize(Atom** atoms){
 
         //atoms[i]->mass = 0.000000000000000000000000001;
         //atoms[i]->mass = 1;
-        atoms[i]->mass = 0.000000000000000000001;
-        atoms[i]->radius = 1;
+        atoms[i]->mass = 28; //[dalton]
+        atoms[i]->radius = 0.1;
 
         atoms[i]->pos[0] = ran2::get_random() * base::boxDim;
         atoms[i]->pos[1] = ran2::get_random() * base::boxDim;
@@ -47,18 +47,19 @@ void Atom::initialize(Atom** atoms){
         double ran_u1 = ran2::get_random();
         double ran_u2 = ran2::get_random();
         double random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-        atoms[i]->vel[0] = random_gauss * sqrt(constants::K * 300 / atoms[i]->mass);
+        atoms[i]->vel[0] = random_gauss * sqrt(constants::K_DALTON * 300 / atoms[i]->mass) * 0.001; //[nm/ps]
 
         ran_u2 = ran2::get_random();
         ran_u1 = ran2::get_random();
         random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-        atoms[i]->vel[1] = random_gauss * sqrt(constants::K * 300 / atoms[i]->mass);
+        atoms[i]->vel[1] = random_gauss * sqrt(constants::K_DALTON * 300 / atoms[i]->mass) * 0.001;
 
         ran_u2 = ran2::get_random();
         ran_u1 = ran2::get_random();
         random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-        atoms[i]->vel[2] = random_gauss * sqrt(constants::K * 300 / atoms[i]->mass);
+        atoms[i]->vel[2] = random_gauss * sqrt(constants::K_DALTON * 300 / atoms[i]->mass) * 0.001;
 
+        std::cout << atoms[i]->vel.norm() << std::endl;
         /* Set initial forces*/
         atoms[i]->oldForce[0] = 0;
         atoms[i]->oldForce[1] = 0;
@@ -80,7 +81,7 @@ double Atom::distance(Atom* otherAtom){
 }
 
 /*! Calculates the kinetic energy of an atom:
-\f[ K = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2}
+\f[ K = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2}^2
 \f]
 */
 double Atom::kinetic_energy(){

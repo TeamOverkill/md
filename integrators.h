@@ -30,7 +30,7 @@ namespace integrators{
             if(atoms[i]->pos[2] <= atoms[i]->radius){
                 atoms[i]->vel[2] *= -1;
             }
-            atoms[i]->vel += 0.5 * base::tStep * atoms[i]->oldForce / atoms[i]->mass;
+            atoms[i]->vel += 0.5 * base::tStep * atoms[i]->oldForce / atoms[i]->mass; //[nm/ps]
             atoms[i]->pos += base::tStep * atoms[i]->vel;
 
             if(atoms[i]->pos.norm() > sqrt(3) * base::boxDim + 1){
