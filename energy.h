@@ -17,7 +17,7 @@ namespace energy{
     */
     namespace LJ {
     namespace {
-        double epsilon = 1.5 / constants::NA;    //! LJ parameter epsilon
+        double epsilon = 100.5 / constants::NA;    //![kJ/mol] LJ parameter epsilon
         double sigma = 1;      //! LJ parameter sigma
     }
 
@@ -44,8 +44,8 @@ namespace energy{
                 double fr6 = fr2 * fr2 * fr2;
                 double fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;
 
-                atoms[i]->force += fr * dr * 6.022141e11;         //[dalton * nm/ps^2]
-                atoms[j]->force -= fr * dr * 6.022141e11;
+                atoms[i]->force += fr * dr;// * 6.022141e11;         //[dalton * nm/ps^2]
+                atoms[j]->force -= fr * dr;// * 6.022141e11;
                 Atom::forceMatrix(i, j) = (fr * dr).norm();
             }
         }
@@ -72,10 +72,10 @@ namespace energy{
                 double fr = sigma / distance;
                 double fr2 = fr * fr;
                 double fr6 = fr2 * fr2 * fr2;
-                energy += 4 * epsilon * fr6 * (fr6 - 1);
+                energy += fr6 * (fr6 - 1);
             }
         }
-        return energy;
+        return 4 * epsilon * energy * constants::NA;
     }
 } }
 

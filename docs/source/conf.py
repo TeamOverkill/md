@@ -53,7 +53,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'MolecularOverkill'
-copyright = u'2018, Samuel Stenberg, Vidar Aspelin, Stefan Hansen'
+copyright = u'2018, Samuel Stenberg, Vidar Aspelin, Stefan Hervø-Hansen'
 author = u'Samuel Stenberg, Vidar Aspelin, Stefan Hansen'
 
 # The version info for the project you're documenting, acts as replacement for

@@ -10,8 +10,8 @@
 
 
 /*!< Simulation variables */
-double base::boxDim = 10;   //nm
-int base::numOfAtoms = 10;
+double base::boxDim = 50;   //nm
+int base::numOfAtoms = 100;
 int base::iterations = 100000;
 int base::outFreq = 1000;
 double base::temperature = 300;

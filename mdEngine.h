@@ -24,7 +24,7 @@ namespace mdEngine {
 
         double temp = 0;
         for(int i = 0; i < base::numOfAtoms; i++){
-            temp += atoms[i]->mass * atoms[i]->vel.dot(atoms[i]->vel) ;
+            temp += atoms[i]->mass * atoms[i]->vel.dot(atoms[i]->vel);
         }
         return temp/base::numOfAtoms * 1 / (3 * constants::K_CORRECT);
     }
