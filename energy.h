@@ -15,6 +15,25 @@ namespace energy{
      *  \addtogroup Lennard-Jones
      *  @{
     */
+    namespace harmonic{
+        double springConstant = 0.0000000000000000000000001;
+
+        inline double energy(Atom **atoms){
+            double energy = 0;
+            energy = 0.5 * springConstant * atoms[0]->pos.norm() * constants::NA;
+
+            return energy;
+        }
+
+        inline void forces(Atom **atoms){
+            double force = 0;
+            Eigen::Vector3d forceDir;
+            forceDir << 1, 0, 0;
+            force = springConstant * 2 * (25 - atoms[0]->pos[0]);
+            atoms[0]->force = force * forceDir.normalized();
+        }
+    }
+
     namespace LJ {
     namespace {
         double epsilon = 1.5 / constants::NA;    //![kJ/mol] LJ parameter epsilon

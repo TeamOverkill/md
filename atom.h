@@ -28,6 +28,6 @@ class Atom{
         double distance(Atom* otherAtom);
         double kinetic_energy();
         void set_velocity();
-        static void initialize(Atom **atoms);
+        static void initialize(Atom **atoms, bool d1);
 };
 /** @}*/

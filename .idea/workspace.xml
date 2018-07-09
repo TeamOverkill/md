@@ -12,14 +12,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41d8bacb-4d7d-47b1-a686-798a279e094b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/atom.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atom.h" beforeDir="false" afterPath="$PROJECT_DIR$/atom.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/energy.h" beforeDir="false" afterPath="$PROJECT_DIR$/energy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integrators.h" beforeDir="false" afterPath="$PROJECT_DIR$/integrators.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main" beforeDir="false" afterPath="$PROJECT_DIR$/main" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mdEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/mdEngine.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out.png" beforeDir="false" afterPath="$PROJECT_DIR$/out.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/thermostats.h" beforeDir="false" afterPath="$PROJECT_DIR$/thermostats.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,11 +32,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mdEngine.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mdEngine.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mdEngine.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+            <state relative-caret-position="384">
+              <caret line="80" column="14" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -59,29 +59,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="conf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="55" column="65" selection-start-line="55" selection-start-column="65" selection-end-line="55" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="atom.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/atom.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="52" selection-start-line="52" selection-end-line="55" selection-end-column="98" />
+            <state relative-caret-position="328">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+            <state relative-caret-position="161">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -92,8 +83,8 @@
       <file leaf-file-name="integrators.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/integrators.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="12" selection-start-column="12" selection-end-column="12" />
+            <state relative-caret-position="480">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
               <folding>
                 <element signature="e#14#31#0" expanded="true" />
               </folding>
@@ -113,8 +104,17 @@
       <file leaf-file-name="energy.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/energy.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+            <state relative-caret-position="270">
+              <caret line="18" column="53" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="atom.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/atom.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -173,17 +173,17 @@
         <option value="$PROJECT_DIR$/docs/source/energy.rst" />
         <option value="$PROJECT_DIR$/docs/source/index.rst" />
         <option value="$PROJECT_DIR$/docs/source/atom.rst" />
-        <option value="$PROJECT_DIR$/atom.h" />
         <option value="$PROJECT_DIR$/constants.h" />
         <option value="$PROJECT_DIR$/docs/source/home.rst" />
         <option value="$PROJECT_DIR$/docs/source/conf.py" />
-        <option value="$PROJECT_DIR$/integrators.h" />
-        <option value="$PROJECT_DIR$/energy.h" />
-        <option value="$PROJECT_DIR$/atom.cpp" />
         <option value="$PROJECT_DIR$/logo.txt" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/thermostats.h" />
         <option value="$PROJECT_DIR$/mdEngine.h" />
+        <option value="$PROJECT_DIR$/atom.h" />
+        <option value="$PROJECT_DIR$/integrators.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/atom.cpp" />
+        <option value="$PROJECT_DIR$/energy.h" />
       </list>
     </option>
   </component>
@@ -264,12 +264,12 @@
       <workItem from="1530364761152" duration="12124000" />
       <workItem from="1530711731401" duration="304000" />
       <workItem from="1530717243440" duration="7132000" />
-      <workItem from="1531143636901" duration="1497000" />
+      <workItem from="1531143636901" duration="7634000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80131000" />
+    <option name="totallyTimeSpent" value="86268000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -462,6 +462,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="75" selection-start-line="14" selection-start-column="75" selection-end-line="14" selection-end-column="75" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -479,13 +482,6 @@
           <folding>
             <element signature="e#14#32#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/atom.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -520,23 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/integrators.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/energy.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/constants.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -551,23 +530,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/atom.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="52" selection-start-line="52" selection-end-line="55" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/thermostats.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -577,8 +539,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mdEngine.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+        <state relative-caret-position="384">
+          <caret line="80" column="14" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/integrators.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/atom.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/atom.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/energy.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="53" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

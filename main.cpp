@@ -10,7 +10,7 @@
 
 /*!< Simulation variables */
 double base::boxDim = 50;   //nm
-int base::numOfAtoms = 100;
+int base::numOfAtoms = 1;
 int base::iterations = 100000;
 int base::outFreq = 1000;
 double base::temperature = 300;
@@ -19,6 +19,7 @@ double base::tStep = 0.002;
 Eigen::MatrixXd Atom::forceMatrix;
 
 int main(int argc, char *argv[]){
+    bool d1 = true;
 
     Frame::initialize(base::outFreq);                /*!< Initialize variables in Frame */
 
@@ -31,7 +32,7 @@ int main(int argc, char *argv[]){
     frames = (Frame**) malloc(base::outFreq * sizeof(Frame*));
 
     /*!< Initialize atom variables */
-    Atom::initialize(atoms);
+    Atom::initialize(atoms, d1);
 
     /*!< Initialize the force matrix */
     Atom::forceMatrix.resize(base::numOfAtoms, base::numOfAtoms);
@@ -39,7 +40,7 @@ int main(int argc, char *argv[]){
     time_t start = time(NULL);
 
     /*!< Call run() with the specified integrator and energy function */
-    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &energy::LJ::forces,
+    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &energy::harmonic::forces,
                  atoms, frames);
 
     printf("Time: %lu\n", time(NULL) - start);
