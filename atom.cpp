@@ -31,12 +31,13 @@ Atom** Atom::create_atoms() {
  */
 
 void Atom::initialize(Atom** atoms){
+    FILE *fi = fopen("velocities.txt", "w");
     for(int i = 0; i < base::numOfAtoms; i++) {
         atoms[i] = new Atom();
 
         //atoms[i]->mass = 0.000000000000000000000000001;
         //atoms[i]->mass = 1;
-        atoms[i]->mass = 28; //[dalton]
+        atoms[i]->mass = 28.0134; //[dalton]
         atoms[i]->radius = 0.1;
 
         atoms[i]->pos[0] = ran2::get_random() * base::boxDim;
@@ -59,7 +60,7 @@ void Atom::initialize(Atom** atoms){
         random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
         atoms[i]->vel[2] = random_gauss * sqrt(constants::K_DALTON * 300 / atoms[i]->mass) * 0.001;
 
-        std::cout << atoms[i]->vel.norm() << std::endl;
+        fprintf(fi, "%d    %lf\n", i, atoms[i]->vel.norm());
         /* Set initial forces*/
         atoms[i]->oldForce[0] = 0;
         atoms[i]->oldForce[1] = 0;
@@ -69,6 +70,7 @@ void Atom::initialize(Atom** atoms){
         atoms[i]->force[1] = 0;
         atoms[i]->force[2] = 0;
     }
+    fclose(fi);
 }
 
 /*! Calculates the distance between two atoms:

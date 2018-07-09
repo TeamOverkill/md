@@ -17,7 +17,7 @@ namespace energy{
     */
     namespace LJ {
     namespace {
-        double epsilon = 100.5 / constants::NA;    //![kJ/mol] LJ parameter epsilon
+        double epsilon = 1.5 / constants::NA;    //![kJ/mol] LJ parameter epsilon
         double sigma = 1;      //! LJ parameter sigma
     }
 

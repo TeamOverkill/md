@@ -78,7 +78,7 @@ namespace mdEngine {
             integrator_1(atoms);    /* First half step of integrator */
             force_function(atoms);  /* Calculate new forces */
             integrator_2(atoms);    /* Second half step of integrator */
-            //thermostats::andersen::set_velocity(atoms); /* Apply thermostat */
+            thermostats::andersen::set_velocity(atoms); /* Apply thermostat */
             temperature = get_temperature(atoms);
             cummulativeTemp += temperature;
             base::temperatures[i] = temperature;

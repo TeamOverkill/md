@@ -1,0 +1,6 @@
+set terminal png
+set output "maxwell.png"
+
+f(x)=(14/(2 * 3.14 * 300 * 8314))**(3/2)* 4 * 3.14 * x**2 * exp(-x**2 * 14/(2 * 300 * 8314))
+set xrange[0:200]
+plot f(x) w l
