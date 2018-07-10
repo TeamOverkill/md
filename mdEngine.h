@@ -36,17 +36,20 @@ namespace mdEngine {
     \f]
     */
     double get_pressure(){
+
         double pressure = 0;
-        //double b2 = 0;
-        //for(int i = 0; i < base::numOfAtoms; i++){
-        //    for(int j = i + 1; j < base::numOfAtoms; j++)
-        //        b2 += Atom::forceMatrix[i][j] * Atom::distances[i][j];
-        //    }
-        //}
-        //b2 *= 1/(3 * base::boxDim * base::boxDim * base::boxDim);
-        //pressure = base::numOfAtoms / (base::boxDim * base::boxDim * base::boxDim) * constants::K + b2;
+
+        double b2 = 0;
+        for(int i = 0; i < base::numOfAtoms; i++){
+            for(int j = i + 1; j < base::numOfAtoms; j++){
+                b2 += Atom::forceMatrix(i, j) * Atom::distances(i, j);
+            }
+        }
+        b2 *= 1/(3 * base::boxDim * base::boxDim * base::boxDim);
+        pressure = base::numOfAtoms / (base::boxDim * base::boxDim * base::boxDim) * constants::K + b2;
 
         return pressure;
+
     }
 
     /*!

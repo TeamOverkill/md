@@ -26,6 +26,7 @@ class Atom{
         double radius, mass;
 
         double distance(Atom* otherAtom);
+        void update_distances(Atom **atoms);
         double kinetic_energy();
         void set_velocity();
         static void initialize(Atom **atoms, bool d1);

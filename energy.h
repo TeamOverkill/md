@@ -12,11 +12,11 @@
  */
 namespace energy{
     /*!
-     *  \addtogroup Lennard-Jones
+     *  \addtogroup Harmonic
      *  @{
     */
     namespace harmonic{
-        double springConstant = 0.0000000000000000000000001;
+        double springConstant = 1 / constants::NA;
 
         inline double energy(Atom **atoms){
             double energy = 0;
@@ -33,14 +33,17 @@ namespace energy{
             atoms[0]->force = force * forceDir.normalized();
         }
     }
-
+    /*!
+     *  \addtogroup Lennard-Jones
+     *  @{
+    */
     namespace LJ {
     namespace {
         double epsilon = 1.5 / constants::NA;    //![kJ/mol] LJ parameter epsilon
         double sigma = 1;      //! LJ parameter sigma
     }
 
-    /*! dgfghh */
+
     inline void forces(Atom **atoms){
         /*!
         * Calculate the forces using a Lennard-Jones potential
