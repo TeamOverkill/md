@@ -45,11 +45,13 @@ namespace mdEngine {
                 b2 += Atom::forceMatrix(i, j) * Atom::distances(i, j);
             }
         }
-        b2 *= 1/(3 * base::boxDim * base::boxDim * base::boxDim);
-        pressure = base::numOfAtoms / (base::boxDim * base::boxDim * base::boxDim) * constants::K + b2;
-
-        return pressure;
-
+        b2 *= 1/(3 * base::volume);
+        pressure = base::numOfAtoms / base::volume * constants::K_CORRECT * 300 + b2;  //[dalton / (ps^2 * nm)]
+        pressure *= 1.66053904 * 1e-27; //dalton to kg
+        pressure *= 1e24; //ps^2 to s^2
+        pressure *= 1e9; //nm to m
+        pressure *= 1e-5; //Pa to bar
+        return pressure; //[bar]
     }
 
     /*!
@@ -69,8 +71,10 @@ namespace mdEngine {
 
 
         double temperature;
+        double pressure = 0;
         int frameCounter = 0;
         double cummulativeTemp = 0;
+        double cummulativePress = 0;
 
         /* Main MD loop */
         for(int i = 0; i < base::iterations; i++){
@@ -81,9 +85,11 @@ namespace mdEngine {
             integrator_1(atoms);    /* First half step of integrator */
             force_function(atoms);  /* Calculate new forces */
             integrator_2(atoms);    /* Second half step of integrator */
-            //thermostats::andersen::set_velocity(atoms); /* Apply thermostat */
+            thermostats::andersen::set_velocity(atoms); /* Apply thermostat */
             temperature = get_temperature(atoms);
+            pressure = get_pressure();
             cummulativeTemp += temperature;
+            cummulativePress += pressure;
             base::temperatures[i] = temperature;
 
             if(i % Frame::fStep == 0){
@@ -93,8 +99,8 @@ namespace mdEngine {
 
                 base::potentialEnergies[frameCounter] = energy::LJ::energy(atoms);
                 base::totalEnergies[frameCounter] = base::potentialEnergies[frameCounter] + base::kineticEnergies[frameCounter];
-                printf("Progress: %.1lf%% Temperature: %.5lf Average temperature: %.1lf Potential Energy: %.10lf Kinetic Energy: %lf\r",
-                       (double)i/base::iterations * 100.0, temperature, cummulativeTemp/i, base::potentialEnergies[frameCounter],
+                printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",
+                       (double)i/base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, base::potentialEnergies[frameCounter],
                        base::kineticEnergies[frameCounter]);
 
                 fflush(stdout);

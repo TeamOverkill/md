@@ -9,9 +9,9 @@
 
 
 /*!< Simulation variables */
-double base::boxDim = 50;   //nm
-int base::numOfAtoms = 1;
-int base::iterations = 100000;
+double base::boxDim = 30;   //nm
+int base::numOfAtoms = 100;
+int base::iterations = 10000000;
 int base::outFreq = 1000;
 double base::temperature = 300;
 double base::tStep = 0.002;
@@ -19,8 +19,8 @@ double base::tStep = 0.002;
 Eigen::MatrixXd Atom::forceMatrix;
 
 int main(int argc, char *argv[]){
-    bool d1 = true;
-
+    bool d1 = false;
+    base::volume = base::boxDim * base::boxDim * base::boxDim;
     Frame::initialize(base::outFreq);                /*!< Initialize variables in Frame */
 
     /*!< Allocate memory to hold atom array: */

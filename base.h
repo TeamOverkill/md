@@ -14,6 +14,7 @@ namespace base{
     */
 
     extern double boxDim;   /*!< Box dimension, currently only cubic boxes */
+    extern double volume;
     extern int numOfAtoms;  /*!< number of atoms */
     extern int iterations;  /*!< number of iterations */
     extern int outFreq;
