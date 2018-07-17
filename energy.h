@@ -16,7 +16,7 @@ namespace energy{
      *  @{
     */
     namespace harmonic{
-        double springConstant = 1 / constants::NA;
+        double springConstant = 1.0 / constants::NA;
 
         inline double energy(Atom **atoms){
             double energy = 0;
@@ -54,12 +54,12 @@ namespace energy{
         double fjz = 0;
         Eigen::Vector3d dr;
 
-        for(int i = 0; i < base::numOfAtoms; i++){
+        for(int i = 0; i < Base::numOfAtoms; i++){
             atoms[i]->force.setZero();
         }
 
-        for(int i = 0; i < base::numOfAtoms; i++) {
-            for (int j =  i + 1; j < base::numOfAtoms; j++) {
+        for(int i = 0; i < Base::numOfAtoms; i++) {
+            for (int j =  i + 1; j < Base::numOfAtoms; j++) {
                 dr = atoms[i]->pos - atoms[j]->pos;
                 double r2 = dr.dot(dr);
                 double fr2 = sigma * sigma / r2;
@@ -87,8 +87,8 @@ namespace energy{
         double energy = 0;
         Eigen::Vector3d dr;
 
-        for(int i = 0; i < base::numOfAtoms; i++) {
-            for (int j = i + 1; j < base::numOfAtoms; j++) {
+        for(int i = 0; i < Base::numOfAtoms; i++) {
+            for (int j = i + 1; j < Base::numOfAtoms; j++) {
                 dr = atoms[i]->pos - atoms[j]->pos;
                 distance = dr.norm();
                 double fr = sigma / distance;

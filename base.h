@@ -8,20 +8,21 @@
 #include "ran2_lib.cpp"
 
 
-namespace base{
+class Base{
     /*!
     * This namespace should hold all 'global' variables
     */
-
-    extern double boxDim;   /*!< Box dimension, currently only cubic boxes */
-    extern double volume;
-    extern int numOfAtoms;  /*!< number of atoms */
-    extern int iterations;  /*!< number of iterations */
-    extern int outFreq;
-    extern double tStep;
-    extern double temperature;
-    extern double *potentialEnergies;
-    extern double *kineticEnergies;
-    extern double *totalEnergies;
-    extern double *temperatures;
+public:
+    static void initialize();
+    static double boxDim;   /*!< Box dimension, currently only cubic boxes */
+    static double volume;
+    static int numOfAtoms;  /*!< number of atoms */
+    static int iterations;  /*!< number of iterations */
+    static int outFreq;
+    static double tStep;
+    static double temperature;
+    static double *potentialEnergies;
+    static double *kineticEnergies;
+    static double *totalEnergies;
+    static double *temperatures;
 };

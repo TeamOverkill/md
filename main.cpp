@@ -6,40 +6,36 @@
 #include "mdEngine.h"
 #include <time.h>
 #include "atom.h"
-
-
-/*!< Simulation variables */
-double base::boxDim = 30;   //nm
-int base::numOfAtoms = 100;
-int base::iterations = 10000000;
-int base::outFreq = 1000;
-double base::temperature = 300;
-double base::tStep = 0.002;
+#include "parser.h"
 
 Eigen::MatrixXd Atom::forceMatrix;
 
 int main(int argc, char *argv[]){
     bool d1 = false;
-    base::volume = base::boxDim * base::boxDim * base::boxDim;
-    Frame::initialize(base::outFreq);                /*!< Initialize variables in Frame */
+
+    Parser parser;
+    parser.parse();
+    Base::initialize();
+    Frame::initialize(Base::outFreq);                /*!< Initialize variables in Frame */
 
     /*!< Allocate memory to hold atom array: */
     Atom **atoms;
-    atoms = (Atom**) malloc(base::numOfAtoms * sizeof(Atom*));
+    atoms = (Atom**) malloc(Base::numOfAtoms * sizeof(Atom*));
 
     /*!< Allocate memory to hold array of frames: */
     Frame **frames;
-    frames = (Frame**) malloc(base::outFreq * sizeof(Frame*));
+    frames = (Frame**) malloc(Base::outFreq * sizeof(Frame*));
 
     /*!< Initialize atom variables */
     Atom::initialize(atoms, d1);
 
     /*!< Initialize the force matrix */
-    Atom::forceMatrix.resize(base::numOfAtoms, base::numOfAtoms);
+    Atom::forceMatrix.resize(Base::numOfAtoms, Base::numOfAtoms);
 
     time_t start = time(NULL);
 
     /*!< Call run() with the specified integrator and energy function */
+    printf("Running simulation\n");
     mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &energy::harmonic::forces,
                  atoms, frames);
 
@@ -52,7 +48,7 @@ int main(int argc, char *argv[]){
         exit(1);
     }
     for(int j = 0; j < 1000; j++){
-        fprintf(f, "%i    %lf    %lf    %lf\n", j, base::potentialEnergies[j], base::kineticEnergies[j], base::totalEnergies[j]);
+        fprintf(f, "%i    %lf    %lf    %lf\n", j, Base::potentialEnergies[j], Base::kineticEnergies[j], Base::totalEnergies[j]);
 
     }
     fclose(f);
@@ -62,8 +58,8 @@ int main(int argc, char *argv[]){
         printf("Can't open file!\n");
         exit(1);
     }
-    for(int j = 0; j < base::iterations; j++){
-        fprintf(fi, "%i    %lf\n", j, base::temperatures[j]);
+    for(int j = 0; j < Base::iterations; j++){
+        fprintf(fi, "%i    %lf\n", j, Base::temperatures[j]);
 
     }
     fclose(fi);

@@ -13,7 +13,7 @@ namespace mdEngine {
    */
 
     /*!
-    * Calculate the temperature based on the equipartition theorem
+    * Calculate the temperature Based on the equipartition theorem
     * where the temperature is given by
     \f[
       T = \sum^{N-1}_{i=0}m_i * v_i^2
@@ -23,14 +23,14 @@ namespace mdEngine {
 
 
         double temp = 0;
-        for(int i = 0; i < base::numOfAtoms; i++){
+        for(int i = 0; i < Base::numOfAtoms; i++){
             temp += atoms[i]->mass * atoms[i]->vel.dot(atoms[i]->vel);
         }
-        return temp/base::numOfAtoms * 1 / (3 * constants::K_CORRECT);
+        return temp/Base::numOfAtoms * 1 / (3 * constants::K_CORRECT);
     }
 
     /*!
-    * Calculate the pressure based on the virial expansion
+    * Calculate the pressure Based on the virial expansion
     \f[
         P=\rho k_B T + \frac{1}{dV}\left<\sum_{i=0}^{N-1}\sum_{j = i + 1}^{N-1} f(r_{ij})r_{ij}\right>
     \f]
@@ -40,13 +40,13 @@ namespace mdEngine {
         double pressure = 0;
 
         double b2 = 0;
-        for(int i = 0; i < base::numOfAtoms; i++){
-            for(int j = i + 1; j < base::numOfAtoms; j++){
+        for(int i = 0; i < Base::numOfAtoms; i++){
+            for(int j = i + 1; j < Base::numOfAtoms; j++){
                 b2 += Atom::forceMatrix(i, j) * Atom::distances(i, j);
             }
         }
-        b2 *= 1/(3 * base::volume);
-        pressure = base::numOfAtoms / base::volume * constants::K_CORRECT * 300 + b2;  //[dalton / (ps^2 * nm)]
+        b2 *= 1/(3 * Base::volume);
+        pressure = Base::numOfAtoms / Base::volume * constants::K_CORRECT * 300 + b2;  //[dalton / (ps^2 * nm)]
         pressure *= 1.66053904 * 1e-27; //dalton to kg
         pressure *= 1e24; //ps^2 to s^2
         pressure *= 1e9; //nm to m
@@ -69,7 +69,6 @@ namespace mdEngine {
     template<typename F, typename I>
     void run(I&& integrator_1, I&& integrator_2, F&& force_function, Atom **atoms, Frame **frames){
 
-
         double temperature;
         double pressure = 0;
         int frameCounter = 0;
@@ -77,7 +76,7 @@ namespace mdEngine {
         double cummulativePress = 0;
 
         /* Main MD loop */
-        for(int i = 0; i < base::iterations; i++){
+        for(int i = 0; i < Base::iterations; i++){
         //#pragma omp parallel
         //#pragma omp master
         //    {
@@ -85,23 +84,24 @@ namespace mdEngine {
             integrator_1(atoms);    /* First half step of integrator */
             force_function(atoms);  /* Calculate new forces */
             integrator_2(atoms);    /* Second half step of integrator */
-            thermostats::andersen::set_velocity(atoms); /* Apply thermostat */
+            //thermostats::andersen::set_velocity(atoms); /* Apply thermostat */
             temperature = get_temperature(atoms);
             pressure = get_pressure();
             cummulativeTemp += temperature;
             cummulativePress += pressure;
-            base::temperatures[i] = temperature;
+            Base::temperatures[i] = temperature;
 
             if(i % Frame::fStep == 0){
-                for(int i = 0; i < base::numOfAtoms; i++){
-                    base::kineticEnergies[frameCounter] += atoms[i]->kinetic_energy();
+                Base::kineticEnergies[frameCounter] = 0;
+                for(int i = 0; i < Base::numOfAtoms; i++){
+                    Base::kineticEnergies[frameCounter] += atoms[i]->kinetic_energy();
                 }
 
-                base::potentialEnergies[frameCounter] = energy::LJ::energy(atoms);
-                base::totalEnergies[frameCounter] = base::potentialEnergies[frameCounter] + base::kineticEnergies[frameCounter];
+                Base::potentialEnergies[frameCounter] = energy::LJ::energy(atoms);
+                Base::totalEnergies[frameCounter] = Base::potentialEnergies[frameCounter] + Base::kineticEnergies[frameCounter];
                 printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",
-                       (double)i/base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, base::potentialEnergies[frameCounter],
-                       base::kineticEnergies[frameCounter]);
+                       (double)i/Base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, Base::potentialEnergies[frameCounter],
+                       Base::kineticEnergies[frameCounter]);
 
                 fflush(stdout);
                 frames[frameCounter] = new Frame();

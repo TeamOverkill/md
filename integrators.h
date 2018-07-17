@@ -11,30 +11,30 @@ namespace integrators{
         */
 
 
-        for(int i = 0; i < base::numOfAtoms; i++){
-            if(atoms[i]->pos[0] >= base::boxDim - atoms[i]->radius){
+        for(int i = 0; i < Base::numOfAtoms; i++){
+            if(atoms[i]->pos[0] >= Base::boxDim - atoms[i]->radius){
                 atoms[i]->vel[0] *= -1;
             }
             if(atoms[i]->pos[0] <= atoms[i]->radius){ ;
                 atoms[i]->vel[0] *= -1;
             }
-            if(atoms[i]->pos[1] >= base::boxDim){
+            if(atoms[i]->pos[1] >= Base::boxDim){
                 atoms[i]->vel[1] *= -1;
             }
             if(atoms[i]->pos[1] <= atoms[i]->radius){
                 atoms[i]->vel[1] *= -1;
             }
-            if(atoms[i]->pos[2] >= base::boxDim - atoms[i]->radius){
+            if(atoms[i]->pos[2] >= Base::boxDim - atoms[i]->radius){
                 atoms[i]->vel[2] *= -1;
             }
             if(atoms[i]->pos[2] <= atoms[i]->radius){
                 atoms[i]->vel[2] *= -1;
             }
 
-            atoms[i]->vel += 0.5 * base::tStep * atoms[i]->oldForce / atoms[i]->mass * constants::NA; //[nm/ps]
-            atoms[i]->pos += base::tStep * atoms[i]->vel;
+            atoms[i]->vel += 0.5 * Base::tStep * atoms[i]->oldForce / atoms[i]->mass * constants::NA; //[nm/ps]
+            atoms[i]->pos += Base::tStep * atoms[i]->vel;
 
-            if(atoms[i]->pos.norm() > sqrt(3) * base::boxDim + 1){
+            if(atoms[i]->pos.norm() > sqrt(3) * Base::boxDim + 1){
                 printf("\nAtom outside box\n");
                 std::cout << atoms[i]->pos << std::endl;
                 exit(1);
@@ -48,8 +48,8 @@ namespace integrators{
         * Second half step
         */
 
-        for(int i = 0; i < base::numOfAtoms; i++){
-            atoms[i]->vel += 0.5 * base::tStep * atoms[i]->force / atoms[i]->mass * constants::NA;
+        for(int i = 0; i < Base::numOfAtoms; i++){
+            atoms[i]->vel += 0.5 * Base::tStep * atoms[i]->force / atoms[i]->mass * constants::NA;
             atoms[i]->oldForce = atoms[i]->force;
         }
     }
