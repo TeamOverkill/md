@@ -26,6 +26,7 @@ class Atom{
         double radius, mass;
 
         double distance(Atom* otherAtom);
+        double distance_pbc(Atom *otherAtom);
         void update_distances(Atom **atoms);
         void hard_walls();
         void pbc();

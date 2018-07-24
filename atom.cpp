@@ -78,6 +78,31 @@ double Atom::distance(Atom* otherAtom){
     return disp.norm();
 }
 
+double Atom::distance_pbc(Atom *otherAtom){
+    Eigen::Vector3d disp;
+    disp = otherAtom->pos - this->pos;
+
+    if(disp[0] < -1 * Base::boxDim/2){
+        disp[0] += Base::boxDim;
+    }
+    if(disp[0] > Base::boxDim/2){
+        disp[0] -= Base::boxDim;
+    }
+    if(disp[1] < -1 * Base::boxDim/2){
+        disp[1] += Base::boxDim;
+    }
+    if(disp[1] > Base::boxDim/2){
+        disp[1] -= Base::boxDim;
+    }
+    if(disp[2] < -1 * Base::boxDim/2){
+        disp[2] += Base::boxDim;
+    }
+    if(disp[2] > Base::boxDim/2){
+        disp[2] -= Base::boxDim;
+    }
+    return disp.norm();
+}
+
 /*! Calculates the kinetic energy of an atom:
 \f[ K = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2}^2
 \f]

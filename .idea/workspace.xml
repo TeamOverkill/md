@@ -12,16 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41d8bacb-4d7d-47b1-a686-798a279e094b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/config.mo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/atom.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atom.h" beforeDir="false" afterPath="$PROJECT_DIR$/atom.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base.h" beforeDir="false" afterPath="$PROJECT_DIR$/base.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/energy.h" beforeDir="false" afterPath="$PROJECT_DIR$/energy.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integrators.h" beforeDir="false" afterPath="$PROJECT_DIR$/integrators.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main" beforeDir="false" afterPath="$PROJECT_DIR$/main" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser.h" beforeDir="false" afterPath="$PROJECT_DIR$/parser.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="atom.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="atom.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/atom.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+            <state relative-caret-position="420">
+              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -100,8 +92,8 @@
       <file leaf-file-name="integrators.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/integrators.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="13" selection-start-line="16" selection-end-line="33" selection-end-column="13" />
+            <state relative-caret-position="225">
+              <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
               <folding>
                 <element signature="e#14#31#0" expanded="true" />
               </folding>
@@ -109,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="atom.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="atom.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/atom.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="741">
-              <caret line="137" column="36" selection-start-line="137" selection-start-column="36" selection-end-line="137" selection-end-column="36" />
+            <state relative-caret-position="180">
+              <caret line="80" selection-start-line="80" selection-end-line="80" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -165,6 +157,8 @@
       <find>base.</find>
       <find>base</find>
       <find>atoms[i]</find>
+      <find>a-&gt;</find>
+      <find>zL</find>
     </findStrings>
     <replaceStrings>
       <replace>base</replace>
@@ -172,6 +166,8 @@
       <replace>Base::</replace>
       <replace>Base</replace>
       <replace>this</replace>
+      <replace>otherAtom-&gt;</replace>
+      <replace>Base::boxDim</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -208,8 +204,8 @@
         <option value="$PROJECT_DIR$/parser.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/integrators.h" />
-        <option value="$PROJECT_DIR$/atom.h" />
         <option value="$PROJECT_DIR$/atom.cpp" />
+        <option value="$PROJECT_DIR$/atom.h" />
       </list>
     </option>
   </component>
@@ -292,12 +288,12 @@
       <workItem from="1530717243440" duration="7132000" />
       <workItem from="1531143636901" duration="11838000" />
       <workItem from="1532094202034" duration="118000" />
-      <workItem from="1532440831499" duration="576000" />
+      <workItem from="1532440831499" duration="1052000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103434000" />
+    <option name="totallyTimeSpent" value="103910000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -596,25 +592,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/integrators.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="13" selection-start-line="16" selection-end-line="33" selection-end-column="13" />
+        <state relative-caret-position="225">
+          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
           <folding>
             <element signature="e#14#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/atom.h">
+    <entry file="file://$PROJECT_DIR$/atom.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+        <state relative-caret-position="180">
+          <caret line="80" selection-start-line="80" selection-end-line="80" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/atom.cpp">
+    <entry file="file://$PROJECT_DIR$/atom.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="137" column="36" selection-start-line="137" selection-start-column="36" selection-end-line="137" selection-end-column="36" />
+        <state relative-caret-position="420">
+          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
         </state>
       </provider>
     </entry>
