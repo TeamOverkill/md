@@ -12,6 +12,8 @@ namespace integrators{
 
 
         for(int i = 0; i < Base::numOfAtoms; i++){
+
+            //////////////     Hard walls - PLZ REMOVE   //////////////////
             if(atoms[i]->pos[0] >= Base::boxDim - atoms[i]->radius){
                 atoms[i]->vel[0] *= -1;
             }
@@ -30,6 +32,7 @@ namespace integrators{
             if(atoms[i]->pos[2] <= atoms[i]->radius){
                 atoms[i]->vel[2] *= -1;
             }
+            ///////////////////////////////////////////////////////////////
 
             atoms[i]->vel += 0.5 * Base::tStep * atoms[i]->oldForce / atoms[i]->mass * constants::NA; //[nm/ps]
             atoms[i]->pos += Base::tStep * atoms[i]->vel;

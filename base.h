@@ -10,16 +10,16 @@
 
 class Base{
     /*!
-    * This namespace should hold all 'global' variables
+    * This class holds all variables set by the user
     */
 public:
     static void initialize();
     static double boxDim;   /*!< Box dimension, currently only cubic boxes */
-    static double volume;
+    static double volume;   /*!< Volume of the box */
     static int numOfAtoms;  /*!< number of atoms */
     static int iterations;  /*!< number of iterations */
     static int outFreq;
-    static double tStep;
+    static double tStep;    /*!< Time step in picoseconds */
     static double temperature;
     static double *potentialEnergies;
     static double *kineticEnergies;

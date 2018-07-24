@@ -27,6 +27,8 @@ class Atom{
 
         double distance(Atom* otherAtom);
         void update_distances(Atom **atoms);
+        void hard_walls();
+        void pbc();
         double kinetic_energy();
         void set_velocity();
         static void initialize(Atom **atoms, bool d1);

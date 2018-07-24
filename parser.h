@@ -16,7 +16,7 @@ public:
             std::istringstream iss(line);
             if (!(iss >> keyword >> value)) {
                 break;
-            } // error
+            }
             if(keyword == "nop") Base::numOfAtoms = (int)value;
             else if(keyword == "iter") Base::iterations = (int)value;
             else if(keyword == "boxdim") Base::boxDim = value;

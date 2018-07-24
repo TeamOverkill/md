@@ -26,6 +26,9 @@ namespace energy{
         }
 
         inline void forces(Atom **atoms){
+            /*!
+            * One dimensional harmonic potential
+            */
             double force = 0;
             Eigen::Vector3d forceDir;
             forceDir << 1, 0, 0;

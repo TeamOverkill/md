@@ -1,10 +1,16 @@
 #include "atom.h"
+
 Eigen::MatrixXd Atom::distances;
+Eigen::MatrixXd Atom::forceMatrix;
+
 
 Atom::Atom() {}
 
 void Atom::initialize(Atom** atoms, bool d1){
     FILE *fi = fopen("velocities.txt", "w");
+    Eigen::Vector3d linearMom;
+    linearMom.setZero();
+
     for(int i = 0; i < Base::numOfAtoms; i++) {
         atoms[i] = new Atom();
 
@@ -43,8 +49,11 @@ void Atom::initialize(Atom** atoms, bool d1){
             ran_u1 = ran2::get_random();
             random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
             atoms[i]->vel[2] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
-        }
 
+            linearMom += atoms[i]->vel;
+        }
+        linearMom /= Base::numOfAtoms;
+        printf("Linear momentum is: %lf\n", linearMom.norm());
         fprintf(fi, "%d    %lf\n", i, atoms[i]->vel.norm());
         /* Set initial forces*/
         atoms[i]->oldForce[0] = 0;
@@ -85,5 +94,47 @@ void Atom::update_distances(Atom **atoms){
             Atom::distances(i, k) = atoms[i]->distance(atoms[k]);
             k++;
         }
+    }
+}
+
+void Atom::hard_walls(){
+    if(this->pos[0] >= Base::boxDim - this->radius){
+        this->vel[0] *= -1;
+    }
+    if(this->pos[0] <= this->radius){ ;
+        this->vel[0] *= -1;
+    }
+    if(this->pos[1] >= Base::boxDim){
+        this->vel[1] *= -1;
+    }
+    if(this->pos[1] <= this->radius){
+        this->vel[1] *= -1;
+    }
+    if(this->pos[2] >= Base::boxDim - this->radius){
+        this->vel[2] *= -1;
+    }
+    if(this->pos[2] <= this->radius){
+        this->vel[2] *= -1;
+    }
+}
+
+void Atom::pbc(){
+    if(this->pos[0] > Base::boxDim){
+        this->vel[0] -= Base::boxDim;
+    }
+    if(this->pos[0] < 0){ ;
+        this->vel[0] += Base::boxDim;
+    }
+    if(this->pos[1] > Base::boxDim){
+        this->vel[1] -= Base::boxDim;
+    }
+    if(this->pos[1] < 0){
+        this->vel[1] += Base::boxDim;
+    }
+    if(this->pos[2] > Base::boxDim){
+        this->vel[2] -= Base::boxDim;
+    }
+    if(this->pos[2] < 0){
+        this->vel[2] -= Base::boxDim;
     }
 }

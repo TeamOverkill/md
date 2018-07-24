@@ -8,14 +8,14 @@
 #include "atom.h"
 #include "parser.h"
 
-Eigen::MatrixXd Atom::forceMatrix;
-
 int main(int argc, char *argv[]){
     bool d1 = false;
 
     Parser parser;
     parser.parse();
     Base::initialize();
+
+    //Actually Base::outFreq is the number of frames that should be saved
     Frame::initialize(Base::outFreq);                /*!< Initialize variables in Frame */
 
     /*!< Allocate memory to hold atom array: */
@@ -42,6 +42,7 @@ int main(int argc, char *argv[]){
     printf("Time: %lu\n", time(NULL) - start);
     Frame::save_to_file(frames);                /*!< Save frames to trajectory file */
 
+    //Save stuff, will be moved later
     FILE *f = fopen("energies.txt", "w");
     if(f == NULL){
         printf("Can't open file!\n");
