@@ -15,10 +15,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>dgfghh </para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
 <para>Calculate the forces using a Lennard-Jones potential</para>        </inbodydescription>
-        <location file="energy.h" line="25" column="1" bodyfile="energy.h" bodystart="25" bodyend="52"/>
+        <location file="energy.h" line="50" column="1" bodyfile="energy.h" bodystart="50" bodyend="77"/>
       </memberdef>
       <memberdef kind="function" id="group___lennard-_jones_1ga100c4be2b148a0f7f68f6af3dac4135a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -35,13 +35,13 @@
 <para>Calculate the energy using a Lennard-Jones potential which is given by <formula id="2">\[ U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right) \]</formula> </para>        </detaileddescription>
         <inbodydescription>
 <para>Calculate the energy using a Lennard-Jones potential</para>        </inbodydescription>
-        <location file="energy.h" line="59" column="1" bodyfile="energy.h" bodystart="59" bodyend="79"/>
+        <location file="energy.h" line="84" column="1" bodyfile="energy.h" bodystart="84" bodyend="104"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="energy.h" line="18" column="1"/>
+    <location file="energy.h" line="43" column="1"/>
   </compounddef>
 </doxygen>

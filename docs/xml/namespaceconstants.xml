@@ -3,7 +3,7 @@
   <compounddef id="namespaceconstants" kind="namespace" language="C++">
     <compoundname>constants</compoundname>
       <sectiondef kind="var">
-      <memberdef kind="variable" id="constants_8h_1aaa77429e27a7630917c26d9dcdd02d37" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="namespaceconstants_1aaa77429e27a7630917c26d9dcdd02d37" prot="public" static="no" mutable="no">
         <type>const double</type>
         <definition>const double constants::PI</definition>
         <argsstring></argsstring>
@@ -17,7 +17,7 @@
         </inbodydescription>
         <location file="constants.h" line="7" column="1" bodyfile="constants.h" bodystart="7" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="constants_8h_1a9c026ed46cc6df304fd4ae0f4a6aa374" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="namespaceconstants_1a9c026ed46cc6df304fd4ae0f4a6aa374" prot="public" static="no" mutable="no">
         <type>const double</type>
         <definition>const double constants::E</definition>
         <argsstring></argsstring>
@@ -31,7 +31,7 @@
         </inbodydescription>
         <location file="constants.h" line="8" column="1" bodyfile="constants.h" bodystart="8" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="constants_8h_1aca22d2dbeb67464297eceacef47125c7" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="namespaceconstants_1aca22d2dbeb67464297eceacef47125c7" prot="public" static="no" mutable="no">
         <type>const double</type>
         <definition>const double constants::K</definition>
         <argsstring></argsstring>
@@ -45,7 +45,35 @@
         </inbodydescription>
         <location file="constants.h" line="9" column="1" bodyfile="constants.h" bodystart="9" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="constants_8h_1ae2c7ade7bbc5547bd496d747df58828f" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="namespaceconstants_1a91a17b2ffd6b749ba385ced928ebbdb0" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double constants::K_DALTON</definition>
+        <argsstring></argsstring>
+        <name>K_DALTON</name>
+        <initializer>= 8314.46005888132</initializer>
+        <briefdescription>
+<para>kJ/K </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="constants.h" line="10" column="1" bodyfile="constants.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceconstants_1a49e1085ba67fdde84844c8fe12dc12e8" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double constants::K_CORRECT</definition>
+        <argsstring></argsstring>
+        <name>K_CORRECT</name>
+        <initializer>= 0.0083145</initializer>
+        <briefdescription>
+<para>kJ/K </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="constants.h" line="11" column="1" bodyfile="constants.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceconstants_1ae2c7ade7bbc5547bd496d747df58828f" prot="public" static="no" mutable="no">
         <type>const double</type>
         <definition>const double constants::NA</definition>
         <argsstring></argsstring>
@@ -57,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="constants.h" line="10" column="1" bodyfile="constants.h" bodystart="10" bodyend="-1"/>
+        <location file="constants.h" line="12" column="1" bodyfile="constants.h" bodystart="12" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

@@ -36,6 +36,7 @@ namespace integrators{
 
             atoms[i]->vel += 0.5 * Base::tStep * atoms[i]->oldForce / atoms[i]->mass * constants::NA; //[nm/ps]
             atoms[i]->pos += Base::tStep * atoms[i]->vel;
+            atoms[i]->pos = atoms[i]->pos.cwiseProduct(Base::dimensionality);   //Multiply with dimensionality
 
             if(atoms[i]->pos.norm() > sqrt(3) * Base::boxDim + 1){
                 printf("\nAtom outside box\n");

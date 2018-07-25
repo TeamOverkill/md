@@ -75,10 +75,10 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InitializeRandomNumberGenerator(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>seed);</highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>RandomNumber(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>RandomGaussianNumber(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>RandomVelocity(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temperature);</highlight></codeline>
+<codeline lineno="1"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ran__uniform_8h_1acfd6ae92430af50e9e294d317ad57fdd" kindref="member">InitializeRandomNumberGenerator</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>seed);</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="ran__uniform_8h_1a0ea6b6dc33781fd8081c77fc0a9091bf" kindref="member">RandomNumber</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="ran__uniform_8h_1aa9e03ac5011bb8adf84226abe3d78676" kindref="member">RandomGaussianNumber</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="ran__uniform_8h_1aa6732635262cc4774a32e1d2484113c4" kindref="member">RandomVelocity</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temperature);</highlight></codeline>
     </programlisting>
     <location file="ran_uniform.h"/>
   </compounddef>

@@ -11,14 +11,29 @@
         <initializer>=  [&apos;sphinx.ext.autodoc&apos;,
     &apos;sphinx.ext.todo&apos;,
     &apos;sphinx.ext.mathjax&apos;,
-    &apos;breathe&apos;]</initializer>
+    &apos;breathe&apos;,
+    &apos;sphinx.ext.viewcode&apos;]</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="33" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="33" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="34" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a21389186546df811dd31aca1f16f8f5f" prot="public" static="no" mutable="no">
+        <type>dictionary</type>
+        <definition>dictionary conf.breathe_domain_by_extension</definition>
+        <argsstring></argsstring>
+        <name>breathe_domain_by_extension</name>
+        <initializer>=  {&quot;h&quot; : &quot;cpp&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="39" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1acb47d2c0c2904fa7d36b63142533f383" prot="public" static="no" mutable="no">
         <type>dictionary</type>
@@ -32,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="37" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="37" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="40" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a6eba2d2c7ae923054b1c49e686ec89b9" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -46,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="38" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="38" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="41" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1ae850ae634911b713e036b43894fdd525" prot="public" static="no" mutable="no">
         <type>list</type>
@@ -60,7 +75,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="40" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="40" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="44" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a55b6f943346f1b21f833b276f8375160" prot="public" static="no" mutable="no">
         <type>dictionary</type>
@@ -76,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="41" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="41" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="45" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a10af2a769eb3bd3322e874f677e435b1" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -90,7 +105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="49" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="49" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="53" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a6fcd7e5236f355b1e1a55f9d95988810" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -104,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="52" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="52" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="56" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a45653c983098153b78e33600e39230eb" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -118,21 +133,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="55" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="55" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="59" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a33fa97cf51dcb25970fbf53f10159589" prot="public" static="no" mutable="no">
         <type>string</type>
         <definition>string conf.copyright</definition>
         <argsstring></argsstring>
         <name>copyright</name>
-        <initializer>=  u&apos;2018, Samuel Stenberg, Vidar Aspelin, Stefan Hansen&apos;</initializer>
+        <initializer>=  u&apos;2018, Samuel Stenberg, Vidar Aspelin, Stefan Hervø-Hansen&apos;</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="56" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="56" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="60" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="60" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a637c239d256432248aa8d9f3ab0b8c52" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -146,7 +161,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="57" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="57" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="61" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="61" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1ade15c5b54093b64d7c428ec19ca5b1cb" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -160,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="64" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="64" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="68" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="68" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a325dc746d8bf05c54d26351c35a21d90" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -174,7 +189,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="66" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="66" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="70" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1ad76a2e6d7bfa880ebb4042c08e8b4e12" prot="public" static="no" mutable="no">
         <type></type>
@@ -188,7 +203,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="73" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="73" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="77" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="77" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a7ad48fb6f3e9b129c02346ea0d3527c1" prot="public" static="no" mutable="no">
         <type>list</type>
@@ -202,7 +217,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="78" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="78" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="82" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="82" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a641130e096b26cba8a5d63ed38684de7" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -216,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="81" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="81" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="85" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="85" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a8fe7f0d85f975f4ecba5cb6066959a09" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -230,7 +245,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="84" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="84" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="88" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a6c3bfcc1a44546c1c75ce20f55bd0fd6" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -244,7 +259,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="93" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="93" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="97" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="97" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1af4fb5d8851ccaade135c2668dd3ced41" prot="public" static="no" mutable="no">
         <type>list</type>
@@ -258,7 +273,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="103" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="103" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="107" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="107" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a3f3b198d720ed6fab15e95fa2479adb6" prot="public" static="no" mutable="no">
         <type>dictionary</type>
@@ -277,7 +292,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="110" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="110" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="114" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="114" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1aab7fddb2766ce3c430d8246fbfdbc7b1" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -291,7 +306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="121" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="121" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="125" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="125" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a33619d385ad23765ac6ebb58bf82d43d" prot="public" static="no" mutable="no">
         <type>dictionary</type>
@@ -321,7 +336,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="126" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="126" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="130" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="130" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a7812f49970f3de0d15dd7b9b9a10e3a1" prot="public" static="no" mutable="no">
         <type>list</type>
@@ -338,7 +353,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="147" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="147" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="151" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="151" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a85efc5fee48a26fa2d651f6eeb38fc2b" prot="public" static="no" mutable="no">
         <type>list</type>
@@ -355,7 +370,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="157" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="157" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="161" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="161" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="conf_8py_1a54b0faed214ac92017d5689efbb10672" prot="public" static="no" mutable="no">
         <type>list</type>
@@ -373,7 +388,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="168" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="168" bodyend="-1"/>
+        <location file="/Users/samuel/Documents/md/docs/source/conf.py" line="172" column="1" bodyfile="/Users/samuel/Documents/md/docs/source/conf.py" bodystart="172" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

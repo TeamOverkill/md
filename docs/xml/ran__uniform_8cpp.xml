@@ -5,18 +5,18 @@
     <includes local="no">stdio.h</includes>
     <includes local="no">math.h</includes>
     <incdepgraph>
-      <node id="120">
+      <node id="176">
         <label>ran_uniform.cpp</label>
         <link refid="ran__uniform_8cpp"/>
-        <childnode refid="121" relation="include">
+        <childnode refid="177" relation="include">
         </childnode>
-        <childnode refid="122" relation="include">
+        <childnode refid="178" relation="include">
         </childnode>
       </node>
-      <node id="122">
+      <node id="178">
         <label>math.h</label>
       </node>
-      <node id="121">
+      <node id="177">
         <label>stdio.h</label>
       </node>
     </incdepgraph>
@@ -290,57 +290,57 @@
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>N<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>624</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>M<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>397</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MATRIX_A<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x9908b0df<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UPPER_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x80000000<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOWER_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x7fffffff<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_MASK_B<sp/><sp/><sp/><sp/><sp/><sp/>0x9d2c5680</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_MASK_C<sp/><sp/><sp/><sp/><sp/><sp/>0xefc60000</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_SHIFT_U(y)<sp/><sp/>(y<sp/>&gt;&gt;<sp/>11)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_SHIFT_S(y)<sp/><sp/>(y<sp/>&lt;&lt;<sp/>7)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_SHIFT_T(y)<sp/><sp/>(y<sp/>&lt;&lt;<sp/>15)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_SHIFT_L(y)<sp/><sp/>(y<sp/>&gt;&gt;<sp/>18)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="ran__uniform_8cpp_1a0240ac851181b84ac374872dc5434ee4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>N<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>624</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="ran__uniform_8cpp_1a52037c938e3c1b126c6277da5ca689d0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>M<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>397</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="ran__uniform_8cpp_1a376c3581bae3c2367fc9ce694e5a8949" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MATRIX_A<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x9908b0df<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="ran__uniform_8cpp_1a39bc458849360f8f371b54c4365d397f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UPPER_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x80000000<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="ran__uniform_8cpp_1a4ddd8cab3564b7a86a4b0e52ba08f70e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOWER_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x7fffffff<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="ran__uniform_8cpp_1ad823db99ec38ec810124406bd3dfeeae" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_MASK_B<sp/><sp/><sp/><sp/><sp/><sp/>0x9d2c5680</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="ran__uniform_8cpp_1ae1c7a72f80707458249c99a6f37e7d3e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_MASK_C<sp/><sp/><sp/><sp/><sp/><sp/>0xefc60000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="ran__uniform_8cpp_1a238852cd6380d77bd700e95d0a7d90c9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_SHIFT_U(y)<sp/><sp/>(y<sp/>&gt;&gt;<sp/>11)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="ran__uniform_8cpp_1adce59eadb4013bb06a059dedf69c282d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_SHIFT_S(y)<sp/><sp/>(y<sp/>&lt;&lt;<sp/>7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="ran__uniform_8cpp_1a0a2b0d0fa7a7c8ce1bbc52a67f26f8c3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_SHIFT_T(y)<sp/><sp/>(y<sp/>&lt;&lt;<sp/>15)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="ran__uniform_8cpp_1a15f821dd6f1a65b3ecf672718aa6273c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMPERING_SHIFT_L(y)<sp/><sp/>(y<sp/>&gt;&gt;<sp/>18)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>mt[N];</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>mt[<ref refid="ran__uniform_8cpp_1a0240ac851181b84ac374872dc5434ee4" kindref="member">N</ref>];</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mti;</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>RandomNumber(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="58" refid="ran__uniform_8h_1a0ea6b6dc33781fd8081c77fc0a9091bf" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="ran__uniform_8cpp_1a0ea6b6dc33781fd8081c77fc0a9091bf" kindref="member">RandomNumber</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="59"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kk;</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>y;</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>mag01[2]={0x0,MATRIX_A};</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>mag01[2]={0x0,<ref refid="ran__uniform_8cpp_1a376c3581bae3c2367fc9ce694e5a8949" kindref="member">MATRIX_A</ref>};</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>zzz=2.0;</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(zzz&lt;0.0000000000001e0||zzz&gt;0.9999999999999e0)</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mti&gt;=<sp/>N)<sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mti&gt;=<sp/><ref refid="ran__uniform_8cpp_1a0240ac851181b84ac374872dc5434ee4" kindref="member">N</ref>)<sp/></highlight></codeline>
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(kk=0;kk&lt;N-M;kk++)<sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(kk=0;kk&lt;<ref refid="ran__uniform_8cpp_1a0240ac851181b84ac374872dc5434ee4" kindref="member">N</ref>-<ref refid="ran__uniform_8cpp_1a52037c938e3c1b126c6277da5ca689d0" kindref="member">M</ref>;kk++)<sp/></highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y=(mt[kk]&amp;UPPER_MASK)|(mt[kk+1]&amp;LOWER_MASK);</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mt[kk]=mt[kk+M]^(y&gt;&gt;1)^mag01[y&amp;0x1];</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y=(mt[kk]&amp;<ref refid="ran__uniform_8cpp_1a39bc458849360f8f371b54c4365d397f" kindref="member">UPPER_MASK</ref>)|(mt[kk+1]&amp;<ref refid="ran__uniform_8cpp_1a4ddd8cab3564b7a86a4b0e52ba08f70e" kindref="member">LOWER_MASK</ref>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mt[kk]=mt[kk+<ref refid="ran__uniform_8cpp_1a52037c938e3c1b126c6277da5ca689d0" kindref="member">M</ref>]^(y&gt;&gt;1)^mag01[y&amp;0x1];</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(;kk&lt;N-1;kk++)<sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(;kk&lt;<ref refid="ran__uniform_8cpp_1a0240ac851181b84ac374872dc5434ee4" kindref="member">N</ref>-1;kk++)<sp/></highlight></codeline>
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y=(mt[kk]&amp;UPPER_MASK)|(mt[kk+1]&amp;LOWER_MASK);</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mt[kk]=mt[kk+(M-N)]^(y&gt;&gt;1)^mag01[y&amp;0x1];</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y=(mt[kk]&amp;<ref refid="ran__uniform_8cpp_1a39bc458849360f8f371b54c4365d397f" kindref="member">UPPER_MASK</ref>)|(mt[kk+1]&amp;<ref refid="ran__uniform_8cpp_1a4ddd8cab3564b7a86a4b0e52ba08f70e" kindref="member">LOWER_MASK</ref>);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mt[kk]=mt[kk+(<ref refid="ran__uniform_8cpp_1a52037c938e3c1b126c6277da5ca689d0" kindref="member">M</ref>-<ref refid="ran__uniform_8cpp_1a0240ac851181b84ac374872dc5434ee4" kindref="member">N</ref>)]^(y&gt;&gt;1)^mag01[y&amp;0x1];</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>y=(mt[N-1]&amp;UPPER_MASK)|(mt[0]&amp;LOWER_MASK);</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mt[N-1]=mt[M-1]^(y&gt;&gt;1)^mag01[y<sp/>&amp;<sp/>0x1];</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>y=(mt[<ref refid="ran__uniform_8cpp_1a0240ac851181b84ac374872dc5434ee4" kindref="member">N</ref>-1]&amp;<ref refid="ran__uniform_8cpp_1a39bc458849360f8f371b54c4365d397f" kindref="member">UPPER_MASK</ref>)|(mt[0]&amp;<ref refid="ran__uniform_8cpp_1a4ddd8cab3564b7a86a4b0e52ba08f70e" kindref="member">LOWER_MASK</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mt[<ref refid="ran__uniform_8cpp_1a0240ac851181b84ac374872dc5434ee4" kindref="member">N</ref>-1]=mt[<ref refid="ran__uniform_8cpp_1a52037c938e3c1b126c6277da5ca689d0" kindref="member">M</ref>-1]^(y&gt;&gt;1)^mag01[y<sp/>&amp;<sp/>0x1];</highlight></codeline>
 <codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>mti<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>y=mt[mti++];</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>y^=TEMPERING_SHIFT_U(y);</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>y^=TEMPERING_SHIFT_S(y)&amp;TEMPERING_MASK_B;</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>y^=TEMPERING_SHIFT_T(y)&amp;TEMPERING_MASK_C;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>y^=TEMPERING_SHIFT_L(y);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>y^=<ref refid="ran__uniform_8cpp_1a238852cd6380d77bd700e95d0a7d90c9" kindref="member">TEMPERING_SHIFT_U</ref>(y);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>y^=<ref refid="ran__uniform_8cpp_1adce59eadb4013bb06a059dedf69c282d" kindref="member">TEMPERING_SHIFT_S</ref>(y)&amp;<ref refid="ran__uniform_8cpp_1ad823db99ec38ec810124406bd3dfeeae" kindref="member">TEMPERING_MASK_B</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>y^=<ref refid="ran__uniform_8cpp_1a0a2b0d0fa7a7c8ce1bbc52a67f26f8c3" kindref="member">TEMPERING_SHIFT_T</ref>(y)&amp;<ref refid="ran__uniform_8cpp_1ae1c7a72f80707458249c99a6f37e7d3e" kindref="member">TEMPERING_MASK_C</ref>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>y^=<ref refid="ran__uniform_8cpp_1a15f821dd6f1a65b3ecf672718aa6273c" kindref="member">TEMPERING_SHIFT_L</ref>(y);</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>zzz=((double)y/(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal">)0xffffffff);</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(zzz);</highlight></codeline>
 <codeline lineno="91"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InitializeRandomNumberGenerator(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>seed)</highlight></codeline>
+<codeline lineno="93" refid="ran__uniform_8h_1acfd6ae92430af50e9e294d317ad57fdd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ran__uniform_8cpp_1acfd6ae92430af50e9e294d317ad57fdd" kindref="member">InitializeRandomNumberGenerator</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>seed)</highlight></codeline>
 <codeline lineno="94"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>myint;</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kk;</highlight></codeline>
@@ -356,11 +356,11 @@
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/>mt[0]=myint&amp;0xffffffff;</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(mti=1;mti&lt;N;mti++)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(mti=1;mti&lt;<ref refid="ran__uniform_8cpp_1a0240ac851181b84ac374872dc5434ee4" kindref="member">N</ref>;mti++)</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>mt[mti]=(69069*mt[mti-1])&amp;0xffffffff;</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(kk=1;kk&lt;10000;kk++)</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>dummy=RandomNumber();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>dummy=<ref refid="ran__uniform_8cpp_1a0ea6b6dc33781fd8081c77fc0a9091bf" kindref="member">RandomNumber</ref>();</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"></highlight></codeline>
 <codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="116"><highlight class="normal">}</highlight></codeline>
@@ -377,14 +377,14 @@
 <codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>TEMPERING_SHIFT_T</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="128"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>TEMPERING_SHIFT_L</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="129"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>RandomGaussianNumber(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="130" refid="ran__uniform_8h_1aa9e03ac5011bb8adf84226abe3d78676" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="ran__uniform_8cpp_1aa9e03ac5011bb8adf84226abe3d78676" kindref="member">RandomGaussianNumber</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="131"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="132"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ran1,<ref refid="classran2" kindref="compound">ran2</ref>,ransq;</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"></highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="135"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>ran1=2.0*RandomNumber()-1.0;</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classran2" kindref="compound">ran2</ref>=2.0*RandomNumber()-1.0;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>ran1=2.0*<ref refid="ran__uniform_8cpp_1a0ea6b6dc33781fd8081c77fc0a9091bf" kindref="member">RandomNumber</ref>()-1.0;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classran2" kindref="compound">ran2</ref>=2.0*<ref refid="ran__uniform_8cpp_1a0ea6b6dc33781fd8081c77fc0a9091bf" kindref="member">RandomNumber</ref>()-1.0;</highlight></codeline>
 <codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>ransq=ran1*ran1+<ref refid="classran2" kindref="compound">ran2</ref>*<ref refid="classran2" kindref="compound">ran2</ref>;</highlight></codeline>
 <codeline lineno="139"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">((ransq&gt;1.0)||(ransq&lt;0.0));</highlight></codeline>
@@ -392,9 +392,9 @@
 <codeline lineno="142"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="143"><highlight class="normal"></highlight></codeline>
 <codeline lineno="144"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Generates<sp/>A<sp/>Random<sp/>Velocity<sp/>According<sp/>To<sp/>A<sp/>Boltzmann<sp/>Distribution</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="145"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>RandomVelocity(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temperature)</highlight></codeline>
+<codeline lineno="145" refid="ran__uniform_8h_1aa6732635262cc4774a32e1d2484113c4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="ran__uniform_8cpp_1aa6732635262cc4774a32e1d2484113c4" kindref="member">RandomVelocity</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temperature)</highlight></codeline>
 <codeline lineno="146"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sqrt(temperature)*RandomGaussianNumber();</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sqrt(temperature)*<ref refid="ran__uniform_8cpp_1aa9e03ac5011bb8adf84226abe3d78676" kindref="member">RandomGaussianNumber</ref>();</highlight></codeline>
 <codeline lineno="148"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="ran_uniform.cpp"/>

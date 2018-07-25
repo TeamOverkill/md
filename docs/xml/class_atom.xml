@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
   <compounddef id="class_atom" kind="class" language="C++" prot="public">
     <compoundname>Atom</compoundname>
+    <includes refid="atom_8h" local="no">atom.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="class_atom_1a9c44a53717ca3857065c0a36787359e1" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -14,7 +15,7 @@
 <para>Coordinates </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="17" column="1" bodyfile="atom.h" bodystart="17" bodyend="-1"/>
+        <location file="atom.h" line="18" column="1" bodyfile="atom.h" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -27,7 +28,7 @@
 <para>Velocities </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="18" column="1" bodyfile="atom.h" bodystart="18" bodyend="-1"/>
+        <location file="atom.h" line="19" column="1" bodyfile="atom.h" bodystart="19" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_atom_1af5b2daf8c6f32465b0ab1aecab57915b" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -40,7 +41,7 @@
 <para>Force from previous iteration </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="19" column="1" bodyfile="atom.h" bodystart="19" bodyend="-1"/>
+        <location file="atom.h" line="20" column="1" bodyfile="atom.h" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_atom_1a33b530b8900b57bfa933ae79c7e95d71" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -53,7 +54,7 @@
 <para>Current force </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="20" column="1" bodyfile="atom.h" bodystart="20" bodyend="-1"/>
+        <location file="atom.h" line="21" column="1" bodyfile="atom.h" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_atom_1a482b093515f1ad043b35646669445bda" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -66,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="25" column="1" bodyfile="atom.h" bodystart="25" bodyend="-1"/>
+        <location file="atom.h" line="22" column="1" bodyfile="atom.h" bodystart="22" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_atom_1a3f68fa5a0bd341c3c6b73826da8e9302" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -79,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="26" column="1" bodyfile="atom.h" bodystart="26" bodyend="-1"/>
+        <location file="atom.h" line="23" column="1" bodyfile="atom.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_atom_1a90e6f00ca3ae2fda9b87cb27aac5929d" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -92,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="26" column="1" bodyfile="atom.h" bodystart="26" bodyend="-1"/>
+        <location file="atom.h" line="23" column="1" bodyfile="atom.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-attrib">
@@ -107,7 +108,7 @@
 <para>Triangular distance matrix containing all distances </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="22" column="1" bodyfile="atom.h" bodystart="22" bodyend="-1"/>
+        <location file="atom.h" line="25" column="1" bodyfile="atom.h" bodystart="25" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_atom_1a8fadf04e83f1558c13192f91eee5348a" prot="public" static="yes" mutable="no">
         <type>Eigen::MatrixXd</type>
@@ -120,7 +121,7 @@
 <para>Force matrix containing all forces </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="23" column="1" bodyfile="atom.h" bodystart="23" bodyend="-1"/>
+        <location file="atom.h" line="26" column="1" bodyfile="atom.h" bodystart="26" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -132,10 +133,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><ref refid="class_atom" kindref="compound">Atom</ref> class </para>        </detaileddescription>
+<para>Constructor </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="15" column="1" bodyfile="atom.cpp" bodystart="3" bodyend="3"/>
+        <location file="atom.h" line="16" column="1" bodyfile="atom.cpp" bodystart="10" bodyend="10"/>
       </memberdef>
       <memberdef kind="function" id="class_atom_1a90a4da89f562cb57f576078e5580a0a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -149,10 +150,71 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Calculates the distance between two atoms: <formula id="0">\[ r_{ij}=\sqrt{(x_i-x_j)^2 + (y_i-y_j)^2 + (z_i-z_j)^2} \]</formula> </para>        </detaileddescription>
+<para>Calculates the direct distance between two atoms: <formula id="0">\[ r_{ij}=\sqrt{(x_i-x_j)^2 + (y_i-y_j)^2 + (z_i-z_j)^2} \]</formula> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="28" column="1" bodyfile="atom.cpp" bodystart="77" bodyend="80"/>
+        <location file="atom.h" line="28" column="1" bodyfile="atom.cpp" bodystart="80" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atom_1a5fa409397d41451b32a6fdfae5c83674" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Atom::distance_pbc</definition>
+        <argsstring>(Atom *otherAtom)</argsstring>
+        <name>distance_pbc</name>
+        <param>
+          <type><ref refid="class_atom" kindref="compound">Atom</ref> *</type>
+          <declname>otherAtom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates the distance between two atoms using the minimum image convention: </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atom.h" line="29" column="1" bodyfile="atom.cpp" bodystart="87" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atom_1a400e4f02e90dd87bfc39aab9c6c40bac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Atom::hard_walls</definition>
+        <argsstring>()</argsstring>
+        <name>hard_walls</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks for wall collisions and uses perfect elastic collision. </para>        </detaileddescription>
+        <inbodydescription>
+<para>If atom is touching or outside the wall in the x-dimension</para><para>Reverse velocity in the x-dimension </para>        </inbodydescription>
+        <location file="atom.h" line="31" column="1" bodyfile="atom.cpp" bodystart="136" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atom_1a8b9bbee6256a22b2f4260e7a66858e25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Atom::pbc</definition>
+        <argsstring>()</argsstring>
+        <name>pbc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Moves a particle according to periodic boundary conditions: <programlisting filename=".cpp"><codeline><highlight class="keywordflow">if</highlight><highlight class="normal">(xCoordinate<sp/>&gt;<sp/>boxDimension){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>xCoordinate<sp/>-=<sp/>boxDimension;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(xCoordinate<sp/>&lt;<sp/>0){<sp/>;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>xCoordinate<sp/>+=<sp/>boxDimension;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(yCoordinate<sp/>&gt;<sp/>boxDimension){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>yCoordinate<sp/>-=<sp/>boxDimension;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(yCoordinate<sp/>&lt;<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>yCoordinate<sp/>+=<sp/>boxDimension;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(zCoordinate<sp/>&gt;<sp/>boxDimension){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>zCoordinate<sp/>-=<sp/>boxDimension;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(zCoordinate<sp/>&lt;<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>zCoordinate<sp/>-=<sp/>boxDimension;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atom.h" line="32" column="1" bodyfile="atom.cpp" bodystart="180" bodyend="199"/>
       </memberdef>
       <memberdef kind="function" id="class_atom_1a4cc117bd6f7a2ce6f1af407283aff4b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -162,10 +224,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Calculates the kinetic energy of an atom: <formula id="1">\[ K = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2} \]</formula> </para>        </detaileddescription>
+<para>Calculates the kinetic energy of an atom: <formula id="1">\[ K = \frac{m * |v|}{2} = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2}^2 \]</formula> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="29" column="1" bodyfile="atom.cpp" bodystart="86" bodyend="88"/>
+        <location file="atom.h" line="33" column="1" bodyfile="atom.cpp" bodystart="116" bodyend="118"/>
       </memberdef>
       <memberdef kind="function" id="class_atom_1a181411015bc90a5e6993ddb006017de9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -178,15 +240,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="30" column="1"/>
+        <location file="atom.h" line="34" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_atom_1ac711a82c0e5c4ada4cacec38e64c00d7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_atom_1a2b938c4bf60adff2383ca0ca7e07eebc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void Atom::initialize</definition>
+        <definition>void Atom::update_distances</definition>
         <argsstring>(Atom **atoms)</argsstring>
-        <name>initialize</name>
+        <name>update_distances</name>
         <param>
           <type><ref refid="class_atom" kindref="compound">Atom</ref> **</type>
           <declname>atoms</declname>
@@ -194,31 +256,56 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Updates the triangluar matrix which holds all the distances calculated by <ref refid="class_atom_1a90a4da89f562cb57f576078e5580a0a8" kindref="member">distance()</ref> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="atom.h" line="31" column="1" bodyfile="atom.cpp" bodystart="33" bodyend="71"/>
+        <location file="atom.h" line="30" column="1" bodyfile="atom.cpp" bodystart="122" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atom_1a74d9b5e0168aa0254359451866f960f3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Atom::initialize</definition>
+        <argsstring>(Atom **atoms, bool d1)</argsstring>
+        <name>initialize</name>
+        <param>
+          <type><ref refid="class_atom" kindref="compound">Atom</ref> **</type>
+          <declname>atoms</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>d1</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets up initial conditions. </para>        </detaileddescription>
+        <inbodydescription>
+<para>Maxwell-Boltzmann velocity distribution </para>        </inbodydescription>
+        <location file="atom.h" line="35" column="1" bodyfile="atom.cpp" bodystart="14" bodyend="74"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="atom.h" line="9" column="1" bodyfile="atom.h" bodystart="9" bodyend="32"/>
+    <location file="atom.h" line="13" column="1" bodyfile="atom.h" bodystart="13" bodyend="36"/>
     <listofallmembers>
       <member refid="class_atom_1aa0147d7e49ab90f559b66e38d3d12863" prot="public" virt="non-virtual"><scope>Atom</scope><name>Atom</name></member>
       <member refid="class_atom_1a482b093515f1ad043b35646669445bda" prot="public" virt="non-virtual"><scope>Atom</scope><name>charge</name></member>
       <member refid="class_atom_1a90a4da89f562cb57f576078e5580a0a8" prot="public" virt="non-virtual"><scope>Atom</scope><name>distance</name></member>
+      <member refid="class_atom_1a5fa409397d41451b32a6fdfae5c83674" prot="public" virt="non-virtual"><scope>Atom</scope><name>distance_pbc</name></member>
       <member refid="class_atom_1a7ac21eb5765267ccafe658634c7cc45f" prot="public" virt="non-virtual"><scope>Atom</scope><name>distances</name></member>
       <member refid="class_atom_1a33b530b8900b57bfa933ae79c7e95d71" prot="public" virt="non-virtual"><scope>Atom</scope><name>force</name></member>
       <member refid="class_atom_1a8fadf04e83f1558c13192f91eee5348a" prot="public" virt="non-virtual"><scope>Atom</scope><name>forceMatrix</name></member>
-      <member refid="class_atom_1ac711a82c0e5c4ada4cacec38e64c00d7" prot="public" virt="non-virtual"><scope>Atom</scope><name>initialize</name></member>
+      <member refid="class_atom_1a400e4f02e90dd87bfc39aab9c6c40bac" prot="public" virt="non-virtual"><scope>Atom</scope><name>hard_walls</name></member>
+      <member refid="class_atom_1a74d9b5e0168aa0254359451866f960f3" prot="public" virt="non-virtual"><scope>Atom</scope><name>initialize</name></member>
       <member refid="class_atom_1a4cc117bd6f7a2ce6f1af407283aff4b2" prot="public" virt="non-virtual"><scope>Atom</scope><name>kinetic_energy</name></member>
       <member refid="class_atom_1a90e6f00ca3ae2fda9b87cb27aac5929d" prot="public" virt="non-virtual"><scope>Atom</scope><name>mass</name></member>
       <member refid="class_atom_1af5b2daf8c6f32465b0ab1aecab57915b" prot="public" virt="non-virtual"><scope>Atom</scope><name>oldForce</name></member>
+      <member refid="class_atom_1a8b9bbee6256a22b2f4260e7a66858e25" prot="public" virt="non-virtual"><scope>Atom</scope><name>pbc</name></member>
       <member refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" prot="public" virt="non-virtual"><scope>Atom</scope><name>pos</name></member>
       <member refid="class_atom_1a3f68fa5a0bd341c3c6b73826da8e9302" prot="public" virt="non-virtual"><scope>Atom</scope><name>radius</name></member>
       <member refid="class_atom_1a181411015bc90a5e6993ddb006017de9" prot="public" virt="non-virtual"><scope>Atom</scope><name>set_velocity</name></member>
+      <member refid="class_atom_1a2b938c4bf60adff2383ca0ca7e07eebc" prot="public" virt="non-virtual"><scope>Atom</scope><name>update_distances</name></member>
       <member refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" prot="public" virt="non-virtual"><scope>Atom</scope><name>vel</name></member>
     </listofallmembers>
   </compounddef>

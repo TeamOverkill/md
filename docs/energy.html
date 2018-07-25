@@ -164,6 +164,32 @@
 <span class="target" id="namespaceenergy"></span><em class="property">namespace </em><code class="descname">energy</code><a class="headerlink" href="#_CPPv26energy" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The energy namespace contains the various potentials. Each potential has a corresponding force function which calculates the force by differentiating the potential function </p>
 <dl class="type">
+<dt id="_CPPv2N6energy8harmonicE">
+<span id="energy::harmonic"></span><span class="target" id="namespaceenergy_1_1harmonic"></span><em class="property">namespace </em><code class="descname">harmonic</code><a class="headerlink" href="#_CPPv2N6energy8harmonicE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt id="_CPPv2N6energy8harmonic6energyEPP4Atom">
+<span id="energy::harmonic::energy__AtomPP"></span><span class="target" id="group___lennard-_jones_1gaad1be269190aa2d8590a69ec9d8e5785"></span>double <code class="descname">energy</code><span class="sig-paren">(</span><a class="reference internal" href="atom.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6energy8harmonic6energyEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6energy8harmonic6forcesEPP4Atom">
+<span id="energy::harmonic::forces__AtomPP"></span><span class="target" id="group___lennard-_jones_1gaec5ae575bae5880ee0545e2c82f795d2"></span>void <code class="descname">forces</code><span class="sig-paren">(</span><a class="reference internal" href="atom.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6energy8harmonic6forcesEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="member">
+<dt id="_CPPv2N6energy8harmonic14springConstantE">
+<span id="energy::harmonic::springConstant__double"></span><span class="target" id="group___lennard-_jones_1ga45722091b414b1c9b21292957d920dba"></span>double <code class="descname">springConstant</code> = 1.0 / constants::NA<a class="headerlink" href="#_CPPv2N6energy8harmonic14springConstantE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="type">
 <dt id="_CPPv2N6energy2LJE">
 <span id="energy::LJ"></span><span class="target" id="namespaceenergy_1_1_l_j"></span><em class="property">namespace </em><code class="descname">LJ</code><a class="headerlink" href="#_CPPv2N6energy2LJE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><div class="breathe-sectiondef docutils container">
@@ -171,8 +197,7 @@
 <dl class="function">
 <dt id="_CPPv2N6energy2LJ6forcesEPP4Atom">
 <span id="energy::LJ::forces__AtomPP"></span><span class="target" id="group___lennard-_jones_1ga964e5b1db9c2f1cfaf64663b2fa92e90"></span>void <code class="descname">forces</code><span class="sig-paren">(</span><a class="reference internal" href="atom.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6energy2LJ6forcesEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>dgfghh </p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N6energy2LJ6energyEPP4Atom">
@@ -209,7 +234,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Samuel Stenberg, Vidar Aspelin, Stefan Hansen.
+        &copy; Copyright 2018, Samuel Stenberg, Vidar Aspelin, Stefan Hervø-Hansen.
 
     </p>
   </div>

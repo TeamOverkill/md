@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
-  <compounddef id="namespaceenergy_1_1_l_j_1_1_0D5" kind="namespace" language="C++">
-    <compoundname>energy::LJ::@5</compoundname>
+  <compounddef id="group___harmonic" kind="group">
+    <compoundname>Harmonic</compoundname>
+    <title>Harmonic</title>
+    <innernamespace refid="namespaceenergy_1_1harmonic">energy::harmonic</innernamespace>
+    <innergroup refid="group___lennard-_jones">Lennard-Jones</innergroup>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="energy.h" line="44" column="1"/>
   </compounddef>
 </doxygen>

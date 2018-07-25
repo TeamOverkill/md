@@ -4,7 +4,7 @@
     <compoundname>Energy</compoundname>
     <title>Energy</title>
     <innernamespace refid="namespaceenergy">energy</innernamespace>
-    <innergroup refid="group___lennard-_jones">Lennard-Jones</innergroup>
+    <innergroup refid="group___harmonic">Harmonic</innergroup>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

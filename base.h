@@ -25,4 +25,6 @@ public:
     static double *kineticEnergies;
     static double *totalEnergies;
     static double *temperatures;
+    static Eigen::Vector3d dimensionality;
+    static int dimensions;
 };

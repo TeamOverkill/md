@@ -9,8 +9,6 @@
 #include "parser.h"
 
 int main(int argc, char *argv[]){
-    bool d1 = false;
-
     Parser parser;
     parser.parse();
     Base::initialize();
@@ -27,7 +25,7 @@ int main(int argc, char *argv[]){
     frames = (Frame**) malloc(Base::outFreq * sizeof(Frame*));
 
     /*!< Initialize atom variables */
-    Atom::initialize(atoms, d1);
+    Atom::initialize(atoms);
 
     /*!< Initialize the force matrix */
     Atom::forceMatrix.resize(Base::numOfAtoms, Base::numOfAtoms);

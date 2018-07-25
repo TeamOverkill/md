@@ -5,43 +5,70 @@
     <includes refid="base_8h" local="yes">base.h</includes>
     <includedby refid="main_8cpp" local="yes">main.cpp</includedby>
     <incdepgraph>
-      <node id="104">
+      <node id="140">
         <label>stdlib.h</label>
       </node>
-      <node id="101">
+      <node id="137">
         <label>mdEngine.h</label>
         <link refid="md_engine_8h"/>
-        <childnode refid="102" relation="include">
+        <childnode refid="138" relation="include">
         </childnode>
       </node>
-      <node id="106">
+      <node id="142">
         <label>Eigen/Dense</label>
       </node>
-      <node id="102">
-        <label>base.h</label>
-        <link refid="base_8h_source"/>
-        <childnode refid="103" relation="include">
+      <node id="144">
+        <label>ran2_lib.cpp</label>
+        <link refid="ran2__lib_8cpp"/>
+        <childnode refid="145" relation="include">
         </childnode>
-        <childnode refid="104" relation="include">
+        <childnode refid="140" relation="include">
         </childnode>
-        <childnode refid="105" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="139" relation="include">
         </childnode>
       </node>
-      <node id="105">
+      <node id="138">
+        <label>base.h</label>
+        <link refid="base_8h"/>
+        <childnode refid="139" relation="include">
+        </childnode>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="141" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+        <childnode refid="143" relation="include">
+        </childnode>
+        <childnode refid="144" relation="include">
+        </childnode>
+      </node>
+      <node id="145">
+        <label>time.h</label>
+      </node>
+      <node id="141">
         <label>iostream</label>
       </node>
-      <node id="103">
+      <node id="139">
         <label>stdio.h</label>
       </node>
-      <node id="107">
+      <node id="143">
         <label>constants.h</label>
-        <link refid="constants_8h_source"/>
+        <link refid="constants_8h"/>
       </node>
     </incdepgraph>
+    <invincdepgraph>
+      <node id="146">
+        <label>mdEngine.h</label>
+        <link refid="md_engine_8h"/>
+        <childnode refid="147" relation="include">
+        </childnode>
+      </node>
+      <node id="147">
+        <label>main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
     <innernamespace refid="namespacemd_engine">mdEngine</innernamespace>
     <briefdescription>
     </briefdescription>
@@ -50,7 +77,7 @@
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;base.h&quot;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="base_8h" kindref="compound">base.h</ref>&quot;</highlight></codeline>
 <codeline lineno="10" refid="namespacemd_engine" refkind="compound"><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacemd_engine" kindref="compound">mdEngine</ref><sp/>{</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="12"><highlight class="comment"><sp/><sp/><sp/>*<sp/>This<sp/>namespace<sp/>should<sp/>hold<sp/>all<sp/>MD<sp/>specific<sp/>algorithms,<sp/>hence<sp/>the<sp/>&apos;engine&apos;<sp/>of<sp/>the<sp/>program</highlight></codeline>
@@ -60,61 +87,78 @@
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temp<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>base::numOfAtoms;<sp/>i++){</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp<sp/>+=<sp/>atoms[i]-&gt;mass<sp/>*<sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>.dot(atoms[i]-&gt;vel)<sp/>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp<sp/>+=<sp/>atoms[i]-&gt;<ref refid="class_atom_1a90e6f00ca3ae2fda9b87cb27aac5929d" kindref="member">mass</ref><sp/>*<sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>.dot(atoms[i]-&gt;vel);</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>temp/base::numOfAtoms<sp/>*<sp/>1<sp/>/<sp/>(3<sp/>*<sp/>constants::K);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>temp/<ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref><sp/>*<sp/>1<sp/>/<sp/>(3<sp/>*<sp/><ref refid="namespaceconstants_1a49e1085ba67fdde84844c8fe12dc12e8" kindref="member">constants::K_CORRECT</ref>);</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
 <codeline lineno="38" refid="group___main__modules_1ga43703c5bde3f0a0ffd916e8c030d5d33" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="group___main__modules_1ga43703c5bde3f0a0ffd916e8c030d5d33" kindref="member">get_pressure</ref>(){</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pressure<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>F,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>I&gt;</highlight></codeline>
-<codeline lineno="57" refid="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94" kindref="member">run</ref>(I&amp;&amp;<sp/>integrator_1,<sp/>I&amp;&amp;<sp/>integrator_2,<sp/>F&amp;&amp;<sp/>force_function,<sp/><ref refid="class_atom" kindref="compound">Atom</ref><sp/>**atoms,<sp/><ref refid="class_frame" kindref="compound">Frame</ref><sp/>**frames){</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temperature;</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>frameCounter<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cummulativeTemp<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Main<sp/>MD<sp/>loop<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>base::iterations;<sp/>i++){</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//#pragma<sp/>omp<sp/>parallel</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//#pragma<sp/>omp<sp/>master</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>{</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>integrator_1(atoms);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>First<sp/>half<sp/>step<sp/>of<sp/>integrator<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>force_function(atoms);<sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculate<sp/>new<sp/>forces<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>integrator_2(atoms);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Second<sp/>half<sp/>step<sp/>of<sp/>integrator<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>thermostats::andersen::set_velocity(atoms);<sp/></highlight><highlight class="comment">/*<sp/>Apply<sp/>thermostat<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temperature<sp/>=<sp/><ref refid="group___main__modules_1ga5f8cc3610166e26157ab48c1905bd2b7" kindref="member">get_temperature</ref>(atoms);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cummulativeTemp<sp/>+=<sp/>temperature;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base::temperatures[i]<sp/>=<sp/>temperature;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b2<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>i<sp/>+<sp/>1;<sp/>j<sp/>&lt;<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>;<sp/>j++){</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2<sp/>+=<sp/><ref refid="class_atom_1a8fadf04e83f1558c13192f91eee5348a" kindref="member">Atom::forceMatrix</ref>(i,<sp/>j)<sp/>*<sp/><ref refid="class_atom_1a7ac21eb5765267ccafe658634c7cc45f" kindref="member">Atom::distances</ref>(i,<sp/>j);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2<sp/>*=<sp/>1/(3<sp/>*<sp/><ref refid="class_base_1a28aaaddcc4be196bf5c90d50a87a0ab4" kindref="member">Base::volume</ref>);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>=<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref><sp/>/<sp/><ref refid="class_base_1a28aaaddcc4be196bf5c90d50a87a0ab4" kindref="member">Base::volume</ref><sp/>*<sp/><ref refid="namespaceconstants_1a49e1085ba67fdde84844c8fe12dc12e8" kindref="member">constants::K_CORRECT</ref><sp/>*<sp/>300<sp/>+<sp/>b2;<sp/><sp/></highlight><highlight class="comment">//[dalton<sp/>/<sp/>(ps^2<sp/>*<sp/>nm)]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>*=<sp/>1.66053904<sp/>*<sp/>1e-27;<sp/></highlight><highlight class="comment">//dalton<sp/>to<sp/>kg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>*=<sp/>1e24;<sp/></highlight><highlight class="comment">//ps^2<sp/>to<sp/>s^2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>*=<sp/>1e9;<sp/></highlight><highlight class="comment">//nm<sp/>to<sp/>m</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>*=<sp/>1e-5;<sp/></highlight><highlight class="comment">//Pa<sp/>to<sp/>bar</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pressure;<sp/></highlight><highlight class="comment">//[bar]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>F,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>I&gt;</highlight></codeline>
+<codeline lineno="70" refid="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94" kindref="member">run</ref>(I&amp;&amp;<sp/>integrator_1,<sp/>I&amp;&amp;<sp/>integrator_2,<sp/>F&amp;&amp;<sp/>force_function,<sp/><ref refid="class_atom" kindref="compound">Atom</ref><sp/>**atoms,<sp/><ref refid="class_frame" kindref="compound">Frame</ref><sp/>**frames){</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temperature;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pressure<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>frameCounter<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cummulativeTemp<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cummulativePress<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="77"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>%<sp/><ref refid="class_frame_1ae7615c7221ced614d59ce461deed3a5f" kindref="member">Frame::fStep</ref><sp/>==<sp/>0){</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>base::numOfAtoms;<sp/>i++){</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base::kineticEnergies[frameCounter]<sp/>+=<sp/>atoms[i]-&gt;<ref refid="class_atom_1a4cc117bd6f7a2ce6f1af407283aff4b2" kindref="member">kinetic_energy</ref>();</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base::potentialEnergies[frameCounter]<sp/>=<sp/><ref refid="group___lennard-_jones_1ga100c4be2b148a0f7f68f6af3dac4135a" kindref="member">energy::LJ::energy</ref>(atoms);</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base::totalEnergies[frameCounter]<sp/>=<sp/>base::potentialEnergies[frameCounter]<sp/>+<sp/>base::kineticEnergies[frameCounter];</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Progress:<sp/>%.1lf%%<sp/>Temperature:<sp/>%.1lf<sp/>Average<sp/>temperature:<sp/>%.1lf<sp/>Potential<sp/>Energy:<sp/>%lf<sp/>Kinetic<sp/>Energy:<sp/>%lf\r&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)i/base::iterations<sp/>*<sp/>100.0,<sp/>temperature,<sp/>cummulativeTemp/i,<sp/>base::potentialEnergies[frameCounter],</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base::kineticEnergies[frameCounter]);</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frames[frameCounter]<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_frame" kindref="compound">Frame</ref>();</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frames[frameCounter]-&gt;<ref refid="class_frame_1a03b0febb7a423f343a97f5b937ca74bb" kindref="member">save_state</ref>(atoms);</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frameCounter++;</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//}</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Main<sp/>MD<sp/>loop<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_base_1a0505a956296600b0a06335e9bdc008f9" kindref="member">Base::iterations</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//#pragma<sp/>omp<sp/>parallel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//#pragma<sp/>omp<sp/>master</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>integrator_1(atoms);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>First<sp/>half<sp/>step<sp/>of<sp/>integrator<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>force_function(atoms);<sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculate<sp/>new<sp/>forces<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>integrator_2(atoms);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Second<sp/>half<sp/>step<sp/>of<sp/>integrator<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//thermostats::andersen::set_velocity(atoms);<sp/>/*<sp/>Apply<sp/>thermostat<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temperature<sp/>=<sp/><ref refid="group___main__modules_1ga5f8cc3610166e26157ab48c1905bd2b7" kindref="member">get_temperature</ref>(atoms);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>=<sp/><ref refid="group___main__modules_1ga43703c5bde3f0a0ffd916e8c030d5d33" kindref="member">get_pressure</ref>();</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cummulativeTemp<sp/>+=<sp/>temperature;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cummulativePress<sp/>+=<sp/>pressure;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_base_1ae9423f208c5f9bd90108df4b8ba7530e" kindref="member">Base::temperatures</ref>[i]<sp/>=<sp/>temperature;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>%<sp/><ref refid="class_frame_1ae7615c7221ced614d59ce461deed3a5f" kindref="member">Frame::fStep</ref><sp/>==<sp/>0){</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_base_1a7c2f451a292547e275ac14eb24c2335c" kindref="member">Base::kineticEnergies</ref>[frameCounter]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_base_1a7c2f451a292547e275ac14eb24c2335c" kindref="member">Base::kineticEnergies</ref>[frameCounter]<sp/>+=<sp/>atoms[i]-&gt;<ref refid="class_atom_1a4cc117bd6f7a2ce6f1af407283aff4b2" kindref="member">kinetic_energy</ref>();</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_base_1a6584c85833adabe5d4a76f65d2dbe6a8" kindref="member">Base::potentialEnergies</ref>[frameCounter]<sp/>=<sp/><ref refid="group___lennard-_jones_1ga100c4be2b148a0f7f68f6af3dac4135a" kindref="member">energy::LJ::energy</ref>(atoms);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_base_1ac67647d7acc0ff970b58665b4b8642f7" kindref="member">Base::totalEnergies</ref>[frameCounter]<sp/>=<sp/><ref refid="class_base_1a6584c85833adabe5d4a76f65d2dbe6a8" kindref="member">Base::potentialEnergies</ref>[frameCounter]<sp/>+<sp/><ref refid="class_base_1a7c2f451a292547e275ac14eb24c2335c" kindref="member">Base::kineticEnergies</ref>[frameCounter];</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Progress:<sp/>%.1lf%%<sp/>Temperature:<sp/>%.1lf<sp/>Average<sp/>temperature:<sp/>%.1lf<sp/>Average<sp/>pressure:<sp/>%.2lf<sp/>Potential<sp/>Energy:<sp/>%.5lf<sp/>Kinetic<sp/>Energy:<sp/>%.3lf\r&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)i/<ref refid="class_base_1a0505a956296600b0a06335e9bdc008f9" kindref="member">Base::iterations</ref><sp/>*<sp/>100.0,<sp/>temperature,<sp/>cummulativeTemp/i,<sp/>cummulativePress/i,<sp/><ref refid="class_base_1a6584c85833adabe5d4a76f65d2dbe6a8" kindref="member">Base::potentialEnergies</ref>[frameCounter],</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_base_1a7c2f451a292547e275ac14eb24c2335c" kindref="member">Base::kineticEnergies</ref>[frameCounter]);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frames[frameCounter]<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_frame" kindref="compound">Frame</ref>();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frames[frameCounter]-&gt;<ref refid="class_frame_1a03b0febb7a423f343a97f5b937ca74bb" kindref="member">save_state</ref>(atoms);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frameCounter++;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="mdEngine.h"/>
   </compounddef>

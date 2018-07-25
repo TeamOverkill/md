@@ -167,14 +167,52 @@
 <dl class="function">
 <dt id="_CPPv2N4Atom4AtomEv">
 <span id="Atom::Atom"></span><span class="target" id="class_atom_1aa0147d7e49ab90f559b66e38d3d12863"></span><code class="descname">Atom</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom4AtomEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p><a class="reference internal" href="#class_atom"><span class="std std-ref">Atom</span></a> class </p>
+<dd><p>Constructor </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4Atom8distanceEP4Atom">
 <span id="Atom::distance__AtomP"></span><span class="target" id="class_atom_1a90a4da89f562cb57f576078e5580a0a8"></span>double <code class="descname">distance</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv24Atom" title="Atom">Atom</a> *<em>otherAtom</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom8distanceEP4Atom" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Calculates the distance between two atoms: <div class="math">
+<dd><p>Calculates the direct distance between two atoms: <div class="math">
 \[ r_{ij}=\sqrt{(x_i-x_j)^2 + (y_i-y_j)^2 + (z_i-z_j)^2} \]</div>
+ </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Atom12distance_pbcEP4Atom">
+<span id="Atom::distance_pbc__AtomP"></span><span class="target" id="class_atom_1a5fa409397d41451b32a6fdfae5c83674"></span>double <code class="descname">distance_pbc</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv24Atom" title="Atom">Atom</a> *<em>otherAtom</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom12distance_pbcEP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Calculates the distance between two atoms using the minimum image convention: </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Atom10hard_wallsEv">
+<span id="Atom::hard_walls"></span><span class="target" id="class_atom_1a400e4f02e90dd87bfc39aab9c6c40bac"></span>void <code class="descname">hard_walls</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom10hard_wallsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Checks for wall collisions and uses perfect elastic collision. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Atom3pbcEv">
+<span id="Atom::pbc"></span><span class="target" id="class_atom_1a8b9bbee6256a22b2f4260e7a66858e25"></span>void <code class="descname">pbc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom3pbcEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Moves a particle according to periodic boundary conditions: <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">xCoordinate</span> <span class="o">&gt;</span> <span class="n">boxDimension</span><span class="p">){</span>
+    <span class="n">xCoordinate</span> <span class="o">-=</span> <span class="n">boxDimension</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="n">xCoordinate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span> <span class="p">;</span>
+    <span class="n">xCoordinate</span> <span class="o">+=</span> <span class="n">boxDimension</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="n">yCoordinate</span> <span class="o">&gt;</span> <span class="n">boxDimension</span><span class="p">){</span>
+    <span class="n">yCoordinate</span> <span class="o">-=</span> <span class="n">boxDimension</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="n">yCoordinate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="n">yCoordinate</span> <span class="o">+=</span> <span class="n">boxDimension</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="n">zCoordinate</span> <span class="o">&gt;</span> <span class="n">boxDimension</span><span class="p">){</span>
+    <span class="n">zCoordinate</span> <span class="o">-=</span> <span class="n">boxDimension</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="n">zCoordinate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="n">zCoordinate</span> <span class="o">-=</span> <span class="n">boxDimension</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
  </p>
 </dd></dl>
 
@@ -182,7 +220,7 @@
 <dt id="_CPPv2N4Atom14kinetic_energyEv">
 <span id="Atom::kinetic_energy"></span><span class="target" id="class_atom_1a4cc117bd6f7a2ce6f1af407283aff4b2"></span>double <code class="descname">kinetic_energy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom14kinetic_energyEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Calculates the kinetic energy of an atom: <div class="math">
-\[ K = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2} \]</div>
+\[ K = \frac{m * |v|}{2} = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2}^2 \]</div>
  </p>
 </dd></dl>
 
@@ -237,9 +275,16 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Static Functions</p>
 <dl class="function">
-<dt id="_CPPv2N4Atom10initializeEPP4Atom">
-<span id="Atom::initialize__AtomPP"></span><span class="target" id="class_atom_1ac711a82c0e5c4ada4cacec38e64c00d7"></span>void <code class="descname">initialize</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom10initializeEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<dt id="_CPPv2N4Atom16update_distancesEPP4Atom">
+<span id="Atom::update_distances__AtomPP"></span><span class="target" id="class_atom_1a2b938c4bf60adff2383ca0ca7e07eebc"></span>void <code class="descname">update_distances</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom16update_distancesEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Updates the triangluar matrix which holds all the distances calculated by <a class="reference internal" href="#class_atom_1a90a4da89f562cb57f576078e5580a0a8"><span class="std std-ref">distance()</span></a> </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Atom10initializeEPP4Atomb">
+<span id="Atom::initialize__AtomPP.b"></span><span class="target" id="class_atom_1a74d9b5e0168aa0254359451866f960f3"></span>void <code class="descname">initialize</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em>, bool <em>d1</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Atom10initializeEPP4Atomb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets up initial conditions. </p>
+</dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
@@ -281,7 +326,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Samuel Stenberg, Vidar Aspelin, Stefan Hansen.
+        &copy; Copyright 2018, Samuel Stenberg, Vidar Aspelin, Stefan Hervø-Hansen.
 
     </p>
   </div>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_parser" kind="class" language="C++" prot="public">
+    <compoundname>Parser</compoundname>
+    <includes refid="parser_8h" local="no">parser.h</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_parser_1abe8220a1eec0fc7969b09f8b572ff880" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Parser::parse</definition>
+        <argsstring>()</argsstring>
+        <name>parse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="parser.h" line="7" column="1" bodyfile="parser.h" bodystart="7" bodyend="34"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="parser.h" line="4" column="1" bodyfile="parser.h" bodystart="4" bodyend="35"/>
+    <listofallmembers>
+      <member refid="class_parser_1abe8220a1eec0fc7969b09f8b572ff880" prot="public" virt="non-virtual"><scope>Parser</scope><name>parse</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

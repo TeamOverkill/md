@@ -3,7 +3,7 @@
   <compounddef id="namespaceintegrators" kind="namespace" language="C++">
     <compoundname>integrators</compoundname>
       <sectiondef kind="func">
-      <memberdef kind="function" id="integrators_8h_1a217be128a03eaac3dc05bdbd22bc8809" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="namespaceintegrators_1a217be128a03eaac3dc05bdbd22bc8809" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void integrators::velocity_verlet_first</definition>
         <argsstring>(Atom **atoms)</argsstring>
@@ -18,9 +18,9 @@
         </detaileddescription>
         <inbodydescription>
 <para>Velocity Verlet integrator First half step</para>        </inbodydescription>
-        <location file="integrators.h" line="7" column="1" bodyfile="integrators.h" bodystart="7" bodyend="42"/>
+        <location file="integrators.h" line="7" column="1" bodyfile="integrators.h" bodystart="7" bodyend="46"/>
       </memberdef>
-      <memberdef kind="function" id="integrators_8h_1ac25456f7247f7b73b5db97108cd7583e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="namespaceintegrators_1ac25456f7247f7b73b5db97108cd7583e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void integrators::velocity_verlet_second</definition>
         <argsstring>(Atom **atoms)</argsstring>
@@ -35,7 +35,7 @@
         </detaileddescription>
         <inbodydescription>
 <para>Velocity Verlet integrator Second half step</para>        </inbodydescription>
-        <location file="integrators.h" line="44" column="1" bodyfile="integrators.h" bodystart="44" bodyend="54"/>
+        <location file="integrators.h" line="48" column="1" bodyfile="integrators.h" bodystart="48" bodyend="58"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

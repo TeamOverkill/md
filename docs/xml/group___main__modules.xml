@@ -17,7 +17,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Calculate the temperature based on the equipartition theorem where the temperature is given by <formula id="3">\[ T = \sum^{N-1}_{i=0}m_i * v_i^2 \]</formula> </para>        </detaileddescription>
+<para>Calculate the temperature Based on the equipartition theorem where the temperature is given by <formula id="3">\[ T = \sum^{N-1}_{i=0}m_i * v_i^2 \]</formula> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="mdEngine.h" line="22" column="1" bodyfile="mdEngine.h" bodystart="22" bodyend="30"/>
@@ -30,10 +30,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Calculate the pressure based on the virial expansion <formula id="4">\[ P=\rho k_B T + \frac{1}{dV}\left&lt;\sum_{i=0}^{N-1}\sum_{j = i + 1}^{N-1} f(r_{ij})r_{ij}\right&gt; \]</formula> </para>        </detaileddescription>
+<para>Calculate the pressure Based on the virial expansion <formula id="4">\[ P=\rho k_B T + \frac{1}{dV}\left&lt;\sum_{i=0}^{N-1}\sum_{j = i + 1}^{N-1} f(r_{ij})r_{ij}\right&gt; \]</formula> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="mdEngine.h" line="38" column="1" bodyfile="mdEngine.h" bodystart="38" bodyend="42"/>
+        <location file="mdEngine.h" line="38" column="1" bodyfile="mdEngine.h" bodystart="38" bodyend="55"/>
       </memberdef>
       <memberdef kind="function" id="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -81,7 +81,7 @@
 </programlisting> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="mdEngine.h" line="57" column="1" bodyfile="mdEngine.h" bodystart="57" bodyend="97"/>
+        <location file="mdEngine.h" line="70" column="1" bodyfile="mdEngine.h" bodystart="70" bodyend="114"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

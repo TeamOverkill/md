@@ -27,15 +27,19 @@ import sys
 #
 # needs_sphinx = '1.0'
 sys.path.append( "/Users/samuel/Documents/breathe/" )
+# sys.path.append( "/Users/samuel/Documents/md/" )
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
-    'breathe']
+    'breathe',
+    'sphinx.ext.viewcode']
+breathe_domain_by_extension = {"h" : "cpp"}
 breathe_projects = { "MolecularOverkill": "/Users/samuel/Documents/md/docs/xml/" }
 breathe_default_project = "MolecularOverkill"
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 breathe_projects_source = {

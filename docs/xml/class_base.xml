@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_base" kind="class" language="C++" prot="public">
+    <compoundname>Base</compoundname>
+    <includes refid="base_8h" local="no">base.h</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double Base::boxDim</definition>
+        <argsstring></argsstring>
+        <name>boxDim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Box dimension, currently only cubic boxes </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="17" column="1" bodyfile="base.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1a28aaaddcc4be196bf5c90d50a87a0ab4" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double Base::volume</definition>
+        <argsstring></argsstring>
+        <name>volume</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Volume of the box </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="18" column="1" bodyfile="base.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1a1684b05f430b5f765869935843ddaf16" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Base::numOfAtoms</definition>
+        <argsstring></argsstring>
+        <name>numOfAtoms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>number of atoms </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="19" column="1" bodyfile="base.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1a0505a956296600b0a06335e9bdc008f9" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Base::iterations</definition>
+        <argsstring></argsstring>
+        <name>iterations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>number of iterations </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="20" column="1" bodyfile="base.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1ad50d7047869566c9a20b0187bdfe73be" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Base::outFreq</definition>
+        <argsstring></argsstring>
+        <name>outFreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="21" column="1" bodyfile="base.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1a34d4da99a6fa242d041ad2b4f8faab67" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double Base::tStep</definition>
+        <argsstring></argsstring>
+        <name>tStep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Time step in picoseconds </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="22" column="1" bodyfile="base.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1a8bb6f0ef43e96fd0dc25e355d480e2f1" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double Base::temperature</definition>
+        <argsstring></argsstring>
+        <name>temperature</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="23" column="1" bodyfile="base.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1a6584c85833adabe5d4a76f65d2dbe6a8" prot="public" static="yes" mutable="no">
+        <type>double *</type>
+        <definition>double * Base::potentialEnergies</definition>
+        <argsstring></argsstring>
+        <name>potentialEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="24" column="1" bodyfile="base.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1a7c2f451a292547e275ac14eb24c2335c" prot="public" static="yes" mutable="no">
+        <type>double *</type>
+        <definition>double * Base::kineticEnergies</definition>
+        <argsstring></argsstring>
+        <name>kineticEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="25" column="1" bodyfile="base.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1ac67647d7acc0ff970b58665b4b8642f7" prot="public" static="yes" mutable="no">
+        <type>double *</type>
+        <definition>double * Base::totalEnergies</definition>
+        <argsstring></argsstring>
+        <name>totalEnergies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="26" column="1" bodyfile="base.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1ae9423f208c5f9bd90108df4b8ba7530e" prot="public" static="yes" mutable="no">
+        <type>double *</type>
+        <definition>double * Base::temperatures</definition>
+        <argsstring></argsstring>
+        <name>temperatures</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize arrays </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="27" column="1" bodyfile="base.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_base_1a1568ed24af5e60016e1b69a0263f93e8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Base::initialize</definition>
+        <argsstring>()</argsstring>
+        <name>initialize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This class holds all variables set by the user </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="16" column="1" bodyfile="base.cpp" bodystart="15" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base.h" line="11" column="1" bodyfile="base.h" bodystart="11" bodyend="28"/>
+    <listofallmembers>
+      <member refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" prot="public" virt="non-virtual"><scope>Base</scope><name>boxDim</name></member>
+      <member refid="class_base_1a1568ed24af5e60016e1b69a0263f93e8" prot="public" virt="non-virtual"><scope>Base</scope><name>initialize</name></member>
+      <member refid="class_base_1a0505a956296600b0a06335e9bdc008f9" prot="public" virt="non-virtual"><scope>Base</scope><name>iterations</name></member>
+      <member refid="class_base_1a7c2f451a292547e275ac14eb24c2335c" prot="public" virt="non-virtual"><scope>Base</scope><name>kineticEnergies</name></member>
+      <member refid="class_base_1a1684b05f430b5f765869935843ddaf16" prot="public" virt="non-virtual"><scope>Base</scope><name>numOfAtoms</name></member>
+      <member refid="class_base_1ad50d7047869566c9a20b0187bdfe73be" prot="public" virt="non-virtual"><scope>Base</scope><name>outFreq</name></member>
+      <member refid="class_base_1a6584c85833adabe5d4a76f65d2dbe6a8" prot="public" virt="non-virtual"><scope>Base</scope><name>potentialEnergies</name></member>
+      <member refid="class_base_1a8bb6f0ef43e96fd0dc25e355d480e2f1" prot="public" virt="non-virtual"><scope>Base</scope><name>temperature</name></member>
+      <member refid="class_base_1ae9423f208c5f9bd90108df4b8ba7530e" prot="public" virt="non-virtual"><scope>Base</scope><name>temperatures</name></member>
+      <member refid="class_base_1ac67647d7acc0ff970b58665b4b8642f7" prot="public" virt="non-virtual"><scope>Base</scope><name>totalEnergies</name></member>
+      <member refid="class_base_1a34d4da99a6fa242d041ad2b4f8faab67" prot="public" virt="non-virtual"><scope>Base</scope><name>tStep</name></member>
+      <member refid="class_base_1a28aaaddcc4be196bf5c90d50a87a0ab4" prot="public" virt="non-virtual"><scope>Base</scope><name>volume</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

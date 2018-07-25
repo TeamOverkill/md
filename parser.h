@@ -23,6 +23,7 @@ public:
             else if(keyword == "nof") Base::outFreq = (int)value;
             else if(keyword == "temperature") Base::temperature = value;
             else if(keyword == "timestep") Base::tStep = value;
+            else if(keyword == "dog") Base::dimensions = (int)value;
             else{
                 printf("Unknown keyword %s in config file.", keyword.c_str());
                 exit(1);

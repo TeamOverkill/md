@@ -13,7 +13,7 @@ namespace thermostats{
                     double random_gauss =
                             sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
                     atoms[i]->vel[0] = random_gauss * sqrt(constants::K_DALTON * 300 / atoms[i]->mass) * 0.001;
-/*
+
                     ran_u2 = ran2::get_random();
                     ran_u1 = ran2::get_random();
                     random_gauss =
@@ -24,7 +24,8 @@ namespace thermostats{
                     ran_u1 = ran2::get_random();
                     random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
                     atoms[i]->vel[2] = random_gauss * sqrt(constants::K_DALTON * 300 / atoms[i]->mass) * 0.001;
-                    */
+
+                    atoms[i]->vel = atoms[i]->vel.cwiseProduct(Base::dimensionality);
                 }
             }
         }
