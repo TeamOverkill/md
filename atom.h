@@ -10,6 +10,10 @@
  *  \addtogroup Atom
  *  @{
  */
+
+/*! This class contains all variables which defines an atom (position, velocity, mass etc). This class also
+ * contains member and static functions related to these variables.
+*/
 class Atom{
 
     public:

@@ -15,14 +15,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="parser.h" line="7" column="1" bodyfile="parser.h" bodystart="7" bodyend="34"/>
+        <location file="parser.h" line="7" column="1" bodyfile="parser.h" bodystart="7" bodyend="35"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="parser.h" line="4" column="1" bodyfile="parser.h" bodystart="4" bodyend="35"/>
+    <location file="parser.h" line="4" column="1" bodyfile="parser.h" bodystart="4" bodyend="36"/>
     <listofallmembers>
       <member refid="class_parser_1abe8220a1eec0fc7969b09f8b572ff880" prot="public" virt="non-virtual"><scope>Parser</scope><name>parse</name></member>
     </listofallmembers>

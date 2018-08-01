@@ -7,11 +7,12 @@ Welcome to MolecularOverkill's documentation!
 =============================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Introduction:
 
    home
    installation
+   outline
 
 .. toctree::
    :maxdepth: 2
@@ -21,3 +22,4 @@ Welcome to MolecularOverkill's documentation!
    energy
    mdEngine
    frame
+   base

@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
 <para>Velocity Verlet integrator First half step</para>        </inbodydescription>
-        <location file="integrators.h" line="7" column="1" bodyfile="integrators.h" bodystart="7" bodyend="46"/>
+        <location file="integrators.h" line="7" column="1" bodyfile="integrators.h" bodystart="7" bodyend="47"/>
       </memberdef>
       <memberdef kind="function" id="namespaceintegrators_1ac25456f7247f7b73b5db97108cd7583e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -35,7 +35,7 @@
         </detaileddescription>
         <inbodydescription>
 <para>Velocity Verlet integrator Second half step</para>        </inbodydescription>
-        <location file="integrators.h" line="48" column="1" bodyfile="integrators.h" bodystart="48" bodyend="58"/>
+        <location file="integrators.h" line="49" column="1" bodyfile="integrators.h" bodystart="49" bodyend="59"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

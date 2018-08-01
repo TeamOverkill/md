@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Base &mdash; MolecularOverkill 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Frame" href="frame.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MolecularOverkill
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="home.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="outline.html">Outline</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="atom.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdEngine.html">mdEngine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frame.html">Frame</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Base</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MolecularOverkill</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Base</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/base.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="base">
+<h1>Base<a class="headerlink" href="#base" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv24Base">
+<span id="Base"></span><span class="target" id="class_base"></span><em class="property">class </em><code class="descname">Base</code><a class="headerlink" href="#_CPPv24Base" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class contains all parameters set by the user. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Functions</p>
+<dl class="function">
+<dt id="_CPPv2N4Base10initializeEv">
+<span id="Base::initialize"></span><span class="target" id="class_base_1a1568ed24af5e60016e1b69a0263f93e8"></span>void <code class="descname">initialize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Base10initializeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Allocates memory for the <a class="reference internal" href="#class_base"><span class="std std-ref">Base</span></a> instance. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Attributes</p>
+<dl class="member">
+<dt id="_CPPv2N4Base6boxDimE">
+<span id="Base::boxDim__double"></span><span class="target" id="class_base_1a30b8ae8ec41983f016f20ce757adb1d1"></span>double <code class="descname">boxDim</code><a class="headerlink" href="#_CPPv2N4Base6boxDimE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Box dimension, currently only cubic boxes </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base6volumeE">
+<span id="Base::volume__double"></span><span class="target" id="class_base_1a28aaaddcc4be196bf5c90d50a87a0ab4"></span>double <code class="descname">volume</code><a class="headerlink" href="#_CPPv2N4Base6volumeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Volume of the box </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base10numOfAtomsE">
+<span id="Base::numOfAtoms__i"></span><span class="target" id="class_base_1a1684b05f430b5f765869935843ddaf16"></span>int <code class="descname">numOfAtoms</code><a class="headerlink" href="#_CPPv2N4Base10numOfAtomsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>number of atoms </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base10iterationsE">
+<span id="Base::iterations__i"></span><span class="target" id="class_base_1a0505a956296600b0a06335e9bdc008f9"></span>int <code class="descname">iterations</code><a class="headerlink" href="#_CPPv2N4Base10iterationsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>number of iterations </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base7outFreqE">
+<span id="Base::outFreq__i"></span><span class="target" id="class_base_1ad50d7047869566c9a20b0187bdfe73be"></span>int <code class="descname">outFreq</code><a class="headerlink" href="#_CPPv2N4Base7outFreqE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base5tStepE">
+<span id="Base::tStep__double"></span><span class="target" id="class_base_1a34d4da99a6fa242d041ad2b4f8faab67"></span>double <code class="descname">tStep</code><a class="headerlink" href="#_CPPv2N4Base5tStepE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Time step in picoseconds </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base11temperatureE">
+<span id="Base::temperature__double"></span><span class="target" id="class_base_1a8bb6f0ef43e96fd0dc25e355d480e2f1"></span>double <code class="descname">temperature</code><a class="headerlink" href="#_CPPv2N4Base11temperatureE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base17potentialEnergiesE">
+<span id="Base::potentialEnergies__doubleP"></span><span class="target" id="class_base_1a6584c85833adabe5d4a76f65d2dbe6a8"></span>double *<code class="descname">potentialEnergies</code><a class="headerlink" href="#_CPPv2N4Base17potentialEnergiesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base15kineticEnergiesE">
+<span id="Base::kineticEnergies__doubleP"></span><span class="target" id="class_base_1a7c2f451a292547e275ac14eb24c2335c"></span>double *<code class="descname">kineticEnergies</code><a class="headerlink" href="#_CPPv2N4Base15kineticEnergiesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base13totalEnergiesE">
+<span id="Base::totalEnergies__doubleP"></span><span class="target" id="class_base_1ac67647d7acc0ff970b58665b4b8642f7"></span>double *<code class="descname">totalEnergies</code><a class="headerlink" href="#_CPPv2N4Base13totalEnergiesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base12temperaturesE">
+<span id="Base::temperatures__doubleP"></span><span class="target" id="class_base_1ae9423f208c5f9bd90108df4b8ba7530e"></span>double *<code class="descname">temperatures</code><a class="headerlink" href="#_CPPv2N4Base12temperaturesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base14dimensionalityE">
+<span id="Base::dimensionality__Eigen::Vector3d"></span><span class="target" id="class_base_1a249c833ddd4460301d2c1fef9b68e779"></span>Eigen::Vector3d <code class="descname">dimensionality</code><a class="headerlink" href="#_CPPv2N4Base14dimensionalityE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A vector which determines the translational degrees of freedom. In each time step the position of all atoms is multiplied with this vector. If the user specified parameter <code class="docutils literal"><span class="pre">dimensions</span></code> is set to 2, this vector will be [1, 1, 0] and hence will force all atoms to the xy-plane. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv2N4Base10dimensionsE">
+<span id="Base::dimensions__i"></span><span class="target" id="class_base_1aa7f430219a8eea803c513189f8689624"></span>int <code class="descname">dimensions</code><a class="headerlink" href="#_CPPv2N4Base10dimensionsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Translational degrees of freedom </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="frame.html" class="btn btn-neutral" title="Frame" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Samuel Stenberg, Vidar Aspelin, Stefan Hervø-Hansen.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

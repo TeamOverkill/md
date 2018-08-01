@@ -16,17 +16,25 @@ SET( CMAKE_EXE_LINKER_FLAGS_DEBUG  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LIN
 
 SET( CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS_RELEASE}" )
 SET( CMAKE_EXE_LINKER_FLAGS_RELEASE  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LINK_FLAGS_RELEASE}" )
+
+
+
 include_directories(.)
+
+add_library(ran2.o)
+
+set_property(TARGET ran2.o PROPERTY LINKER_LANGUAGE Fortran)
 
 add_executable(md
         atom.cpp
         atom.h
         base.h
+        base.cpp
         energy.h
         frame.cpp
         frame.h
         integrators.h
         main.cpp
         mdEngine.h
-        ran_uniform.c
-        ran_uniform.h)
+        parser.h
+        ran2_lib.cpp)

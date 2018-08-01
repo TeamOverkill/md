@@ -15,7 +15,7 @@
 <para>Box dimension, currently only cubic boxes </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="17" column="1" bodyfile="base.h" bodystart="17" bodyend="-1"/>
+        <location file="base.h" line="15" column="1" bodyfile="base.h" bodystart="15" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_base_1a28aaaddcc4be196bf5c90d50a87a0ab4" prot="public" static="yes" mutable="no">
         <type>double</type>
@@ -28,7 +28,7 @@
 <para>Volume of the box </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="18" column="1" bodyfile="base.h" bodystart="18" bodyend="-1"/>
+        <location file="base.h" line="16" column="1" bodyfile="base.h" bodystart="16" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_base_1a1684b05f430b5f765869935843ddaf16" prot="public" static="yes" mutable="no">
         <type>int</type>
@@ -41,7 +41,7 @@
 <para>number of atoms </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="19" column="1" bodyfile="base.h" bodystart="19" bodyend="-1"/>
+        <location file="base.h" line="17" column="1" bodyfile="base.h" bodystart="17" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_base_1a0505a956296600b0a06335e9bdc008f9" prot="public" static="yes" mutable="no">
         <type>int</type>
@@ -54,7 +54,7 @@
 <para>number of iterations </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="20" column="1" bodyfile="base.h" bodystart="20" bodyend="-1"/>
+        <location file="base.h" line="18" column="1" bodyfile="base.h" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_base_1ad50d7047869566c9a20b0187bdfe73be" prot="public" static="yes" mutable="no">
         <type>int</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="21" column="1" bodyfile="base.h" bodystart="21" bodyend="-1"/>
+        <location file="base.h" line="19" column="1" bodyfile="base.h" bodystart="19" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_base_1a34d4da99a6fa242d041ad2b4f8faab67" prot="public" static="yes" mutable="no">
         <type>double</type>
@@ -80,7 +80,7 @@
 <para>Time step in picoseconds </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="22" column="1" bodyfile="base.h" bodystart="22" bodyend="-1"/>
+        <location file="base.h" line="20" column="1" bodyfile="base.h" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_base_1a8bb6f0ef43e96fd0dc25e355d480e2f1" prot="public" static="yes" mutable="no">
         <type>double</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="23" column="1" bodyfile="base.h" bodystart="23" bodyend="-1"/>
+        <location file="base.h" line="21" column="1" bodyfile="base.h" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_base_1a6584c85833adabe5d4a76f65d2dbe6a8" prot="public" static="yes" mutable="no">
         <type>double *</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="24" column="1" bodyfile="base.h" bodystart="24" bodyend="-1"/>
+        <location file="base.h" line="22" column="1" bodyfile="base.h" bodystart="22" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_base_1a7c2f451a292547e275ac14eb24c2335c" prot="public" static="yes" mutable="no">
         <type>double *</type>
@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="25" column="1" bodyfile="base.h" bodystart="25" bodyend="-1"/>
+        <location file="base.h" line="23" column="1" bodyfile="base.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_base_1ac67647d7acc0ff970b58665b4b8642f7" prot="public" static="yes" mutable="no">
         <type>double *</type>
@@ -132,7 +132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="26" column="1" bodyfile="base.h" bodystart="26" bodyend="-1"/>
+        <location file="base.h" line="24" column="1" bodyfile="base.h" bodystart="24" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_base_1ae9423f208c5f9bd90108df4b8ba7530e" prot="public" static="yes" mutable="no">
         <type>double *</type>
@@ -142,10 +142,36 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Initialize arrays </para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="27" column="1" bodyfile="base.h" bodystart="27" bodyend="-1"/>
+        <location file="base.h" line="25" column="1" bodyfile="base.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1a249c833ddd4460301d2c1fef9b68e779" prot="public" static="yes" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d Base::dimensionality</definition>
+        <argsstring></argsstring>
+        <name>dimensionality</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A vector which determines the translational degrees of freedom. In each time step the position of all atoms is multiplied with this vector. If the user specified parameter <computeroutput>dimensions</computeroutput> is set to 2, this vector will be [1, 1, 0] and hence will force all atoms to the xy-plane. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="26" column="1" bodyfile="base.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_1aa7f430219a8eea803c513189f8689624" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Base::dimensions</definition>
+        <argsstring></argsstring>
+        <name>dimensions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Translational degrees of freedom </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base.h" line="31" column="1" bodyfile="base.h" bodystart="31" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -157,19 +183,21 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>This class holds all variables set by the user </para>        </detaileddescription>
+<para>Allocates memory for the <ref refid="class_base" kindref="compound">Base</ref> instance. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base.h" line="16" column="1" bodyfile="base.cpp" bodystart="15" bodyend="21"/>
+        <location file="base.h" line="14" column="1" bodyfile="base.cpp" bodystart="19" bodyend="35"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-    </detaileddescription>
-    <location file="base.h" line="11" column="1" bodyfile="base.h" bodystart="11" bodyend="28"/>
+<para>This class contains all parameters set by the user. </para>    </detaileddescription>
+    <location file="base.h" line="12" column="1" bodyfile="base.h" bodystart="12" bodyend="32"/>
     <listofallmembers>
       <member refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" prot="public" virt="non-virtual"><scope>Base</scope><name>boxDim</name></member>
+      <member refid="class_base_1a249c833ddd4460301d2c1fef9b68e779" prot="public" virt="non-virtual"><scope>Base</scope><name>dimensionality</name></member>
+      <member refid="class_base_1aa7f430219a8eea803c513189f8689624" prot="public" virt="non-virtual"><scope>Base</scope><name>dimensions</name></member>
       <member refid="class_base_1a1568ed24af5e60016e1b69a0263f93e8" prot="public" virt="non-virtual"><scope>Base</scope><name>initialize</name></member>
       <member refid="class_base_1a0505a956296600b0a06335e9bdc008f9" prot="public" virt="non-virtual"><scope>Base</scope><name>iterations</name></member>
       <member refid="class_base_1a7c2f451a292547e275ac14eb24c2335c" prot="public" virt="non-virtual"><scope>Base</scope><name>kineticEnergies</name></member>

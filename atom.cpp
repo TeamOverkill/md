@@ -38,6 +38,7 @@ void Atom::initialize(Atom** atoms){
             atoms[i]->pos[2] = ran2::get_random() * Base::boxDim;
 
             atoms[i]->pos = atoms[i]->pos.cwiseProduct(Base::dimensionality);
+
             /*! Maxwell-Boltzmann velocity distribution*/
             double ran_u1 = ran2::get_random();
             double ran_u2 = ran2::get_random();

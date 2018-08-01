@@ -1,11 +1,11 @@
 #include "base.h"
 
-double Base::boxDim;   /*!< Box dimension, currently only cubic boxes */
+double Base::boxDim;
 double Base::volume;
-int Base::numOfAtoms;  /*!< number of atoms */
-int Base::iterations;  /*!< number of iterations */
+int Base::numOfAtoms;
+int Base::iterations;
 int Base::outFreq;
-int Base::dimensions;        /*! Degrees of freedom*/
+int Base::dimensions;
 double Base::tStep;
 double Base::temperature;
 double *Base::potentialEnergies;
@@ -14,7 +14,8 @@ double *Base::totalEnergies;
 double *Base::temperatures;
 Eigen::Vector3d Base::dimensionality;
 
-/*!< Initialize arrays */
+/*! Allocates memory for the Base instance.
+*/
 void Base::initialize(){
     Base::kineticEnergies = (double*) malloc(Base::outFreq * sizeof(double));
     Base::potentialEnergies = (double*) malloc(Base::outFreq * sizeof(double));

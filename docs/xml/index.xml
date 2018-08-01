@@ -18,7 +18,7 @@
     <member refid="class_atom_1a4cc117bd6f7a2ce6f1af407283aff4b2" kind="function"><name>kinetic_energy</name></member>
     <member refid="class_atom_1a181411015bc90a5e6993ddb006017de9" kind="function"><name>set_velocity</name></member>
     <member refid="class_atom_1a2b938c4bf60adff2383ca0ca7e07eebc" kind="function"><name>update_distances</name></member>
-    <member refid="class_atom_1a74d9b5e0168aa0254359451866f960f3" kind="function"><name>initialize</name></member>
+    <member refid="class_atom_1ac711a82c0e5c4ada4cacec38e64c00d7" kind="function"><name>initialize</name></member>
   </compound>
   <compound refid="class_base" kind="class"><name>Base</name>
     <member refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kind="variable"><name>boxDim</name></member>
@@ -32,6 +32,8 @@
     <member refid="class_base_1a7c2f451a292547e275ac14eb24c2335c" kind="variable"><name>kineticEnergies</name></member>
     <member refid="class_base_1ac67647d7acc0ff970b58665b4b8642f7" kind="variable"><name>totalEnergies</name></member>
     <member refid="class_base_1ae9423f208c5f9bd90108df4b8ba7530e" kind="variable"><name>temperatures</name></member>
+    <member refid="class_base_1a249c833ddd4460301d2c1fef9b68e779" kind="variable"><name>dimensionality</name></member>
+    <member refid="class_base_1aa7f430219a8eea803c513189f8689624" kind="variable"><name>dimensions</name></member>
     <member refid="class_base_1a1568ed24af5e60016e1b69a0263f93e8" kind="function"><name>initialize</name></member>
   </compound>
   <compound refid="class_frame" kind="class"><name>Frame</name>
