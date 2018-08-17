@@ -60,7 +60,7 @@ void Atom::initialize(Atom** atoms){
             linearMom += atoms[i]->vel;
         //}
         linearMom /= Base::numOfAtoms;
-        printf("Linear momentum is: %lf\n", linearMom.norm());
+        //printf("Linear momentum is: %lf\n", linearMom.norm());
         fprintf(fi, "%d    %lf\n", i, atoms[i]->vel.norm());
 
         /* Set initial forces*/
