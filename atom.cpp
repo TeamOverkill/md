@@ -18,7 +18,7 @@ void Atom::initialize(Atom** atoms){
 
     for(int i = 0; i < Base::numOfAtoms; i++) {
         atoms[i] = new Atom();
-
+        atoms[i]->index = i;
         atoms[i]->mass = 28.0134; //[dalton]
         atoms[i]->radius = 0.1;
 
@@ -60,7 +60,7 @@ void Atom::initialize(Atom** atoms){
             linearMom += atoms[i]->vel;
         //}
         linearMom /= Base::numOfAtoms;
-        printf("Linear momentum is: %lf\n", linearMom.norm());
+        //1printf("Linear momentum is: %lf\n", linearMom.norm());
         fprintf(fi, "%d    %lf\n", i, atoms[i]->vel.norm());
 
         /* Set initial forces*/
@@ -183,21 +183,90 @@ void Atom::hard_walls(){
 */
 void Atom::pbc(){
     if(this->pos[0] > Base::boxDim){
-        this->vel[0] -= Base::boxDim;
+        this->pos[0] -= Base::boxDim;
     }
     if(this->pos[0] < 0){ ;
-        this->vel[0] += Base::boxDim;
+        this->pos[0] += Base::boxDim;
     }
     if(this->pos[1] > Base::boxDim){
-        this->vel[1] -= Base::boxDim;
+        this->pos[1] -= Base::boxDim;
     }
     if(this->pos[1] < 0){
-        this->vel[1] += Base::boxDim;
+        this->pos[1] += Base::boxDim;
     }
     if(this->pos[2] > Base::boxDim){
-        this->vel[2] -= Base::boxDim;
+        this->pos[2] -= Base::boxDim;
     }
     if(this->pos[2] < 0){
-        this->vel[2] -= Base::boxDim;
+        this->pos[2] += Base::boxDim;
     }
+}
+
+void Atom::random_move(double stepSize){
+    this->pos[0] += (ran2::get_random()*2.0 - 1.0) * stepSize;
+    this->pos[1] += (ran2::get_random()*2.0 - 1.0) * stepSize;
+    this->pos[2] += (ran2::get_random()*2.0 - 1.0) * stepSize;
+
+    this->pbc();
+}
+
+bool Atom::overlap(Atom **atoms){
+    for(int i = 0; i < Base::numOfAtoms; i++){
+        if(i != this->index) {
+            if((this->pos - atoms[i]->pos).norm()< this->radius + atoms[i]->radius) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+int Atom::get_overlaps(Atom **atoms){
+    int overlaps = 0;
+    for(int i = 0; i < Base::numOfAtoms; i++){
+        for(int j = i + 1; j < Base::numOfAtoms; j++){
+            if(atoms[i]->distance(atoms[j]) < atoms[i]->radius + atoms[j]->radius){
+                overlaps++;
+            }
+        }
+    }
+    return overlaps;
+}
+
+void Atom::remove_overlaps(Atom **atoms){
+    int overlaps = get_overlaps(atoms);
+    int i = 0;
+
+    Eigen::Vector3d oldPos;
+    double random;
+    int p;
+
+    //Move particles to prevent overlap
+    printf("Removing overlaps\n");
+    while(overlaps > 0){
+        random = ran2::get_random();
+        p =  random * Base::numOfAtoms;
+        oldPos = atoms[p]->pos;
+
+        atoms[p]->random_move(5);
+        //Atom::update_distances(atoms, atoms[p]);
+        if(atoms[p]->overlap(atoms)){
+            atoms[p]->pos = oldPos;
+            //Atom::update_distances(atoms, atoms[p]);
+        }
+
+        if(atoms[p]->pos[2] < 0 || atoms[p]->pos[1] < 0 || atoms[p]->pos[0] < 0){
+            printf("Failed to equilibrate system, a particle was found outside the box...\n");
+            exit(1);
+        }
+
+        if(i % 50000 == 0){
+            overlaps = Atom::get_overlaps(atoms);
+            printf("Remaining overlaps: %d, iteration: %d\r", overlaps, i);
+            fflush(stdout);
+        }
+        i++;
+    }
+    printf("\n\033[32mEquilibration done\033[30m\n\n");
 }
