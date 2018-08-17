@@ -74,6 +74,8 @@ namespace mdEngine {
         int frameCounter = 0;
         double cummulativeTemp = 0;
         double cummulativePress = 0;
+        
+        FILE *f = fopen("output.gro", "w");
 
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
@@ -102,12 +104,20 @@ namespace mdEngine {
                 printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",
                        (double)i/Base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, Base::potentialEnergies[frameCounter],
                        Base::kineticEnergies[frameCounter]);
+                
+                //Frame::init_file();
 
-                fflush(stdout);
+                if(frameCounter>10){
+                    //printf("writing\n");
+                    fflush(stdout);
+                    Frame::save_to_file(frames);
+                    delete[] frames;
+                    frames[frameCounter]->save_state(atoms);
+                    frameCounter = 0;
+                    }
                 frames[frameCounter] = new Frame();
-                frames[frameCounter]->save_state(atoms);
                 frameCounter++;
-            }
+                }
         //}
         }
         printf("\n");    

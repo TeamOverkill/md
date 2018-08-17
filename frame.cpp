@@ -35,7 +35,7 @@ void Frame::save_state(Atom **atoms){
 
 void Frame::save_to_file(Frame **frames){
     int i = 0;
-    FILE *f = fopen("output.gro", "w");
+    FILE *f = fopen("output.gro", "a");
     if(f == NULL){
         printf("Can't open file!\n");
         exit(1);
