@@ -22,45 +22,34 @@ void Atom::initialize(Atom** atoms){
         atoms[i]->mass = 28.0134; //[dalton]
         atoms[i]->radius = 0.1;
 
-       /* if(d1) {
-            atoms[i]->pos[0] = 25;
-            atoms[i]->pos[1] = 0;
-            atoms[i]->pos[2] = 0;
+        atoms[i]->pos[0] = ran2::get_random() * Base::boxDim;
+        atoms[i]->pos[1] = ran2::get_random() * Base::boxDim;
+        atoms[i]->pos[2] = ran2::get_random() * Base::boxDim;
 
-            atoms[i]->vel[0] = 0.3;
-            atoms[i]->vel[1] = 0;
-            atoms[i]->vel[2] = 0;
-        }
+        atoms[i]->pos = atoms[i]->pos.cwiseProduct(Base::dimensionality);
 
-        else {*/
-            atoms[i]->pos[0] = ran2::get_random() * Base::boxDim;
-            atoms[i]->pos[1] = ran2::get_random() * Base::boxDim;
-            atoms[i]->pos[2] = ran2::get_random() * Base::boxDim;
+        /*! Maxwell-Boltzmann velocity distribution*/
+        double ran_u1 = ran2::get_random();
+        double ran_u2 = ran2::get_random();
+        double random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
+        atoms[i]->vel[0] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001; //[nm/ps]
 
-            atoms[i]->pos = atoms[i]->pos.cwiseProduct(Base::dimensionality);
+        ran_u2 = ran2::get_random();
+        ran_u1 = ran2::get_random();
+        random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
+        atoms[i]->vel[1] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
 
-            /*! Maxwell-Boltzmann velocity distribution*/
-            double ran_u1 = ran2::get_random();
-            double ran_u2 = ran2::get_random();
-            double random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-            atoms[i]->vel[0] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001; //[nm/ps]
+        ran_u2 = ran2::get_random();
+        ran_u1 = ran2::get_random();
+        random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
+        atoms[i]->vel[2] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
 
-            ran_u2 = ran2::get_random();
-            ran_u1 = ran2::get_random();
-            random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-            atoms[i]->vel[1] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
+        atoms[i]->vel = atoms[i]->vel.cwiseProduct(Base::dimensionality);
 
-            ran_u2 = ran2::get_random();
-            ran_u1 = ran2::get_random();
-            random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-            atoms[i]->vel[2] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
-
-            atoms[i]->vel = atoms[i]->vel.cwiseProduct(Base::dimensionality);
-
-            linearMom += atoms[i]->vel;
-        //}
+        linearMom += atoms[i]->vel;
         linearMom /= Base::numOfAtoms;
-        //1printf("Linear momentum is: %lf\n", linearMom.norm());
+
+        //printf("Linear momentum is: %lf\n", linearMom.norm());
         fprintf(fi, "%d    %lf\n", i, atoms[i]->vel.norm());
 
         /* Set initial forces*/
