@@ -74,6 +74,8 @@ namespace mdEngine {
         int frameCounter = 0;
         double cummulativeTemp = 0;
         double cummulativePress = 0;
+        
+        FILE *f = fopen("output.gro", "w");
 
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
@@ -84,7 +86,7 @@ namespace mdEngine {
             integrator_1(atoms);    /* First half step of integrator */
             force_function(atoms);  /* Calculate new forces */
             integrator_2(atoms);    /* Second half step of integrator */
-            //thermostats::andersen::set_velocity(atoms); /* Apply thermostat */
+            thermostats::andersen::set_velocity(atoms); /* Apply thermostat */
             temperature = get_temperature(atoms);
             pressure = get_pressure();
             cummulativeTemp += temperature;
@@ -97,17 +99,25 @@ namespace mdEngine {
                     Base::kineticEnergies[frameCounter] += atoms[i]->kinetic_energy();
                 }
 
-                Base::potentialEnergies[frameCounter] = energy::LJ::energy(atoms);
+                Base::potentialEnergies[frameCounter] = energy::magnetic::energy(atoms);
                 Base::totalEnergies[frameCounter] = Base::potentialEnergies[frameCounter] + Base::kineticEnergies[frameCounter];
                 printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",
                        (double)i/Base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, Base::potentialEnergies[frameCounter],
                        Base::kineticEnergies[frameCounter]);
+                
+                //Frame::init_file();
 
-                fflush(stdout);
+                if(frameCounter>10){
+                    //printf("writing\n");
+                    fflush(stdout);
+                    Frame::save_to_file(frames);
+                    delete[] frames;
+                    frames[frameCounter]->save_state(atoms);
+                    frameCounter = 0;
+                    }
                 frames[frameCounter] = new Frame();
-                frames[frameCounter]->save_state(atoms);
                 frameCounter++;
-            }
+                }
         //}
         }
         printf("\n");    
