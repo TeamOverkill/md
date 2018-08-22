@@ -1,8 +1,9 @@
+#include "mdEngine.h"
+
 namespace thermostats{
     namespace andersen{
         void set_velocity(Atom **atoms){
             double ran_u;
-            double randomMaxwell;
             double freq = 0.001;
             for(int i = 0; i < Base::numOfAtoms; i++){
                 ran_u = ran2::get_random();
@@ -29,4 +30,19 @@ namespace thermostats{
                 }
             }
         }
-} }
+    }
+    namespace berendsen{
+        void set_velocity(Atom **atoms){
+            double vel_scale;
+            double coupling_para = 0.2;
+            double temp_i = 0;
+
+            temp_i = mdEngine::get_temperature(atoms);
+
+            for(int i = 0; i < Base::numOfAtoms; i++){
+                vel_scale = sqrt(1 - Base::tStep / coupling_para * (Base::temperature / temp_i - 1));
+                atoms[i]->vel = vel_scale * atoms[i]->vel;
+            }
+        }
+    }
+}
