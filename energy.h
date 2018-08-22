@@ -41,65 +41,73 @@ namespace energy{
      *  @{
     */
     namespace LJ {
-    namespace {
-        double epsilon = 1.5;  //![kJ/mol] LJ parameter epsilon
-        double sigma = 1;      //![nm] LJ parameter sigma
-    }
-
-
-    inline void forces(Atom **atoms){
-        /*!
-        * Calculate the forces using a Lennard-Jones potential
-        */
-
-        Eigen::Vector3d dr;
-
-        for(int i = 0; i < Base::numOfAtoms; i++){
-            atoms[i]->force.setZero();
+        namespace {
+            double epsilon = 1.5;  //![kJ/mol] LJ parameter epsilon
+            double sigma = 1;      //![nm] LJ parameter sigma
         }
 
-        for(int i = 0; i < Base::numOfAtoms; i++) {
-            for (int j =  i + 1; j < Base::numOfAtoms; j++) {
-                dr = atoms[i]->pos - atoms[j]->pos;                 // [nm]
-                double r2 = dr.dot(dr);                             // [nm^2]
-                double fr2 = sigma * sigma / r2;                    // unitless
-                double fr6 = fr2 * fr2 * fr2;                       // unitless
-                double fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;  // [kJ/(nm^2*mol)]
 
-                atoms[i]->force += fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
-                atoms[j]->force -= fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
-                Atom::forceMatrix(i, j) = (fr * dr).norm();
+        inline void forces(Atom **atoms) {
+            /*!
+            * Calculate the forces using a Lennard-Jones potential
+            */
+
+
+            Eigen::Vector3d dr;
+
+
+            for (int i = 0; i < Base::numOfAtoms; i++) {
+                atoms[i]->force.setZero();
+            }
+
+
+            for (int i = 0; i < Base::numOfAtoms; i++) {
+                for (int j = i + 1; j < Base::numOfAtoms; j++) {
+                    dr = atoms[i]->pos - atoms[j]->pos;                 // [nm]
+                    double r2 = dr.dot(dr);                             // [nm^2]
+                    double fr2 = sigma * sigma / r2;                    // unitless
+                    double fr6 = fr2 * fr2 * fr2;                       // unitless
+                    double fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;  // [kJ/(nm^2*mol)]
+
+                    atoms[i]->force += fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
+                    atoms[j]->force -= fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
+                    Atom::forceMatrix(i, j) = (fr * dr).norm();
+                }
             }
         }
-    }
 
-    /*! Calculate the energy using a Lennard-Jones potential which is given by
-    \f[
-        U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right)
-    \f]
-    */
-    inline double energy(Atom **atoms){
-        /*!
-        * Calculate the energy using a Lennard-Jones potential
+        /*! Calculate the energy using a Lennard-Jones potential which is given by
+        \f[
+            U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right)
+        \f]
         */
+        inline double energy(Atom **atoms) {
+            /*!
+            * Calculate the energy using a Lennard-Jones potential
+            */
 
-        double distance;
-        double energy = 0;
-        Eigen::Vector3d dr;
+            double distance;
+            double energy = 0;
+            Eigen::Vector3d dr;
 
-        for(int i = 0; i < Base::numOfAtoms; i++) {
-            for (int j = i + 1; j < Base::numOfAtoms; j++) {
-                dr = atoms[i]->pos - atoms[j]->pos;     // [nm]
-                distance = dr.norm();                   // [nm]
-                double fr = sigma / distance;           // unitless
-                double fr2 = fr * fr;                   // unitless
-                double fr6 = fr2 * fr2 * fr2;           // unitless
-                energy += fr6 * (fr6 - 1);              // unitless
+
+            for (int i = 0; i < Base::numOfAtoms; i++) {
+                for (int j = i + 1; j < Base::numOfAtoms; j++) {
+                    dr = atoms[i]->pos - atoms[j]->pos;     // [nm]
+                    distance = dr.norm();                   // [nm]
+                    double fr = sigma / distance;           // unitless
+                    double fr2 = fr * fr;                   // unitless
+                    double fr6 = fr2 * fr2 * fr2;           // unitless
+                    energy += fr6 * (fr6 - 1);              // unitless
+
+                }
+                return 4 * epsilon * energy * constants::NA;
             }
+
+            return 4 * epsilon * energy;    // [kJ/mol]
         }
-        return 4 * epsilon * energy;    // [kJ/mol]
     }
-}
+
     namespace magnetic {
         double dipoleC = 8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
 
@@ -135,7 +143,22 @@ namespace energy{
             }
             return energy;
         }
+
+        inline double wall_potential(Atom *atom){
+
+            /*
+            double b = Base::boxdim/2;
+            double x = atom->pos[0] - Base::boxDim;
+            double y = atom->pos[1] - Base::boxDim;
+            double diffX = b + x;
+            double diffY = b + y;
+            //Bottom wall
+            2 * b / (diffX * diffX + std::sqrt(b * b + 2 * b * y + b * b + y * y));
+             */
+            return 0.0;
+        }
     }
 }
+
 
 #endif

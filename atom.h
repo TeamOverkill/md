@@ -24,6 +24,7 @@ class Atom{
         Eigen::Vector3d oldForce;   /*!< Force from previous iteration */
         Eigen::Vector3d force;      /*!< Current force */
         int charge;
+        int index;
         double radius, mass;
 
         static Eigen::MatrixXd distances;   /*!< Triangular distance matrix containing all distances*/
@@ -36,6 +37,10 @@ class Atom{
         void pbc();
         double kinetic_energy();
         void set_velocity();
+        static void remove_overlaps(Atom **atoms);
+        bool overlap(Atom **atoms);
+        static int get_overlaps(Atom **atoms);
+        void random_move(double stepSize);
         static void initialize(Atom **atoms);
 };
 /** @}*/

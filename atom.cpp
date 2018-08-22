@@ -18,48 +18,37 @@ void Atom::initialize(Atom** atoms){
 
     for(int i = 0; i < Base::numOfAtoms; i++) {
         atoms[i] = new Atom();
-
+        atoms[i]->index = i;
         atoms[i]->mass = 28.0134; //[dalton]
         atoms[i]->radius = 0.1;
 
-       /* if(d1) {
-            atoms[i]->pos[0] = 25;
-            atoms[i]->pos[1] = 0;
-            atoms[i]->pos[2] = 0;
+        atoms[i]->pos[0] = ran2::get_random() * Base::boxDim;
+        atoms[i]->pos[1] = ran2::get_random() * Base::boxDim;
+        atoms[i]->pos[2] = ran2::get_random() * Base::boxDim;
 
-            atoms[i]->vel[0] = 0.3;
-            atoms[i]->vel[1] = 0;
-            atoms[i]->vel[2] = 0;
-        }
+        atoms[i]->pos = atoms[i]->pos.cwiseProduct(Base::dimensionality);
 
-        else {*/
-            atoms[i]->pos[0] = ran2::get_random() * Base::boxDim;
-            atoms[i]->pos[1] = ran2::get_random() * Base::boxDim;
-            atoms[i]->pos[2] = ran2::get_random() * Base::boxDim;
+        /*! Maxwell-Boltzmann velocity distribution*/
+        double ran_u1 = ran2::get_random();
+        double ran_u2 = ran2::get_random();
+        double random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
+        atoms[i]->vel[0] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001; //[nm/ps]
 
-            atoms[i]->pos = atoms[i]->pos.cwiseProduct(Base::dimensionality);
+        ran_u2 = ran2::get_random();
+        ran_u1 = ran2::get_random();
+        random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
+        atoms[i]->vel[1] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
 
-            /*! Maxwell-Boltzmann velocity distribution*/
-            double ran_u1 = ran2::get_random();
-            double ran_u2 = ran2::get_random();
-            double random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-            atoms[i]->vel[0] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001; //[nm/ps]
+        ran_u2 = ran2::get_random();
+        ran_u1 = ran2::get_random();
+        random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
+        atoms[i]->vel[2] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
 
-            ran_u2 = ran2::get_random();
-            ran_u1 = ran2::get_random();
-            random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-            atoms[i]->vel[1] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
+        atoms[i]->vel = atoms[i]->vel.cwiseProduct(Base::dimensionality);
 
-            ran_u2 = ran2::get_random();
-            ran_u1 = ran2::get_random();
-            random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-            atoms[i]->vel[2] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
-
-            atoms[i]->vel = atoms[i]->vel.cwiseProduct(Base::dimensionality);
-
-            linearMom += atoms[i]->vel;
-        //}
+        linearMom += atoms[i]->vel;
         linearMom /= Base::numOfAtoms;
+
         //printf("Linear momentum is: %lf\n", linearMom.norm());
         fprintf(fi, "%d    %lf\n", i, atoms[i]->vel.norm());
 
@@ -183,21 +172,90 @@ void Atom::hard_walls(){
 */
 void Atom::pbc(){
     if(this->pos[0] > Base::boxDim){
-        this->vel[0] -= Base::boxDim;
+        this->pos[0] -= Base::boxDim;
     }
     if(this->pos[0] < 0){ ;
-        this->vel[0] += Base::boxDim;
+        this->pos[0] += Base::boxDim;
     }
     if(this->pos[1] > Base::boxDim){
-        this->vel[1] -= Base::boxDim;
+        this->pos[1] -= Base::boxDim;
     }
     if(this->pos[1] < 0){
-        this->vel[1] += Base::boxDim;
+        this->pos[1] += Base::boxDim;
     }
     if(this->pos[2] > Base::boxDim){
-        this->vel[2] -= Base::boxDim;
+        this->pos[2] -= Base::boxDim;
     }
     if(this->pos[2] < 0){
-        this->vel[2] -= Base::boxDim;
+        this->pos[2] += Base::boxDim;
     }
+}
+
+void Atom::random_move(double stepSize){
+    this->pos[0] += (ran2::get_random()*2.0 - 1.0) * stepSize;
+    this->pos[1] += (ran2::get_random()*2.0 - 1.0) * stepSize;
+    this->pos[2] += (ran2::get_random()*2.0 - 1.0) * stepSize;
+
+    this->pbc();
+}
+
+bool Atom::overlap(Atom **atoms){
+    for(int i = 0; i < Base::numOfAtoms; i++){
+        if(i != this->index) {
+            if((this->pos - atoms[i]->pos).norm()< this->radius + atoms[i]->radius) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+int Atom::get_overlaps(Atom **atoms){
+    int overlaps = 0;
+    for(int i = 0; i < Base::numOfAtoms; i++){
+        for(int j = i + 1; j < Base::numOfAtoms; j++){
+            if(atoms[i]->distance(atoms[j]) < atoms[i]->radius + atoms[j]->radius){
+                overlaps++;
+            }
+        }
+    }
+    return overlaps;
+}
+
+void Atom::remove_overlaps(Atom **atoms){
+    int overlaps = get_overlaps(atoms);
+    int i = 0;
+
+    Eigen::Vector3d oldPos;
+    double random;
+    int p;
+
+    //Move particles to prevent overlap
+    printf("Removing overlaps\n");
+    while(overlaps > 0){
+        random = ran2::get_random();
+        p =  random * Base::numOfAtoms;
+        oldPos = atoms[p]->pos;
+
+        atoms[p]->random_move(5);
+        //Atom::update_distances(atoms, atoms[p]);
+        if(atoms[p]->overlap(atoms)){
+            atoms[p]->pos = oldPos;
+            //Atom::update_distances(atoms, atoms[p]);
+        }
+
+        if(atoms[p]->pos[2] < 0 || atoms[p]->pos[1] < 0 || atoms[p]->pos[0] < 0){
+            printf("Failed to equilibrate system, a particle was found outside the box...\n");
+            exit(1);
+        }
+
+        if(i % 50000 == 0){
+            overlaps = Atom::get_overlaps(atoms);
+            printf("Remaining overlaps: %d, iteration: %d\r", overlaps, i);
+            fflush(stdout);
+        }
+        i++;
+    }
+    printf("\n\033[32mEquilibration done\033[30m\n\n");
 }
