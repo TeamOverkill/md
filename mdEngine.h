@@ -12,47 +12,6 @@ namespace mdEngine {
    * This namespace should hold all MD specific algorithms, hence the 'engine' of the program
    */
 
-    /*!
-    * Calculate the temperature Based on the equipartition theorem
-    * where the temperature is given by
-    \f[
-      T = \sum^{N-1}_{i=0}m_i * v_i^2
-    \f]
-    */
-    double get_temperature(Atom **atoms){
-
-
-        double temp = 0;
-        for(int i = 0; i < Base::numOfAtoms; i++){
-            temp += atoms[i]->mass * atoms[i]->vel.dot(atoms[i]->vel);
-        }
-        return temp/Base::numOfAtoms * 1 / (3 * constants::K_CORRECT);
-    }
-
-    /*!
-    * Calculate the pressure Based on the virial expansion
-    \f[
-        P=\rho k_B T + \frac{1}{dV}\left<\sum_{i=0}^{N-1}\sum_{j = i + 1}^{N-1} f(r_{ij})r_{ij}\right>
-    \f]
-    */
-    double get_pressure(){
-
-        double pressure = 0;
-
-        double b2 = 0;
-        for(int i = 0; i < Base::numOfAtoms; i++){
-            for(int j = i + 1; j < Base::numOfAtoms; j++){
-                b2 += Atom::forceMatrix(i, j) * Atom::distances(i, j);
-            }
-        }
-        b2 *= 1/(3 * Base::volume);
-        pressure = Base::numOfAtoms / Base::volume * constants::K_CORRECT * 300 + b2;  //[dalton / (ps^2 * nm)]
-        pressure *= 1.66053904 * 1e-27; //dalton to kg
-        pressure *= 1e24; //ps^2 to s^2
-        pressure *= 1e9; //nm to m
-        pressure *= 1e-5; //Pa to bar
-        return pressure; //[bar]
-    }
 
     /*!
     * This function contains the main loop of the program which in essence is structured as follows:
@@ -66,8 +25,8 @@ namespace mdEngine {
       }
     \endcode
     */
-    template<typename F, typename I>
-    void run(I&& integrator_1, I&& integrator_2, F&& force_function, Atom **atoms, Frame **frames){
+    template<typename F, typename I, typename E>
+    void run(I&& integrator_1, I&& integrator_2, F&& force_function, E&& energy_function, Atom **atoms, Frame **frames){
 
         double temperature;
         double pressure = 0;
@@ -87,8 +46,8 @@ namespace mdEngine {
             force_function(atoms);  /* Calculate new forces */
             integrator_2(atoms);    /* Second half step of integrator */
             thermostats::andersen::set_velocity(atoms); /* Apply thermostat */
-            temperature = get_temperature(atoms);
-            pressure = get_pressure();
+            temperature = thermostats::get_temperature(atoms);
+            pressure = barostats::get_pressure();
             cummulativeTemp += temperature;
             cummulativePress += pressure;
             Base::temperatures[i] = temperature;
@@ -99,7 +58,7 @@ namespace mdEngine {
                     Base::kineticEnergies[frameCounter] += atoms[i]->kinetic_energy();
                 }
 
-                Base::potentialEnergies[frameCounter] = energy::magnetic::energy(atoms);
+                Base::potentialEnergies[frameCounter] = energy_function(atoms);
                 Base::totalEnergies[frameCounter] = Base::potentialEnergies[frameCounter] + Base::kineticEnergies[frameCounter];
                 printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",
                        (double)i/Base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, Base::potentialEnergies[frameCounter],
@@ -107,7 +66,7 @@ namespace mdEngine {
                 
                 //Frame::init_file();
 
-                if(frameCounter>10){
+                /*if(frameCounter>10){
                     //printf("writing\n");
                     fflush(stdout);
                     Frame::save_to_file(frames);
@@ -117,8 +76,8 @@ namespace mdEngine {
                     }
                 frames[frameCounter] = new Frame();
                 frameCounter++;
-                }
-        //}
+                }*/
+            }
         }
         printf("\n");    
     }

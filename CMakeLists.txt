@@ -30,7 +30,7 @@ add_executable(md
         atom.h
         base.h
         base.cpp
-        energy.h
+        potentials.h
         frame.cpp
         frame.h
         integrators.h

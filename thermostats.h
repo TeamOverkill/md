@@ -1,4 +1,21 @@
 namespace thermostats{
+        /*!
+    * Calculate the temperature Based on the equipartition theorem
+    * where the temperature is given by
+    \f[
+      T = \sum^{N-1}_{i=0}m_i * v_i^2
+    \f]
+    */
+    double get_temperature(Atom **atoms){
+
+
+        double temp = 0;
+        for(int i = 0; i < Base::numOfAtoms; i++){
+            temp += atoms[i]->mass * atoms[i]->vel.dot(atoms[i]->vel);
+        }
+        return temp/Base::numOfAtoms * 1 / (3 * constants::K_CORRECT);
+    }
+
     namespace andersen{
         void set_velocity(Atom **atoms){
             double ran_u;

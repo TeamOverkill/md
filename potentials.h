@@ -1,5 +1,5 @@
-#ifndef ENERGY_H
-#define ENERGY_H
+#ifndef POTENTIALS_H
+#define POTENTIALS_H
 
 #include "base.h"
 /*!
@@ -10,13 +10,15 @@
 /*! The energy namespace contains the various potentials. Each potential has a corresponding
  * force function which calculates the force by differentiating the potential function
  */
-namespace energy{
+namespace potentials{
     /*!
      *  \addtogroup Harmonic
      *  @{
     */
     namespace harmonic{
-        double springConstant = 1.0;        // [kJ * nm^(-2) * mol^(-1)]
+        namespace {
+            double springConstant = 1.0;        // [kJ * nm^(-2) * mol^(-1)]
+        }
 
         inline double energy(Atom **atoms){
             double energy = 0;
