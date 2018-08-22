@@ -92,7 +92,6 @@ namespace potentials{
             double energy = 0;
             Eigen::Vector3d dr;
 
-
             for (int i = 0; i < Base::numOfAtoms; i++) {
                 for (int j = i + 1; j < Base::numOfAtoms; j++) {
                     dr = atoms[i]->pos - atoms[j]->pos;     // [nm]
@@ -103,15 +102,13 @@ namespace potentials{
                     energy += fr6 * (fr6 - 1);              // unitless
 
                 }
-                return 4 * epsilon * energy * constants::NA;
             }
-
             return 4 * epsilon * energy;    // [kJ/mol]
         }
     }
 
     namespace magnetic {
-        double dipoleC = 8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
+        double dipoleC = 0.001;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
 
         inline void forces(Atom **atoms) {
             Eigen::Vector3d dr;
@@ -124,7 +121,7 @@ namespace potentials{
                 for (int j = i + 1; j < Base::numOfAtoms; j++) {
                     dr = atoms[i]->pos - atoms[j]->pos;                 // [nm]
                     double r = dr.norm();                               // [nm]
-                    double fr = -3 * dipoleC / (r * r * r * r * r);     // [(kJ/(nm^2*mol)]
+                    double fr = -3.0 * dipoleC / (r * r * r * r * r);     // [(kJ/(nm^2*mol)]
                     atoms[i]->force += fr * dr;                         // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     atoms[j]->force -= fr * dr;                         // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     Atom::forceMatrix(i, j) = (fr * dr).norm();

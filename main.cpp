@@ -29,9 +29,6 @@ int main(int argc, char *argv[]){
     Atom::initialize(atoms);
     Atom::remove_overlaps(atoms);
 
-    /*!< Initialize the force matrix */
-    Atom::forceMatrix.resize(Base::numOfAtoms, Base::numOfAtoms);
-
     time_t start = time(NULL);
 
     /*!< Call run() with the specified integrator and energy function */

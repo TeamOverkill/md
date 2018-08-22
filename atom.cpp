@@ -12,15 +12,11 @@ Atom::Atom() {}
 /*! Sets up initial conditions.
 */
 void Atom::initialize(Atom** atoms){
-    FILE *fi = fopen("velocities.txt", "w");
-    Eigen::Vector3d linearMom;
-    linearMom.setZero();
-
     for(int i = 0; i < Base::numOfAtoms; i++) {
         atoms[i] = new Atom();
         atoms[i]->index = i;
         atoms[i]->mass = 28.0134; //[dalton]
-        atoms[i]->radius = 0.1;
+        atoms[i]->radius = 1.0;
 
         atoms[i]->pos[0] = ran2::get_random() * Base::boxDim;
         atoms[i]->pos[1] = ran2::get_random() * Base::boxDim;
@@ -29,28 +25,7 @@ void Atom::initialize(Atom** atoms){
         atoms[i]->pos = atoms[i]->pos.cwiseProduct(Base::dimensionality);
 
         /*! Maxwell-Boltzmann velocity distribution*/
-        double ran_u1 = ran2::get_random();
-        double ran_u2 = ran2::get_random();
-        double random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-        atoms[i]->vel[0] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001; //[nm/ps]
-
-        ran_u2 = ran2::get_random();
-        ran_u1 = ran2::get_random();
-        random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-        atoms[i]->vel[1] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
-
-        ran_u2 = ran2::get_random();
-        ran_u1 = ran2::get_random();
-        random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-        atoms[i]->vel[2] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / atoms[i]->mass) * 0.001;
-
-        atoms[i]->vel = atoms[i]->vel.cwiseProduct(Base::dimensionality);
-
-        linearMom += atoms[i]->vel;
-        linearMom /= Base::numOfAtoms;
-
-        //printf("Linear momentum is: %lf\n", linearMom.norm());
-        fprintf(fi, "%d    %lf\n", i, atoms[i]->vel.norm());
+        atoms[i]->set_mb_velocity();
 
         /* Set initial forces*/
         atoms[i]->oldForce[0] = 0;
@@ -62,8 +37,29 @@ void Atom::initialize(Atom** atoms){
         atoms[i]->force[2] = 0;
     }
 
+    /*!< Initialize the distance matrix */
     distances.resize(Base::numOfAtoms, Base::numOfAtoms);
-    fclose(fi);
+    /*!< Initialize the force matrix */
+    forceMatrix.resize(Base::numOfAtoms, Base::numOfAtoms);
+}
+
+void Atom::set_mb_velocity(){
+    double ran_u1 = ran2::get_random();
+    double ran_u2 = ran2::get_random();
+    double random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
+    this->vel[0] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / this->mass) * 0.001; //[nm/ps]
+
+    ran_u2 = ran2::get_random();
+    ran_u1 = ran2::get_random();
+    random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
+    this->vel[1] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / this->mass) * 0.001;
+
+    ran_u2 = ran2::get_random();
+    ran_u1 = ran2::get_random();
+    random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
+    this->vel[2] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / this->mass) * 0.001;
+
+    this->vel = this->vel.cwiseProduct(Base::dimensionality);
 }
 
 /*! Calculates the direct distance between two atoms:

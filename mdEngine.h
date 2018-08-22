@@ -45,9 +45,9 @@ namespace mdEngine {
             integrator_1(atoms);    /* First half step of integrator */
             force_function(atoms);  /* Calculate new forces */
             integrator_2(atoms);    /* Second half step of integrator */
-            thermostats::andersen::set_velocity(atoms); /* Apply thermostat */
+            thermostats::berendsen::set_velocity(atoms); /* Apply thermostat */
             temperature = thermostats::get_temperature(atoms);
-            pressure = barostats::get_pressure();
+            //pressure = barostats::get_pressure();
             cummulativeTemp += temperature;
             cummulativePress += pressure;
             Base::temperatures[i] = temperature;

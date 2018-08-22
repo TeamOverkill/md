@@ -1,5 +1,5 @@
 nop 100
-boxdim 100
+boxdim 11.3
 iter 1000000
 temperature 300
 nof 1000
