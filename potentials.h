@@ -143,18 +143,32 @@ namespace potentials{
             return energy;
         }
 
+        /*! Magnetic reulsion from walls, only works for two dimensions
+         *
+         */
         inline double wall_potential(Atom *atom){
 
-            /*
-            double b = Base::boxdim/2;
+            double magneticConstant = 1; //magnetic potential per nm^2
+            double energy = 0;
+            double b = Base::boxDim/2;
             double x = atom->pos[0] - Base::boxDim;
             double y = atom->pos[1] - Base::boxDim;
             double diffX = b + x;
             double diffY = b + y;
+
             //Bottom wall
-            2 * b / (diffX * diffX + std::sqrt(b * b + 2 * b * y + b * b + y * y));
-             */
-            return 0.0;
+            energy += 2 * b / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
+            //Left wall
+            energy += 2 * b / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
+
+            diffX = b - x;
+            diffY = b - y;
+            //Top wall
+            energy += 2 * b / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
+            //Right wall
+            energy += 2 * b / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
+
+            return magneticConstant * energy;
         }
     }
 }

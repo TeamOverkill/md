@@ -142,9 +142,6 @@
 		<Unit filename="/Users/samuel/Documents/md/base.h">
 			<Option target="md"/>
 		</Unit>
-		<Unit filename="/Users/samuel/Documents/md/energy.h">
-			<Option target="md"/>
-		</Unit>
 		<Unit filename="/Users/samuel/Documents/md/frame.cpp">
 			<Option target="md"/>
 		</Unit>
@@ -161,6 +158,9 @@
 			<Option target="md"/>
 		</Unit>
 		<Unit filename="/Users/samuel/Documents/md/parser.h">
+			<Option target="md"/>
+		</Unit>
+		<Unit filename="/Users/samuel/Documents/md/potentials.h">
 			<Option target="md"/>
 		</Unit>
 		<Unit filename="/Users/samuel/Documents/md/ran2_lib.cpp">
