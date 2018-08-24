@@ -1,5 +1,4 @@
-#ifndef POTENTIALS_H
-#define POTENTIALS_H
+#pragma once
 
 #include "base.h"
 /*!
@@ -15,19 +14,19 @@ namespace potentials{
      *  \addtogroup Harmonic
      *  @{
     */
-    namespace harmonic{
-        namespace {
-            double springConstant = 1.0;        // [kJ * nm^(-2) * mol^(-1)]
-        }
+    struct harmonic{
+    private:
+            static constexpr double springConstant = 1.0;        // [kJ * nm^(-2) * mol^(-1)]
 
-        inline double energy(Atom **atoms){
+    public:
+        inline static double energy(Atom **atoms){
             double energy = 0;
             energy = 0.5 * springConstant * atoms[0]->pos.norm();   // [kJ/mol]
 
             return energy;
         }
 
-        inline void forces(Atom **atoms){
+        inline static void forces(Atom **atoms){
             /*!
             * One dimensional harmonic potential
             */
@@ -37,19 +36,19 @@ namespace potentials{
             force = springConstant * (25 - atoms[0]->pos[0]);   // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
             atoms[0]->force = force * forceDir.normalized();    // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
         }
-    }
+    };
     /*!
      *  \addtogroup Lennard-Jones
      *  @{
     */
-    namespace LJ {
-        namespace {
-            double epsilon = 1.5;  //![kJ/mol] LJ parameter epsilon
-            double sigma = 1;      //![nm] LJ parameter sigma
-        }
+    struct LJ {
+    private:
+            static constexpr double epsilon = 1.5;  //![kJ/mol] LJ parameter epsilon
+            static constexpr double sigma = 1;      //![nm] LJ parameter sigma
+    public:
 
 
-        inline void forces(Atom **atoms) {
+        inline static void forces(Atom **atoms) {
             /*!
             * Calculate the forces using a Lennard-Jones potential
             */
@@ -83,7 +82,7 @@ namespace potentials{
             U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right)
         \f]
         */
-        inline double energy(Atom **atoms) {
+        inline static double energy(Atom **atoms) {
             /*!
             * Calculate the energy using a Lennard-Jones potential
             */
@@ -105,12 +104,13 @@ namespace potentials{
             }
             return 4 * epsilon * energy;    // [kJ/mol]
         }
-    }
+    };
 
-    namespace magnetic {
-        double dipoleC = 0.001;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
-
-        inline void forces(Atom **atoms) {
+    struct magnetic {
+    private:
+        static constexpr double dipoleC = 0.001;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
+    public:
+        inline static void forces(Atom **atoms) {
             Eigen::Vector3d dr;
 
             for (int i = 0; i < Base::numOfAtoms; i++) {
@@ -128,7 +128,7 @@ namespace potentials{
                 }
             }
         }
-        inline double energy(Atom **atoms) {
+        inline static double energy(Atom **atoms) {
             double distance;
             double energy = 0;
             Eigen::Vector3d dr;
@@ -146,9 +146,9 @@ namespace potentials{
         /*! Magnetic reulsion from walls, only works for two dimensions
          *
          */
-        inline double wall_potential(Atom *atom){
+        inline static double wall_potential(Atom *atom){
 
-            double magneticConstant = 1; //magnetic potential per nm^2
+            double magneticConstant = 1.0; //magnetic potential per nm^2
             double energy = 0;
             double b = Base::boxDim/2;
             double x = atom->pos[0] - Base::boxDim;
@@ -157,21 +157,18 @@ namespace potentials{
             double diffY = b + y;
 
             //Bottom wall
-            energy += 2 * b / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
+            energy += 2.0 * b / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
             //Left wall
-            energy += 2 * b / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
+            energy += 2.0 * b / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
 
             diffX = b - x;
             diffY = b - y;
             //Top wall
-            energy += 2 * b / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
+            energy += 2.0 * b / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
             //Right wall
-            energy += 2 * b / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
+            energy += 2.0 * b / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
 
             return magneticConstant * energy;
         }
-    }
+    };
 }
-
-
-#endif

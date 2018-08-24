@@ -7,7 +7,9 @@
 #include "mdEngine.h"
 #include <time.h>
 #include "atom.h"
+#include "atoms.h"
 #include "parser.h"
+#include "potentialmanager.h"
 
 int main(int argc, char *argv[]){
     Parser parser;
@@ -31,10 +33,12 @@ int main(int argc, char *argv[]){
 
     time_t start = time(NULL);
 
+    PotentialManager<potentials::LJ> pm;
+
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
     mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &potentials::LJ::forces,
-                 &potentials::LJ::energy, atoms, frames);
+                 &potentials::LJ::energy, atoms, frames, &pm);
 
     printf("Time: %lu\n", time(NULL) - start);
     Frame::save_to_file(frames);                /*!< Save frames to trajectory file */

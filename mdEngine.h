@@ -25,9 +25,10 @@ namespace mdEngine {
       }
     \endcode
     */
-    template<typename F, typename I, typename E>
-    void run(I&& integrator_1, I&& integrator_2, F&& force_function, E&& energy_function, Atom **atoms, Frame **frames){
-
+    template<typename F, typename I, typename E, typename P>
+    void run(I&& integrator_1, I&& integrator_2, F&& force_function, E&& energy_function, Atom **atoms, Frame **frames,
+    P&& pm){
+        pm->get_energy();
         double temperature;
         double pressure = 0;
         int frameCounter = 0;
