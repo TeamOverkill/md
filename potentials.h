@@ -19,14 +19,14 @@ namespace potentials{
             static constexpr double springConstant = 1.0;        // [kJ * nm^(-2) * mol^(-1)]
 
     public:
-        inline static double energy(Atom **atoms){
+        inline static double energy(Atoms& atoms){
             double energy = 0;
             energy = 0.5 * springConstant * atoms[0]->pos.norm();   // [kJ/mol]
 
             return energy;
         }
 
-        inline static void forces(Atom **atoms){
+        inline static void forces(Atoms& atoms){
             /*!
             * One dimensional harmonic potential
             */
@@ -48,7 +48,7 @@ namespace potentials{
     public:
 
 
-        inline static void forces(Atom **atoms) {
+        inline static void forces(Atoms& atoms) {
             /*!
             * Calculate the forces using a Lennard-Jones potential
             */
@@ -72,7 +72,7 @@ namespace potentials{
 
                     atoms[i]->force += fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     atoms[j]->force -= fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
-                    Atom::forceMatrix(i, j) = (fr * dr).norm();
+                    atoms.forceMatrix(i, j) = (fr * dr).norm();
                 }
             }
         }
@@ -82,7 +82,7 @@ namespace potentials{
             U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right)
         \f]
         */
-        inline static double energy(Atom **atoms) {
+        inline static double energy(Atoms& atoms) {
             /*!
             * Calculate the energy using a Lennard-Jones potential
             */
@@ -110,7 +110,7 @@ namespace potentials{
     private:
         static constexpr double dipoleC = 0.001;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
     public:
-        inline static void forces(Atom **atoms) {
+        inline static void forces(Atoms& atoms) {
             Eigen::Vector3d dr;
 
             for (int i = 0; i < Base::numOfAtoms; i++) {
@@ -124,11 +124,11 @@ namespace potentials{
                     double fr = -3.0 * dipoleC / (r * r * r * r * r);     // [(kJ/(nm^2*mol)]
                     atoms[i]->force += fr * dr;                         // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     atoms[j]->force -= fr * dr;                         // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
-                    Atom::forceMatrix(i, j) = (fr * dr).norm();
+                    atoms.forceMatrix(i, j) = (fr * dr).norm();
                 }
             }
         }
-        inline static double energy(Atom **atoms) {
+        inline static double energy(Atoms& atoms) {
             double distance;
             double energy = 0;
             Eigen::Vector3d dr;

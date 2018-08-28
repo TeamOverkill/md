@@ -1,10 +1,10 @@
 #pragma once
 
 #include "base.h"
-#include "atom.h"
+#include "atoms.h"
 
 namespace integrators{
-    inline void velocity_verlet_first(Atom **atoms){
+    inline void velocity_verlet_first(Atoms& atoms){
         /*!
         * Velocity Verlet integrator
         * First half step
@@ -46,7 +46,7 @@ namespace integrators{
         }
     }
 
-    inline void velocity_verlet_second(Atom **atoms){
+    inline void velocity_verlet_second(Atoms& atoms){
         /*!
         * Velocity Verlet integrator
         * Second half step

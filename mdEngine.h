@@ -1,6 +1,8 @@
 #pragma once
 
 #include "base.h"
+#include "atoms.h"
+
 /*!
  *  \addtogroup Main_modules
  *  @{
@@ -26,9 +28,9 @@ namespace mdEngine {
     \endcode
     */
     template<typename F, typename I, typename E, typename P>
-    void run(I&& integrator_1, I&& integrator_2, F&& force_function, E&& energy_function, Atom **atoms, Frame **frames,
+    void run(I&& integrator_1, I&& integrator_2, F&& force_function, E&& energy_function, Atoms& atoms, Frame **frames,
     P&& pm){
-        pm->get_energy();
+        pm->get_energy(atoms);
         double temperature;
         double pressure = 0;
         int frameCounter = 0;

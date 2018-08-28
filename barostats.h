@@ -5,14 +5,14 @@ namespace barostats{
         P=\rho k_B T + \frac{1}{dV}\left<\sum_{i=0}^{N-1}\sum_{j = i + 1}^{N-1} f(r_{ij})r_{ij}\right>
     \f]
     */
-    double get_pressure(){
+    double get_pressure(Atoms& atoms){
 
         double pressure = 0;
 
         double b2 = 0;
         for(int i = 0; i < Base::numOfAtoms; i++){
             for(int j = i + 1; j < Base::numOfAtoms; j++){
-                b2 += Atom::forceMatrix(i, j) * Atom::distances(i, j);
+                b2 += atoms.forceMatrix(i, j) * atoms.distances(i, j);
             }
         }
         b2 *= 1/(3 * Base::volume);

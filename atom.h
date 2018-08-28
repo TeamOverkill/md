@@ -1,7 +1,7 @@
 #pragma once
 
 #include "base.h"
-
+//#include "atoms.h"
 /**
  * \file atom.h
  */
@@ -27,20 +27,14 @@ class Atom{
         int index;
         double radius, mass;
 
-        static Eigen::MatrixXd distances;   /*!< Triangular distance matrix containing all distances*/
-        static Eigen::MatrixXd forceMatrix; /*!< Force matrix containing all forces */
 
         void set_mb_velocity();
         double distance(Atom* otherAtom);
         double distance_pbc(Atom *otherAtom);
-        static void update_distances(Atom **atoms);
         void hard_walls();
         void pbc();
         double kinetic_energy();
-        static void remove_overlaps(Atom **atoms);
-        bool overlap(Atom **atoms);
-        static int get_overlaps(Atom **atoms);
         void random_move(double stepSize);
-        static void initialize(Atom **atoms);
+
 };
 /** @}*/

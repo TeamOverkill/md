@@ -6,7 +6,7 @@ namespace thermostats{
       T = \sum^{N-1}_{i=0}m_i * v_i^2
     \f]
     */
-    double get_temperature(Atom **atoms){
+    double get_temperature(Atoms& atoms){
 
         double temp = 0;
         for(int i = 0; i < Base::numOfAtoms; i++){
@@ -16,7 +16,7 @@ namespace thermostats{
     }
 
     namespace andersen{
-        void set_velocity(Atom **atoms){
+        void set_velocity(Atoms& atoms){
             double ran_u;
             double freq = 0.1 * Base::tStep;
             for(int i = 0; i < Base::numOfAtoms; i++){
@@ -29,7 +29,7 @@ namespace thermostats{
     }
 
     namespace berendsen{
-        void set_velocity(Atom **atoms){
+        void set_velocity(Atoms& atoms){
             double velScale;
             double couplingPara = 100.0;
             double inT = get_temperature(atoms);

@@ -20,16 +20,16 @@ int main(int argc, char *argv[]){
     Frame::initialize(Base::outFreq);                /*!< Initialize variables in Frame */
 
     /*!< Allocate memory to hold atom array: */
-    Atom **atoms;
-    atoms = (Atom**) malloc(Base::numOfAtoms * sizeof(Atom*));
-
+    //Atom **atoms;
+    //atoms = (Atom**) malloc(Base::numOfAtoms * sizeof(Atom*));
+    Atoms atoms;
     /*!< Allocate memory to hold array of frames: */
     Frame **frames;
     frames = (Frame**) malloc(Base::outFreq * sizeof(Frame*));
 
     /*!< Initialize atom variables */
-    Atom::initialize(atoms);
-    Atom::remove_overlaps(atoms);
+    atoms.initialize(Base::numOfAtoms);
+    atoms.remove_overlaps();
 
     time_t start = time(NULL);
 
