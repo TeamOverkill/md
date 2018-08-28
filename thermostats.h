@@ -9,17 +9,17 @@ namespace thermostats{
     double get_temperature(Atoms& atoms){
 
         double temp = 0;
-        for(int i = 0; i < Base::numOfAtoms; i++){
+        for(int i = 0; i < atoms.numOfAtoms; i++){
             temp += atoms[i]->mass * atoms[i]->vel.dot(atoms[i]->vel);
         }
-        return temp/Base::numOfAtoms * 1.0 / (3.0 * constants::K_CORRECT);
+        return temp/atoms.numOfAtoms * 1.0 / (3.0 * constants::K_CORRECT);
     }
 
     namespace andersen{
         void set_velocity(Atoms& atoms){
             double ran_u;
             double freq = 0.1 * Base::tStep;
-            for(int i = 0; i < Base::numOfAtoms; i++){
+            for(int i = 0; i < atoms.numOfAtoms; i++){
                 ran_u = ran2::get_random();
                 if(ran_u < freq){
                     atoms[i]->set_mb_velocity();
@@ -34,7 +34,7 @@ namespace thermostats{
             double couplingPara = 100.0;
             double inT = get_temperature(atoms);
 
-            for(int i = 0; i < Base::numOfAtoms; i++){
+            for(int i = 0; i < atoms.numOfAtoms; i++){
                 velScale = sqrt(1.0 + Base::tStep / couplingPara * (Base::temperature / inT - 1.0));
                 atoms[i]->vel = velScale * atoms[i]->vel;
             }

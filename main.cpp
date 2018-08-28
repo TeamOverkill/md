@@ -12,6 +12,7 @@
 #include "potentialmanager.h"
 
 int main(int argc, char *argv[]){
+    Atoms atoms;
     Parser parser;
     parser.parse();
     Base::initialize();
@@ -22,13 +23,13 @@ int main(int argc, char *argv[]){
     /*!< Allocate memory to hold atom array: */
     //Atom **atoms;
     //atoms = (Atom**) malloc(Base::numOfAtoms * sizeof(Atom*));
-    Atoms atoms;
+
     /*!< Allocate memory to hold array of frames: */
     Frame **frames;
     frames = (Frame**) malloc(Base::outFreq * sizeof(Frame*));
 
     /*!< Initialize atom variables */
-    atoms.initialize(Base::numOfAtoms);
+    atoms.initialize(parser.numOfAtoms);
     atoms.remove_overlaps();
 
     time_t start = time(NULL);
@@ -41,7 +42,7 @@ int main(int argc, char *argv[]){
                  &potentials::LJ::energy, atoms, frames, &pm);
 
     printf("Time: %lu\n", time(NULL) - start);
-    Frame::save_to_file(frames);                /*!< Save frames to trajectory file */
+    Frame::save_to_file(frames, atoms.numOfAtoms);                /*!< Save frames to trajectory file */
 
     //Save stuff, will be moved later
     FILE *f = fopen("energies.txt", "w");

@@ -57,7 +57,7 @@ namespace mdEngine {
 
             if(i % Frame::fStep == 0){
                 Base::kineticEnergies[frameCounter] = 0;
-                for(int i = 0; i < Base::numOfAtoms; i++){
+                for(int i = 0; i < atoms.numOfAtoms; i++){
                     Base::kineticEnergies[frameCounter] += atoms[i]->kinetic_energy();
                 }
 

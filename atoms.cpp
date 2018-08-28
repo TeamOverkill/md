@@ -3,6 +3,8 @@
 /*! Sets up initial conditions.
 */
 void Atoms::initialize(int numOfAtoms){
+    this->numOfAtoms = numOfAtoms;
+
     for(int i = 0; i < numOfAtoms; i++) {
         atoms.push_back(new Atom());
         atoms[i]->index = i;
@@ -29,9 +31,9 @@ void Atoms::initialize(int numOfAtoms){
     }
 
     /*!< Initialize the distance matrix */
-    distances.resize(Base::numOfAtoms, Base::numOfAtoms);
+    distances.resize(numOfAtoms, numOfAtoms);
     /*!< Initialize the force matrix */
-    forceMatrix.resize(Base::numOfAtoms, Base::numOfAtoms);
+    forceMatrix.resize(numOfAtoms, numOfAtoms);
 }
 
 
@@ -39,9 +41,9 @@ void Atoms::initialize(int numOfAtoms){
 */
 void Atoms::update_distances(){
     int k = 0;
-    for(int i = 0; i < Base::numOfAtoms; i++){
+    for(int i = 0; i < numOfAtoms; i++){
         k = i + 1;
-        for(int j = i + 1; j < Base::numOfAtoms; j++){
+        for(int j = i + 1; j < numOfAtoms; j++){
             distances(i, k) = atoms[i]->distance(atoms[k]);
             k++;
         }
@@ -50,8 +52,8 @@ void Atoms::update_distances(){
 
 int Atoms::get_overlaps(){
     int overlaps = 0;
-    for(int i = 0; i < Base::numOfAtoms; i++){
-        for(int j = i + 1; j < Base::numOfAtoms; j++){
+    for(int i = 0; i < numOfAtoms; i++){
+        for(int j = i + 1; j < numOfAtoms; j++){
             if(atoms[i]->distance(atoms[j]) < atoms[i]->radius + atoms[j]->radius){
                 overlaps++;
             }
@@ -61,7 +63,7 @@ int Atoms::get_overlaps(){
 }
 
 bool Atoms::overlap(Atom* a){
-    for(int i = 0; i < Base::numOfAtoms; i++){
+    for(int i = 0; i < numOfAtoms; i++){
         if(i != a->index) {
             if((a->pos - atoms[i]->pos).norm()< a->radius + atoms[i]->radius) {
                 return true;
@@ -84,7 +86,7 @@ void Atoms::remove_overlaps(){
     printf("Removing overlaps\n");
     while(overlaps > 0){
         random = ran2::get_random();
-        p =  random * Base::numOfAtoms;
+        p =  random * numOfAtoms;
         oldPos = atoms[p]->pos;
 
         atoms[p]->random_move(5);

@@ -57,13 +57,13 @@ namespace potentials{
             Eigen::Vector3d dr;
 
 
-            for (int i = 0; i < Base::numOfAtoms; i++) {
+            for (int i = 0; i < atoms.numOfAtoms; i++) {
                 atoms[i]->force.setZero();
             }
 
 
-            for (int i = 0; i < Base::numOfAtoms; i++) {
-                for (int j = i + 1; j < Base::numOfAtoms; j++) {
+            for (int i = 0; i < atoms.numOfAtoms; i++) {
+                for (int j = i + 1; j < atoms.numOfAtoms; j++) {
                     dr = atoms[i]->pos - atoms[j]->pos;                 // [nm]
                     double r2 = dr.dot(dr);                             // [nm^2]
                     double fr2 = sigma * sigma / r2;                    // unitless
@@ -91,8 +91,8 @@ namespace potentials{
             double energy = 0;
             Eigen::Vector3d dr;
 
-            for (int i = 0; i < Base::numOfAtoms; i++) {
-                for (int j = i + 1; j < Base::numOfAtoms; j++) {
+            for (int i = 0; i < atoms.numOfAtoms; i++) {
+                for (int j = i + 1; j < atoms.numOfAtoms; j++) {
                     dr = atoms[i]->pos - atoms[j]->pos;     // [nm]
                     distance = dr.norm();                   // [nm]
                     double fr = sigma / distance;           // unitless
@@ -113,12 +113,12 @@ namespace potentials{
         inline static void forces(Atoms& atoms) {
             Eigen::Vector3d dr;
 
-            for (int i = 0; i < Base::numOfAtoms; i++) {
+            for (int i = 0; i < atoms.numOfAtoms; i++) {
                 atoms[i]->force.setZero();
             }
 
-            for (int i = 0; i < Base::numOfAtoms; i++) {
-                for (int j = i + 1; j < Base::numOfAtoms; j++) {
+            for (int i = 0; i < atoms.numOfAtoms; i++) {
+                for (int j = i + 1; j < atoms.numOfAtoms; j++) {
                     dr = atoms[i]->pos - atoms[j]->pos;                 // [nm]
                     double r = dr.norm();                               // [nm]
                     double fr = -3.0 * dipoleC / (r * r * r * r * r);     // [(kJ/(nm^2*mol)]
@@ -133,8 +133,8 @@ namespace potentials{
             double energy = 0;
             Eigen::Vector3d dr;
 
-            for(int i = 0; i < Base::numOfAtoms; i++) {
-                for (int j = i + 1; j < Base::numOfAtoms; j++) {
+            for(int i = 0; i < atoms.numOfAtoms; i++) {
+                for (int j = i + 1; j < atoms.numOfAtoms; j++) {
                     dr = atoms[i]->pos - atoms[j]->pos;                     // [nm]
                     distance = dr.norm();                                   // [nm]
                     energy += dipoleC / (distance * distance * distance);   // [kJ/mol]

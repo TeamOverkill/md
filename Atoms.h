@@ -11,7 +11,7 @@ public:
     Atom* operator[](int i){
         return atoms[i];
     }
-
+    int numOfAtoms;
     Eigen::MatrixXd distances;   /*!< Triangular distance matrix containing all distances*/
     Eigen::MatrixXd forceMatrix; /*!< Force matrix containing all forces */
 

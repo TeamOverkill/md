@@ -2,7 +2,6 @@
 
 double Base::boxDim;
 double Base::volume;
-int Base::numOfAtoms;
 int Base::iterations;
 int Base::outFreq;
 int Base::dimensions;
