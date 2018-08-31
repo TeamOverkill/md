@@ -4,7 +4,8 @@
 class Parser{
 
 public:
-    static void parse() {
+    int numOfAtoms;
+    void parse() {
         std::string fileName = "config.mo";
         //Base base;
         std::string keyword;
@@ -17,7 +18,7 @@ public:
             if (!(iss >> keyword >> value)) {
                 break;
             }
-            if(keyword == "nop") Base::numOfAtoms = (int)value;
+            if(keyword == "nop") numOfAtoms = (int)value;
             else if(keyword == "iter") Base::iterations = (int)value;
             else if(keyword == "boxdim") Base::boxDim = value;
             else if(keyword == "nof") Base::outFreq = (int)value;

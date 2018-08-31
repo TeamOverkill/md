@@ -14,7 +14,6 @@ public:
     static void initialize();
     static double boxDim;   /*!< Box dimension, currently only cubic boxes */
     static double volume;   /*!< Volume of the box */
-    static int numOfAtoms;  /*!< number of atoms */
     static int iterations;  /*!< number of iterations */
     static int outFreq;
     static double tStep;    /*!< Time step in picoseconds */

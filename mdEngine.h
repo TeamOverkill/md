@@ -1,6 +1,8 @@
 #pragma once
 
 #include "base.h"
+#include "atoms.h"
+
 /*!
  *  \addtogroup Main_modules
  *  @{
@@ -25,9 +27,10 @@ namespace mdEngine {
       }
     \endcode
     */
-    template<typename F, typename I, typename E>
-    void run(I&& integrator_1, I&& integrator_2, F&& force_function, E&& energy_function, Atom **atoms, Frame **frames){
-
+    template<typename F, typename I, typename E, typename P>
+    void run(I&& integrator_1, I&& integrator_2, F&& force_function, E&& energy_function, Atoms& atoms, Frame **frames,
+    P&& pm){
+        pm->get_energy(atoms);
         double temperature;
         double pressure = 0;
         int frameCounter = 0;
@@ -55,7 +58,7 @@ namespace mdEngine {
 
             if(i % Frame::fStep == 0){
                 Base::kineticEnergies[frameCounter] = 0;
-                for(int i = 0; i < Base::numOfAtoms; i++){
+                for(int i = 0; i < atoms.numOfAtoms; i++){
                     Base::kineticEnergies[frameCounter] += atoms[i]->kinetic_energy();
                 }
 
@@ -70,7 +73,7 @@ namespace mdEngine {
                     printf("\n test2 \n");
 
                     //printf("writing\n");
-                    Frame::save_to_file(frames);
+                    Frame::save_to_file(frames, atoms.numOfAtoms);
                     printf("test3");
                     //delete[] frames;
                     printf("\n test \n");
@@ -81,7 +84,7 @@ namespace mdEngine {
                 printf("Framecounter: %d", Frame::frameCounter);
                 
                 printf("\n before \n");
-                frames[frameCounter] = new Frame();
+                frames[frameCounter] = new Frame(atoms.numOfAtoms);
                 frames[frameCounter]->save_state(atoms);
                 printf("\n after \n");
                 frameCounter++; 

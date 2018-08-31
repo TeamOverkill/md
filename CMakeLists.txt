@@ -17,17 +17,19 @@ SET( CMAKE_EXE_LINKER_FLAGS_DEBUG  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LIN
 SET( CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS_RELEASE}" )
 SET( CMAKE_EXE_LINKER_FLAGS_RELEASE  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LINK_FLAGS_RELEASE}" )
 
+SET(CMAKE_Fortran_CREATE_STATIC_LIBRARY  "lib ${CMAKE_CL_NOLOGO} <LINK_FLAGS> /out:<TARGET> <OBJECTS> ")
 
+#set(CMAKE_CXX_FLAGS "-o ran2.o")
 
 include_directories(.)
 
-add_library(ran2.o)
-
-set_property(TARGET ran2.o PROPERTY LINKER_LANGUAGE Fortran)
+add_library(random ran2.f)
 
 add_executable(md
         atom.cpp
         atom.h
+        atoms.cpp
+        atoms.h
         base.h
         base.cpp
         potentials.h
@@ -37,4 +39,9 @@ add_executable(md
         main.cpp
         mdEngine.h
         parser.h
-        ran2_lib.cpp)
+        potentialmanager.h
+        ran2_lib.cpp
+        ran2.f)
+
+set_property(TARGET random PROPERTY LINKER_LANGUAGE Fortran)
+target_link_libraries (md random)
