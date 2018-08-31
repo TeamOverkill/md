@@ -37,7 +37,7 @@ void Atoms::initialize(int numOfAtoms){
 }
 
 
- /*! Updates the triangluar matrix which holds all the distances calculated by distance()
+/*! Updates the triangluar matrix which holds all the distances calculated by distance()
 */
 void Atoms::update_distances(){
     int k = 0;
