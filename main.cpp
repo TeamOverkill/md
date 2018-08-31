@@ -30,6 +30,7 @@ int main(int argc, char *argv[]){
 
     /*!< Initialize atom variables */
     atoms.initialize(parser.numOfAtoms);
+    printf("asdasd\n");
     atoms.remove_overlaps();
 
     time_t start = time(NULL);

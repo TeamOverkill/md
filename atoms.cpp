@@ -3,8 +3,10 @@
 /*! Sets up initial conditions.
 */
 void Atoms::initialize(int numOfAtoms){
+    int i;
+    this->numOfAtoms = 0;
 
-    for(int i = 0; i < numOfAtoms; i++) {
+    for(i = 0; i < numOfAtoms; i++) {
         this->atoms.push_back(new Atom());
         this->atoms[i]->index = i;
         this->atoms[i]->mass = 28.0134; //[dalton]
@@ -30,7 +32,7 @@ void Atoms::initialize(int numOfAtoms){
 
         this->numOfAtoms++;
     }
-
+    printf("Created %d atoms\n", i);
     /*!< Initialize the distance matrix */
     distances.resize(numOfAtoms, numOfAtoms);
     /*!< Initialize the force matrix */
@@ -87,7 +89,7 @@ void Atoms::remove_overlaps(){
     printf("Removing overlaps\n");
     while(overlaps > 0){
         random = ran2::get_random();
-        p =  random * numOfAtoms;
+        p =  random * this->numOfAtoms;
         oldPos = this->atoms[p]->pos;
 
         this->atoms[p]->random_move(5);

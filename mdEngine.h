@@ -62,14 +62,14 @@ namespace mdEngine {
                     Base::kineticEnergies[frameCounter] += atoms[i]->kinetic_energy();
                 }
 
-                Base::potentialEnergies[frameCounter] = energy_function(atoms);
+                //Base::potentialEnergies[frameCounter] = energy_function(atoms);
                 Base::totalEnergies[frameCounter] = Base::potentialEnergies[frameCounter] + Base::kineticEnergies[frameCounter];
-                //printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf",
-                 //      (double)i/Base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, Base::potentialEnergies[frameCounter],
-                  //     Base::kineticEnergies[frameCounter]);
-               //fflush(stdout);
+                printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",
+                      (double)i/Base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, Base::potentialEnergies[frameCounter],
+                       Base::kineticEnergies[frameCounter]);
+                fflush(stdout);
                 //Frame::init_file();
-                if(frameCounter>10){
+                if(frameCounter > 10){
                     Frame::save_to_file(frames, atoms.numOfAtoms);
 
                     frameCounter = 0;
