@@ -38,6 +38,7 @@ int main(int argc, char *argv[]){
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
+    
     mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &potentials::LJ::forces,
                  &potentials::LJ::energy, atoms, frames, &pm);
 
