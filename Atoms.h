@@ -2,6 +2,8 @@
 
 #include <vector>
 #include "atom.h"
+#include <fstream>
+#include <sstream>
 
 class Atoms{
 private:
@@ -20,4 +22,5 @@ public:
     void initialize(int numOfAtoms);
     void remove_overlaps();
     bool overlap(Atom* a);
+    void read_frame(std::string fileName);
 };

@@ -3,31 +3,32 @@
 /*! Sets up initial conditions.
 */
 void Atoms::initialize(int numOfAtoms){
-    this->numOfAtoms = numOfAtoms;
 
     for(int i = 0; i < numOfAtoms; i++) {
-        atoms.push_back(new Atom());
-        atoms[i]->index = i;
-        atoms[i]->mass = 28.0134; //[dalton]
-        atoms[i]->radius = 1.0;
+        this->atoms.push_back(new Atom());
+        this->atoms[i]->index = i;
+        this->atoms[i]->mass = 28.0134; //[dalton]
+        this->atoms[i]->radius = 1.0;
 
-        atoms[i]->pos[0] = ran2::get_random() * Base::boxDim;
-        atoms[i]->pos[1] = ran2::get_random() * Base::boxDim;
-        atoms[i]->pos[2] = ran2::get_random() * Base::boxDim;
+        this->atoms[i]->pos[0] = ran2::get_random() * Base::boxDim;
+        this->atoms[i]->pos[1] = ran2::get_random() * Base::boxDim;
+        this->atoms[i]->pos[2] = ran2::get_random() * Base::boxDim;
 
-        atoms[i]->pos = atoms[i]->pos.cwiseProduct(Base::dimensionality);
+        this->atoms[i]->pos = this->atoms[i]->pos.cwiseProduct(Base::dimensionality);
 
         /*! Maxwell-Boltzmann velocity distribution*/
-        atoms[i]->set_mb_velocity();
+        this->atoms[i]->set_mb_velocity();
 
         /* Set initial forces*/
-        atoms[i]->oldForce[0] = 0;
-        atoms[i]->oldForce[1] = 0;
-        atoms[i]->oldForce[2] = 0;
+        this->atoms[i]->oldForce[0] = 0;
+        this->atoms[i]->oldForce[1] = 0;
+        this->atoms[i]->oldForce[2] = 0;
 
-        atoms[i]->force[0] = 0;
-        atoms[i]->force[1] = 0;
-        atoms[i]->force[2] = 0;
+        this->atoms[i]->force[0] = 0;
+        this->atoms[i]->force[1] = 0;
+        this->atoms[i]->force[2] = 0;
+
+        this->numOfAtoms++;
     }
 
     /*!< Initialize the distance matrix */
@@ -44,7 +45,7 @@ void Atoms::update_distances(){
     for(int i = 0; i < numOfAtoms; i++){
         k = i + 1;
         for(int j = i + 1; j < numOfAtoms; j++){
-            distances(i, k) = atoms[i]->distance(atoms[k]);
+            distances(i, k) = this->atoms[i]->distance(this->atoms[k]);
             k++;
         }
     }
@@ -54,7 +55,7 @@ int Atoms::get_overlaps(){
     int overlaps = 0;
     for(int i = 0; i < numOfAtoms; i++){
         for(int j = i + 1; j < numOfAtoms; j++){
-            if(atoms[i]->distance(atoms[j]) < atoms[i]->radius + atoms[j]->radius){
+            if(this->atoms[i]->distance(atoms[j]) < this->atoms[i]->radius + this->atoms[j]->radius){
                 overlaps++;
             }
         }
@@ -65,7 +66,7 @@ int Atoms::get_overlaps(){
 bool Atoms::overlap(Atom* a){
     for(int i = 0; i < numOfAtoms; i++){
         if(i != a->index) {
-            if((a->pos - atoms[i]->pos).norm()< a->radius + atoms[i]->radius) {
+            if((a->pos - this->atoms[i]->pos).norm() < a->radius + this->atoms[i]->radius) {
                 return true;
             }
         }
@@ -87,16 +88,16 @@ void Atoms::remove_overlaps(){
     while(overlaps > 0){
         random = ran2::get_random();
         p =  random * numOfAtoms;
-        oldPos = atoms[p]->pos;
+        oldPos = this->atoms[p]->pos;
 
-        atoms[p]->random_move(5);
+        this->atoms[p]->random_move(5);
         //Atom::update_distances(atoms, atoms[p]);
-        if(overlap(atoms[p])){
-            atoms[p]->pos = oldPos;
+        if(overlap(this->atoms[p])){
+            this->atoms[p]->pos = oldPos;
             //Atom::update_distances(atoms, atoms[p]);
         }
 
-        if(atoms[p]->pos[2] < 0 || atoms[p]->pos[1] < 0 || atoms[p]->pos[0] < 0){
+        if(this->atoms[p]->pos[2] < 0 || this->atoms[p]->pos[1] < 0 || this->atoms[p]->pos[0] < 0){
             printf("Failed to equilibrate system, a particle was found outside the box...\n");
             exit(1);
         }
@@ -109,4 +110,36 @@ void Atoms::remove_overlaps(){
         i++;
     }
     printf("\n\033[32mEquilibration done\033[30m\n\n");
+}
+
+
+void Atoms::read_frame(std::string fileName){
+    int c, i = 0, ind;
+    double xPos, yPos, zPos, xVel, yVel, zVel;
+    std::string molecule, atom, line;
+    std::ifstream infile(fileName);
+    while (std::getline(infile, line)) {
+        if(i == 1){
+            std::istringstream iss(line);
+            if (!(iss >> c)) {
+                printf("The second line in the input file should be the total number of atoms!\n");
+                exit(1);
+            } // error
+        }
+        if(i > 1){
+            std::istringstream iss(line);
+            if (!(iss >> molecule >> atom >> ind >> xPos >> yPos >> zPos >> xVel >> yVel >> zVel)) {
+                printf("Done reading input file\n");
+                break;
+                //exit(1);
+            }
+            this->atoms.push_back(new Atom());
+            this->numOfAtoms++;
+        }
+        i++;
+    }
+    if(c != this->numOfAtoms){
+        printf("Did not read all atoms from file....\n");
+        exit(1);
+    }
 }

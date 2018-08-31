@@ -15,8 +15,8 @@ namespace thermostats{
         return temp/atoms.numOfAtoms * 1.0 / (3.0 * constants::K_CORRECT);
     }
 
-    namespace andersen{
-        void set_velocity(Atoms& atoms){
+    struct andersen{
+        static void set_velocity(Atoms& atoms){
             double ran_u;
             double freq = 0.1 * Base::tStep;
             for(int i = 0; i < atoms.numOfAtoms; i++){
@@ -26,10 +26,10 @@ namespace thermostats{
                 }
             }
         }
-    }
+    };
 
-    namespace berendsen{
-        void set_velocity(Atoms& atoms){
+    struct berendsen{
+        static void set_velocity(Atoms& atoms){
             double velScale;
             double couplingPara = 100.0;
             double inT = get_temperature(atoms);
@@ -39,5 +39,5 @@ namespace thermostats{
                 atoms[i]->vel = velScale * atoms[i]->vel;
             }
         }
-    }
+    };
 }
