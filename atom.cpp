@@ -253,5 +253,5 @@ void Atom::remove_overlaps(Atom **atoms){
         }
         i++;
     }
-    printf("\n\033[32mEquilibration done\033[30m\n\n");
+    printf("\n\033[32mEquilibration \n\n");
 }

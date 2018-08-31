@@ -1,6 +1,6 @@
 nop 100
 boxdim 11.3
-iter 1000000
+iter 10000
 temperature 300
 nof 1000
 timestep 0.002

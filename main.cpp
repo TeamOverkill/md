@@ -28,11 +28,11 @@ int main(int argc, char *argv[]){
     /*!< Initialize atom variables */
     Atom::initialize(atoms);
     Atom::remove_overlaps(atoms);
-
     time_t start = time(NULL);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
+    
     mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &potentials::LJ::forces,
                  &potentials::LJ::energy, atoms, frames);
 
