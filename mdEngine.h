@@ -2,7 +2,7 @@
 
 #include "base.h"
 #include "atoms.h"
-
+#include "analysis.h"
 /*!
  *  \addtogroup Main_modules
  *  @{
@@ -37,7 +37,11 @@ namespace mdEngine {
         Frame::frameCounter = 0;
         double cummulativeTemp = 0;
         double cummulativePress = 0;
-        
+
+        Analysis* histo = new Density(100, "histo_1.txt");
+
+        histo->sample(atoms, 0);
+
         FILE *f = fopen("output.gro", "w");
 
         /* Main MD loop */

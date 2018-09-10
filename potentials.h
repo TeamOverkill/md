@@ -56,11 +56,9 @@ namespace potentials{
 
             Eigen::Vector3d dr;
 
-
             for (int i = 0; i < atoms.numOfAtoms; i++) {
                 atoms[i]->force.setZero();
             }
-
 
             for (int i = 0; i < atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < atoms.numOfAtoms; j++) {
@@ -125,9 +123,11 @@ namespace potentials{
                     atoms[i]->force += fr * dr;                         // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     atoms[j]->force -= fr * dr;                         // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     atoms.forceMatrix(i, j) = (fr * dr).norm();
+                    //atoms[i]->force += wall_force(atoms[i]);
                 }
             }
         }
+
         inline static double energy(Atoms& atoms) {
             double distance;
             double energy = 0;
@@ -169,6 +169,31 @@ namespace potentials{
             energy += 2.0 * b / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
 
             return magneticConstant * energy;
+        }
+
+        inline static Eigen::Vector3d wall_force(Atom *atom){
+            double magneticConstant = 1.0; //magnetic potential per nm^2
+            double energy = 0;
+            double b = Base::boxDim/2;
+            double x = atom->pos[0] - Base::boxDim;
+            double y = atom->pos[1] - Base::boxDim;
+            double diffX = b + x;
+            double diffY = b + y;
+            Eigen::Vector3d force;
+
+            //Bottom wall
+            force[1] = 1 / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
+            //Left wall
+            force[0] = 1 / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
+
+            diffX = b - x;
+            diffY = b - y;
+            //Top wall
+            force[1] = -1 / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
+            //Right wall
+            force[0] = -1 / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
+
+            return force;
         }
     };
 }

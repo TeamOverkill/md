@@ -30,8 +30,7 @@ int main(int argc, char *argv[]){
 
     /*!< Initialize atom variables */
     atoms.initialize(parser.numOfAtoms);
-    printf("asdasd\n");
-    atoms.remove_overlaps();
+    //atoms.remove_overlaps();
 
     time_t start = time(NULL);
 
@@ -40,8 +39,8 @@ int main(int argc, char *argv[]){
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
     
-    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &potentials::LJ::forces,
-                 &potentials::LJ::energy, atoms, frames, &pm);
+    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &potentials::magnetic::forces,
+                 &potentials::magnetic::energy, atoms, frames, &pm);
 
     printf("Time: %lu\n", time(NULL) - start);
     Frame::save_to_file(frames, atoms.numOfAtoms);                /*!< Save frames to trajectory file */

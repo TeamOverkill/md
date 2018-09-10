@@ -24,6 +24,8 @@ void Atom::set_mb_velocity(){
     this->vel[2] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / this->mass) * 0.001;
 
     this->vel = this->vel.cwiseProduct(Base::dimensionality);
+
+    this->vel.setZero();
 }
 
 /*! Calculates the direct distance between two atoms:
@@ -144,7 +146,7 @@ void Atom::random_move(double stepSize){
     this->pos[0] += (ran2::get_random()*2.0 - 1.0) * stepSize;
     this->pos[1] += (ran2::get_random()*2.0 - 1.0) * stepSize;
     this->pos[2] += (ran2::get_random()*2.0 - 1.0) * stepSize;
-
+    this->pos = this->pos.cwiseProduct(Base::dimensionality);
     this->pbc();
 }
 

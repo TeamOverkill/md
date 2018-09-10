@@ -11,10 +11,16 @@ void Atoms::initialize(int numOfAtoms){
         this->atoms[i]->index = i;
         this->atoms[i]->mass = 28.0134; //[dalton]
         this->atoms[i]->radius = 1.0;
+        if(i % 2 == 0){
+            this->atoms[i]->q = 1.0;
+        }
+        else{
+            this->atoms[i]->q = -1.0;
+        }
 
-        this->atoms[i]->pos[0] = ran2::get_random() * Base::boxDim;
-        this->atoms[i]->pos[1] = ran2::get_random() * Base::boxDim;
-        this->atoms[i]->pos[2] = ran2::get_random() * Base::boxDim;
+        this->atoms[i]->pos[0] = ran2::get_random() * (Base::boxDim - 1) + 1;
+        this->atoms[i]->pos[1] = ran2::get_random() * (Base::boxDim - 1) + 1;
+        this->atoms[i]->pos[2] = ran2::get_random() * (Base::boxDim - 1) + 1;
 
         this->atoms[i]->pos = this->atoms[i]->pos.cwiseProduct(Base::dimensionality);
 
@@ -101,6 +107,7 @@ void Atoms::remove_overlaps(){
 
         if(this->atoms[p]->pos[2] < 0 || this->atoms[p]->pos[1] < 0 || this->atoms[p]->pos[0] < 0){
             printf("Failed to equilibrate system, a particle was found outside the box...\n");
+            std::cout << this->atoms[p]->pos << std::endl;
             exit(1);
         }
 
