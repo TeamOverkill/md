@@ -37,6 +37,39 @@ namespace potentials{
             atoms[0]->force = force * forceDir.normalized();    // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
         }
     };
+
+
+    struct coulomb{
+
+    public:
+        inline static double energy(Atoms& atoms){
+            double energy = 0;
+            for(int i = 0; i < atoms.numOfAtoms; i++){
+                for(int j = i + 1; j < atoms.numOfAtoms; j++) {
+                    energy += atoms[i]->q * atoms[j]->q / (atoms[i]->pos - atoms[j]->pos).norm();
+                }
+            }
+            //energy *= bjerrum;
+
+            return energy;
+        }
+
+        inline static void forces(Atoms& atoms){
+            double magnitude = 0;
+            double distance = 0;
+            for(int i = 0; i < atoms.numOfAtoms; i++){
+                for(int j = i + 1; j < atoms.numOfAtoms; j++) {
+                    distance = (atoms[i]->pos - atoms[j]->pos).norm();
+                    distance *= distance * distance;
+                    magnitude = atoms[i]->q * atoms[j]->q / distance;
+                    atoms[i]->force += magnitude * (atoms[i]->pos - atoms[j]->pos);
+                    atoms[j]->force += magnitude * (atoms[i]->pos - atoms[j]->pos);
+                }
+            }
+        }
+    };
+
+
     /*!
      *  \addtogroup Lennard-Jones
      *  @{
@@ -103,6 +136,7 @@ namespace potentials{
             return 4 * epsilon * energy;    // [kJ/mol]
         }
     };
+
 
     struct magnetic {
     private:

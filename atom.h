@@ -23,7 +23,7 @@ class Atom{
         Eigen::Vector3d vel;        /*!< Velocities */
         Eigen::Vector3d oldForce;   /*!< Force from previous iteration */
         Eigen::Vector3d force;      /*!< Current force */
-        int q;
+        double q;
         int index;
         double radius, mass;
 
