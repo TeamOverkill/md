@@ -21,14 +21,7 @@ class Frame{
 
     public:
         Frame(int numOfAtoms);
-        static int fStep;                           /*!< Save a frame each fStep iteration */
         void save_state(Atoms& atoms);              /*!< Save current state in a frame */
-        static void save_to_file(Frame **frames, int numOfAtoms);   /*!< Write all frames to a file */
-        static void initialize(int numberOfFrames); /*!< Initialize the frames */
-        static int totalFrames;
-        static int frameCounter;                    /*!< Counts the number of frames */
-
-    private:
         std::vector<std::vector < double > > state; /*!< Matrix which holds the position and velocities of all atoms (state of the system) */
 };
 /** @}*/

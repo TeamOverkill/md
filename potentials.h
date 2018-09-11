@@ -49,9 +49,8 @@ namespace potentials{
                     energy += atoms[i]->q * atoms[j]->q / (atoms[i]->pos - atoms[j]->pos).norm();
                 }
             }
-            //energy *= bjerrum;
 
-            return energy;
+            return energy * Base::lB * constants::NA;// * constants::KB;
         }
 
         inline static void forces(Atoms& atoms){
@@ -60,10 +59,10 @@ namespace potentials{
             for(int i = 0; i < atoms.numOfAtoms; i++){
                 for(int j = i + 1; j < atoms.numOfAtoms; j++) {
                     distance = (atoms[i]->pos - atoms[j]->pos).norm();
-                    distance *= distance * distance;
+                    distance *= distance;
                     magnitude = atoms[i]->q * atoms[j]->q / distance;
-                    atoms[i]->force += magnitude * (atoms[i]->pos - atoms[j]->pos);
-                    atoms[j]->force += magnitude * (atoms[i]->pos - atoms[j]->pos);
+                    atoms[i]->force += magnitude * (atoms[i]->pos - atoms[j]->pos) * Base::lB;
+                    atoms[j]->force += magnitude * (atoms[j]->pos - atoms[i]->pos) * Base::lB;
                 }
             }
         }

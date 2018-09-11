@@ -8,6 +8,7 @@ class Analysis{
     std::string name;
 
     virtual void sample(Atoms& atoms, int d) = 0;
+    virtual void save() = 0;
 };
 
 class Density : public Analysis{
