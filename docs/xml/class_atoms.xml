@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_atoms" kind="class" language="C++" prot="public">
+    <compoundname>Atoms</compoundname>
+    <includes refid="atoms_8h" local="no">atoms.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_atoms_1a6cf175e162b7c24bf98ffdee40e58edc" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_atom" kindref="compound">Atom</ref> * &gt;</type>
+        <definition>std::vector&lt;Atom*&gt; Atoms::atoms</definition>
+        <argsstring></argsstring>
+        <name>atoms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="10" column="1" bodyfile="atoms.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_atoms_1a539d10ca274094ce38a03ca4799af170" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Atoms::numOfAtoms</definition>
+        <argsstring></argsstring>
+        <name>numOfAtoms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="16" column="1" bodyfile="atoms.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_atoms_1ad7ee940c20b641d01afcc81cb37e7175" prot="public" static="no" mutable="no">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd Atoms::distances</definition>
+        <argsstring></argsstring>
+        <name>distances</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Triangular distance matrix containing all distances </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="17" column="1" bodyfile="atoms.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_atoms_1a5446ee504251468e30620643c7ab1226" prot="public" static="no" mutable="no">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd Atoms::forceMatrix</definition>
+        <argsstring></argsstring>
+        <name>forceMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Force matrix containing all forces </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="18" column="1" bodyfile="atoms.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_atoms_1a80a4efa8149d0e72cce977e010c032e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_atom" kindref="compound">Atom</ref> *</type>
+        <definition>Atom* Atoms::operator[]</definition>
+        <argsstring>(int i)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="13" column="1" bodyfile="atoms.h" bodystart="13" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atoms_1a8ba97bb006acee207478d77419e7d833" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Atoms::set_forces_zero</definition>
+        <argsstring>()</argsstring>
+        <name>set_forces_zero</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="20" column="1" bodyfile="atoms.cpp" bodystart="48" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atoms_1a5be0d727fa9ef4e5d2a616dcaee24289" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Atoms::update_distances</definition>
+        <argsstring>()</argsstring>
+        <name>update_distances</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Updates the triangluar matrix which holds all the distances calculated by distance() </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="21" column="1" bodyfile="atoms.cpp" bodystart="57" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atoms_1a7b4053d07bb17a1f69820d8c28534846" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Atoms::get_overlaps</definition>
+        <argsstring>()</argsstring>
+        <name>get_overlaps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="22" column="1" bodyfile="atoms.cpp" bodystart="68" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atoms_1a1414a0bfb6351396a7936f6142e4bb52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Atoms::initialize</definition>
+        <argsstring>(int numOfAtoms)</argsstring>
+        <name>initialize</name>
+        <param>
+          <type>int</type>
+          <declname>numOfAtoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets up initial conditions. </para>        </detaileddescription>
+        <inbodydescription>
+<para>Maxwell-Boltzmann velocity distribution</para><para>&lt; Initialize the distance matrix <linebreak/>
+ &lt; Initialize the force matrix </para>        </inbodydescription>
+        <location file="atoms.h" line="23" column="1" bodyfile="atoms.cpp" bodystart="5" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atoms_1ac478a601a4133cf7e7b3ea5b2bc99384" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Atoms::remove_overlaps</definition>
+        <argsstring>()</argsstring>
+        <name>remove_overlaps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="24" column="1" bodyfile="atoms.cpp" bodystart="92" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atoms_1a03882ecd88ad36c807c1e7d5dc89139b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Atoms::overlap</definition>
+        <argsstring>(Atom *a)</argsstring>
+        <name>overlap</name>
+        <param>
+          <type><ref refid="class_atom" kindref="compound">Atom</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="25" column="1" bodyfile="atoms.cpp" bodystart="80" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="class_atoms_1a9f3a5579401ac72c421eda55994e4142" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Atoms::read_frame</definition>
+        <argsstring>(std::string fileName)</argsstring>
+        <name>read_frame</name>
+        <param>
+          <type>std::string</type>
+          <declname>fileName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="atoms.h" line="26" column="1" bodyfile="atoms.cpp" bodystart="131" bodyend="160"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="atoms.h" line="8" column="1" bodyfile="atoms.h" bodystart="8" bodyend="27"/>
+    <listofallmembers>
+      <member refid="class_atoms_1a6cf175e162b7c24bf98ffdee40e58edc" prot="private" virt="non-virtual"><scope>Atoms</scope><name>atoms</name></member>
+      <member refid="class_atoms_1ad7ee940c20b641d01afcc81cb37e7175" prot="public" virt="non-virtual"><scope>Atoms</scope><name>distances</name></member>
+      <member refid="class_atoms_1a5446ee504251468e30620643c7ab1226" prot="public" virt="non-virtual"><scope>Atoms</scope><name>forceMatrix</name></member>
+      <member refid="class_atoms_1a7b4053d07bb17a1f69820d8c28534846" prot="public" virt="non-virtual"><scope>Atoms</scope><name>get_overlaps</name></member>
+      <member refid="class_atoms_1a1414a0bfb6351396a7936f6142e4bb52" prot="public" virt="non-virtual"><scope>Atoms</scope><name>initialize</name></member>
+      <member refid="class_atoms_1a539d10ca274094ce38a03ca4799af170" prot="public" virt="non-virtual"><scope>Atoms</scope><name>numOfAtoms</name></member>
+      <member refid="class_atoms_1a80a4efa8149d0e72cce977e010c032e0" prot="public" virt="non-virtual"><scope>Atoms</scope><name>operator[]</name></member>
+      <member refid="class_atoms_1a03882ecd88ad36c807c1e7d5dc89139b" prot="public" virt="non-virtual"><scope>Atoms</scope><name>overlap</name></member>
+      <member refid="class_atoms_1a9f3a5579401ac72c421eda55994e4142" prot="public" virt="non-virtual"><scope>Atoms</scope><name>read_frame</name></member>
+      <member refid="class_atoms_1ac478a601a4133cf7e7b3ea5b2bc99384" prot="public" virt="non-virtual"><scope>Atoms</scope><name>remove_overlaps</name></member>
+      <member refid="class_atoms_1a8ba97bb006acee207478d77419e7d833" prot="public" virt="non-virtual"><scope>Atoms</scope><name>set_forces_zero</name></member>
+      <member refid="class_atoms_1a5be0d727fa9ef4e5d2a616dcaee24289" prot="public" virt="non-virtual"><scope>Atoms</scope><name>update_distances</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

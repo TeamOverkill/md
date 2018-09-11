@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="barostats_8h" kind="file" language="C++">
+    <compoundname>barostats.h</compoundname>
+    <includedby refid="main_8cpp" local="yes">main.cpp</includedby>
+    <invincdepgraph>
+      <node id="73">
+        <label>barostats.h</label>
+        <link refid="barostats_8h"/>
+        <childnode refid="74" relation="include">
+        </childnode>
+      </node>
+      <node id="74">
+        <label>main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespacebarostats">barostats</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacebarostats" refkind="compound"><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacebarostats" kindref="compound">barostats</ref>{</highlight></codeline>
+<codeline lineno="8" refid="namespacebarostats_1ae50a42e8991d2fc65ef6b1aee207b22a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespacebarostats_1ae50a42e8991d2fc65ef6b1aee207b22a" kindref="member">get_pressure</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms){</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pressure<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b2<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>atoms.<ref refid="class_atoms_1a539d10ca274094ce38a03ca4799af170" kindref="member">numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>i<sp/>+<sp/>1;<sp/>j<sp/>&lt;<sp/>atoms.<ref refid="class_atoms_1a539d10ca274094ce38a03ca4799af170" kindref="member">numOfAtoms</ref>;<sp/>j++){</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2<sp/>+=<sp/>atoms.<ref refid="class_atoms_1a5446ee504251468e30620643c7ab1226" kindref="member">forceMatrix</ref>(i,<sp/>j)<sp/>*<sp/>atoms.<ref refid="class_atoms_1ad7ee940c20b641d01afcc81cb37e7175" kindref="member">distances</ref>(i,<sp/>j);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2<sp/>*=<sp/>1/(3<sp/>*<sp/><ref refid="class_base_1a28aaaddcc4be196bf5c90d50a87a0ab4" kindref="member">Base::volume</ref>);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>=<sp/>atoms.<ref refid="class_atoms_1a539d10ca274094ce38a03ca4799af170" kindref="member">numOfAtoms</ref><sp/>/<sp/><ref refid="class_base_1a28aaaddcc4be196bf5c90d50a87a0ab4" kindref="member">Base::volume</ref><sp/>*<sp/><ref refid="namespaceconstants_1a49e1085ba67fdde84844c8fe12dc12e8" kindref="member">constants::K_CORRECT</ref><sp/>*<sp/>300<sp/>+<sp/>b2;<sp/><sp/></highlight><highlight class="comment">//[dalton<sp/>/<sp/>(ps^2<sp/>*<sp/>nm)]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>*=<sp/>1.66053904<sp/>*<sp/>1e-27;<sp/></highlight><highlight class="comment">//dalton<sp/>to<sp/>kg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>*=<sp/>1e24;<sp/></highlight><highlight class="comment">//ps^2<sp/>to<sp/>s^2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>*=<sp/>1e9;<sp/></highlight><highlight class="comment">//nm<sp/>to<sp/>m</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pressure<sp/>*=<sp/>1e-5;<sp/></highlight><highlight class="comment">//Pa<sp/>to<sp/>bar</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pressure;<sp/></highlight><highlight class="comment">//[bar]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="barostats.h"/>
+  </compounddef>
+</doxygen>

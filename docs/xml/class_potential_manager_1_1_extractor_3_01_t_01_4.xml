@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_potential_manager_1_1_extractor_3_01_t_01_4" kind="class" language="C++" prot="public">
+    <compoundname>PotentialManager::Extractor&lt; T &gt;</compoundname>
+    <includes refid="potentialmanager_8h" local="no">potentialmanager.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_potential_manager_1_1_extractor_3_01_t_01_4_1ac5cea43fcfd542799c35c83e2dec4511" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double PotentialManager&lt; Policies &gt;::Extractor&lt; T &gt;::energies</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>energies</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentialmanager.h" line="26" column="1" bodyfile="potentialmanager.h" bodystart="26" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="class_potential_manager_1_1_extractor_3_01_t_01_4_1a649f74c4ec4bfb4500bbd6ebd942a67c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PotentialManager&lt; Policies &gt;::Extractor&lt; T &gt;::forces</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>forces</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentialmanager.h" line="29" column="1" bodyfile="potentialmanager.h" bodystart="29" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="potentialmanager.h" line="24" column="1" bodyfile="potentialmanager.h" bodystart="24" bodyend="32"/>
+    <listofallmembers>
+      <member refid="class_potential_manager_1_1_extractor_3_01_t_01_4_1ac5cea43fcfd542799c35c83e2dec4511" prot="public" virt="non-virtual"><scope>PotentialManager::Extractor&lt; T &gt;</scope><name>energies</name></member>
+      <member refid="class_potential_manager_1_1_extractor_3_01_t_01_4_1a649f74c4ec4bfb4500bbd6ebd942a67c" prot="public" virt="non-virtual"><scope>PotentialManager::Extractor&lt; T &gt;</scope><name>forces</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

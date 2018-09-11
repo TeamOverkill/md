@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_frames" kind="class" language="C++" prot="public">
+    <compoundname>Frames</compoundname>
+    <includes refid="frames_8h" local="no">frames.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_frames_1a3de20c1f14e98b02d29c10cf964bdd24" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_frame" kindref="compound">Frame</ref> * &gt;</type>
+        <definition>std::vector&lt;Frame*&gt; Frames::frames</definition>
+        <argsstring></argsstring>
+        <name>frames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="frames.h" line="8" column="1" bodyfile="frames.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_frames_1a7f1a57ce12c1017224c30ab4e105457a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Frames::totalFrames</definition>
+        <argsstring></argsstring>
+        <name>totalFrames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="frames.h" line="11" column="1" bodyfile="frames.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_frames_1af5b20515a0c19afd2bef9d8182770160" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Frames::frameCounter</definition>
+        <argsstring></argsstring>
+        <name>frameCounter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Counts the number of frames </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="frames.h" line="12" column="1" bodyfile="frames.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_frames_1a84b88b4d8b2f4a1e47fba543565d75bf" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Frames::fStep</definition>
+        <argsstring></argsstring>
+        <name>fStep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Save a frame each fStep iteration </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="frames.h" line="13" column="1" bodyfile="frames.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_frames_1af39796f08cdc5d83eee0ecb287d9d3ae" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Frames::saveFreq</definition>
+        <argsstring></argsstring>
+        <name>saveFreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of frames hold in memory before written to file </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="frames.h" line="14" column="1" bodyfile="frames.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_frames_1a29694b20ea5891c342de26c0543d78eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Frames::Frames</definition>
+        <argsstring>(int numOfFrames, int numOfAtoms, int saveFreq)</argsstring>
+        <name>Frames</name>
+        <param>
+          <type>int</type>
+          <declname>numOfFrames</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numOfAtoms</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>saveFreq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="frames.h" line="16" column="1" bodyfile="frames.h" bodystart="16" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_frames_1a3c34fa704de2fc5804f4b53b7f387c86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_frame" kindref="compound">Frame</ref> *</type>
+        <definition>Frame* Frames::operator[]</definition>
+        <argsstring>(int i)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="frames.h" line="28" column="1" bodyfile="frames.h" bodystart="28" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_frames_1ab84e3d3c918b5f6c95cdcb76ab1aeba1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Frames::save_to_file</definition>
+        <argsstring>(int numOfAtoms)</argsstring>
+        <name>save_to_file</name>
+        <param>
+          <type>int</type>
+          <declname>numOfAtoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="frames.h" line="33" column="1" bodyfile="frames.h" bodystart="33" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="frames.h" line="5" column="1" bodyfile="frames.h" bodystart="5" bodyend="55"/>
+    <listofallmembers>
+      <member refid="class_frames_1af5b20515a0c19afd2bef9d8182770160" prot="public" virt="non-virtual"><scope>Frames</scope><name>frameCounter</name></member>
+      <member refid="class_frames_1a3de20c1f14e98b02d29c10cf964bdd24" prot="private" virt="non-virtual"><scope>Frames</scope><name>frames</name></member>
+      <member refid="class_frames_1a29694b20ea5891c342de26c0543d78eb" prot="public" virt="non-virtual"><scope>Frames</scope><name>Frames</name></member>
+      <member refid="class_frames_1a84b88b4d8b2f4a1e47fba543565d75bf" prot="public" virt="non-virtual"><scope>Frames</scope><name>fStep</name></member>
+      <member refid="class_frames_1a3c34fa704de2fc5804f4b53b7f387c86" prot="public" virt="non-virtual"><scope>Frames</scope><name>operator[]</name></member>
+      <member refid="class_frames_1ab84e3d3c918b5f6c95cdcb76ab1aeba1" prot="public" virt="non-virtual"><scope>Frames</scope><name>save_to_file</name></member>
+      <member refid="class_frames_1af39796f08cdc5d83eee0ecb287d9d3ae" prot="public" virt="non-virtual"><scope>Frames</scope><name>saveFreq</name></member>
+      <member refid="class_frames_1a7f1a57ce12c1017224c30ab4e105457a" prot="public" virt="non-virtual"><scope>Frames</scope><name>totalFrames</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

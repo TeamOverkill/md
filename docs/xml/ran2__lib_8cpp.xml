@@ -7,110 +7,142 @@
     <includes local="no">stdio.h</includes>
     <includedby refid="base_8h" local="yes">base.h</includedby>
     <incdepgraph>
-      <node id="162">
+      <node id="281">
         <label>stdlib.h</label>
       </node>
-      <node id="160">
+      <node id="279">
         <label>ran2_lib.cpp</label>
         <link refid="ran2__lib_8cpp"/>
-        <childnode refid="161" relation="include">
+        <childnode refid="280" relation="include">
         </childnode>
-        <childnode refid="162" relation="include">
+        <childnode refid="281" relation="include">
         </childnode>
-        <childnode refid="163" relation="include">
+        <childnode refid="282" relation="include">
         </childnode>
       </node>
-      <node id="161">
+      <node id="280">
         <label>time.h</label>
       </node>
-      <node id="163">
+      <node id="282">
         <label>stdio.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="173">
-        <label>energy.h</label>
-        <link refid="energy_8h"/>
-        <childnode refid="170" relation="include">
-        </childnode>
-      </node>
-      <node id="167">
+      <node id="286">
         <label>atom.cpp</label>
         <link refid="atom_8cpp"/>
       </node>
-      <node id="174">
+      <node id="293">
         <label>mdEngine.h</label>
         <link refid="md_engine_8h"/>
-        <childnode refid="170" relation="include">
+        <childnode refid="292" relation="include">
         </childnode>
       </node>
-      <node id="171">
+      <node id="297">
+        <label>potentials.h</label>
+        <link refid="potentials_8h"/>
+        <childnode refid="292" relation="include">
+        </childnode>
+      </node>
+      <node id="294">
         <label>integrators.h</label>
         <link refid="integrators_8h"/>
-        <childnode refid="170" relation="include">
+        <childnode refid="292" relation="include">
         </childnode>
       </node>
-      <node id="172">
+      <node id="288">
+        <label>atoms.cpp</label>
+        <link refid="atoms_8cpp"/>
+      </node>
+      <node id="287">
+        <label>atoms.h</label>
+        <link refid="atoms_8h"/>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="289" relation="include">
+        </childnode>
+        <childnode refid="294" relation="include">
+        </childnode>
+        <childnode refid="293" relation="include">
+        </childnode>
+        <childnode refid="292" relation="include">
+        </childnode>
+        <childnode refid="295" relation="include">
+        </childnode>
+      </node>
+      <node id="296">
         <label>base.cpp</label>
         <link refid="base_8cpp"/>
       </node>
-      <node id="169">
+      <node id="295">
+        <label>potentialmanager.h</label>
+        <link refid="potentialmanager_8h"/>
+        <childnode refid="292" relation="include">
+        </childnode>
+      </node>
+      <node id="290">
         <label>frame.cpp</label>
         <link refid="frame_8cpp"/>
       </node>
-      <node id="164">
+      <node id="291">
+        <label>frames.h</label>
+        <link refid="frames_8h"/>
+        <childnode refid="292" relation="include">
+        </childnode>
+        <childnode refid="293" relation="include">
+        </childnode>
+      </node>
+      <node id="283">
         <label>ran2_lib.cpp</label>
         <link refid="ran2__lib_8cpp"/>
-        <childnode refid="165" relation="include">
+        <childnode refid="284" relation="include">
         </childnode>
       </node>
-      <node id="175">
+      <node id="298">
         <label>parser.h</label>
         <link refid="parser_8h"/>
-        <childnode refid="170" relation="include">
+        <childnode refid="292" relation="include">
         </childnode>
       </node>
-      <node id="165">
+      <node id="284">
         <label>base.h</label>
         <link refid="base_8h"/>
-        <childnode refid="166" relation="include">
+        <childnode refid="285" relation="include">
         </childnode>
-        <childnode refid="172" relation="include">
+        <childnode refid="296" relation="include">
         </childnode>
-        <childnode refid="173" relation="include">
+        <childnode refid="289" relation="include">
         </childnode>
-        <childnode refid="168" relation="include">
+        <childnode refid="294" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
+        <childnode refid="297" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="292" relation="include">
         </childnode>
-        <childnode refid="174" relation="include">
+        <childnode refid="293" relation="include">
         </childnode>
-        <childnode refid="175" relation="include">
+        <childnode refid="298" relation="include">
         </childnode>
       </node>
-      <node id="168">
+      <node id="289">
         <label>frame.h</label>
         <link refid="frame_8h"/>
-        <childnode refid="169" relation="include">
+        <childnode refid="290" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="291" relation="include">
         </childnode>
       </node>
-      <node id="166">
+      <node id="285">
         <label>atom.h</label>
         <link refid="atom_8h"/>
-        <childnode refid="167" relation="include">
+        <childnode refid="286" relation="include">
         </childnode>
-        <childnode refid="168" relation="include">
+        <childnode refid="287" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
-        </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="292" relation="include">
         </childnode>
       </node>
-      <node id="170">
+      <node id="292">
         <label>main.cpp</label>
         <link refid="main_8cpp"/>
       </node>

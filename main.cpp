@@ -19,19 +19,19 @@ int main(int argc, char *argv[]){
     /*!< Initialize atom variables */
     Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
-    //atoms.remove_overlaps();
+    atoms.remove_overlaps();
 
     /*!< Initialize Frames */
     Frames frames(parser.numberOfFrames, parser.numOfAtoms, parser.saveFreq);
 
     time_t start = time(NULL);
 
-    PotentialManager<potentials::LJ> pm;
+    /*!< Create potential manager object */
+    PotentialManager<potentials::LJRep, potentials::coulomb> pm;
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &potentials::LJ::forces,
-                 &potentials::LJ::energy, atoms, frames, &pm);
+    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, atoms, frames, &pm);
 
     printf("Simulation took: %lu seconds.\n", time(NULL) - start);
 

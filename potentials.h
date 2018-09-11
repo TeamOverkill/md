@@ -2,7 +2,7 @@
 
 #include "base.h"
 /*!
- *  \addtogroup Energy
+ *  \addtogroup Potentials
  *  @{
  */
 
@@ -13,6 +13,8 @@ namespace potentials{
     /*!
      *  \addtogroup Harmonic
      *  @{
+    */
+    /*! One dimensional harmonic potential
     */
     struct harmonic{
     private:
@@ -33,13 +35,20 @@ namespace potentials{
             double force = 0;
             Eigen::Vector3d forceDir;
             forceDir << 1, 0, 0;
-            force = springConstant * (25 - atoms[0]->pos[0]);   // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
-            atoms[0]->force = force * forceDir.normalized();    // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
+            force = springConstant * (25 - atoms[0]->pos[0]);   // [(kJ / (nm * mol)] = [dalton * nm/ps^2]
+            atoms[0]->force += force * forceDir.normalized();    // [(kJ / (nm * mol)] = [dalton * nm/ps^2]
         }
     };
 
-
+    /*!
+     *  \addtogroup Coulomb
+     *  @{
+    */
+    /*! Coulomb potential
+    */
     struct coulomb{
+    private:
+        static constexpr double cFactor = 138935.4299040527746429;  //[kJ * nm * mol^-1]
 
     public:
         inline static double energy(Atoms& atoms){
@@ -50,7 +59,7 @@ namespace potentials{
                 }
             }
 
-            return energy * Base::lB * constants::NA;// * constants::KB;
+            return energy * cFactor;
         }
 
         inline static void forces(Atoms& atoms){
@@ -59,24 +68,27 @@ namespace potentials{
             for(int i = 0; i < atoms.numOfAtoms; i++){
                 for(int j = i + 1; j < atoms.numOfAtoms; j++) {
                     distance = (atoms[i]->pos - atoms[j]->pos).norm();
-                    distance *= distance;
-                    magnitude = atoms[i]->q * atoms[j]->q / distance;
-                    atoms[i]->force += magnitude * (atoms[i]->pos - atoms[j]->pos) * Base::lB;
-                    atoms[j]->force += magnitude * (atoms[j]->pos - atoms[i]->pos) * Base::lB;
+                    distance *= distance * distance;
+                    magnitude = atoms[i]->q * atoms[j]->q / distance * cFactor;
+                    atoms[i]->force += magnitude * (atoms[i]->pos - atoms[j]->pos);
+                    atoms[j]->force -= magnitude * (atoms[i]->pos - atoms[j]->pos);
                 }
             }
         }
     };
 
-
     /*!
-     *  \addtogroup Lennard-Jones
+     *  \addtogroup LJRep
      *  @{
     */
-    struct LJ {
+
+    /*! Repulsive part of the Lennard Jones potential
+    */
+    struct LJRep{
+
     private:
-            static constexpr double epsilon = 1.5;  //![kJ/mol] LJ parameter epsilon
-            static constexpr double sigma = 1;      //![nm] LJ parameter sigma
+        static constexpr double epsilon = 1.5;  //![kJ/mol] LJ parameter epsilon
+        static constexpr double sigma = 1.0;      //![nm] LJ parameter sigma
     public:
 
 
@@ -88,9 +100,73 @@ namespace potentials{
 
             Eigen::Vector3d dr;
 
-            for (int i = 0; i < atoms.numOfAtoms; i++) {
+            /*for (int i = 0; i < atoms.numOfAtoms; i++) {
                 atoms[i]->force.setZero();
+            }*/
+
+            for (int i = 0; i < atoms.numOfAtoms; i++) {
+                for (int j = i + 1; j < atoms.numOfAtoms; j++) {
+                    dr = atoms[i]->pos - atoms[j]->pos;                 // [nm]
+                    double r2 = dr.dot(dr);                             // [nm^2]
+                    double fr2 = sigma * sigma / r2;                    // unitless
+                    double fr6 = fr2 * fr2 * fr2;                       // unitless
+                    double fr = 48 * epsilon * fr6 * fr6 / r2;  // [kJ/(nm^2*mol)]
+
+                    atoms[i]->force += fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
+                    atoms[j]->force -= fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
+                    atoms.forceMatrix(i, j) = (fr * dr).norm();
+                }
             }
+        }
+
+        inline static double energy(Atoms& atoms) {
+            /*!
+            * Calculate the energy using a Lennard-Jones potential
+            */
+
+            double distance;
+            double energy = 0;
+            Eigen::Vector3d dr;
+
+            for (int i = 0; i < atoms.numOfAtoms; i++) {
+                for (int j = i + 1; j < atoms.numOfAtoms; j++) {
+                    dr = atoms[i]->pos - atoms[j]->pos;     // [nm]
+                    distance = dr.norm();                   // [nm]
+                    double fr = sigma / distance;           // unitless
+                    double fr2 = fr * fr;                   // unitless
+                    double fr6 = fr2 * fr2 * fr2;           // unitless
+                    energy += fr6 * fr6;              // unitless
+
+                }
+            }
+            return 4 * epsilon * energy;    // [kJ/mol]
+        }
+    };
+
+    /*!
+     *  \addtogroup Lennard-Jones
+     *  @{
+    */
+    /*! The Lennard-Jones (LJ) potential
+    */
+    struct LJ {
+    private:
+            static constexpr double epsilon = 1.5;  //[kJ/mol] LJ parameter epsilon
+            static constexpr double sigma = 1.0;      //[nm] LJ parameter sigma
+    public:
+
+        /*!
+        * Get the forces as given by the LJ potential
+        */
+        inline static void forces(Atoms& atoms) {
+
+
+
+            Eigen::Vector3d dr;
+
+            /*for (int i = 0; i < atoms.numOfAtoms; i++) {
+                atoms[i]->force.setZero();
+            }*/
 
             for (int i = 0; i < atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < atoms.numOfAtoms; j++) {
@@ -113,9 +189,6 @@ namespace potentials{
         \f]
         */
         inline static double energy(Atoms& atoms) {
-            /*!
-            * Calculate the energy using a Lennard-Jones potential
-            */
 
             double distance;
             double energy = 0;
@@ -136,7 +209,12 @@ namespace potentials{
         }
     };
 
-
+    /*!
+     *  \addtogroup magnetic
+     *  @{
+    */
+    /*! Magnetic potential
+    */
     struct magnetic {
     private:
         static constexpr double dipoleC = 0.001;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
@@ -144,9 +222,9 @@ namespace potentials{
         inline static void forces(Atoms& atoms) {
             Eigen::Vector3d dr;
 
-            for (int i = 0; i < atoms.numOfAtoms; i++) {
+            /*for (int i = 0; i < atoms.numOfAtoms; i++) {
                 atoms[i]->force.setZero();
-            }
+            }*/
 
             for (int i = 0; i < atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < atoms.numOfAtoms; j++) {

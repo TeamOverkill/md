@@ -3,23 +3,8 @@
   <compounddef id="class_frame" kind="class" language="C++" prot="public">
     <compoundname>Frame</compoundname>
     <includes refid="frame_8h" local="no">frame.h</includes>
-      <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="class_frame_1ae7615c7221ced614d59ce461deed3a5f" prot="public" static="yes" mutable="no">
-        <type>int</type>
-        <definition>int Frame::fStep</definition>
-        <argsstring></argsstring>
-        <name>fStep</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Save a frame each fStep iteration </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="frame.h" line="24" column="1" bodyfile="frame.h" bodystart="24" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_frame_1a623c130d550f3ac4800c23460fb059bb" prot="private" static="no" mutable="no">
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_frame_1a623c130d550f3ac4800c23460fb059bb" prot="public" static="no" mutable="no">
         <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
         <definition>std::vector&lt;std::vector &lt; double &gt; &gt; Frame::state</definition>
         <argsstring></argsstring>
@@ -30,45 +15,34 @@
 <para>Matrix which holds the position and velocities of all atoms (state of the system) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="frame.h" line="30" column="1" bodyfile="frame.h" bodystart="30" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="class_frame_1a713a115abb228c919e8ab3462b308bb2" prot="private" static="yes" mutable="no">
-        <type>int</type>
-        <definition>int Frame::frameCounter</definition>
-        <argsstring></argsstring>
-        <name>frameCounter</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Counts the number of frames </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="frame.h" line="31" column="1" bodyfile="frame.h" bodystart="31" bodyend="-1"/>
+        <location file="frame.h" line="25" column="1" bodyfile="frame.h" bodystart="25" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_frame_1ad2e5946cf41d4817e750500acf05d02b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_frame_1abda85597bd5159229d423cb7f5bab398" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>Frame::Frame</definition>
-        <argsstring>()</argsstring>
+        <argsstring>(int numOfAtoms)</argsstring>
         <name>Frame</name>
+        <param>
+          <type>int</type>
+          <declname>numOfAtoms</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="frame.h" line="23" column="1" bodyfile="frame.cpp" bodystart="5" bodyend="16"/>
+        <location file="frame.h" line="23" column="1" bodyfile="frame.cpp" bodystart="3" bodyend="12"/>
       </memberdef>
-      <memberdef kind="function" id="class_frame_1a03b0febb7a423f343a97f5b937ca74bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_frame_1ad764f38028be29ef6a4d7f894d40652d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void Frame::save_state</definition>
-        <argsstring>(Atom **atoms)</argsstring>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
         <name>save_state</name>
         <param>
-          <type><ref refid="class_atom" kindref="compound">Atom</ref> **</type>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
           <declname>atoms</declname>
         </param>
         <briefdescription>
@@ -77,58 +51,18 @@
 <para>Save current state in a frame </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="frame.h" line="25" column="1" bodyfile="frame.cpp" bodystart="23" bodyend="34"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_frame_1aa3523e2ec8247c6c5f2bb102d5016971" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Frame::save_to_file</definition>
-        <argsstring>(Frame **frames)</argsstring>
-        <name>save_to_file</name>
-        <param>
-          <type><ref refid="class_frame" kindref="compound">Frame</ref> **</type>
-          <declname>frames</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Write all frames to a file </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="frame.h" line="26" column="1" bodyfile="frame.cpp" bodystart="36" bodyend="53"/>
-      </memberdef>
-      <memberdef kind="function" id="class_frame_1a78558e230dba7e5bf57916d38af7536c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Frame::initialize</definition>
-        <argsstring>(int numberOfFrames)</argsstring>
-        <name>initialize</name>
-        <param>
-          <type>int</type>
-          <declname>numberOfFrames</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Initialize the frames </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="frame.h" line="27" column="1" bodyfile="frame.cpp" bodystart="18" bodyend="21"/>
+        <location file="frame.h" line="24" column="1" bodyfile="frame.cpp" bodystart="15" bodyend="25"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
 <para>An instance of the <ref refid="class_frame" kindref="compound">Frame</ref> class is created at each interval specified by the variable fStep. In each instance the phase space coordinate at the current time step is saved. All frames are then saved to a file which can be displayed as a trajectory in some visualization software. </para>    </detaileddescription>
-    <location file="frame.h" line="17" column="1" bodyfile="frame.h" bodystart="17" bodyend="32"/>
+    <location file="frame.h" line="17" column="1" bodyfile="frame.h" bodystart="17" bodyend="26"/>
     <listofallmembers>
-      <member refid="class_frame_1ad2e5946cf41d4817e750500acf05d02b" prot="public" virt="non-virtual"><scope>Frame</scope><name>Frame</name></member>
-      <member refid="class_frame_1a713a115abb228c919e8ab3462b308bb2" prot="private" virt="non-virtual"><scope>Frame</scope><name>frameCounter</name></member>
-      <member refid="class_frame_1ae7615c7221ced614d59ce461deed3a5f" prot="public" virt="non-virtual"><scope>Frame</scope><name>fStep</name></member>
-      <member refid="class_frame_1a78558e230dba7e5bf57916d38af7536c" prot="public" virt="non-virtual"><scope>Frame</scope><name>initialize</name></member>
-      <member refid="class_frame_1a03b0febb7a423f343a97f5b937ca74bb" prot="public" virt="non-virtual"><scope>Frame</scope><name>save_state</name></member>
-      <member refid="class_frame_1aa3523e2ec8247c6c5f2bb102d5016971" prot="public" virt="non-virtual"><scope>Frame</scope><name>save_to_file</name></member>
-      <member refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" prot="private" virt="non-virtual"><scope>Frame</scope><name>state</name></member>
+      <member refid="class_frame_1abda85597bd5159229d423cb7f5bab398" prot="public" virt="non-virtual"><scope>Frame</scope><name>Frame</name></member>
+      <member refid="class_frame_1ad764f38028be29ef6a4d7f894d40652d" prot="public" virt="non-virtual"><scope>Frame</scope><name>save_state</name></member>
+      <member refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" prot="public" virt="non-virtual"><scope>Frame</scope><name>state</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -45,6 +45,20 @@ void Atoms::initialize(int numOfAtoms){
     forceMatrix.resize(numOfAtoms, numOfAtoms);
 }
 
+void Atoms::set_forces_zero(){
+    for(int i = 0; i < this->numOfAtoms; i++){
+        this->atoms[i]->force.setZero();
+    }
+}
+
+double Atoms::kinetic_energy(){
+    double energy = 0;
+    for(int i = 0; i < this->numOfAtoms; i++){
+        energy += this->atoms[i]->mass * this->atoms[i]->vel.dot(this->atoms[i]->vel) * 0.5;
+    }
+    return energy;
+}
+
 
 /*! Updates the triangluar matrix which holds all the distances calculated by distance()
 */

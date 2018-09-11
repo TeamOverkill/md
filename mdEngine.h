@@ -29,10 +29,8 @@ namespace mdEngine {
       }
     \endcode
     */
-    template<typename F, typename I, typename E, typename P>
-    void run(I&& integrator_1, I&& integrator_2, F&& force_function, E&& energy_function, Atoms& atoms, Frames& frames,
-    P&& pm){
-        pm->get_energy(atoms);
+    template<typename I, typename P>
+    void run(I&& integrator_1, I&& integrator_2, Atoms& atoms, Frames& frames, P&& pm){
         double temperature;
         double pressure = 0;
         int samples = 0;
@@ -45,10 +43,11 @@ namespace mdEngine {
 
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
-            integrator_1(atoms);    /* First half step of integrator */
-            force_function(atoms);  /* Calculate new forces */
-            integrator_2(atoms);    /* Second half step of integrator */
-            thermostats::berendsen::set_velocity(atoms); /* Apply thermostat */
+            atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
+            integrator_1(atoms);                                        /* First half step of integrator */
+            pm->get_forces(atoms);                                      /* Calculate new forces */
+            integrator_2(atoms);                                        /* Second half step of integrator */
+            thermostats::berendsen::set_velocity(atoms);                /* Apply thermostat */
             temperature = thermostats::get_temperature(atoms);
             //pressure = barostats::get_pressure();
             cummulativeTemp += temperature;
@@ -56,13 +55,10 @@ namespace mdEngine {
             Base::temperatures[i] = temperature;
 
             if(i % frames.fStep == 0){
+                Base::kineticEnergies[samples] = atoms.kinetic_energy();
 
-                Base::kineticEnergies[samples] = 0;
-                for(int i = 0; i < atoms.numOfAtoms; i++){
-                    Base::kineticEnergies[samples] += atoms[i]->kinetic_energy();
-                }
                 //histo->sample(atoms, 0);
-                Base::potentialEnergies[samples] = energy_function(atoms);
+                Base::potentialEnergies[samples] = pm->get_energy(atoms);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
 
                 printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",

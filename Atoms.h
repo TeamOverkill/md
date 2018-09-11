@@ -17,6 +17,8 @@ public:
     Eigen::MatrixXd distances;   /*!< Triangular distance matrix containing all distances*/
     Eigen::MatrixXd forceMatrix; /*!< Force matrix containing all forces */
 
+    void set_forces_zero();
+    double kinetic_energy();
     void update_distances();
     int get_overlaps();
     void initialize(int numOfAtoms);

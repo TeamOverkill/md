@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="structpotentials_1_1_l_j" kind="struct" language="C++" prot="public">
+    <compoundname>potentials::LJ</compoundname>
+    <includes refid="potentials_8h" local="no">potentials.h</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="group__magnetic_1gaa700bba4cfee6bbb04fedc0e956bca7b" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::LJ::epsilon</definition>
+        <argsstring></argsstring>
+        <name>epsilon</name>
+        <initializer>= 1.5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="154" column="1" bodyfile="potentials.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__magnetic_1ga6a628455374754ee0353cade821afcaa" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::LJ::sigma</definition>
+        <argsstring></argsstring>
+        <name>sigma</name>
+        <initializer>= 1.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="155" column="1" bodyfile="potentials.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="group__magnetic_1ga6fb43617f39e8a80a5deb110572e7c84" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void potentials::LJ::forces</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>forces</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the forces as given by the <ref refid="structpotentials_1_1_l_j" kindref="compound">LJ</ref> potential </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="161" column="1" bodyfile="potentials.h" bodystart="161" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1ga7316fa3b17f6e65c1fe542e34113de98" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double potentials::LJ::energy</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>energy</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the energy using a Lennard-Jones potential which is given by <formula id="3">\[ U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right) \]</formula> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="191" column="1" bodyfile="potentials.h" bodystart="191" bodyend="209"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The Lennard-Jones (<ref refid="structpotentials_1_1_l_j" kindref="compound">LJ</ref>) potential </para>    </detaileddescription>
+    <location file="potentials.h" line="152" column="1" bodyfile="potentials.h" bodystart="152" bodyend="210"/>
+    <listofallmembers>
+      <member refid="group__magnetic_1ga7316fa3b17f6e65c1fe542e34113de98" prot="public" virt="non-virtual"><scope>potentials::LJ</scope><name>energy</name></member>
+      <member refid="group__magnetic_1gaa700bba4cfee6bbb04fedc0e956bca7b" prot="private" virt="non-virtual"><scope>potentials::LJ</scope><name>epsilon</name></member>
+      <member refid="group__magnetic_1ga6fb43617f39e8a80a5deb110572e7c84" prot="public" virt="non-virtual"><scope>potentials::LJ</scope><name>forces</name></member>
+      <member refid="group__magnetic_1ga6a628455374754ee0353cade821afcaa" prot="private" virt="non-virtual"><scope>potentials::LJ</scope><name>sigma</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

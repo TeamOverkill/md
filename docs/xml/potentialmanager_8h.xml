@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="potentialmanager_8h" kind="file" language="C++">
+    <compoundname>potentialmanager.h</compoundname>
+    <includes refid="atoms_8h" local="yes">atoms.h</includes>
+    <includedby refid="main_8cpp" local="yes">main.cpp</includedby>
+    <incdepgraph>
+      <node id="256">
+        <label>stdlib.h</label>
+      </node>
+      <node id="251">
+        <label>atoms.h</label>
+        <link refid="atoms_8h"/>
+        <childnode refid="252" relation="include">
+        </childnode>
+        <childnode refid="253" relation="include">
+        </childnode>
+        <childnode refid="262" relation="include">
+        </childnode>
+        <childnode refid="263" relation="include">
+        </childnode>
+      </node>
+      <node id="262">
+        <label>fstream</label>
+      </node>
+      <node id="250">
+        <label>potentialmanager.h</label>
+        <link refid="potentialmanager_8h"/>
+        <childnode refid="251" relation="include">
+        </childnode>
+      </node>
+      <node id="258">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="260">
+        <label>ran2_lib.cpp</label>
+        <link refid="ran2__lib_8cpp"/>
+        <childnode refid="261" relation="include">
+        </childnode>
+        <childnode refid="256" relation="include">
+        </childnode>
+        <childnode refid="255" relation="include">
+        </childnode>
+      </node>
+      <node id="252">
+        <label>vector</label>
+      </node>
+      <node id="263">
+        <label>sstream</label>
+      </node>
+      <node id="254">
+        <label>base.h</label>
+        <link refid="base_8h"/>
+        <childnode refid="255" relation="include">
+        </childnode>
+        <childnode refid="256" relation="include">
+        </childnode>
+        <childnode refid="257" relation="include">
+        </childnode>
+        <childnode refid="258" relation="include">
+        </childnode>
+        <childnode refid="259" relation="include">
+        </childnode>
+        <childnode refid="260" relation="include">
+        </childnode>
+      </node>
+      <node id="261">
+        <label>time.h</label>
+      </node>
+      <node id="257">
+        <label>iostream</label>
+      </node>
+      <node id="253">
+        <label>atom.h</label>
+        <link refid="atom_8h"/>
+        <childnode refid="254" relation="include">
+        </childnode>
+      </node>
+      <node id="255">
+        <label>stdio.h</label>
+      </node>
+      <node id="259">
+        <label>constants.h</label>
+        <link refid="constants_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="264">
+        <label>potentialmanager.h</label>
+        <link refid="potentialmanager_8h"/>
+        <childnode refid="265" relation="include">
+        </childnode>
+      </node>
+      <node id="265">
+        <label>main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_potential_manager" prot="public">PotentialManager</innerclass>
+    <innerclass refid="class_potential_manager_1_1_extractor" prot="public">PotentialManager::Extractor</innerclass>
+    <innerclass refid="class_potential_manager_1_1_extractor_3_01_t_01_4" prot="public">PotentialManager::Extractor&lt; T &gt;</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="atoms_8h" kindref="compound">atoms.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal">...<sp/>Policies&gt;</highlight></codeline>
+<codeline lineno="5" refid="class_potential_manager" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_potential_manager" kindref="compound">PotentialManager</ref>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal">...<sp/>Args&gt;</highlight></codeline>
+<codeline lineno="10" refid="class_potential_manager_1_1_extractor" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_potential_manager_1_1_extractor" kindref="compound">Extractor</ref>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="12" refid="class_potential_manager_1_1_extractor_1a817322857fe0b74fbdb5b77ad0185d9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_potential_manager_1_1_extractor_1a817322857fe0b74fbdb5b77ad0185d9d" kindref="member">energies</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms){</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>energy<sp/>=<sp/>T::energy(atoms);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>energy<sp/>+=<sp/><ref refid="class_potential_manager_1_1_extractor_1a817322857fe0b74fbdb5b77ad0185d9d" kindref="member">Extractor&lt;Args...&gt;::energies</ref>(atoms);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>energy;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17" refid="class_potential_manager_1_1_extractor_1a1ff4504ae81ca988ea4e327efaccde4a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_potential_manager_1_1_extractor_1a1ff4504ae81ca988ea4e327efaccde4a" kindref="member">forces</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms){</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T::forces(atoms);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_potential_manager_1_1_extractor_1a1ff4504ae81ca988ea4e327efaccde4a" kindref="member">Extractor&lt;Args...&gt;::forces</ref>(atoms);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="24" refid="class_potential_manager_1_1_extractor_3_01_t_01_4" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_potential_manager_1_1_extractor" kindref="compound">Extractor</ref>&lt;T&gt;{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26" refid="class_potential_manager_1_1_extractor_3_01_t_01_4_1ac5cea43fcfd542799c35c83e2dec4511" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_potential_manager_1_1_extractor_3_01_t_01_4_1ac5cea43fcfd542799c35c83e2dec4511" kindref="member">energies</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms){</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>T::energy(atoms);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29" refid="class_potential_manager_1_1_extractor_3_01_t_01_4_1a649f74c4ec4bfb4500bbd6ebd942a67c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_potential_manager_1_1_extractor_3_01_t_01_4_1a649f74c4ec4bfb4500bbd6ebd942a67c" kindref="member">forces</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms){</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T::forces(atoms);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="class_potential_manager_1a4d9d629e9ada394738d20093f334e2b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_potential_manager_1a4d9d629e9ada394738d20093f334e2b3" kindref="member">get_energy</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms){</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_potential_manager_1_1_extractor" kindref="compound">Extractor</ref>&lt;Policies...&gt;().energies(atoms);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37" refid="class_potential_manager_1a2ab435a12f88a372475d6ee9e0d1f68a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_potential_manager_1a2ab435a12f88a372475d6ee9e0d1f68a" kindref="member">get_forces</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms){</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_potential_manager_1_1_extractor" kindref="compound">Extractor</ref>&lt;Policies...&gt;().forces(atoms);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="potentialmanager.h"/>
+  </compounddef>
+</doxygen>

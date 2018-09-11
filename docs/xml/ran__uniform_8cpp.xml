@@ -5,18 +5,18 @@
     <includes local="no">stdio.h</includes>
     <includes local="no">math.h</includes>
     <incdepgraph>
-      <node id="176">
+      <node id="299">
         <label>ran_uniform.cpp</label>
         <link refid="ran__uniform_8cpp"/>
-        <childnode refid="177" relation="include">
+        <childnode refid="300" relation="include">
         </childnode>
-        <childnode refid="178" relation="include">
+        <childnode refid="301" relation="include">
         </childnode>
       </node>
-      <node id="178">
+      <node id="301">
         <label>math.h</label>
       </node>
-      <node id="177">
+      <node id="300">
         <label>stdio.h</label>
       </node>
     </incdepgraph>
@@ -379,13 +379,13 @@
 <codeline lineno="129"><highlight class="normal"></highlight></codeline>
 <codeline lineno="130" refid="ran__uniform_8h_1aa9e03ac5011bb8adf84226abe3d78676" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="ran__uniform_8cpp_1aa9e03ac5011bb8adf84226abe3d78676" kindref="member">RandomGaussianNumber</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="131"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ran1,<ref refid="classran2" kindref="compound">ran2</ref>,ransq;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ran1,<ref refid="ran2_8f_1a1e2dca16088e8b7513b1464f229dd4e8" kindref="member">ran2</ref>,ransq;</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"></highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="135"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>ran1=2.0*<ref refid="ran__uniform_8cpp_1a0ea6b6dc33781fd8081c77fc0a9091bf" kindref="member">RandomNumber</ref>()-1.0;</highlight></codeline>
 <codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classran2" kindref="compound">ran2</ref>=2.0*<ref refid="ran__uniform_8cpp_1a0ea6b6dc33781fd8081c77fc0a9091bf" kindref="member">RandomNumber</ref>()-1.0;</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>ransq=ran1*ran1+<ref refid="classran2" kindref="compound">ran2</ref>*<ref refid="classran2" kindref="compound">ran2</ref>;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>ransq=ran1*ran1+<ref refid="classran2" kindref="compound">ran2</ref>*<ref refid="ran2_8f_1a1e2dca16088e8b7513b1464f229dd4e8" kindref="member">ran2</ref>;</highlight></codeline>
 <codeline lineno="139"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">((ransq&gt;1.0)||(ransq&lt;0.0));</highlight></codeline>
 <codeline lineno="141"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ran1*sqrt(-2.0*log(ransq)/ransq);</highlight></codeline>

@@ -3,10 +3,51 @@
   <compounddef id="class_parser" kind="class" language="C++" prot="public">
     <compoundname>Parser</compoundname>
     <includes refid="parser_8h" local="no">parser.h</includes>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_parser_1abe8220a1eec0fc7969b09f8b572ff880" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_parser_1a919965f1f7f77af800ce12d6ed1a857e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Parser::numOfAtoms</definition>
+        <argsstring></argsstring>
+        <name>numOfAtoms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="parser.h" line="7" column="1" bodyfile="parser.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_parser_1ad8933f4c0bd3ea9d755da1d03888bf59" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Parser::numberOfFrames</definition>
+        <argsstring></argsstring>
+        <name>numberOfFrames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="parser.h" line="8" column="1" bodyfile="parser.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_parser_1a60debf2e7d96b5d93d1520b484082412" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Parser::saveFreq</definition>
+        <argsstring></argsstring>
+        <name>saveFreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="parser.h" line="9" column="1" bodyfile="parser.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_parser_1ad941a297e9f6abb39271090806a6be33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>static void Parser::parse</definition>
+        <definition>void Parser::parse</definition>
         <argsstring>()</argsstring>
         <name>parse</name>
         <briefdescription>
@@ -15,16 +56,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="parser.h" line="7" column="1" bodyfile="parser.h" bodystart="7" bodyend="35"/>
+        <location file="parser.h" line="11" column="1" bodyfile="parser.h" bodystart="11" bodyend="46"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="parser.h" line="4" column="1" bodyfile="parser.h" bodystart="4" bodyend="36"/>
+    <location file="parser.h" line="4" column="1" bodyfile="parser.h" bodystart="4" bodyend="47"/>
     <listofallmembers>
-      <member refid="class_parser_1abe8220a1eec0fc7969b09f8b572ff880" prot="public" virt="non-virtual"><scope>Parser</scope><name>parse</name></member>
+      <member refid="class_parser_1ad8933f4c0bd3ea9d755da1d03888bf59" prot="public" virt="non-virtual"><scope>Parser</scope><name>numberOfFrames</name></member>
+      <member refid="class_parser_1a919965f1f7f77af800ce12d6ed1a857e" prot="public" virt="non-virtual"><scope>Parser</scope><name>numOfAtoms</name></member>
+      <member refid="class_parser_1ad941a297e9f6abb39271090806a6be33" prot="public" virt="non-virtual"><scope>Parser</scope><name>parse</name></member>
+      <member refid="class_parser_1a60debf2e7d96b5d93d1520b484082412" prot="public" virt="non-virtual"><scope>Parser</scope><name>saveFreq</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

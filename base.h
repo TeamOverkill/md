@@ -22,7 +22,6 @@ public:
     static double *kineticEnergies;
     static double *totalEnergies;
     static double *temperatures;
-    static double lB;
     static Eigen::Vector3d dimensionality;  /*!< A vector which determines the translational degrees of freedom.
                                              * In each time step the position of all atoms is multiplied with this
                                              * vector. If the user specified parameter `dimensions` is set to 2, this

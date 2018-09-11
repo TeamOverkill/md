@@ -5,48 +5,18 @@
     <title>Main_modules</title>
     <innernamespace refid="namespacemd_engine">mdEngine</innernamespace>
       <sectiondef kind="func">
-      <memberdef kind="function" id="group___main__modules_1ga5f8cc3610166e26157ab48c1905bd2b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>double</type>
-        <definition>double mdEngine::get_temperature</definition>
-        <argsstring>(Atom **atoms)</argsstring>
-        <name>get_temperature</name>
-        <param>
-          <type><ref refid="class_atom" kindref="compound">Atom</ref> **</type>
-          <declname>atoms</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Calculate the temperature Based on the equipartition theorem where the temperature is given by <formula id="3">\[ T = \sum^{N-1}_{i=0}m_i * v_i^2 \]</formula> </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="mdEngine.h" line="22" column="1" bodyfile="mdEngine.h" bodystart="22" bodyend="30"/>
-      </memberdef>
-      <memberdef kind="function" id="group___main__modules_1ga43703c5bde3f0a0ffd916e8c030d5d33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>double</type>
-        <definition>double mdEngine::get_pressure</definition>
-        <argsstring>()</argsstring>
-        <name>get_pressure</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Calculate the pressure Based on the virial expansion <formula id="4">\[ P=\rho k_B T + \frac{1}{dV}\left&lt;\sum_{i=0}^{N-1}\sum_{j = i + 1}^{N-1} f(r_{ij})r_{ij}\right&gt; \]</formula> </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="mdEngine.h" line="38" column="1" bodyfile="mdEngine.h" bodystart="38" bodyend="55"/>
-      </memberdef>
-      <memberdef kind="function" id="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="group___main__modules_1ga36ce94f85240581e5d673010c94bcee7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename F</type>
+            <type>typename I</type>
           </param>
           <param>
-            <type>typename I</type>
+            <type>typename P</type>
           </param>
         </templateparamlist>
         <type>void</type>
         <definition>void mdEngine::run</definition>
-        <argsstring>(I &amp;&amp;integrator_1, I &amp;&amp;integrator_2, F &amp;&amp;force_function, Atom **atoms, Frame **frames)</argsstring>
+        <argsstring>(I &amp;&amp;integrator_1, I &amp;&amp;integrator_2, Atoms &amp;atoms, Frames &amp;frames, P &amp;&amp;pm)</argsstring>
         <name>run</name>
         <param>
           <type>I &amp;&amp;</type>
@@ -57,16 +27,16 @@
           <declname>integrator_2</declname>
         </param>
         <param>
-          <type>F &amp;&amp;</type>
-          <declname>force_function</declname>
-        </param>
-        <param>
-          <type><ref refid="class_atom" kindref="compound">Atom</ref> **</type>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
           <declname>atoms</declname>
         </param>
         <param>
-          <type><ref refid="class_frame" kindref="compound">Frame</ref> **</type>
+          <type><ref refid="class_frames" kindref="compound">Frames</ref> &amp;</type>
           <declname>frames</declname>
+        </param>
+        <param>
+          <type>P &amp;&amp;</type>
+          <declname>pm</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -81,7 +51,7 @@
 </programlisting> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="mdEngine.h" line="70" column="1" bodyfile="mdEngine.h" bodystart="70" bodyend="114"/>
+        <location file="mdEngine.h" line="33" column="1" bodyfile="mdEngine.h" bodystart="33" bodyend="84"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

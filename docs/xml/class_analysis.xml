@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_analysis" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Analysis</compoundname>
+    <derivedcompoundref refid="class_density" prot="public" virt="non-virtual">Density</derivedcompoundref>
+    <includes refid="analysis_8h" local="no">analysis.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_analysis_1a55b2094eed04469e3562cb0ab81b3148" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; Analysis::histo</definition>
+        <argsstring></argsstring>
+        <name>histo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="analysis.h" line="4" column="1" bodyfile="analysis.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_analysis_1a79317d83cd9fd7e435ca70f5ecea3726" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Analysis::numOfSamples</definition>
+        <argsstring></argsstring>
+        <name>numOfSamples</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="analysis.h" line="5" column="1" bodyfile="analysis.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_analysis_1aa02db3acac2ebd9c28b0d4e4c2c48d79" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Analysis::bins</definition>
+        <argsstring></argsstring>
+        <name>bins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="analysis.h" line="6" column="1" bodyfile="analysis.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_analysis_1a798b154590323d5a7eb0adffec1c240b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Analysis::binWidth</definition>
+        <argsstring></argsstring>
+        <name>binWidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="analysis.h" line="7" column="1" bodyfile="analysis.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_analysis_1a280e49026fd1c7480223f8cb7562628b" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string Analysis::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="analysis.h" line="8" column="1" bodyfile="analysis.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_analysis_1ac29144bc31b93aafb212ee70e88ce7a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Analysis::sample</definition>
+        <argsstring>(Atoms &amp;atoms, int d)=0</argsstring>
+        <name>sample</name>
+        <reimplementedby refid="class_density_1a55de07edcdf2995816af07bbbbead32c">sample</reimplementedby>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="analysis.h" line="10" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_analysis_1a75a3960bbe06316e320abc9ed8c79d90" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Analysis::save</definition>
+        <argsstring>()=0</argsstring>
+        <name>save</name>
+        <reimplementedby refid="class_density_1a3e05b87638282b9b4eef68ac655fe8bb">save</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="analysis.h" line="11" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="0">
+        <label>Analysis</label>
+        <link refid="class_analysis"/>
+      </node>
+      <node id="1">
+        <label>Density</label>
+        <link refid="class_density"/>
+        <childnode refid="0" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="analysis.h" line="1" column="1" bodyfile="analysis.h" bodystart="1" bodyend="12"/>
+    <listofallmembers>
+      <member refid="class_analysis_1aa02db3acac2ebd9c28b0d4e4c2c48d79" prot="public" virt="non-virtual"><scope>Analysis</scope><name>bins</name></member>
+      <member refid="class_analysis_1a798b154590323d5a7eb0adffec1c240b" prot="public" virt="non-virtual"><scope>Analysis</scope><name>binWidth</name></member>
+      <member refid="class_analysis_1a55b2094eed04469e3562cb0ab81b3148" prot="public" virt="non-virtual"><scope>Analysis</scope><name>histo</name></member>
+      <member refid="class_analysis_1a280e49026fd1c7480223f8cb7562628b" prot="public" virt="non-virtual"><scope>Analysis</scope><name>name</name></member>
+      <member refid="class_analysis_1a79317d83cd9fd7e435ca70f5ecea3726" prot="public" virt="non-virtual"><scope>Analysis</scope><name>numOfSamples</name></member>
+      <member refid="class_analysis_1ac29144bc31b93aafb212ee70e88ce7a5" prot="public" virt="pure-virtual"><scope>Analysis</scope><name>sample</name></member>
+      <member refid="class_analysis_1a75a3960bbe06316e320abc9ed8c79d90" prot="public" virt="pure-virtual"><scope>Analysis</scope><name>save</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

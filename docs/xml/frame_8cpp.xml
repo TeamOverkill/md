@@ -4,73 +4,91 @@
     <compoundname>frame.cpp</compoundname>
     <includes refid="frame_8h" local="yes">frame.h</includes>
     <incdepgraph>
-      <node id="83">
+      <node id="129">
         <label>stdlib.h</label>
       </node>
-      <node id="79">
+      <node id="136">
+        <label>atoms.h</label>
+        <link refid="atoms_8h"/>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+        <childnode refid="139" relation="include">
+        </childnode>
+      </node>
+      <node id="138">
+        <label>fstream</label>
+      </node>
+      <node id="125">
         <label>frame.cpp</label>
         <link refid="frame_8cpp"/>
-        <childnode refid="80" relation="include">
+        <childnode refid="126" relation="include">
         </childnode>
       </node>
-      <node id="85">
+      <node id="131">
         <label>Eigen/Dense</label>
       </node>
-      <node id="87">
+      <node id="133">
         <label>ran2_lib.cpp</label>
         <link refid="ran2__lib_8cpp"/>
-        <childnode refid="88" relation="include">
+        <childnode refid="134" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="129" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="128" relation="include">
         </childnode>
       </node>
-      <node id="89">
+      <node id="135">
         <label>vector</label>
       </node>
-      <node id="81">
+      <node id="139">
+        <label>sstream</label>
+      </node>
+      <node id="127">
         <label>base.h</label>
         <link refid="base_8h"/>
-        <childnode refid="82" relation="include">
+        <childnode refid="128" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="129" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="130" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
-        <childnode refid="86" relation="include">
+        <childnode refid="132" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="133" relation="include">
         </childnode>
       </node>
-      <node id="88">
+      <node id="134">
         <label>time.h</label>
       </node>
-      <node id="84">
+      <node id="130">
         <label>iostream</label>
       </node>
-      <node id="80">
+      <node id="126">
         <label>frame.h</label>
         <link refid="frame_8h"/>
-        <childnode refid="81" relation="include">
+        <childnode refid="127" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="135" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
       </node>
-      <node id="90">
+      <node id="137">
         <label>atom.h</label>
         <link refid="atom_8h"/>
-        <childnode refid="81" relation="include">
+        <childnode refid="127" relation="include">
         </childnode>
       </node>
-      <node id="82">
+      <node id="128">
         <label>stdio.h</label>
       </node>
-      <node id="86">
+      <node id="132">
         <label>constants.h</label>
         <link refid="constants_8h"/>
       </node>
@@ -81,58 +99,30 @@
     </detaileddescription>
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="frame_8h" kindref="compound">frame.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_frame_1ae7615c7221ced614d59ce461deed3a5f" kindref="member">Frame::fStep</ref>;</highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_frame_1a713a115abb228c919e8ab3462b308bb2" kindref="member">Frame::frameCounter</ref>;</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5" refid="class_frame_1ad2e5946cf41d4817e750500acf05d02b" refkind="member"><highlight class="normal"><ref refid="class_frame_1ad2e5946cf41d4817e750500acf05d02b" kindref="member">Frame::Frame</ref>(){</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="7"><highlight class="comment"><sp/><sp/><sp/><sp/>Constructor</highlight></codeline>
-<codeline lineno="8"><highlight class="comment"><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector<sp/>&lt;<sp/>double<sp/>&gt;<sp/>&gt;<sp/>temp(<ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>);</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp[i].resize(6);</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref><sp/>=<sp/>temp;</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_frame_1a713a115abb228c919e8ab3462b308bb2" kindref="member">frameCounter</ref>++;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Increase<sp/>frame<sp/>count</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18" refid="class_frame_1a78558e230dba7e5bf57916d38af7536c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_frame_1a78558e230dba7e5bf57916d38af7536c" kindref="member">Frame::initialize</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numberOfFrames){</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_frame_1a713a115abb228c919e8ab3462b308bb2" kindref="member">frameCounter</ref><sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//Counter<sp/>which<sp/>holds<sp/>the<sp/>number<sp/>of<sp/>frames<sp/>created</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_frame_1ae7615c7221ced614d59ce461deed3a5f" kindref="member">fStep</ref><sp/>=<sp/><ref refid="class_base_1a0505a956296600b0a06335e9bdc008f9" kindref="member">Base::iterations</ref>/numberOfFrames;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Save<sp/>frame<sp/>to<sp/>trajectory<sp/>every<sp/>fStep<sp/>iteration</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23" refid="class_frame_1a03b0febb7a423f343a97f5b937ca74bb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_frame_1a03b0febb7a423f343a97f5b937ca74bb" kindref="member">Frame::save_state</ref>(<ref refid="class_atom" kindref="compound">Atom</ref><sp/>**atoms){</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][0]<sp/>=<sp/>atoms[i]-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref>[0];</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][1]<sp/>=<sp/>atoms[i]-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref>[1];</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][2]<sp/>=<sp/>atoms[i]-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref>[2];</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][3]<sp/>=<sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>[0];</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][4]<sp/>=<sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>[1];</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][5]<sp/>=<sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>[2];</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="class_frame_1aa3523e2ec8247c6c5f2bb102d5016971" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_frame_1aa3523e2ec8247c6c5f2bb102d5016971" kindref="member">Frame::save_to_file</ref>(<ref refid="class_frame" kindref="compound">Frame</ref><sp/>**frames){</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*f<sp/>=<sp/>fopen(</highlight><highlight class="stringliteral">&quot;output.gro&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(f<sp/>==<sp/>NULL){</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Can&apos;t<sp/>open<sp/>file!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(1);</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/><ref refid="class_frame_1a713a115abb228c919e8ab3462b308bb2" kindref="member">Frame::frameCounter</ref>;<sp/>j++){</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(f,<sp/></highlight><highlight class="stringliteral">&quot;Generated<sp/>by<sp/>Slaymulator,<sp/>t=%i\n&quot;</highlight><highlight class="normal">,<sp/>j);</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(f,<sp/></highlight><highlight class="stringliteral">&quot;%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>);</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(f,<sp/></highlight><highlight class="stringliteral">&quot;%5d%-5s%5s%5d%8.3f%8.3f%8.3f%8.4f%8.4f%8.4f\n&quot;</highlight><highlight class="normal">,<sp/>1,<sp/></highlight><highlight class="stringliteral">&quot;ion&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;asd&quot;</highlight><highlight class="normal">,<sp/>i<sp/>+<sp/>1,<sp/>frames[j]-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][0],<sp/>frames[j]-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][1],<sp/>frames[j]-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][2],<sp/>\</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frames[j]-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][3],<sp/>frames[j]-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][4],<sp/>frames[j]-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][5]);</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(f,<sp/></highlight><highlight class="stringliteral">&quot;%lf<sp/><sp/><sp/><sp/>%lf<sp/><sp/><sp/><sp/><sp/>%lf\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref>,<sp/><ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref>,<sp/><ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref>);</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(f);</highlight></codeline>
-<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="class_frame_1abda85597bd5159229d423cb7f5bab398" refkind="member"><highlight class="normal"><ref refid="class_frame_1abda85597bd5159229d423cb7f5bab398" kindref="member">Frame::Frame</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numOfAtoms){</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/><sp/><sp/><sp/>Frame<sp/>constructor</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>.resize(numOfAtoms);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>numOfAtoms;<sp/>i++){</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i].resize(6);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="class_frame_1ad764f38028be29ef6a4d7f894d40652d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_frame_1ad764f38028be29ef6a4d7f894d40652d" kindref="member">Frame::save_state</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms){</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>atoms.<ref refid="class_atoms_1a539d10ca274094ce38a03ca4799af170" kindref="member">numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][0]<sp/>=<sp/>atoms[i]-&gt;pos[0];</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][1]<sp/>=<sp/>atoms[i]-&gt;pos[1];</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][2]<sp/>=<sp/>atoms[i]-&gt;pos[2];</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][3]<sp/>=<sp/>atoms[i]-&gt;vel[0];</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][4]<sp/>=<sp/>atoms[i]-&gt;vel[1];</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kindref="member">state</ref>[i][5]<sp/>=<sp/>atoms[i]-&gt;vel[2];</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="frame.cpp"/>
   </compounddef>

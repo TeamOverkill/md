@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="group___coulomb" kind="group">
+    <compoundname>Coulomb</compoundname>
+    <title>Coulomb</title>
+    <innerclass refid="structpotentials_1_1coulomb" prot="public">potentials::coulomb</innerclass>
+    <innergroup refid="group___l_j_rep">LJRep</innergroup>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

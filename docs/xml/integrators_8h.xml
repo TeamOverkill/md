@@ -3,77 +3,98 @@
   <compounddef id="integrators_8h" kind="file" language="C++">
     <compoundname>integrators.h</compoundname>
     <includes refid="base_8h" local="yes">base.h</includes>
-    <includes refid="atom_8h" local="yes">atom.h</includes>
+    <includes refid="atoms_8h" local="yes">atoms.h</includes>
     <includedby refid="main_8cpp" local="yes">main.cpp</includedby>
     <incdepgraph>
-      <node id="109">
+      <node id="181">
         <label>stdlib.h</label>
       </node>
-      <node id="106">
+      <node id="178">
         <label>integrators.h</label>
         <link refid="integrators_8h"/>
-        <childnode refid="107" relation="include">
+        <childnode refid="179" relation="include">
         </childnode>
-        <childnode refid="115" relation="include">
+        <childnode refid="187" relation="include">
         </childnode>
       </node>
-      <node id="111">
+      <node id="187">
+        <label>atoms.h</label>
+        <link refid="atoms_8h"/>
+        <childnode refid="188" relation="include">
+        </childnode>
+        <childnode refid="189" relation="include">
+        </childnode>
+        <childnode refid="190" relation="include">
+        </childnode>
+        <childnode refid="191" relation="include">
+        </childnode>
+      </node>
+      <node id="190">
+        <label>fstream</label>
+      </node>
+      <node id="183">
         <label>Eigen/Dense</label>
       </node>
-      <node id="113">
+      <node id="185">
         <label>ran2_lib.cpp</label>
         <link refid="ran2__lib_8cpp"/>
-        <childnode refid="114" relation="include">
+        <childnode refid="186" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="181" relation="include">
         </childnode>
-        <childnode refid="108" relation="include">
+        <childnode refid="180" relation="include">
         </childnode>
       </node>
-      <node id="107">
+      <node id="188">
+        <label>vector</label>
+      </node>
+      <node id="191">
+        <label>sstream</label>
+      </node>
+      <node id="179">
         <label>base.h</label>
         <link refid="base_8h"/>
-        <childnode refid="108" relation="include">
+        <childnode refid="180" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="181" relation="include">
         </childnode>
-        <childnode refid="110" relation="include">
+        <childnode refid="182" relation="include">
         </childnode>
-        <childnode refid="111" relation="include">
+        <childnode refid="183" relation="include">
         </childnode>
-        <childnode refid="112" relation="include">
+        <childnode refid="184" relation="include">
         </childnode>
-        <childnode refid="113" relation="include">
+        <childnode refid="185" relation="include">
         </childnode>
       </node>
-      <node id="114">
+      <node id="186">
         <label>time.h</label>
       </node>
-      <node id="110">
+      <node id="182">
         <label>iostream</label>
       </node>
-      <node id="115">
+      <node id="189">
         <label>atom.h</label>
         <link refid="atom_8h"/>
-        <childnode refid="107" relation="include">
+        <childnode refid="179" relation="include">
         </childnode>
       </node>
-      <node id="108">
+      <node id="180">
         <label>stdio.h</label>
       </node>
-      <node id="112">
+      <node id="184">
         <label>constants.h</label>
         <link refid="constants_8h"/>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="116">
+      <node id="192">
         <label>integrators.h</label>
         <link refid="integrators_8h"/>
-        <childnode refid="117" relation="include">
+        <childnode refid="193" relation="include">
         </childnode>
       </node>
-      <node id="117">
+      <node id="193">
         <label>main.cpp</label>
         <link refid="main_8cpp"/>
       </node>
@@ -87,50 +108,51 @@
 <codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="base_8h" kindref="compound">base.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="atom_8h" kindref="compound">atom.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="atoms_8h" kindref="compound">atoms.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6" refid="namespaceintegrators" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceintegrators" kindref="compound">integrators</ref>{</highlight></codeline>
-<codeline lineno="7" refid="namespaceintegrators_1a217be128a03eaac3dc05bdbd22bc8809" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceintegrators_1a217be128a03eaac3dc05bdbd22bc8809" kindref="member">velocity_verlet_first</ref>(<ref refid="class_atom" kindref="compound">Atom</ref><sp/>**atoms){</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="7" refid="namespaceintegrators_1aaaf8a4997b666efb1260c2ad23711b4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceintegrators_1aaaf8a4997b666efb1260c2ad23711b4c" kindref="member">velocity_verlet_first</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms){</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>atoms.<ref refid="class_atoms_1a539d10ca274094ce38a03ca4799af170" kindref="member">numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(atoms[i]-&gt;pos[0]<sp/>&gt;=<sp/><ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref><sp/>-<sp/>atoms[i]-&gt;radius){</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>[0]<sp/>*=<sp/>-1;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;vel[0]<sp/>*=<sp/>-1;</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(atoms[i]-&gt;pos[0]<sp/>&lt;=<sp/>atoms[i]-&gt;radius){<sp/>;</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>[0]<sp/>*=<sp/>-1;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;vel[0]<sp/>*=<sp/>-1;</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(atoms[i]-&gt;pos[1]<sp/>&gt;=<sp/><ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref>){</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>[1]<sp/>*=<sp/>-1;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;vel[1]<sp/>*=<sp/>-1;</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(atoms[i]-&gt;pos[1]<sp/>&lt;=<sp/>atoms[i]-&gt;radius){</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>[1]<sp/>*=<sp/>-1;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;vel[1]<sp/>*=<sp/>-1;</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(atoms[i]-&gt;pos[2]<sp/>&gt;=<sp/><ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref><sp/>-<sp/>atoms[i]-&gt;radius){</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>[2]<sp/>*=<sp/>-1;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;vel[2]<sp/>*=<sp/>-1;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(atoms[i]-&gt;pos[2]<sp/>&lt;=<sp/>atoms[i]-&gt;radius){</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>[2]<sp/>*=<sp/>-1;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;vel[2]<sp/>*=<sp/>-1;</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref><sp/>+=<sp/>0.5<sp/>*<sp/><ref refid="class_base_1a34d4da99a6fa242d041ad2b4f8faab67" kindref="member">Base::tStep</ref><sp/>*<sp/>atoms[i]-&gt;<ref refid="class_atom_1af5b2daf8c6f32465b0ab1aecab57915b" kindref="member">oldForce</ref><sp/>/<sp/>atoms[i]-&gt;<ref refid="class_atom_1a90e6f00ca3ae2fda9b87cb27aac5929d" kindref="member">mass</ref><sp/>*<sp/><ref refid="namespaceconstants_1ae2c7ade7bbc5547bd496d747df58828f" kindref="member">constants::NA</ref>;<sp/></highlight><highlight class="comment">//[nm/ps]</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref><sp/>+=<sp/><ref refid="class_base_1a34d4da99a6fa242d041ad2b4f8faab67" kindref="member">Base::tStep</ref><sp/>*<sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref>;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref><sp/>=<sp/>atoms[i]-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref>.cwiseProduct(<ref refid="class_base_1a249c833ddd4460301d2c1fef9b68e779" kindref="member">Base::dimensionality</ref>);<sp/><sp/><sp/></highlight><highlight class="comment">//Multiply<sp/>with<sp/>dimensionality</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(atoms[i]-&gt;pos.norm()<sp/>&gt;<sp/>sqrt(3)<sp/>*<sp/><ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref><sp/>+<sp/>1){</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\nAtom<sp/>outside<sp/>box\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>atoms[i]-&gt;<ref refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kindref="member">pos</ref><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(1);</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49" refid="namespaceintegrators_1ac25456f7247f7b73b5db97108cd7583e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceintegrators_1ac25456f7247f7b73b5db97108cd7583e" kindref="member">velocity_verlet_second</ref>(<ref refid="class_atom" kindref="compound">Atom</ref><sp/>**atoms){</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_base_1a1684b05f430b5f765869935843ddaf16" kindref="member">Base::numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kindref="member">vel</ref><sp/>+=<sp/>0.5<sp/>*<sp/><ref refid="class_base_1a34d4da99a6fa242d041ad2b4f8faab67" kindref="member">Base::tStep</ref><sp/>*<sp/>atoms[i]-&gt;<ref refid="class_atom_1a33b530b8900b57bfa933ae79c7e95d71" kindref="member">force</ref><sp/>/<sp/>atoms[i]-&gt;<ref refid="class_atom_1a90e6f00ca3ae2fda9b87cb27aac5929d" kindref="member">mass</ref><sp/>*<sp/><ref refid="namespaceconstants_1ae2c7ade7bbc5547bd496d747df58828f" kindref="member">constants::NA</ref>;</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;<ref refid="class_atom_1af5b2daf8c6f32465b0ab1aecab57915b" kindref="member">oldForce</ref><sp/>=<sp/>atoms[i]-&gt;<ref refid="class_atom_1a33b530b8900b57bfa933ae79c7e95d71" kindref="member">force</ref>;</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="60"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//atoms[i]-&gt;pbc();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;vel<sp/>+=<sp/>0.5<sp/>*<sp/><ref refid="class_base_1a34d4da99a6fa242d041ad2b4f8faab67" kindref="member">Base::tStep</ref><sp/>*<sp/>atoms[i]-&gt;oldForce<sp/>/<sp/>atoms[i]-&gt;mass;<sp/></highlight><highlight class="comment">//[nm/ps]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;pos<sp/>+=<sp/><ref refid="class_base_1a34d4da99a6fa242d041ad2b4f8faab67" kindref="member">Base::tStep</ref><sp/>*<sp/>atoms[i]-&gt;vel;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;pos<sp/>=<sp/>atoms[i]-&gt;pos.cwiseProduct(<ref refid="class_base_1a249c833ddd4460301d2c1fef9b68e779" kindref="member">Base::dimensionality</ref>);<sp/><sp/><sp/></highlight><highlight class="comment">//Multiply<sp/>with<sp/>dimensionality</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(atoms[i]-&gt;pos.norm()<sp/>&gt;<sp/>sqrt(3)<sp/>*<sp/><ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref><sp/>+<sp/>1){</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\nAtom<sp/>outside<sp/>box\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>atoms[i]-&gt;pos<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(1);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="namespaceintegrators_1a57e7381cbe2890bf7642c4437bd25a8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceintegrators_1a57e7381cbe2890bf7642c4437bd25a8a" kindref="member">velocity_verlet_second</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms){</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>atoms.<ref refid="class_atoms_1a539d10ca274094ce38a03ca4799af170" kindref="member">numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;vel<sp/>+=<sp/>0.5<sp/>*<sp/><ref refid="class_base_1a34d4da99a6fa242d041ad2b4f8faab67" kindref="member">Base::tStep</ref><sp/>*<sp/>atoms[i]-&gt;force<sp/>/<sp/>atoms[i]-&gt;mass;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atoms[i]-&gt;oldForce<sp/>=<sp/>atoms[i]-&gt;force;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="integrators.h"/>
   </compounddef>

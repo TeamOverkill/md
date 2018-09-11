@@ -3,13 +3,13 @@
   <compounddef id="namespaceintegrators" kind="namespace" language="C++">
     <compoundname>integrators</compoundname>
       <sectiondef kind="func">
-      <memberdef kind="function" id="namespaceintegrators_1a217be128a03eaac3dc05bdbd22bc8809" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="namespaceintegrators_1aaaf8a4997b666efb1260c2ad23711b4c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void integrators::velocity_verlet_first</definition>
-        <argsstring>(Atom **atoms)</argsstring>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
         <name>velocity_verlet_first</name>
         <param>
-          <type><ref refid="class_atom" kindref="compound">Atom</ref> **</type>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
           <declname>atoms</declname>
         </param>
         <briefdescription>
@@ -18,15 +18,15 @@
         </detaileddescription>
         <inbodydescription>
 <para>Velocity Verlet integrator First half step</para>        </inbodydescription>
-        <location file="integrators.h" line="7" column="1" bodyfile="integrators.h" bodystart="7" bodyend="47"/>
+        <location file="integrators.h" line="7" column="1" bodyfile="integrators.h" bodystart="7" bodyend="48"/>
       </memberdef>
-      <memberdef kind="function" id="namespaceintegrators_1ac25456f7247f7b73b5db97108cd7583e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="namespaceintegrators_1a57e7381cbe2890bf7642c4437bd25a8a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void integrators::velocity_verlet_second</definition>
-        <argsstring>(Atom **atoms)</argsstring>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
         <name>velocity_verlet_second</name>
         <param>
-          <type><ref refid="class_atom" kindref="compound">Atom</ref> **</type>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
           <declname>atoms</declname>
         </param>
         <briefdescription>
@@ -35,7 +35,7 @@
         </detaileddescription>
         <inbodydescription>
 <para>Velocity Verlet integrator Second half step</para>        </inbodydescription>
-        <location file="integrators.h" line="49" column="1" bodyfile="integrators.h" bodystart="49" bodyend="59"/>
+        <location file="integrators.h" line="50" column="1" bodyfile="integrators.h" bodystart="50" bodyend="60"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
