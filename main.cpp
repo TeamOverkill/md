@@ -8,6 +8,7 @@
 #include <time.h>
 #include "atom.h"
 #include "atoms.h"
+#include "particle.h"
 #include "parser.h"
 #include "potentialmanager.h"
 
@@ -16,18 +17,23 @@ int main(int argc, char *argv[]){
     parser.parse();
     Base::initialize(parser.numberOfFrames);
 
+
+    Particle *p1 = new Particle();
+
     /*!< Initialize atom variables */
     Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
-    atoms.remove_overlaps();
+    //atoms.remove_overlaps();
+    //atoms.read_frame("Untitled_1.gro", atoms);
 
+    p1->atoms.push_back(atoms[0]);
     /*!< Initialize Frames */
     Frames frames(parser.numberOfFrames, parser.numOfAtoms, parser.saveFreq);
 
     time_t start = time(NULL);
 
     /*!< Create potential manager object */
-    PotentialManager<potentials::LJRep, potentials::coulomb> pm;
+    PotentialManager<potentials::magnetic> pm;
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");

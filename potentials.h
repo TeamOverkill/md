@@ -230,11 +230,11 @@ namespace potentials{
                 for (int j = i + 1; j < atoms.numOfAtoms; j++) {
                     dr = atoms[i]->pos - atoms[j]->pos;                 // [nm]
                     double r = dr.norm();                               // [nm]
-                    double fr = -3.0 * dipoleC / (r * r * r * r * r);     // [(kJ/(nm^2*mol)]
+                    double fr = 3.0 * dipoleC / (r * r * r * r * r);     // [(kJ/(nm^2*mol)]
                     atoms[i]->force += fr * dr;                         // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     atoms[j]->force -= fr * dr;                         // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     atoms.forceMatrix(i, j) = (fr * dr).norm();
-                    //atoms[i]->force += wall_force(atoms[i]);
+                    atoms[i]->force += wall_force(atoms[i]);
                 }
             }
         }
@@ -291,7 +291,8 @@ namespace potentials{
             double diffX = b + x;
             double diffY = b + y;
             Eigen::Vector3d force;
-
+            force.setZero();
+            
             //Bottom wall
             force[1] = 1 / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
             //Left wall

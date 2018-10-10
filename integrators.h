@@ -10,7 +10,6 @@ namespace integrators{
         * First half step
         */
 
-
         for(int i = 0; i < atoms.numOfAtoms; i++){
 
             //////////////     Hard walls - PLZ REMOVE   //////////////////

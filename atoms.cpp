@@ -136,11 +136,12 @@ void Atoms::remove_overlaps(){
 }
 
 
-void Atoms::read_frame(std::string fileName){
-    int c, i = 0, ind;
+void Atoms::read_frame(std::string fileName, Atoms atoms){
+    int c, i = 0, ind, j= 0;
     double xPos, yPos, zPos, xVel, yVel, zVel;
     std::string molecule, atom, line;
     std::ifstream infile(fileName);
+
     while (std::getline(infile, line)) {
         if(i == 1){
             std::istringstream iss(line);
@@ -157,7 +158,19 @@ void Atoms::read_frame(std::string fileName){
                 //exit(1);
             }
             this->atoms.push_back(new Atom());
+            this->atoms[j]->pos[0] = xPos;
+            this->atoms[j]->pos[1] = yPos;
+            this->atoms[j]->pos[2] = zPos;
+
+            this->atoms[j]->pos[0] = xVel;
+            this->atoms[j]->pos[1] = yVel;
+            this->atoms[j]->pos[2] = zVel;
+
+            this->atoms[j]->mass = 28.0134;
+            this->atoms[j]->radius = 1.0;
+
             this->numOfAtoms++;
+            j++;
         }
         i++;
     }
