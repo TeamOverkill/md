@@ -2,9 +2,10 @@
 
 #include "base.h"
 #include "atoms.h"
+#include "particles.h"
 #include "frames.h"
 #include "analysis.h"
-
+#include "potentials.h"
 /*!
  *  \addtogroup Main_modules
  *  @{
@@ -29,8 +30,8 @@ namespace mdEngine {
       }
     \endcode
     */
-    template<typename I, typename P>
-    void run(I&& integrator_1, I&& integrator_2, Atoms& atoms, Frames& frames, P&& pm){
+    template<typename I1, typename I2, typename P>
+    void run(I1&& integrator_1, I2&& integrator_2, Atoms& atoms, Particles& particles, Frames& frames, P&& pm){
         double temperature;
         double pressure = 0;
         int samples = 0;
@@ -41,12 +42,14 @@ namespace mdEngine {
         FILE *f = fopen("output.gro", "w");
         fclose(f);
 
+        potentials::harmonic harmonic;
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
             atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
-            integrator_1(atoms);                                        /* First half step of integrator */
+            integrator_1(particles);                                        /* First half step of integrator */
             pm->get_forces(atoms);                                      /* Calculate new forces */
-            integrator_2(atoms);                                        /* Second half step of integrator */
+            //harmonic.forces(particles);
+            integrator_2(particles);                                        /* Second half step of integrator */
             thermostats::berendsen::set_velocity(atoms);                /* Apply thermostat */
             temperature = thermostats::get_temperature(atoms);
             //pressure = barostats::get_pressure();

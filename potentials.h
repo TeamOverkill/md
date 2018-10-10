@@ -16,7 +16,7 @@ namespace potentials{
     */
     /*! One dimensional harmonic potential
     */
-    struct harmonic{
+    struct harmonic_1D{
     private:
             static constexpr double springConstant = 1.0;        // [kJ * nm^(-2) * mol^(-1)]
 
@@ -40,6 +40,39 @@ namespace potentials{
         }
     };
 
+    struct harmonic{
+    private:
+        static constexpr double springConstant = 10e30;        // [kJ * nm^(-2) * mol^(-1)]
+
+    public:
+        inline static double energy(Atoms& atoms){
+            double energy = 0;
+            energy = 0.5 * springConstant * atoms[0]->pos.norm();   // [kJ/mol]
+
+            return energy;
+        }
+
+        inline static void forces(Particles& particles) {
+            /*!
+            * Harmonic potential
+            */
+            for(int i = 0; i < particles.numOfParticles; i++){
+                for(auto bond : particles[i]->bonds){
+                    Eigen::Vector3d disp = particles[i]->atoms[bond[0]]->pos - particles[i]->atoms[bond[1]]->pos;
+                    particles[i]->atoms[bond[0]]->force += -disp.normalized() * (disp.norm() - 2) * springConstant;
+                    particles[i]->atoms[bond[1]]->force += disp.normalized() * (disp.norm() - 2) * springConstant;
+                }
+/*                for(int j = 0; j < particles[i]->numOfAtoms; j++){
+                    double force = 0;
+                    Eigen::Vector3d forceDir;
+                    forceDir << 1, 0, 0;
+                    force = springConstant * (25 - particles[i]->atoms[j]->pos[0]);   // [(kJ / (nm * mol)] = [dalton * nm/ps^2]
+                    particles[i]->atoms[j]->force += force * forceDir.normalized();    // [(kJ / (nm * mol)] = [dalton * nm/ps^2]
+                }*/
+            }
+        }
+
+    };
     /*!
      *  \addtogroup Coulomb
      *  @{

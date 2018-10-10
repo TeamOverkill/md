@@ -9,6 +9,7 @@
 #include "atom.h"
 #include "atoms.h"
 #include "particle.h"
+#include "particles.h"
 #include "parser.h"
 #include "potentialmanager.h"
 
@@ -18,26 +19,41 @@ int main(int argc, char *argv[]){
     Base::initialize(parser.numberOfFrames);
 
 
-    Particle *p1 = new Particle();
-
+    Particles particles;
+    //particles->particles.push_back(p1);
     /*!< Initialize atom variables */
     Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
+
+
+    for(int i = 0; i < atoms.numOfAtoms; i++){
+        Particle *p1 = new Particle();
+        if(i > 0 && i < 2) {
+            p1->bonds.push_back(std::vector<int>());
+            printf("i = %i\n", i - 1);
+            p1->bonds[i - 1].resize(2);
+            p1->bonds[i - 1].push_back(i - 1);
+            p1->bonds[i - 1].push_back(i);
+        }
+        p1->push_back(atoms[i]);
+        particles.push_back(p1);
+    }
+
+
     //atoms.remove_overlaps();
     //atoms.read_frame("Untitled_1.gro", atoms);
 
-    p1->atoms.push_back(atoms[0]);
     /*!< Initialize Frames */
     Frames frames(parser.numberOfFrames, parser.numOfAtoms, parser.saveFreq);
 
     time_t start = time(NULL);
 
     /*!< Create potential manager object */
-    PotentialManager<potentials::magnetic> pm;
+    PotentialManager<potentials::LJ> pm;
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, atoms, frames, &pm);
+    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, atoms, particles, frames, &pm);
 
     printf("Simulation took: %lu seconds.\n", time(NULL) - start);
 

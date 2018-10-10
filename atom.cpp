@@ -11,21 +11,21 @@ void Atom::set_mb_velocity(){
     double ran_u1 = ran2::get_random();
     double ran_u2 = ran2::get_random();
     double random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-    this->vel[0] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / this->mass) * 0.001; //[nm/ps]
+    this->vel[0] = random_gauss * sqrt(constants::K_CORRECT * Base::temperature / this->mass) * 0.001; //[nm/ps]
 
     ran_u2 = ran2::get_random();
     ran_u1 = ran2::get_random();
     random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-    this->vel[1] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / this->mass) * 0.001;
+    this->vel[1] = random_gauss * sqrt(constants::K_CORRECT * Base::temperature / this->mass) * 0.001;
 
     ran_u2 = ran2::get_random();
     ran_u1 = ran2::get_random();
     random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-    this->vel[2] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / this->mass) * 0.001;
+    this->vel[2] = random_gauss * sqrt(constants::K_CORRECT * Base::temperature / this->mass) * 0.001;
 
     this->vel = this->vel.cwiseProduct(Base::dimensionality);
 
-    this->vel.setZero();
+    //this->vel.setZero();
 }
 
 /*! Calculates the direct distance between two atoms:
