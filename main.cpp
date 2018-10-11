@@ -28,17 +28,24 @@ int main(int argc, char *argv[]){
 
     for(int i = 0; i < atoms.numOfAtoms; i++){
         Particle *p1 = new Particle();
-        if(i > 0 && i < 2) {
-            p1->bonds.push_back(std::vector<int>());
-            printf("i = %i\n", i - 1);
-            p1->bonds[i - 1].resize(2);
-            p1->bonds[i - 1].push_back(i - 1);
-            p1->bonds[i - 1].push_back(i);
+        if(i < 2) {
+            if (i > 0 && i < 2) {
+                p1->push_back(atoms[i]);
+                p1->push_back(atoms[i - 1]);
+                p1->bonds.push_back(std::vector<int>());
+
+                //p1->bonds[0].resize(2);
+                p1->bonds[i - 1].push_back(i - 1);
+                p1->bonds[i - 1].push_back(i);
+                printf("%i, %i\n", i - 1, i);
+                printf("%i, %i\n", p1->bonds[0][0], p1->bonds[0][1]);
+            }
         }
-        p1->push_back(atoms[i]);
+        else {
+            p1->push_back(atoms[i]);
+        }
         particles.push_back(p1);
     }
-
 
     //atoms.remove_overlaps();
     //atoms.read_frame("Untitled_1.gro", atoms);

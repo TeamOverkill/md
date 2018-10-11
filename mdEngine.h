@@ -48,7 +48,7 @@ namespace mdEngine {
             atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
             integrator_1(particles);                                        /* First half step of integrator */
             pm->get_forces(atoms);                                      /* Calculate new forces */
-            //harmonic.forces(particles);
+            harmonic.forces(particles);
             integrator_2(particles);                                        /* Second half step of integrator */
             thermostats::berendsen::set_velocity(atoms);                /* Apply thermostat */
             temperature = thermostats::get_temperature(atoms);
