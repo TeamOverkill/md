@@ -6,7 +6,7 @@
  *  @{
  */
 
-/*! The energy namespace contains the various potentials. Each potential has a corresponding
+/*! The potentials namespace contains the various potentials. Each potential has a corresponding
  * force function which calculates the force by differentiating the potential function
  */
 namespace potentials{
@@ -42,7 +42,7 @@ namespace potentials{
 
     struct harmonic{
     private:
-        static constexpr double springConstant = 10.0;        // [kJ * nm^(-2) * mol^(-1)]
+        static constexpr double springConstant = 1.0;        // [kJ * nm^(-2) * mol^(-1)]
 
     public:
         inline static double energy(Atoms& atoms){
@@ -59,15 +59,16 @@ namespace potentials{
             for(int i = 0; i < particles.numOfParticles; i++){
                 for(auto bond : particles[i]->bonds){
 
-                    Eigen::Vector3d disp = particles[i]->atoms[bond[0]]->pos - particles[i]->atoms[bond[1]]->pos;
-                    particles[i]->atoms[bond[0]]->force += -disp.normalized() * (disp.norm() - 2) * springConstant;
-                    particles[i]->atoms[bond[1]]->force += disp.normalized() * (disp.norm() - 2) * springConstant;
+                    Eigen::Vector3d disp = particles[i]->atoms[bond[0]]->get_disp(particles[i]->atoms[bond[1]]);
+                    particles[i]->atoms[bond[0]]->force += disp.normalized() * (disp.norm() - 0.1) * springConstant;
+                    particles[i]->atoms[bond[1]]->force -= disp.normalized() * (disp.norm() - 0.1) * springConstant;
 
                 }
             }
         }
 
     };
+
     /*!
      *  \addtogroup Coulomb
      *  @{
@@ -93,13 +94,15 @@ namespace potentials{
         inline static void forces(Atoms& atoms){
             double magnitude = 0;
             double distance = 0;
+            Eigen::Vector3d disp;
             for(int i = 0; i < atoms.numOfAtoms; i++){
                 for(int j = i + 1; j < atoms.numOfAtoms; j++) {
-                    distance = (atoms[i]->pos - atoms[j]->pos).norm();
-                    distance *= distance * distance;
-                    magnitude = atoms[i]->q * atoms[j]->q / distance * cFactor;
-                    atoms[i]->force += magnitude * (atoms[i]->pos - atoms[j]->pos);
-                    atoms[j]->force -= magnitude * (atoms[i]->pos - atoms[j]->pos);
+                    disp = (atoms[i]->pos - atoms[j]->pos);
+                    distance = disp.norm();
+                    magnitude = cFactor * atoms[i]->q * atoms[j]->q / (distance * distance);
+                    disp.normalize();
+                    atoms[i]->force += magnitude * disp;
+                    atoms[j]->force -= magnitude * disp;
                 }
             }
         }
@@ -188,13 +191,8 @@ namespace potentials{
         */
         inline static void forces(Atoms& atoms) {
 
-
-
             Eigen::Vector3d dr;
 
-            /*for (int i = 0; i < atoms.numOfAtoms; i++) {
-                atoms[i]->force.setZero();
-            }*/
 
             for (int i = 0; i < atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < atoms.numOfAtoms; j++) {
@@ -245,7 +243,7 @@ namespace potentials{
     */
     struct magnetic {
     private:
-        static constexpr double dipoleC = 0.001;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
+        static constexpr double dipoleC = 1.0;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
     public:
         inline static void forces(Atoms& atoms) {
             Eigen::Vector3d dr;
@@ -262,8 +260,9 @@ namespace potentials{
                     atoms[i]->force += fr * dr;                         // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     atoms[j]->force -= fr * dr;                         // [(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     atoms.forceMatrix(i, j) = (fr * dr).norm();
-                    atoms[i]->force += wall_force(atoms[i]);
+
                 }
+                atoms[i]->force += wall_force(atoms[i]);
             }
         }
 
@@ -287,7 +286,6 @@ namespace potentials{
          */
         inline static double wall_potential(Atom *atom){
 
-            double magneticConstant = 1.0; //magnetic potential per nm^2
             double energy = 0;
             double b = Base::boxDim/2;
             double x = atom->pos[0] - Base::boxDim;
@@ -307,33 +305,40 @@ namespace potentials{
             //Right wall
             energy += 2.0 * b / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
 
-            return magneticConstant * energy;
+            return dipoleC * energy;
         }
 
         inline static Eigen::Vector3d wall_force(Atom *atom){
-            double magneticConstant = 1.0; //magnetic potential per nm^2
-            double energy = 0;
-            double b = Base::boxDim/2;
-            double x = atom->pos[0] - Base::boxDim;
-            double y = atom->pos[1] - Base::boxDim;
-            double diffX = b + x;
-            double diffY = b + y;
+            double magneticConstant = 10.0; //magnetic potential per nm^2
             Eigen::Vector3d force;
             force.setZero();
+            /*
+            double b = Base::boxDim / 2.0;
+            double x = atom->pos[0] - Base::boxDim;
+            double y = atom->pos[1] - Base::boxDim;
+            double diffX = b + x;   //Distance to the left wall
+            double diffY = b + y;   //Distance to the bottom wall
+
             
             //Bottom wall
-            force[1] = 1 / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
+            force[1] += 1 / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
             //Left wall
-            force[0] = 1 / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
+            force[0] += 1 / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
 
-            diffX = b - x;
-            diffY = b - y;
+            diffX = b - x;   //Distance to the right wall
+            diffY = b - y;   //Distance to the top wall
             //Top wall
-            force[1] = -1 / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
+            force[1] += -1 / (diffY * diffY * std::sqrt(b * b + 2 * b * y + b * b + y * y));
             //Right wall
-            force[0] = -1 / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
-
-            return force;
+            force[0] += -1 / (diffX * diffX * std::sqrt(b * b + 2 * b * x + b * b + x * x));
+            */
+            // Left and right walls
+            force[0] += 1.0 / (atom->pos[0] * atom->pos[0] * atom->pos[0] * atom->pos[0]) -
+                    1.0 / ((Base::boxDim - atom->pos[0]) * (Base::boxDim - atom->pos[0]) * (Base::boxDim - atom->pos[0]) * (Base::boxDim - atom->pos[0]));
+            // Top and Bottom walls
+            force[1] += 1.0 / (atom->pos[1] * atom->pos[1] * atom->pos[1] * atom->pos[1]) -
+                    1.0 / ((Base::boxDim - atom->pos[1]) * (Base::boxDim - atom->pos[1]) * (Base::boxDim - atom->pos[1]) * (Base::boxDim - atom->pos[1]));
+            return force * magneticConstant;
         }
     };
 }

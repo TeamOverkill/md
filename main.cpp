@@ -18,9 +18,8 @@ int main(int argc, char *argv[]){
     parser.parse();
     Base::initialize(parser.numberOfFrames);
 
-
     Particles particles;
-    //particles->particles.push_back(p1);
+
     /*!< Initialize atom variables */
     Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
@@ -28,7 +27,7 @@ int main(int argc, char *argv[]){
 
     for(int i = 0; i < atoms.numOfAtoms; i++){
         Particle *p1 = new Particle();
-        if(i < 2) {
+/*        if(i < 2) {
             if (i > 0 && i < 2) {
                 p1->push_back(atoms[i]);
                 p1->push_back(atoms[i - 1]);
@@ -37,26 +36,40 @@ int main(int argc, char *argv[]){
                 //p1->bonds[0].resize(2);
                 p1->bonds[i - 1].push_back(i - 1);
                 p1->bonds[i - 1].push_back(i);
-                printf("%i, %i\n", i - 1, i);
-                printf("%i, %i\n", p1->bonds[0][0], p1->bonds[0][1]);
             }
         }
-        else {
+        else {*/
             p1->push_back(atoms[i]);
-        }
+        //}
         particles.push_back(p1);
     }
+    /*Particle *p1 = new Particle();
+    p1->push_back(atoms[0]);
+    p1->push_back(atoms[1]);
+    p1->bonds.push_back(std::vector<int>());
+    p1->bonds[0].push_back(0);
+    p1->bonds[0].push_back(1);
 
-    //atoms.remove_overlaps();
-    //atoms.read_frame("Untitled_1.gro", atoms);
+    Particle *p2 = new Particle();
+    p2->push_back(atoms[2]);
+    p2->push_back(atoms[3]);
+    p2->bonds.push_back(std::vector<int>());
+    p2->bonds[0].push_back(0);
+    p2->bonds[0].push_back(1);
+
+
+    particles.push_back(p1);
+    particles.push_back(p2);*/
+    atoms.remove_overlaps();
+    //particles = atoms.read_frame("output_1.gro");
 
     /*!< Initialize Frames */
-    Frames frames(parser.numberOfFrames, parser.numOfAtoms, parser.saveFreq);
+    Frames frames(parser.numberOfFrames, atoms.numOfAtoms, parser.saveFreq);
 
     time_t start = time(NULL);
 
     /*!< Create potential manager object */
-    PotentialManager<potentials::LJ> pm;
+    PotentialManager<potentials::magnetic> pm;
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");

@@ -12,29 +12,8 @@ namespace integrators{
         */
 
         for(int i = 0; i < particles.numOfParticles; i++){
-
-            //////////////     Hard walls - PLZ REMOVE   //////////////////
-            /*if(atoms[i]->pos[0] >= Base::boxDim - atoms[i]->radius){
-                atoms[i]->vel[0] *= -1;
-            }
-            if(atoms[i]->pos[0] <= atoms[i]->radius){ ;
-                atoms[i]->vel[0] *= -1;
-            }
-            if(atoms[i]->pos[1] >= Base::boxDim){
-                atoms[i]->vel[1] *= -1;
-            }
-            if(atoms[i]->pos[1] <= atoms[i]->radius){
-                atoms[i]->vel[1] *= -1;
-            }
-            if(atoms[i]->pos[2] >= Base::boxDim - atoms[i]->radius){
-                atoms[i]->vel[2] *= -1;
-            }
-            if(atoms[i]->pos[2] <= atoms[i]->radius){
-                atoms[i]->vel[2] *= -1;
-            }*/
-            ///////////////////////////////////////////////////////////////
             for(int j = 0; j < particles[i]->numOfAtoms; j++) {
-                particles[i]->atoms[j]->pbc();
+                particles[i]->atoms[j]->hard_walls();
                 particles[i]->atoms[j]->vel +=
                         0.5 * Base::tStep * particles[i]->atoms[j]->oldForce / particles[i]->atoms[j]->mass; //[nm/ps]
                 particles[i]->atoms[j]->pos += Base::tStep * particles[i]->atoms[j]->vel;

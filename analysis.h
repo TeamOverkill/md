@@ -53,3 +53,37 @@ class Density : public Analysis{
 
     }
 };
+
+class Track : public Analysis{
+    std::vector<int> indices;
+    std::vector<Eigen::Vector3d> positions;
+
+public:
+    Track(std::vector<int> indices, std::string name){
+        this->indices = indices;
+        this->name = name;
+    }
+
+    void sample(Atoms& atoms, int d){
+
+        for(auto index : indices){
+            positions.push_back(atoms[index]->pos);
+        }
+        this->numOfSamples++;
+    }
+
+    void save(){
+        int i = 0;
+        FILE *f = fopen(this->name.c_str(), "w");
+        if(f == NULL){
+            printf("Can't open file!\n");
+            exit(1);
+        }
+        for(auto coord : positions){
+            fprintf(f, "%d    %lf     %lf    %lf\n", i, coord[0], coord[1], coord[2]);
+            i++;
+        }
+        fclose(f);
+
+    }
+};

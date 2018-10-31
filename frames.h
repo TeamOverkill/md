@@ -50,6 +50,7 @@ public:
             fprintf(f, "%lf    %lf     %lf\n", Base::boxDim, Base::boxDim, Base::boxDim);
         }
         fclose(f);
+        this->totalFrames += this->frameCounter;
         this->frameCounter = 0;
     }
 };

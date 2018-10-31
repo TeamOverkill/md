@@ -10,7 +10,7 @@ void Atoms::initialize(int numOfAtoms){
         this->atoms.push_back(new Atom());
         this->atoms[i]->index = i;
         this->atoms[i]->mass = 28.0134; //[dalton]
-        this->atoms[i]->radius = 1.0;
+        this->atoms[i]->radius = 0.2;
         if(i % 2 == 0){
             this->atoms[i]->q = 1.0;
         }
@@ -18,9 +18,9 @@ void Atoms::initialize(int numOfAtoms){
             this->atoms[i]->q = -1.0;
         }
 
-        this->atoms[i]->pos[0] = ran2::get_random() * (Base::boxDim - 1) + 1;
-        this->atoms[i]->pos[1] = ran2::get_random() * (Base::boxDim - 1) + 1;
-        this->atoms[i]->pos[2] = ran2::get_random() * (Base::boxDim - 1) + 1;
+        this->atoms[i]->pos[0] = ran2::get_random() * (Base::boxDim - 2 * this->atoms[i]->radius) + this->atoms[i]->radius;
+        this->atoms[i]->pos[1] = ran2::get_random() * (Base::boxDim - 2 * this->atoms[i]->radius) + this->atoms[i]->radius;
+        this->atoms[i]->pos[2] = ran2::get_random() * (Base::boxDim - 2 * this->atoms[i]->radius) + this->atoms[i]->radius;
 
         this->atoms[i]->pos = this->atoms[i]->pos.cwiseProduct(Base::dimensionality);
 
@@ -73,18 +73,6 @@ void Atoms::update_distances(){
     }
 }
 
-int Atoms::get_overlaps(){
-    int overlaps = 0;
-    for(int i = 0; i < numOfAtoms; i++){
-        for(int j = i + 1; j < numOfAtoms; j++){
-            if(this->atoms[i]->distance(atoms[j]) < this->atoms[i]->radius + this->atoms[j]->radius){
-                overlaps++;
-            }
-        }
-    }
-    return overlaps;
-}
-
 bool Atoms::overlap(Atom* a){
     for(int i = 0; i < numOfAtoms; i++){
         if(i != a->index) {
@@ -93,9 +81,19 @@ bool Atoms::overlap(Atom* a){
             }
         }
     }
-
     return false;
 }
+
+int Atoms::get_overlaps(){
+    int overlaps = 0;
+    for(int i = 0; i < numOfAtoms; i++){
+        if(overlap(this->atoms[i])){
+            overlaps++;
+        }
+    }
+    return overlaps;
+}
+
 
 void Atoms::remove_overlaps(){
     int overlaps = get_overlaps();
@@ -111,13 +109,18 @@ void Atoms::remove_overlaps(){
         random = ran2::get_random();
         p =  random * this->numOfAtoms;
         oldPos = this->atoms[p]->pos;
+        this->atoms[p]->random_move(5.0);
 
-        this->atoms[p]->random_move(5);
         //Atom::update_distances(atoms, atoms[p]);
-        if(overlap(this->atoms[p])){
+        if(this->atoms[p]->pos[0] < this->atoms[p]->radius || this->atoms[p]->pos[0] > Base::boxDim - this->atoms[p]->radius ||
+                this->atoms[p]->pos[1] < this->atoms[p]->radius || this->atoms[p]->pos[1] > Base::boxDim - this->atoms[p]->radius ||
+                //this->atoms[p]->pos[2] < this->atoms[p]->radius || this->atoms[p]->pos[2] > Base::boxDim - this->atoms[p]->radius ||
+                overlap(this->atoms[p])){
+
             this->atoms[p]->pos = oldPos;
             //Atom::update_distances(atoms, atoms[p]);
         }
+
 
         if(this->atoms[p]->pos[2] < 0 || this->atoms[p]->pos[1] < 0 || this->atoms[p]->pos[0] < 0){
             printf("Failed to equilibrate system, a particle was found outside the box...\n");
@@ -136,11 +139,12 @@ void Atoms::remove_overlaps(){
 }
 
 
-void Atoms::read_frame(std::string fileName, Atoms atoms){
+Particles Atoms::read_frame(std::string fileName){
     int c, i = 0, ind, j= 0;
     double xPos, yPos, zPos, xVel, yVel, zVel;
     std::string molecule, atom, line;
     std::ifstream infile(fileName);
+    Particles particles;
 
     while (std::getline(infile, line)) {
         if(i == 1){
@@ -151,6 +155,7 @@ void Atoms::read_frame(std::string fileName, Atoms atoms){
             } // error
         }
         if(i > 1){
+            Particle *p1 = new Particle();
             std::istringstream iss(line);
             if (!(iss >> molecule >> atom >> ind >> xPos >> yPos >> zPos >> xVel >> yVel >> zVel)) {
                 printf("Done reading input file\n");
@@ -162,13 +167,15 @@ void Atoms::read_frame(std::string fileName, Atoms atoms){
             this->atoms[j]->pos[1] = yPos;
             this->atoms[j]->pos[2] = zPos;
 
-            this->atoms[j]->pos[0] = xVel;
-            this->atoms[j]->pos[1] = yVel;
-            this->atoms[j]->pos[2] = zVel;
+            this->atoms[j]->vel[0] = xVel;
+            this->atoms[j]->vel[1] = yVel;
+            this->atoms[j]->vel[2] = zVel;
 
             this->atoms[j]->mass = 28.0134;
             this->atoms[j]->radius = 1.0;
-
+            this->atoms[j]->index = j;
+            p1->push_back(this->atoms[j]);
+            particles.push_back(p1);
             this->numOfAtoms++;
             j++;
         }
@@ -178,4 +185,10 @@ void Atoms::read_frame(std::string fileName, Atoms atoms){
         printf("Did not read all atoms from file....\n");
         exit(1);
     }
+    /*!< Initialize the distance matrix */
+    distances.resize(numOfAtoms, numOfAtoms);
+    /*!< Initialize the force matrix */
+    forceMatrix.resize(numOfAtoms, numOfAtoms);
+    printf("Read %i atoms from file.\n", c);
+    return particles;
 }

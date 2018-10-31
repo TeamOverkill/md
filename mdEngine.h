@@ -38,17 +38,19 @@ namespace mdEngine {
         double cummulativeTemp = 0;
         double cummulativePress = 0;
         //Analysis* histo = new Density(100, "histo_1.txt");
-
+        std::vector<int> v = {0};
+        Analysis *track = new Track(v, "track.txt");
         FILE *f = fopen("output.gro", "w");
         fclose(f);
 
         potentials::harmonic harmonic;
+
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
             atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
             integrator_1(particles);                                        /* First half step of integrator */
             pm->get_forces(atoms);                                      /* Calculate new forces */
-            harmonic.forces(particles);
+            //harmonic.forces(particles);
             integrator_2(particles);                                        /* Second half step of integrator */
             thermostats::berendsen::set_velocity(atoms);                /* Apply thermostat */
             temperature = thermostats::get_temperature(atoms);
@@ -61,6 +63,7 @@ namespace mdEngine {
                 Base::kineticEnergies[samples] = atoms.kinetic_energy();
 
                 //histo->sample(atoms, 0);
+                track->sample(atoms, 0);
                 Base::potentialEnergies[samples] = pm->get_energy(atoms);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
 
@@ -69,16 +72,16 @@ namespace mdEngine {
                        Base::kineticEnergies[samples]);
                 fflush(stdout);
 
-
                 frames[frames.frameCounter]->save_state(atoms);
                 frames.frameCounter++;
+
                 if(frames.frameCounter == frames.saveFreq){
                     frames.save_to_file(atoms.numOfAtoms);
                 }
                 samples++;
             }
         }
-
+        track->save();
         //histo->save();
         printf("\n");    
     }
