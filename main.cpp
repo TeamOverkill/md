@@ -98,6 +98,7 @@ int main(int argc, char *argv[]){
         fprintf(fi, "%i    %lf\n", j, Base::temperatures[j]);
 
     }
+
     fclose(fi);
     printf("Done\n");
     return 0;

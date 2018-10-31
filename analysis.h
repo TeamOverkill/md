@@ -32,6 +32,7 @@ class Density : public Analysis{
                 this->histo[(int)(atoms[i]->pos[d]/binWidth)]++;
             }
         }
+         
         this->numOfSamples++;
     }
 
@@ -40,19 +41,66 @@ class Density : public Analysis{
         double dv = 0;
         double idealDen = 0;
 
-
         FILE *f = fopen(this->name.c_str(), "w");
         if(f == NULL){
+            printf("test error\n");
             printf("Can't open file!\n");
             exit(1);
         }
         for(i = 0; i < bins; i++){
             fprintf(f, "%lf     %lf\n", (double)i * this->binWidth, (double)this->histo[i] / (Base::boxDim * Base::boxDim * this->binWidth * this->numOfSamples));
-        }
+        }     
         fclose(f);
 
     }
 };
+
+class rdf : public Analysis{
+
+    public:
+    rdf(int bins, std::string name){
+        this->name = name;
+        this->bins = bins;
+        this->binWidth = Base::boxDim*2 / bins;
+        this->histo.resize(bins+10);
+    }
+
+    void sample(Atoms& atoms, int d){
+        //double func = 0;
+        for(int i = 0; i < atoms.numOfAtoms; i=i+2){ 
+            for(int j = 1; j < atoms.numOfAtoms; j=j+2){
+                double distance = (atoms[i]->pos - atoms[j]->pos).norm();
+//printf("%lf\n", distance/binWidth);
+                this->histo[(int)(distance/binWidth)]++;
+                
+                //func = func + this->histo[(int)(distance/binWidth)]++;
+             }
+        }
+  
+        this->numOfSamples++;
+    }
+    void save(){
+        
+        
+        for(int i=0; i < bins; i++){
+            histo[i]=histo[i]/50/(4*constants::PI*i*this->binWidth*i*this->binWidth*this->binWidth);
+        }  
+        int i = 0;
+           
+              
+        FILE *f = fopen(this->name.c_str(), "w");
+        if(f == NULL){
+        printf("test error\n");
+        printf("Can't open file!\n");
+        exit(1);
+        }
+        for(i = 0; i < bins; i++){
+            fprintf(f, "%lf     %lf\n", (double)i * this->binWidth, (double)this->histo[i] * Base::boxDim * Base::boxDim * this->binWidth /  this->numOfSamples);
+        }
+        fclose(f);
+    }
+};    
+        //std::vector<double> func = this->histo/(atoms.numOfAtoms/2);
 
 class Track : public Analysis{
     std::vector<int> indices;
@@ -70,6 +118,7 @@ public:
             positions.push_back(atoms[index]->pos);
         }
         this->numOfSamples++;
+
     }
 
     void save(){
@@ -79,6 +128,7 @@ public:
             printf("Can't open file!\n");
             exit(1);
         }
+
         for(auto coord : positions){
             fprintf(f, "%d    %lf     %lf    %lf\n", i, coord[0], coord[1], coord[2]);
             i++;

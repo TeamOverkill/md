@@ -185,6 +185,7 @@ Particles Atoms::read_frame(std::string fileName){
         printf("Did not read all atoms from file....\n");
         exit(1);
     }
+
     /*!< Initialize the distance matrix */
     distances.resize(numOfAtoms, numOfAtoms);
     /*!< Initialize the force matrix */
@@ -192,3 +193,4 @@ Particles Atoms::read_frame(std::string fileName){
     printf("Read %i atoms from file.\n", c);
     return particles;
 }
+

@@ -38,8 +38,13 @@ namespace mdEngine {
         double cummulativeTemp = 0;
         double cummulativePress = 0;
         //Analysis* histo = new Density(100, "histo_1.txt");
+
+        Analysis* histo = new rdf(100, "rdf.txt");
+
+
         std::vector<int> v = {0};
         Analysis *track = new Track(v, "track.txt");
+
         FILE *f = fopen("output.gro", "w");
         fclose(f);
 
@@ -60,7 +65,12 @@ namespace mdEngine {
             Base::temperatures[i] = temperature;
 
             if(i % frames.fStep == 0){
+                
+                histo->sample(atoms, 1);
+                Base::kineticEnergies[samples] = 0;
+
                 Base::kineticEnergies[samples] = atoms.kinetic_energy();
+
 
                 //histo->sample(atoms, 0);
                 track->sample(atoms, 0);
@@ -81,7 +91,11 @@ namespace mdEngine {
                 samples++;
             }
         }
+
+        histo->save();
+
         track->save();
+
         //histo->save();
         printf("\n");    
     }
