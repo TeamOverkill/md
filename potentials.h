@@ -243,7 +243,7 @@ namespace potentials{
     */
     struct magnetic {
     private:
-        static constexpr double dipoleC = 1.0;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
+        static constexpr double dipoleC = 1e6;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
     public:
         inline static void forces(Atoms& atoms) {
             Eigen::Vector3d dr;
