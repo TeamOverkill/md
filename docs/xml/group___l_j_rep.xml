@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="group___l_j_rep" kind="group">
+    <compoundname>LJRep</compoundname>
+    <title>LJRep</title>
+    <innerclass refid="structpotentials_1_1_l_j_rep" prot="public">potentials::LJRep</innerclass>
+    <innergroup refid="group___lennard-_jones">Lennard-Jones</innergroup>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

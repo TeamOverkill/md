@@ -35,13 +35,15 @@ add_executable(md
         potentials.h
         frame.cpp
         frame.h
+        frames.h
         integrators.h
         main.cpp
         mdEngine.h
         parser.h
         potentialmanager.h
         ran2_lib.cpp
-        ran2.f)
+        ran2.f
+        thermostats.h)
 
 set_property(TARGET random PROPERTY LINKER_LANGUAGE Fortran)
 target_link_libraries (md random)

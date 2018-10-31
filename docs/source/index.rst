@@ -19,7 +19,7 @@ Welcome to MolecularOverkill's documentation!
    :caption: Modules:
 
    atom
-   energy
+   potentials
    mdEngine
    frame
    base

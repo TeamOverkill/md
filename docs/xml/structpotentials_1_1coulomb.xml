@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="structpotentials_1_1coulomb" kind="struct" language="C++" prot="public">
+    <compoundname>potentials::coulomb</compoundname>
+    <includes refid="potentials_8h" local="no">potentials.h</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="group__magnetic_1gaa5123fedbfe37c05ab20753bb4c695d4" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::coulomb::cFactor</definition>
+        <argsstring></argsstring>
+        <name>cFactor</name>
+        <initializer>= 138935.4299040527746429</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="51" column="1" bodyfile="potentials.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="group__magnetic_1ga0e3b9fc8104e34c2c652f832debe0e32" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double potentials::coulomb::energy</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>energy</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="54" column="1" bodyfile="potentials.h" bodystart="54" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1ga54f122a69fde5491491c8cd43aa2da31" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void potentials::coulomb::forces</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>forces</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="65" column="1" bodyfile="potentials.h" bodystart="65" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Coulomb potential </para>    </detaileddescription>
+    <location file="potentials.h" line="49" column="1" bodyfile="potentials.h" bodystart="49" bodyend="78"/>
+    <listofallmembers>
+      <member refid="group__magnetic_1gaa5123fedbfe37c05ab20753bb4c695d4" prot="private" virt="non-virtual"><scope>potentials::coulomb</scope><name>cFactor</name></member>
+      <member refid="group__magnetic_1ga0e3b9fc8104e34c2c652f832debe0e32" prot="public" virt="non-virtual"><scope>potentials::coulomb</scope><name>energy</name></member>
+      <member refid="group__magnetic_1ga54f122a69fde5491491c8cd43aa2da31" prot="public" virt="non-virtual"><scope>potentials::coulomb</scope><name>forces</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

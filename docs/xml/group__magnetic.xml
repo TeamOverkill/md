@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="group__magnetic" kind="group">
+    <compoundname>magnetic</compoundname>
+    <title>Magnetic</title>
+    <innerclass refid="structpotentials_1_1magnetic" prot="public">potentials::magnetic</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="group__magnetic_1gac0535043471ba4a1210fac6561e484e8" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::harmonic::springConstant</definition>
+        <argsstring></argsstring>
+        <name>springConstant</name>
+        <initializer>= 1.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="21" column="1" bodyfile="potentials.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__magnetic_1gaa5123fedbfe37c05ab20753bb4c695d4" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::coulomb::cFactor</definition>
+        <argsstring></argsstring>
+        <name>cFactor</name>
+        <initializer>= 138935.4299040527746429</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="51" column="1" bodyfile="potentials.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__magnetic_1ga3d98095e9dc0ccb1e5b0b008a0d7aa36" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::LJRep::epsilon</definition>
+        <argsstring></argsstring>
+        <name>epsilon</name>
+        <initializer>= 1.5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="90" column="1" bodyfile="potentials.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__magnetic_1gac63073841abd82e86cc3e9b8e66d0a78" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::LJRep::sigma</definition>
+        <argsstring></argsstring>
+        <name>sigma</name>
+        <initializer>= 1.0</initializer>
+        <briefdescription>
+<para>[kJ/mol] <ref refid="structpotentials_1_1_l_j" kindref="compound">LJ</ref> parameter epsilon </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="91" column="1" bodyfile="potentials.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__magnetic_1gaa700bba4cfee6bbb04fedc0e956bca7b" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::LJ::epsilon</definition>
+        <argsstring></argsstring>
+        <name>epsilon</name>
+        <initializer>= 1.5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="154" column="1" bodyfile="potentials.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__magnetic_1ga6a628455374754ee0353cade821afcaa" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::LJ::sigma</definition>
+        <argsstring></argsstring>
+        <name>sigma</name>
+        <initializer>= 1.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="155" column="1" bodyfile="potentials.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__magnetic_1ga792b521d94a5ab58120d4994350e47a7" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::magnetic::dipoleC</definition>
+        <argsstring></argsstring>
+        <name>dipoleC</name>
+        <initializer>= 0.001</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="220" column="1" bodyfile="potentials.h" bodystart="220" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__magnetic_1gab9ebd7bd690d24809daa8bb7140c1e0e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double potentials::harmonic::energy</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>energy</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="24" column="1" bodyfile="potentials.h" bodystart="24" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1gae1d7614deadf774762e5f647ad62be15" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void potentials::harmonic::forces</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>forces</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>One dimensional harmonic potential</para>        </inbodydescription>
+        <location file="potentials.h" line="31" column="1" bodyfile="potentials.h" bodystart="31" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1ga0e3b9fc8104e34c2c652f832debe0e32" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double potentials::coulomb::energy</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>energy</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="54" column="1" bodyfile="potentials.h" bodystart="54" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1ga54f122a69fde5491491c8cd43aa2da31" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void potentials::coulomb::forces</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>forces</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="65" column="1" bodyfile="potentials.h" bodystart="65" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1gaf833194a85e41abc481d32a94e1e1684" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void potentials::LJRep::forces</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>forces</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+<para>[nm] <ref refid="structpotentials_1_1_l_j" kindref="compound">LJ</ref> parameter sigma </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Calculate the forces using a Lennard-Jones potential</para>        </inbodydescription>
+        <location file="potentials.h" line="95" column="1" bodyfile="potentials.h" bodystart="95" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1gaac82370d4c040e7de08caaac61334b74" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double potentials::LJRep::energy</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>energy</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Calculate the energy using a Lennard-Jones potential</para>        </inbodydescription>
+        <location file="potentials.h" line="122" column="1" bodyfile="potentials.h" bodystart="122" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1ga6fb43617f39e8a80a5deb110572e7c84" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void potentials::LJ::forces</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>forces</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the forces as given by the <ref refid="structpotentials_1_1_l_j" kindref="compound">LJ</ref> potential </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="161" column="1" bodyfile="potentials.h" bodystart="161" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1ga7316fa3b17f6e65c1fe542e34113de98" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double potentials::LJ::energy</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>energy</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the energy using a Lennard-Jones potential which is given by <formula id="3">\[ U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right) \]</formula> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="191" column="1" bodyfile="potentials.h" bodystart="191" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1ga4106376186d9adc40ebe7f30023530c3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void potentials::magnetic::forces</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>forces</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="222" column="1" bodyfile="potentials.h" bodystart="222" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1ga6307bce7efe63036ab0c390570bb21d0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double potentials::magnetic::energy</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>energy</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="242" column="1" bodyfile="potentials.h" bodystart="242" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1ga3a07db4678b4c03cdab21628eda3990a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double potentials::magnetic::wall_potential</definition>
+        <argsstring>(Atom *atom)</argsstring>
+        <name>wall_potential</name>
+        <param>
+          <type><ref refid="class_atom" kindref="compound">Atom</ref> *</type>
+          <declname>atom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Magnetic reulsion from walls, only works for two dimensions </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="260" column="1" bodyfile="potentials.h" bodystart="260" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1gafdbd92417bc530b057745e5a437e79ae" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>static Eigen::Vector3d potentials::magnetic::wall_force</definition>
+        <argsstring>(Atom *atom)</argsstring>
+        <name>wall_force</name>
+        <param>
+          <type><ref refid="class_atom" kindref="compound">Atom</ref> *</type>
+          <declname>atom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="285" column="1" bodyfile="potentials.h" bodystart="285" bodyend="308"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

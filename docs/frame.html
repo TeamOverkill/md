@@ -91,7 +91,7 @@
 <p class="caption"><span class="caption-text">Modules:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="atom.html">Atom</a></li>
-<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="potentials.html">Potentials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mdEngine.html">mdEngine</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Frame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="base.html">Base</a></li>
@@ -168,56 +168,23 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N5Frame5FrameEv">
-<span id="Frame::Frame"></span><span class="target" id="class_frame_1ad2e5946cf41d4817e750500acf05d02b"></span><code class="descname">Frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame5FrameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv2N5Frame5FrameEi">
+<span id="Frame::Frame__i"></span><span class="target" id="class_frame_1abda85597bd5159229d423cb7f5bab398"></span><code class="descname">Frame</code><span class="sig-paren">(</span>int <em>numOfAtoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame5FrameEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N5Frame10save_stateEPP4Atom">
-<span id="Frame::save_state__AtomPP"></span><span class="target" id="class_frame_1a03b0febb7a423f343a97f5b937ca74bb"></span>void <code class="descname">save_state</code><span class="sig-paren">(</span><a class="reference internal" href="atom.html#_CPPv24Atom" title="Atom">Atom</a> **<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame10save_stateEPP4Atom" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv2N5Frame10save_stateER5Atoms">
+<span id="Frame::save_state__AtomsR"></span><span class="target" id="class_frame_1ad764f38028be29ef6a4d7f894d40652d"></span>void <code class="descname">save_state</code><span class="sig-paren">(</span>Atoms &amp;<em>atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame10save_stateER5Atoms" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Save current state in a frame </p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Static Functions</p>
-<dl class="function">
-<dt id="_CPPv2N5Frame12save_to_fileEPP5Frame">
-<span id="Frame::save_to_file__FramePP"></span><span class="target" id="class_frame_1aa3523e2ec8247c6c5f2bb102d5016971"></span>void <code class="descname">save_to_file</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv25Frame" title="Frame">Frame</a> **<em>frames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame12save_to_fileEPP5Frame" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Write all frames to a file </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N5Frame10initializeEi">
-<span id="Frame::initialize__i"></span><span class="target" id="class_frame_1a78558e230dba7e5bf57916d38af7536c"></span>void <code class="descname">initialize</code><span class="sig-paren">(</span>int <em>numberOfFrames</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N5Frame10initializeEi" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Initialize the frames </p>
-</dd></dl>
-
-</div>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Static Attributes</p>
-<dl class="member">
-<dt id="_CPPv2N5Frame5fStepE">
-<span id="Frame::fStep__i"></span><span class="target" id="class_frame_1ae7615c7221ced614d59ce461deed3a5f"></span>int <code class="descname">fStep</code><a class="headerlink" href="#_CPPv2N5Frame5fStepE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Save a frame each fStep iteration </p>
-</dd></dl>
-
-</div>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Private Members</p>
+<p class="breathe-sectiondef-title rubric">Public Members</p>
 <dl class="member">
 <dt id="_CPPv2N5Frame5stateE">
 <span id="Frame::state__std::vector:std::vector:double::"></span><span class="target" id="class_frame_1a623c130d550f3ac4800c23460fb059bb"></span>std::vector&lt;std::vector&lt;double&gt;&gt; <code class="descname">state</code><a class="headerlink" href="#_CPPv2N5Frame5stateE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Matrix which holds the position and velocities of all atoms (state of the system) </p>
-</dd></dl>
-
-</div>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Private Static Attributes</p>
-<dl class="member">
-<dt id="_CPPv2N5Frame12frameCounterE">
-<span id="Frame::frameCounter__i"></span><span class="target" id="class_frame_1a713a115abb228c919e8ab3462b308bb2"></span>int <code class="descname">frameCounter</code><a class="headerlink" href="#_CPPv2N5Frame12frameCounterE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Counts the number of frames </p>
 </dd></dl>
 
 </div>

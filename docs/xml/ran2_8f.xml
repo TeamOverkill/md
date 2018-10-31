@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="ran2_8f" kind="file" language="Fortran">
+    <compoundname>ran2.f</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ran2_8f_1a1e2dca16088e8b7513b1464f229dd4e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>real function</type>
+        <definition>real function ran2</definition>
+        <argsstring>(idum)</argsstring>
+        <name>ran2</name>
+        <param>
+          <type>idum</type>
+          <defname>idum</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ran2.f" line="1" column="1" bodyfile="ran2.f" bodystart="2" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/>real<sp/></highlight><highlight class="keyword">function<sp/></highlight><highlight class="normal"><ref refid="classran2" kindref="compound">ran2</ref>(idum)</highlight></codeline>
+<codeline lineno="2" refid="ran2_8f_1a1e2dca16088e8b7513b1464f229dd4e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">integer</highlight><highlight class="normal"><sp/>idum,im1,im2,imm1,ia1,ia2,iq1,iq2,ir1,ir2,ntab,ndiv</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">real</highlight><highlight class="normal"><sp/>am,eps,rnmx</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>parameter(im1=2147483563,im2=2147483399,am=1./im1,imm1=im1-1,</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*ia1=40014,ia2=40692,iq1=53668,iq2=52774,ir1=12211,</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*ir2=3791,ntab=32,ndiv=1+imm1/ntab,eps=1.2e-7,rnmx=1.-eps)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">integer</highlight><highlight class="normal"><sp/>idum2,j,k,iv(ntab),iy</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">save</highlight><highlight class="normal"><sp/>iv,iy,idum2</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">data</highlight><highlight class="normal"><sp/>idum2/123456789/,<sp/>iv/ntab*0/,<sp/>iy/0/</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(idum.le.0)<sp/></highlight><highlight class="keywordflow">then</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idum=max(-idum,1)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idum2=idum</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>11<sp/>j=ntab+8,1,-1</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k=idum/iq1</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idum=ia1*(idum-k*iq1)-k*ir1</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(idum.lt.0)<sp/>idum=idum+im1</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(j.le.ntab)<sp/>iv(j)<sp/>=<sp/>idum</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">c<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>enddo<sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/>11<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iy<sp/>=<sp/>iv(1)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordflow"><sp/><sp/><sp/><sp/><sp/><sp/>endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>k=idum/iq1</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>idum=ia1*(idum-k*iq1)-k*ir1</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(idum.lt.0)<sp/>idum<sp/>=<sp/>idum+im1</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>k=idum2/iq2</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>idum2=ia2*(idum2-k*iq2)-k*ir2</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(idum2.lt.0)<sp/>idum2=idum2+im2</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>j=1+iy/ndiv</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iy=iv(j)-idum2</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iv(j)=idum</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(iy.lt.1)iy=iy+imm1</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classran2" kindref="compound">ran2</ref>=min(am*iy,rnmx)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/>end</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="ran2.f"/>
+  </compounddef>
+</doxygen>

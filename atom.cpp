@@ -11,21 +11,21 @@ void Atom::set_mb_velocity(){
     double ran_u1 = ran2::get_random();
     double ran_u2 = ran2::get_random();
     double random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-    this->vel[0] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / this->mass) * 0.001; //[nm/ps]
+    this->vel[0] = random_gauss * sqrt(constants::K_CORRECT * Base::temperature / this->mass) * 0.001; //[nm/ps]
 
     ran_u2 = ran2::get_random();
     ran_u1 = ran2::get_random();
     random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-    this->vel[1] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / this->mass) * 0.001;
+    this->vel[1] = random_gauss * sqrt(constants::K_CORRECT * Base::temperature / this->mass) * 0.001;
 
     ran_u2 = ran2::get_random();
     ran_u1 = ran2::get_random();
     random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
-    this->vel[2] = random_gauss * sqrt(constants::K_DALTON * Base::temperature / this->mass) * 0.001;
+    this->vel[2] = random_gauss * sqrt(constants::K_CORRECT * Base::temperature / this->mass) * 0.001;
 
     this->vel = this->vel.cwiseProduct(Base::dimensionality);
 
-    this->vel.setZero();
+    //this->vel.setZero();
 }
 
 /*! Calculates the direct distance between two atoms:
@@ -73,31 +73,6 @@ double Atom::kinetic_energy(){
 }
 
 
-
-/*!
-* Checks for wall collisions and uses perfect elastic collision.
-*/
-void Atom::hard_walls(){
-    if(this->pos[0] >= Base::boxDim - this->radius){    /*! If atom is touching or outside the wall in the x-dimension*/
-        this->vel[0] *= -1;                             /*! Reverse velocity in the x-dimension*/
-    }
-    if(this->pos[0] <= this->radius){ ;
-        this->vel[0] *= -1;
-    }
-    if(this->pos[1] >= Base::boxDim){
-        this->vel[1] *= -1;
-    }
-    if(this->pos[1] <= this->radius){
-        this->vel[1] *= -1;
-    }
-    if(this->pos[2] >= Base::boxDim - this->radius){
-        this->vel[2] *= -1;
-    }
-    if(this->pos[2] <= this->radius){
-        this->vel[2] *= -1;
-    }
-}
-
 /*!
 * Moves a particle according to periodic boundary conditions:
 \code{.cpp}
@@ -142,11 +117,60 @@ void Atom::pbc(){
     }
 }
 
+/*!
+* Checks for wall collisions and uses perfect elastic collision.
+*/
+void Atom::hard_walls(){
+    if(this->pos[0] >= Base::boxDim - this->radius){    /*! If atom is touching or outside the wall in the x-dimension*/
+        this->vel[0] *= -1;                             /*! Reverse velocity in the x-dimension*/
+    }
+    if(this->pos[0] <= this->radius){ ;
+        this->vel[0] *= -1;
+    }
+    if(this->pos[1] >= Base::boxDim - this->radius){
+        this->vel[1] *= -1;
+    }
+    if(this->pos[1] <= this->radius){
+        this->vel[1] *= -1;
+    }
+    if(this->pos[2] >= Base::boxDim - this->radius){
+        this->vel[2] *= -1;
+    }
+    if(this->pos[2] <= this->radius){
+        this->vel[2] *= -1;
+    }
+}
+
+Eigen::Vector3d Atom::get_disp(Atom *otherAtom){
+    Eigen::Vector3d disp;
+    disp = otherAtom->pos - this->pos;
+
+    if(disp[0] < -1 * Base::boxDim/2){
+        disp[0] += Base::boxDim;
+    }
+    if(disp[0] > Base::boxDim/2){
+        disp[0] -= Base::boxDim;
+    }
+    if(disp[1] < -1 * Base::boxDim/2){
+        disp[1] += Base::boxDim;
+    }
+    if(disp[1] > Base::boxDim/2){
+        disp[1] -= Base::boxDim;
+    }
+    if(disp[2] < -1 * Base::boxDim/2){
+        disp[2] += Base::boxDim;
+    }
+    if(disp[2] > Base::boxDim/2){
+        disp[2] -= Base::boxDim;
+    }
+    return disp;
+}
+
 void Atom::random_move(double stepSize){
-    this->pos[0] += (ran2::get_random()*2.0 - 1.0) * stepSize;
-    this->pos[1] += (ran2::get_random()*2.0 - 1.0) * stepSize;
-    this->pos[2] += (ran2::get_random()*2.0 - 1.0) * stepSize;
+    this->pos[0] += (ran2::get_random() * 2.0 - 1.0) * stepSize;
+    this->pos[1] += (ran2::get_random() * 2.0 - 1.0) * stepSize;
+    this->pos[2] += (ran2::get_random() * 2.0 - 1.0) * stepSize;
     this->pos = this->pos.cwiseProduct(Base::dimensionality);
-    this->pbc();
+    //this->pbc();
 }
 

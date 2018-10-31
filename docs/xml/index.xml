@@ -1,29 +1,52 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.14">
+  <compound refid="class_analysis" kind="class"><name>Analysis</name>
+    <member refid="class_analysis_1a55b2094eed04469e3562cb0ab81b3148" kind="variable"><name>histo</name></member>
+    <member refid="class_analysis_1a79317d83cd9fd7e435ca70f5ecea3726" kind="variable"><name>numOfSamples</name></member>
+    <member refid="class_analysis_1aa02db3acac2ebd9c28b0d4e4c2c48d79" kind="variable"><name>bins</name></member>
+    <member refid="class_analysis_1a798b154590323d5a7eb0adffec1c240b" kind="variable"><name>binWidth</name></member>
+    <member refid="class_analysis_1a280e49026fd1c7480223f8cb7562628b" kind="variable"><name>name</name></member>
+    <member refid="class_analysis_1ac29144bc31b93aafb212ee70e88ce7a5" kind="function"><name>sample</name></member>
+    <member refid="class_analysis_1a75a3960bbe06316e320abc9ed8c79d90" kind="function"><name>save</name></member>
+  </compound>
+  <compound refid="structthermostats_1_1andersen" kind="struct"><name>thermostats::andersen</name>
+    <member refid="structthermostats_1_1andersen_1ac386006929da04dc748e887943beccc6" kind="function"><name>set_velocity</name></member>
+  </compound>
   <compound refid="class_atom" kind="class"><name>Atom</name>
     <member refid="class_atom_1a9c44a53717ca3857065c0a36787359e1" kind="variable"><name>pos</name></member>
     <member refid="class_atom_1aabc1e87e4ed861ae02f781d3f43d8481" kind="variable"><name>vel</name></member>
     <member refid="class_atom_1af5b2daf8c6f32465b0ab1aecab57915b" kind="variable"><name>oldForce</name></member>
     <member refid="class_atom_1a33b530b8900b57bfa933ae79c7e95d71" kind="variable"><name>force</name></member>
-    <member refid="class_atom_1a482b093515f1ad043b35646669445bda" kind="variable"><name>charge</name></member>
+    <member refid="class_atom_1a6ef4deda91a29235558d6d4c46b808b1" kind="variable"><name>q</name></member>
+    <member refid="class_atom_1a81fcab926e5f35d6ea3c408e1187ac6a" kind="variable"><name>index</name></member>
     <member refid="class_atom_1a3f68fa5a0bd341c3c6b73826da8e9302" kind="variable"><name>radius</name></member>
     <member refid="class_atom_1a90e6f00ca3ae2fda9b87cb27aac5929d" kind="variable"><name>mass</name></member>
-    <member refid="class_atom_1a7ac21eb5765267ccafe658634c7cc45f" kind="variable"><name>distances</name></member>
-    <member refid="class_atom_1a8fadf04e83f1558c13192f91eee5348a" kind="variable"><name>forceMatrix</name></member>
     <member refid="class_atom_1aa0147d7e49ab90f559b66e38d3d12863" kind="function"><name>Atom</name></member>
+    <member refid="class_atom_1ae121e0e17fd36b202ef9fa67b5b2c3f1" kind="function"><name>set_mb_velocity</name></member>
     <member refid="class_atom_1a90a4da89f562cb57f576078e5580a0a8" kind="function"><name>distance</name></member>
     <member refid="class_atom_1a5fa409397d41451b32a6fdfae5c83674" kind="function"><name>distance_pbc</name></member>
     <member refid="class_atom_1a400e4f02e90dd87bfc39aab9c6c40bac" kind="function"><name>hard_walls</name></member>
     <member refid="class_atom_1a8b9bbee6256a22b2f4260e7a66858e25" kind="function"><name>pbc</name></member>
     <member refid="class_atom_1a4cc117bd6f7a2ce6f1af407283aff4b2" kind="function"><name>kinetic_energy</name></member>
-    <member refid="class_atom_1a181411015bc90a5e6993ddb006017de9" kind="function"><name>set_velocity</name></member>
-    <member refid="class_atom_1a2b938c4bf60adff2383ca0ca7e07eebc" kind="function"><name>update_distances</name></member>
-    <member refid="class_atom_1ac711a82c0e5c4ada4cacec38e64c00d7" kind="function"><name>initialize</name></member>
+    <member refid="class_atom_1a5e290d10279c3bac6e22b4fbd3272c31" kind="function"><name>random_move</name></member>
+  </compound>
+  <compound refid="class_atoms" kind="class"><name>Atoms</name>
+    <member refid="class_atoms_1a6cf175e162b7c24bf98ffdee40e58edc" kind="variable"><name>atoms</name></member>
+    <member refid="class_atoms_1a539d10ca274094ce38a03ca4799af170" kind="variable"><name>numOfAtoms</name></member>
+    <member refid="class_atoms_1ad7ee940c20b641d01afcc81cb37e7175" kind="variable"><name>distances</name></member>
+    <member refid="class_atoms_1a5446ee504251468e30620643c7ab1226" kind="variable"><name>forceMatrix</name></member>
+    <member refid="class_atoms_1a80a4efa8149d0e72cce977e010c032e0" kind="function"><name>operator[]</name></member>
+    <member refid="class_atoms_1a8ba97bb006acee207478d77419e7d833" kind="function"><name>set_forces_zero</name></member>
+    <member refid="class_atoms_1a5be0d727fa9ef4e5d2a616dcaee24289" kind="function"><name>update_distances</name></member>
+    <member refid="class_atoms_1a7b4053d07bb17a1f69820d8c28534846" kind="function"><name>get_overlaps</name></member>
+    <member refid="class_atoms_1a1414a0bfb6351396a7936f6142e4bb52" kind="function"><name>initialize</name></member>
+    <member refid="class_atoms_1ac478a601a4133cf7e7b3ea5b2bc99384" kind="function"><name>remove_overlaps</name></member>
+    <member refid="class_atoms_1a03882ecd88ad36c807c1e7d5dc89139b" kind="function"><name>overlap</name></member>
+    <member refid="class_atoms_1a9f3a5579401ac72c421eda55994e4142" kind="function"><name>read_frame</name></member>
   </compound>
   <compound refid="class_base" kind="class"><name>Base</name>
     <member refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kind="variable"><name>boxDim</name></member>
     <member refid="class_base_1a28aaaddcc4be196bf5c90d50a87a0ab4" kind="variable"><name>volume</name></member>
-    <member refid="class_base_1a1684b05f430b5f765869935843ddaf16" kind="variable"><name>numOfAtoms</name></member>
     <member refid="class_base_1a0505a956296600b0a06335e9bdc008f9" kind="variable"><name>iterations</name></member>
     <member refid="class_base_1ad50d7047869566c9a20b0187bdfe73be" kind="variable"><name>outFreq</name></member>
     <member refid="class_base_1a34d4da99a6fa242d041ad2b4f8faab67" kind="variable"><name>tStep</name></member>
@@ -34,61 +57,117 @@
     <member refid="class_base_1ae9423f208c5f9bd90108df4b8ba7530e" kind="variable"><name>temperatures</name></member>
     <member refid="class_base_1a249c833ddd4460301d2c1fef9b68e779" kind="variable"><name>dimensionality</name></member>
     <member refid="class_base_1aa7f430219a8eea803c513189f8689624" kind="variable"><name>dimensions</name></member>
-    <member refid="class_base_1a1568ed24af5e60016e1b69a0263f93e8" kind="function"><name>initialize</name></member>
+    <member refid="class_base_1aefcdaef3290778f0ad17484142959bed" kind="function"><name>initialize</name></member>
+  </compound>
+  <compound refid="structthermostats_1_1berendsen" kind="struct"><name>thermostats::berendsen</name>
+    <member refid="structthermostats_1_1berendsen_1a24f7a077bd19b8b3489ea8b6a3884adb" kind="function"><name>set_velocity</name></member>
+  </compound>
+  <compound refid="structpotentials_1_1coulomb" kind="struct"><name>potentials::coulomb</name>
+    <member refid="group__magnetic_1gaa5123fedbfe37c05ab20753bb4c695d4" kind="variable"><name>cFactor</name></member>
+    <member refid="group__magnetic_1ga0e3b9fc8104e34c2c652f832debe0e32" kind="function"><name>energy</name></member>
+    <member refid="group__magnetic_1ga54f122a69fde5491491c8cd43aa2da31" kind="function"><name>forces</name></member>
+  </compound>
+  <compound refid="class_density" kind="class"><name>Density</name>
+    <member refid="class_density_1a819b9b34202d30425e186925da8f599e" kind="function"><name>Density</name></member>
+    <member refid="class_density_1a55de07edcdf2995816af07bbbbead32c" kind="function"><name>sample</name></member>
+    <member refid="class_density_1a3e05b87638282b9b4eef68ac655fe8bb" kind="function"><name>save</name></member>
+  </compound>
+  <compound refid="class_potential_manager_1_1_extractor" kind="class"><name>PotentialManager::Extractor</name>
+    <member refid="class_potential_manager_1_1_extractor_1a817322857fe0b74fbdb5b77ad0185d9d" kind="function"><name>energies</name></member>
+    <member refid="class_potential_manager_1_1_extractor_1a1ff4504ae81ca988ea4e327efaccde4a" kind="function"><name>forces</name></member>
+  </compound>
+  <compound refid="class_potential_manager_1_1_extractor_3_01_t_01_4" kind="class"><name>PotentialManager::Extractor&lt; T &gt;</name>
+    <member refid="class_potential_manager_1_1_extractor_3_01_t_01_4_1ac5cea43fcfd542799c35c83e2dec4511" kind="function"><name>energies</name></member>
+    <member refid="class_potential_manager_1_1_extractor_3_01_t_01_4_1a649f74c4ec4bfb4500bbd6ebd942a67c" kind="function"><name>forces</name></member>
   </compound>
   <compound refid="class_frame" kind="class"><name>Frame</name>
-    <member refid="class_frame_1ae7615c7221ced614d59ce461deed3a5f" kind="variable"><name>fStep</name></member>
     <member refid="class_frame_1a623c130d550f3ac4800c23460fb059bb" kind="variable"><name>state</name></member>
-    <member refid="class_frame_1a713a115abb228c919e8ab3462b308bb2" kind="variable"><name>frameCounter</name></member>
-    <member refid="class_frame_1ad2e5946cf41d4817e750500acf05d02b" kind="function"><name>Frame</name></member>
-    <member refid="class_frame_1a03b0febb7a423f343a97f5b937ca74bb" kind="function"><name>save_state</name></member>
-    <member refid="class_frame_1aa3523e2ec8247c6c5f2bb102d5016971" kind="function"><name>save_to_file</name></member>
-    <member refid="class_frame_1a78558e230dba7e5bf57916d38af7536c" kind="function"><name>initialize</name></member>
+    <member refid="class_frame_1abda85597bd5159229d423cb7f5bab398" kind="function"><name>Frame</name></member>
+    <member refid="class_frame_1ad764f38028be29ef6a4d7f894d40652d" kind="function"><name>save_state</name></member>
+  </compound>
+  <compound refid="class_frames" kind="class"><name>Frames</name>
+    <member refid="class_frames_1a3de20c1f14e98b02d29c10cf964bdd24" kind="variable"><name>frames</name></member>
+    <member refid="class_frames_1a7f1a57ce12c1017224c30ab4e105457a" kind="variable"><name>totalFrames</name></member>
+    <member refid="class_frames_1af5b20515a0c19afd2bef9d8182770160" kind="variable"><name>frameCounter</name></member>
+    <member refid="class_frames_1a84b88b4d8b2f4a1e47fba543565d75bf" kind="variable"><name>fStep</name></member>
+    <member refid="class_frames_1af39796f08cdc5d83eee0ecb287d9d3ae" kind="variable"><name>saveFreq</name></member>
+    <member refid="class_frames_1a29694b20ea5891c342de26c0543d78eb" kind="function"><name>Frames</name></member>
+    <member refid="class_frames_1a3c34fa704de2fc5804f4b53b7f387c86" kind="function"><name>operator[]</name></member>
+    <member refid="class_frames_1ab84e3d3c918b5f6c95cdcb76ab1aeba1" kind="function"><name>save_to_file</name></member>
+  </compound>
+  <compound refid="structpotentials_1_1harmonic" kind="struct"><name>potentials::harmonic</name>
+    <member refid="group__magnetic_1gac0535043471ba4a1210fac6561e484e8" kind="variable"><name>springConstant</name></member>
+    <member refid="group__magnetic_1gab9ebd7bd690d24809daa8bb7140c1e0e" kind="function"><name>energy</name></member>
+    <member refid="group__magnetic_1gae1d7614deadf774762e5f647ad62be15" kind="function"><name>forces</name></member>
+  </compound>
+  <compound refid="structpotentials_1_1_l_j" kind="struct"><name>potentials::LJ</name>
+    <member refid="group__magnetic_1gaa700bba4cfee6bbb04fedc0e956bca7b" kind="variable"><name>epsilon</name></member>
+    <member refid="group__magnetic_1ga6a628455374754ee0353cade821afcaa" kind="variable"><name>sigma</name></member>
+    <member refid="group__magnetic_1ga6fb43617f39e8a80a5deb110572e7c84" kind="function"><name>forces</name></member>
+    <member refid="group__magnetic_1ga7316fa3b17f6e65c1fe542e34113de98" kind="function"><name>energy</name></member>
+  </compound>
+  <compound refid="structpotentials_1_1_l_j_rep" kind="struct"><name>potentials::LJRep</name>
+    <member refid="group__magnetic_1ga3d98095e9dc0ccb1e5b0b008a0d7aa36" kind="variable"><name>epsilon</name></member>
+    <member refid="group__magnetic_1gac63073841abd82e86cc3e9b8e66d0a78" kind="variable"><name>sigma</name></member>
+    <member refid="group__magnetic_1gaf833194a85e41abc481d32a94e1e1684" kind="function"><name>forces</name></member>
+    <member refid="group__magnetic_1gaac82370d4c040e7de08caaac61334b74" kind="function"><name>energy</name></member>
+  </compound>
+  <compound refid="structpotentials_1_1magnetic" kind="struct"><name>potentials::magnetic</name>
+    <member refid="group__magnetic_1ga792b521d94a5ab58120d4994350e47a7" kind="variable"><name>dipoleC</name></member>
+    <member refid="group__magnetic_1ga4106376186d9adc40ebe7f30023530c3" kind="function"><name>forces</name></member>
+    <member refid="group__magnetic_1ga6307bce7efe63036ab0c390570bb21d0" kind="function"><name>energy</name></member>
+    <member refid="group__magnetic_1ga3a07db4678b4c03cdab21628eda3990a" kind="function"><name>wall_potential</name></member>
+    <member refid="group__magnetic_1gafdbd92417bc530b057745e5a437e79ae" kind="function"><name>wall_force</name></member>
   </compound>
   <compound refid="class_parser" kind="class"><name>Parser</name>
-    <member refid="class_parser_1abe8220a1eec0fc7969b09f8b572ff880" kind="function"><name>parse</name></member>
+    <member refid="class_parser_1a919965f1f7f77af800ce12d6ed1a857e" kind="variable"><name>numOfAtoms</name></member>
+    <member refid="class_parser_1ad8933f4c0bd3ea9d755da1d03888bf59" kind="variable"><name>numberOfFrames</name></member>
+    <member refid="class_parser_1a60debf2e7d96b5d93d1520b484082412" kind="variable"><name>saveFreq</name></member>
+    <member refid="class_parser_1ad941a297e9f6abb39271090806a6be33" kind="function"><name>parse</name></member>
+  </compound>
+  <compound refid="class_potential_manager" kind="class"><name>PotentialManager</name>
+    <member refid="class_potential_manager_1a4d9d629e9ada394738d20093f334e2b3" kind="function"><name>get_energy</name></member>
+    <member refid="class_potential_manager_1a2ab435a12f88a372475d6ee9e0d1f68a" kind="function"><name>get_forces</name></member>
   </compound>
   <compound refid="classran2" kind="class"><name>ran2</name>
     <member refid="classran2_1a1774f26575de5341fe11d9e7af60c6b3" kind="function"><name>get_random</name></member>
+  </compound>
+  <compound refid="namespacebarostats" kind="namespace"><name>barostats</name>
+    <member refid="namespacebarostats_1ae50a42e8991d2fc65ef6b1aee207b22a" kind="function"><name>get_pressure</name></member>
   </compound>
   <compound refid="namespaceconstants" kind="namespace"><name>constants</name>
     <member refid="namespaceconstants_1aaa77429e27a7630917c26d9dcdd02d37" kind="variable"><name>PI</name></member>
     <member refid="namespaceconstants_1a9c026ed46cc6df304fd4ae0f4a6aa374" kind="variable"><name>E</name></member>
     <member refid="namespaceconstants_1aca22d2dbeb67464297eceacef47125c7" kind="variable"><name>K</name></member>
+    <member refid="namespaceconstants_1ae0a15341089262b239fdefb3ccbf4dca" kind="variable"><name>KB</name></member>
     <member refid="namespaceconstants_1a91a17b2ffd6b749ba385ced928ebbdb0" kind="variable"><name>K_DALTON</name></member>
     <member refid="namespaceconstants_1a49e1085ba67fdde84844c8fe12dc12e8" kind="variable"><name>K_CORRECT</name></member>
     <member refid="namespaceconstants_1ae2c7ade7bbc5547bd496d747df58828f" kind="variable"><name>NA</name></member>
-  </compound>
-  <compound refid="namespaceenergy" kind="namespace"><name>energy</name>
-  </compound>
-  <compound refid="namespaceenergy_1_1harmonic" kind="namespace"><name>energy::harmonic</name>
-    <member refid="group___lennard-_jones_1ga45722091b414b1c9b21292957d920dba" kind="variable"><name>springConstant</name></member>
-    <member refid="group___lennard-_jones_1gaad1be269190aa2d8590a69ec9d8e5785" kind="function"><name>energy</name></member>
-    <member refid="group___lennard-_jones_1gaec5ae575bae5880ee0545e2c82f795d2" kind="function"><name>forces</name></member>
-  </compound>
-  <compound refid="namespaceenergy_1_1_l_j" kind="namespace"><name>energy::LJ</name>
-    <member refid="group___lennard-_jones_1ga964e5b1db9c2f1cfaf64663b2fa92e90" kind="function"><name>forces</name></member>
-    <member refid="group___lennard-_jones_1ga100c4be2b148a0f7f68f6af3dac4135a" kind="function"><name>energy</name></member>
-  </compound>
-  <compound refid="namespaceenergy_1_1_l_j_1_1_0D5" kind="namespace"><name>energy::LJ::@5</name>
+    <member refid="namespaceconstants_1a672291cadf3b913e2279798456f2f90d" kind="variable"><name>VP</name></member>
   </compound>
   <compound refid="namespaceintegrators" kind="namespace"><name>integrators</name>
-    <member refid="namespaceintegrators_1a217be128a03eaac3dc05bdbd22bc8809" kind="function"><name>velocity_verlet_first</name></member>
-    <member refid="namespaceintegrators_1ac25456f7247f7b73b5db97108cd7583e" kind="function"><name>velocity_verlet_second</name></member>
+    <member refid="namespaceintegrators_1aaaf8a4997b666efb1260c2ad23711b4c" kind="function"><name>velocity_verlet_first</name></member>
+    <member refid="namespaceintegrators_1a57e7381cbe2890bf7642c4437bd25a8a" kind="function"><name>velocity_verlet_second</name></member>
   </compound>
   <compound refid="namespacemd_engine" kind="namespace"><name>mdEngine</name>
-    <member refid="group___main__modules_1ga5f8cc3610166e26157ab48c1905bd2b7" kind="function"><name>get_temperature</name></member>
-    <member refid="group___main__modules_1ga43703c5bde3f0a0ffd916e8c030d5d33" kind="function"><name>get_pressure</name></member>
-    <member refid="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94" kind="function"><name>run</name></member>
+    <member refid="group___main__modules_1ga36ce94f85240581e5d673010c94bcee7" kind="function"><name>run</name></member>
+  </compound>
+  <compound refid="namespacepotentials" kind="namespace"><name>potentials</name>
   </compound>
   <compound refid="namespacethermostats" kind="namespace"><name>thermostats</name>
+    <member refid="namespacethermostats_1ac608f83ea867146735d5512b4d2d823d" kind="function"><name>get_temperature</name></member>
   </compound>
-  <compound refid="namespacethermostats_1_1andersen" kind="namespace"><name>thermostats::andersen</name>
-    <member refid="namespacethermostats_1_1andersen_1afa64229a2b2ba2ad40f5ec293ea0da62" kind="function"><name>set_velocity</name></member>
+  <compound refid="analysis_8h" kind="file"><name>analysis.h</name>
   </compound>
   <compound refid="atom_8cpp" kind="file"><name>atom.cpp</name>
   </compound>
   <compound refid="atom_8h" kind="file"><name>atom.h</name>
+  </compound>
+  <compound refid="atoms_8cpp" kind="file"><name>atoms.cpp</name>
+  </compound>
+  <compound refid="atoms_8h" kind="file"><name>atoms.h</name>
+  </compound>
+  <compound refid="barostats_8h" kind="file"><name>barostats.h</name>
   </compound>
   <compound refid="base_8cpp" kind="file"><name>base.cpp</name>
   </compound>
@@ -96,11 +175,11 @@
   </compound>
   <compound refid="constants_8h" kind="file"><name>constants.h</name>
   </compound>
-  <compound refid="energy_8h" kind="file"><name>energy.h</name>
-  </compound>
   <compound refid="frame_8cpp" kind="file"><name>frame.cpp</name>
   </compound>
   <compound refid="frame_8h" kind="file"><name>frame.h</name>
+  </compound>
+  <compound refid="frames_8h" kind="file"><name>frames.h</name>
   </compound>
   <compound refid="integrators_8h" kind="file"><name>integrators.h</name>
   </compound>
@@ -110,6 +189,13 @@
   <compound refid="md_engine_8h" kind="file"><name>mdEngine.h</name>
   </compound>
   <compound refid="parser_8h" kind="file"><name>parser.h</name>
+  </compound>
+  <compound refid="potentialmanager_8h" kind="file"><name>potentialmanager.h</name>
+  </compound>
+  <compound refid="potentials_8h" kind="file"><name>potentials.h</name>
+  </compound>
+  <compound refid="ran2_8f" kind="file"><name>ran2.f</name>
+    <member refid="ran2_8f_1a1e2dca16088e8b7513b1464f229dd4e8" kind="function"><name>ran2</name></member>
   </compound>
   <compound refid="ran2__lib_8cpp" kind="file"><name>ran2_lib.cpp</name>
     <member refid="ran2__lib_8cpp_1af8a50b927b27fa73d74403a25c2b6947" kind="define"><name>RAN_2_H</name></member>
@@ -144,22 +230,40 @@
   </compound>
   <compound refid="group___atom" kind="group"><name>Atom</name>
   </compound>
-  <compound refid="group___energy" kind="group"><name>Energy</name>
-  </compound>
-  <compound refid="group___harmonic" kind="group"><name>Harmonic</name>
-  </compound>
-  <compound refid="group___lennard-_jones" kind="group"><name>Lennard-Jones</name>
-    <member refid="group___lennard-_jones_1ga45722091b414b1c9b21292957d920dba" kind="variable"><name>springConstant</name></member>
-    <member refid="group___lennard-_jones_1gaad1be269190aa2d8590a69ec9d8e5785" kind="function"><name>energy</name></member>
-    <member refid="group___lennard-_jones_1gaec5ae575bae5880ee0545e2c82f795d2" kind="function"><name>forces</name></member>
-    <member refid="group___lennard-_jones_1ga964e5b1db9c2f1cfaf64663b2fa92e90" kind="function"><name>forces</name></member>
-    <member refid="group___lennard-_jones_1ga100c4be2b148a0f7f68f6af3dac4135a" kind="function"><name>energy</name></member>
-  </compound>
   <compound refid="group___frame" kind="group"><name>Frame</name>
   </compound>
   <compound refid="group___main__modules" kind="group"><name>Main_modules</name>
-    <member refid="group___main__modules_1ga5f8cc3610166e26157ab48c1905bd2b7" kind="function"><name>get_temperature</name></member>
-    <member refid="group___main__modules_1ga43703c5bde3f0a0ffd916e8c030d5d33" kind="function"><name>get_pressure</name></member>
-    <member refid="group___main__modules_1ga9814b46948bb9bf9930a3a9392aa3a94" kind="function"><name>run</name></member>
+    <member refid="group___main__modules_1ga36ce94f85240581e5d673010c94bcee7" kind="function"><name>run</name></member>
+  </compound>
+  <compound refid="group___potentials" kind="group"><name>Potentials</name>
+  </compound>
+  <compound refid="group___harmonic" kind="group"><name>Harmonic</name>
+  </compound>
+  <compound refid="group___coulomb" kind="group"><name>Coulomb</name>
+  </compound>
+  <compound refid="group___l_j_rep" kind="group"><name>LJRep</name>
+  </compound>
+  <compound refid="group___lennard-_jones" kind="group"><name>Lennard-Jones</name>
+  </compound>
+  <compound refid="group__magnetic" kind="group"><name>magnetic</name>
+    <member refid="group__magnetic_1gac0535043471ba4a1210fac6561e484e8" kind="variable"><name>springConstant</name></member>
+    <member refid="group__magnetic_1gaa5123fedbfe37c05ab20753bb4c695d4" kind="variable"><name>cFactor</name></member>
+    <member refid="group__magnetic_1ga3d98095e9dc0ccb1e5b0b008a0d7aa36" kind="variable"><name>epsilon</name></member>
+    <member refid="group__magnetic_1gac63073841abd82e86cc3e9b8e66d0a78" kind="variable"><name>sigma</name></member>
+    <member refid="group__magnetic_1gaa700bba4cfee6bbb04fedc0e956bca7b" kind="variable"><name>epsilon</name></member>
+    <member refid="group__magnetic_1ga6a628455374754ee0353cade821afcaa" kind="variable"><name>sigma</name></member>
+    <member refid="group__magnetic_1ga792b521d94a5ab58120d4994350e47a7" kind="variable"><name>dipoleC</name></member>
+    <member refid="group__magnetic_1gab9ebd7bd690d24809daa8bb7140c1e0e" kind="function"><name>energy</name></member>
+    <member refid="group__magnetic_1gae1d7614deadf774762e5f647ad62be15" kind="function"><name>forces</name></member>
+    <member refid="group__magnetic_1ga0e3b9fc8104e34c2c652f832debe0e32" kind="function"><name>energy</name></member>
+    <member refid="group__magnetic_1ga54f122a69fde5491491c8cd43aa2da31" kind="function"><name>forces</name></member>
+    <member refid="group__magnetic_1gaf833194a85e41abc481d32a94e1e1684" kind="function"><name>forces</name></member>
+    <member refid="group__magnetic_1gaac82370d4c040e7de08caaac61334b74" kind="function"><name>energy</name></member>
+    <member refid="group__magnetic_1ga6fb43617f39e8a80a5deb110572e7c84" kind="function"><name>forces</name></member>
+    <member refid="group__magnetic_1ga7316fa3b17f6e65c1fe542e34113de98" kind="function"><name>energy</name></member>
+    <member refid="group__magnetic_1ga4106376186d9adc40ebe7f30023530c3" kind="function"><name>forces</name></member>
+    <member refid="group__magnetic_1ga6307bce7efe63036ab0c390570bb21d0" kind="function"><name>energy</name></member>
+    <member refid="group__magnetic_1ga3a07db4678b4c03cdab21628eda3990a" kind="function"><name>wall_potential</name></member>
+    <member refid="group__magnetic_1gafdbd92417bc530b057745e5a437e79ae" kind="function"><name>wall_force</name></member>
   </compound>
 </doxygenindex>

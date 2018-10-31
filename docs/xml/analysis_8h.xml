@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="analysis_8h" kind="file" language="C++">
+    <compoundname>analysis.h</compoundname>
+    <includedby refid="md_engine_8h" local="yes">mdEngine.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>analysis.h</label>
+        <link refid="analysis_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>mdEngine.h</label>
+        <link refid="md_engine_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_analysis" prot="public">Analysis</innerclass>
+    <innerclass refid="class_density" prot="public">Density</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="class_analysis" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_analysis" kindref="compound">Analysis</ref>{</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="class_analysis_1a55b2094eed04469e3562cb0ab81b3148" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="class_analysis_1a55b2094eed04469e3562cb0ab81b3148" kindref="member">histo</ref>;</highlight></codeline>
+<codeline lineno="5" refid="class_analysis_1a79317d83cd9fd7e435ca70f5ecea3726" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_analysis_1a79317d83cd9fd7e435ca70f5ecea3726" kindref="member">numOfSamples</ref>;</highlight></codeline>
+<codeline lineno="6" refid="class_analysis_1aa02db3acac2ebd9c28b0d4e4c2c48d79" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_analysis_1aa02db3acac2ebd9c28b0d4e4c2c48d79" kindref="member">bins</ref>;</highlight></codeline>
+<codeline lineno="7" refid="class_analysis_1a798b154590323d5a7eb0adffec1c240b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_analysis_1a798b154590323d5a7eb0adffec1c240b" kindref="member">binWidth</ref>;</highlight></codeline>
+<codeline lineno="8" refid="class_analysis_1a280e49026fd1c7480223f8cb7562628b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_analysis_1a280e49026fd1c7480223f8cb7562628b" kindref="member">name</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_analysis_1ac29144bc31b93aafb212ee70e88ce7a5" kindref="member">sample</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>d)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_analysis_1a75a3960bbe06316e320abc9ed8c79d90" kindref="member">save</ref>()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="class_density" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_density" kindref="compound">Density</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_analysis" kindref="compound">Analysis</ref>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="17" refid="class_density_1a819b9b34202d30425e186925da8f599e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_density_1a819b9b34202d30425e186925da8f599e" kindref="member">Density</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_analysis_1aa02db3acac2ebd9c28b0d4e4c2c48d79" kindref="member">bins</ref>,<sp/>std::string<sp/><ref refid="class_analysis_1a280e49026fd1c7480223f8cb7562628b" kindref="member">name</ref>){</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;name<sp/>=<sp/><ref refid="class_analysis_1a280e49026fd1c7480223f8cb7562628b" kindref="member">name</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;bins<sp/>=<sp/><ref refid="class_analysis_1aa02db3acac2ebd9c28b0d4e4c2c48d79" kindref="member">bins</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_analysis_1a798b154590323d5a7eb0adffec1c240b" kindref="member">binWidth</ref><sp/>=<sp/><ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref><sp/>/<sp/><ref refid="class_analysis_1aa02db3acac2ebd9c28b0d4e4c2c48d79" kindref="member">bins</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_analysis_1a55b2094eed04469e3562cb0ab81b3148" kindref="member">histo</ref>.resize(bins);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="class_density_1a55de07edcdf2995816af07bbbbead32c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_density_1a55de07edcdf2995816af07bbbbead32c" kindref="member">sample</ref>(<ref refid="class_atoms" kindref="compound">Atoms</ref>&amp;<sp/>atoms,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>d){</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>atoms.<ref refid="class_atoms_1a539d10ca274094ce38a03ca4799af170" kindref="member">numOfAtoms</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_analysis_1a55b2094eed04469e3562cb0ab81b3148" kindref="member">histo</ref>[(int)(atoms[i]-&gt;pos[d]/<ref refid="class_analysis_1a798b154590323d5a7eb0adffec1c240b" kindref="member">binWidth</ref>)]++;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(atoms[i]-&gt;q<sp/>&lt;<sp/>0){</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_analysis_1a55b2094eed04469e3562cb0ab81b3148" kindref="member">histo</ref>[(int)(atoms[i]-&gt;pos[d]/<ref refid="class_analysis_1a798b154590323d5a7eb0adffec1c240b" kindref="member">binWidth</ref>)]++;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(atoms[i]-&gt;q<sp/>&gt;<sp/>0){</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_analysis_1a55b2094eed04469e3562cb0ab81b3148" kindref="member">histo</ref>[(int)(atoms[i]-&gt;pos[d]/<ref refid="class_analysis_1a798b154590323d5a7eb0adffec1c240b" kindref="member">binWidth</ref>)]++;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_analysis_1a79317d83cd9fd7e435ca70f5ecea3726" kindref="member">numOfSamples</ref>++;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="class_density_1a3e05b87638282b9b4eef68ac655fe8bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_density_1a3e05b87638282b9b4eef68ac655fe8bb" kindref="member">save</ref>(){</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dv<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>idealDen<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FILE<sp/>*f<sp/>=<sp/>fopen(this-&gt;<ref refid="class_analysis_1a280e49026fd1c7480223f8cb7562628b" kindref="member">name</ref>.c_str(),<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(f<sp/>==<sp/>NULL){</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Can&apos;t<sp/>open<sp/>file!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(1);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_analysis_1aa02db3acac2ebd9c28b0d4e4c2c48d79" kindref="member">bins</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(f,<sp/></highlight><highlight class="stringliteral">&quot;%lf<sp/><sp/><sp/><sp/><sp/>%lf\n&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)i<sp/>*<sp/>this-&gt;<ref refid="class_analysis_1a798b154590323d5a7eb0adffec1c240b" kindref="member">binWidth</ref>,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)this-&gt;<ref refid="class_analysis_1a55b2094eed04469e3562cb0ab81b3148" kindref="member">histo</ref>[i]<sp/>/<sp/>(<ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref><sp/>*<sp/><ref refid="class_base_1a30b8ae8ec41983f016f20ce757adb1d1" kindref="member">Base::boxDim</ref><sp/>*<sp/>this-&gt;binWidth<sp/>*<sp/>this-&gt;<ref refid="class_analysis_1a79317d83cd9fd7e435ca70f5ecea3726" kindref="member">numOfSamples</ref>));</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose(f);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="analysis.h"/>
+  </compounddef>
+</doxygen>

@@ -4,89 +4,121 @@
     <compoundname>constants.h</compoundname>
     <includedby refid="base_8h" local="yes">base.h</includedby>
     <invincdepgraph>
-      <node id="65">
-        <label>energy.h</label>
-        <link refid="energy_8h"/>
-        <childnode refid="62" relation="include">
-        </childnode>
-      </node>
-      <node id="59">
+      <node id="112">
         <label>atom.cpp</label>
         <link refid="atom_8cpp"/>
       </node>
-      <node id="66">
+      <node id="119">
         <label>mdEngine.h</label>
         <link refid="md_engine_8h"/>
-        <childnode refid="62" relation="include">
+        <childnode refid="118" relation="include">
         </childnode>
       </node>
-      <node id="63">
+      <node id="123">
+        <label>potentials.h</label>
+        <link refid="potentials_8h"/>
+        <childnode refid="118" relation="include">
+        </childnode>
+      </node>
+      <node id="120">
         <label>integrators.h</label>
         <link refid="integrators_8h"/>
-        <childnode refid="62" relation="include">
+        <childnode refid="118" relation="include">
         </childnode>
       </node>
-      <node id="64">
+      <node id="114">
+        <label>atoms.cpp</label>
+        <link refid="atoms_8cpp"/>
+      </node>
+      <node id="113">
+        <label>atoms.h</label>
+        <link refid="atoms_8h"/>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+      </node>
+      <node id="122">
         <label>base.cpp</label>
         <link refid="base_8cpp"/>
       </node>
-      <node id="61">
+      <node id="121">
+        <label>potentialmanager.h</label>
+        <link refid="potentialmanager_8h"/>
+        <childnode refid="118" relation="include">
+        </childnode>
+      </node>
+      <node id="116">
         <label>frame.cpp</label>
         <link refid="frame_8cpp"/>
       </node>
-      <node id="67">
+      <node id="117">
+        <label>frames.h</label>
+        <link refid="frames_8h"/>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+      </node>
+      <node id="124">
         <label>parser.h</label>
         <link refid="parser_8h"/>
-        <childnode refid="62" relation="include">
+        <childnode refid="118" relation="include">
         </childnode>
       </node>
-      <node id="57">
+      <node id="110">
         <label>base.h</label>
         <link refid="base_8h"/>
-        <childnode refid="58" relation="include">
+        <childnode refid="111" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="122" relation="include">
         </childnode>
-        <childnode refid="65" relation="include">
+        <childnode refid="115" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="120" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="123" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="118" relation="include">
         </childnode>
-        <childnode refid="66" relation="include">
+        <childnode refid="119" relation="include">
         </childnode>
-        <childnode refid="67" relation="include">
+        <childnode refid="124" relation="include">
         </childnode>
       </node>
-      <node id="60">
+      <node id="115">
         <label>frame.h</label>
         <link refid="frame_8h"/>
-        <childnode refid="61" relation="include">
+        <childnode refid="116" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="117" relation="include">
         </childnode>
       </node>
-      <node id="58">
+      <node id="111">
         <label>atom.h</label>
         <link refid="atom_8h"/>
-        <childnode refid="59" relation="include">
+        <childnode refid="112" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="113" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="118" relation="include">
         </childnode>
       </node>
-      <node id="56">
+      <node id="109">
         <label>constants.h</label>
         <link refid="constants_8h"/>
-        <childnode refid="57" relation="include">
+        <childnode refid="110" relation="include">
         </childnode>
       </node>
-      <node id="62">
+      <node id="118">
         <label>main.cpp</label>
         <link refid="main_8cpp"/>
       </node>
@@ -106,14 +138,16 @@
 <codeline lineno="7" refid="namespaceconstants_1aaa77429e27a7630917c26d9dcdd02d37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1aaa77429e27a7630917c26d9dcdd02d37" kindref="member">PI</ref><sp/>=<sp/>3.141592653589793238462643383279502884197169;</highlight></codeline>
 <codeline lineno="8" refid="namespaceconstants_1a9c026ed46cc6df304fd4ae0f4a6aa374" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1a9c026ed46cc6df304fd4ae0f4a6aa374" kindref="member">E</ref><sp/>=<sp/>1.6021766208E-19;<sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="9" refid="namespaceconstants_1aca22d2dbeb67464297eceacef47125c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1aca22d2dbeb67464297eceacef47125c7" kindref="member">K</ref><sp/>=<sp/>0.3806485279E-26;<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="10" refid="namespaceconstants_1a91a17b2ffd6b749ba385ced928ebbdb0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1a91a17b2ffd6b749ba385ced928ebbdb0" kindref="member">K_DALTON</ref><sp/>=<sp/>8314.46005888132;<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="11" refid="namespaceconstants_1a49e1085ba67fdde84844c8fe12dc12e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1a49e1085ba67fdde84844c8fe12dc12e8" kindref="member">K_CORRECT</ref><sp/>=<sp/>0.0083145;<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="12" refid="namespaceconstants_1ae2c7ade7bbc5547bd496d747df58828f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1ae2c7ade7bbc5547bd496d747df58828f" kindref="member">NA</ref><sp/>=<sp/>6.02214085774E23;<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//const<sp/>double<sp/>K<sp/>=<sp/>1;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="namespaceconstants_1ae0a15341089262b239fdefb3ccbf4dca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1ae0a15341089262b239fdefb3ccbf4dca" kindref="member">KB</ref><sp/>=<sp/>1.3806485E-23;</highlight></codeline>
+<codeline lineno="11" refid="namespaceconstants_1a91a17b2ffd6b749ba385ced928ebbdb0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1a91a17b2ffd6b749ba385ced928ebbdb0" kindref="member">K_DALTON</ref><sp/>=<sp/>8314.46005888132;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="12" refid="namespaceconstants_1a49e1085ba67fdde84844c8fe12dc12e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1a49e1085ba67fdde84844c8fe12dc12e8" kindref="member">K_CORRECT</ref><sp/>=<sp/>0.0083145;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="13" refid="namespaceconstants_1ae2c7ade7bbc5547bd496d747df58828f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1ae2c7ade7bbc5547bd496d747df58828f" kindref="member">NA</ref><sp/>=<sp/>6.02214085774E23;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="14" refid="namespaceconstants_1a672291cadf3b913e2279798456f2f90d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespaceconstants_1a672291cadf3b913e2279798456f2f90d" kindref="member">VP</ref><sp/>=<sp/>8.854187817E-12;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//const<sp/>double<sp/>K<sp/>=<sp/>1;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="constants.h"/>
   </compounddef>

@@ -3,7 +3,7 @@
   <compounddef id="group___energy" kind="group">
     <compoundname>Energy</compoundname>
     <title>Energy</title>
-    <innernamespace refid="namespaceenergy">energy</innernamespace>
+    <innernamespace refid="namespacepotentials">potentials</innernamespace>
     <innergroup refid="group___harmonic">Harmonic</innergroup>
     <briefdescription>
     </briefdescription>

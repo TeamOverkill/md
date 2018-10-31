@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="group___potentials" kind="group">
+    <compoundname>Potentials</compoundname>
+    <title>Potentials</title>
+    <innernamespace refid="namespacepotentials">potentials</innernamespace>
+    <innergroup refid="group___harmonic">Harmonic</innergroup>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

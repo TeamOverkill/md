@@ -11,13 +11,12 @@ public:
     public:
         static double energies(Atoms& atoms){
             double energy = T::energy(atoms);
-            energy += Extractor<Args...>::energy(atoms);
+            energy += Extractor<Args...>::energies(atoms);
             return energy;
         }
-        static double forces(Atoms& atoms){
-            double energy = T::forces(atoms);
-            energy += Extractor<Args...>::forces(atoms);
-            return energy;
+        static void forces(Atoms& atoms){
+            T::forces(atoms);
+            Extractor<Args...>::forces(atoms);
         }
     };
 
@@ -27,15 +26,15 @@ public:
         double static energies(Atoms& atoms){
             return T::energy(atoms);
         }
-        double static forces(Atoms& atoms){
-            return T::forces(atoms);
+        void static forces(Atoms& atoms){
+            T::forces(atoms);
         }
     };
 
     double get_energy(Atoms& atoms){
         return Extractor<Policies...>().energies(atoms);
     }
-    double get_forces(Atoms& atoms){
-        return Extractor<Policies...>().forces(atoms);
+    void get_forces(Atoms& atoms){
+        Extractor<Policies...>().forces(atoms);
     }
 };

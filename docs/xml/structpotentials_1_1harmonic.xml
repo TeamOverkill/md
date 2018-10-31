@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="structpotentials_1_1harmonic" kind="struct" language="C++" prot="public">
+    <compoundname>potentials::harmonic</compoundname>
+    <includes refid="potentials_8h" local="no">potentials.h</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="group__magnetic_1gac0535043471ba4a1210fac6561e484e8" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double potentials::harmonic::springConstant</definition>
+        <argsstring></argsstring>
+        <name>springConstant</name>
+        <initializer>= 1.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="21" column="1" bodyfile="potentials.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="group__magnetic_1gab9ebd7bd690d24809daa8bb7140c1e0e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double potentials::harmonic::energy</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>energy</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="potentials.h" line="24" column="1" bodyfile="potentials.h" bodystart="24" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="group__magnetic_1gae1d7614deadf774762e5f647ad62be15" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void potentials::harmonic::forces</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>forces</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>One dimensional harmonic potential</para>        </inbodydescription>
+        <location file="potentials.h" line="31" column="1" bodyfile="potentials.h" bodystart="31" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>One dimensional harmonic potential </para>    </detaileddescription>
+    <location file="potentials.h" line="19" column="1" bodyfile="potentials.h" bodystart="19" bodyend="41"/>
+    <listofallmembers>
+      <member refid="group__magnetic_1gab9ebd7bd690d24809daa8bb7140c1e0e" prot="public" virt="non-virtual"><scope>potentials::harmonic</scope><name>energy</name></member>
+      <member refid="group__magnetic_1gae1d7614deadf774762e5f647ad62be15" prot="public" virt="non-virtual"><scope>potentials::harmonic</scope><name>forces</name></member>
+      <member refid="group__magnetic_1gac0535043471ba4a1210fac6561e484e8" prot="private" virt="non-virtual"><scope>potentials::harmonic</scope><name>springConstant</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

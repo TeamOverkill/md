@@ -2,59 +2,45 @@
 
 #include "base.h"
 #include "atoms.h"
+#include "particles.h"
 
 namespace integrators{
-    inline void velocity_verlet_first(Atoms& atoms){
+    inline void velocity_verlet_first(Particles& particles){
         /*!
         * Velocity Verlet integrator
         * First half step
         */
 
+        for(int i = 0; i < particles.numOfParticles; i++){
+            for(int j = 0; j < particles[i]->numOfAtoms; j++) {
+                particles[i]->atoms[j]->hard_walls();
+                particles[i]->atoms[j]->vel +=
+                        0.5 * Base::tStep * particles[i]->atoms[j]->oldForce / particles[i]->atoms[j]->mass; //[nm/ps]
+                particles[i]->atoms[j]->pos += Base::tStep * particles[i]->atoms[j]->vel;
+                particles[i]->atoms[j]->pos = particles[i]->atoms[j]->pos.cwiseProduct(
+                        Base::dimensionality);   //Multiply with dimensionality
 
-        for(int i = 0; i < atoms.numOfAtoms; i++){
-
-            //////////////     Hard walls - PLZ REMOVE   //////////////////
-            if(atoms[i]->pos[0] >= Base::boxDim - atoms[i]->radius){
-                atoms[i]->vel[0] *= -1;
-            }
-            if(atoms[i]->pos[0] <= atoms[i]->radius){ ;
-                atoms[i]->vel[0] *= -1;
-            }
-            if(atoms[i]->pos[1] >= Base::boxDim){
-                atoms[i]->vel[1] *= -1;
-            }
-            if(atoms[i]->pos[1] <= atoms[i]->radius){
-                atoms[i]->vel[1] *= -1;
-            }
-            if(atoms[i]->pos[2] >= Base::boxDim - atoms[i]->radius){
-                atoms[i]->vel[2] *= -1;
-            }
-            if(atoms[i]->pos[2] <= atoms[i]->radius){
-                atoms[i]->vel[2] *= -1;
-            }
-            ///////////////////////////////////////////////////////////////
-
-            atoms[i]->vel += 0.5 * Base::tStep * atoms[i]->oldForce / atoms[i]->mass; //[nm/ps]
-            atoms[i]->pos += Base::tStep * atoms[i]->vel;
-            atoms[i]->pos = atoms[i]->pos.cwiseProduct(Base::dimensionality);   //Multiply with dimensionality
-
-            if(atoms[i]->pos.norm() > sqrt(3) * Base::boxDim + 1){
-                printf("\nAtom outside box\n");
-                std::cout << atoms[i]->pos << std::endl;
-                exit(1);
+                if (particles[i]->atoms[j]->pos.norm() > sqrt(3) * Base::boxDim + 1) {
+                    printf("\nAtom outside box\n");
+                    std::cout << particles[i]->atoms[j]->pos << std::endl;
+                    exit(1);
+                }
             }
         }
     }
 
-    inline void velocity_verlet_second(Atoms& atoms){
+    inline void velocity_verlet_second(Particles& particles){
         /*!
         * Velocity Verlet integrator
         * Second half step
         */
 
-        for(int i = 0; i < atoms.numOfAtoms; i++){
-            atoms[i]->vel += 0.5 * Base::tStep * atoms[i]->force / atoms[i]->mass;
-            atoms[i]->oldForce = atoms[i]->force;
+        for(int i = 0; i < particles.numOfParticles; i++){
+            for(int j = 0; j < particles[i]->numOfAtoms; j++) {
+                particles[i]->atoms[j]->vel +=
+                        0.5 * Base::tStep * particles[i]->atoms[j]->force / particles[i]->atoms[j]->mass;
+                particles[i]->atoms[j]->oldForce = particles[i]->atoms[j]->force;
+            }
         }
     }
 }

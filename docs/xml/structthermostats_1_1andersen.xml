@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="structthermostats_1_1andersen" kind="struct" language="C++" prot="public">
+    <compoundname>thermostats::andersen</compoundname>
+    <includes refid="thermostats_8h" local="no">thermostats.h</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structthermostats_1_1andersen_1ac386006929da04dc748e887943beccc6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void thermostats::andersen::set_velocity</definition>
+        <argsstring>(Atoms &amp;atoms)</argsstring>
+        <name>set_velocity</name>
+        <param>
+          <type><ref refid="class_atoms" kindref="compound">Atoms</ref> &amp;</type>
+          <declname>atoms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="thermostats.h" line="19" column="1" bodyfile="thermostats.h" bodystart="19" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="thermostats.h" line="18" column="1" bodyfile="thermostats.h" bodystart="18" bodyend="29"/>
+    <listofallmembers>
+      <member refid="structthermostats_1_1andersen_1ac386006929da04dc748e887943beccc6" prot="public" virt="non-virtual"><scope>thermostats::andersen</scope><name>set_velocity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

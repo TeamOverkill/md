@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespacepotentials" kind="namespace" language="C++">
+    <compoundname>potentials</compoundname>
+    <innerclass refid="structpotentials_1_1coulomb" prot="public">potentials::coulomb</innerclass>
+    <innerclass refid="structpotentials_1_1harmonic" prot="public">potentials::harmonic</innerclass>
+    <innerclass refid="structpotentials_1_1_l_j" prot="public">potentials::LJ</innerclass>
+    <innerclass refid="structpotentials_1_1_l_j_rep" prot="public">potentials::LJRep</innerclass>
+    <innerclass refid="structpotentials_1_1magnetic" prot="public">potentials::magnetic</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The energy namespace contains the various potentials. Each potential has a corresponding force function which calculates the force by differentiating the potential function </para>    </detaileddescription>
+    <location file="potentials.h" line="12" column="1"/>
+  </compounddef>
+</doxygen>

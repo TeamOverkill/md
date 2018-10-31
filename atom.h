@@ -31,10 +31,11 @@ class Atom{
         void set_mb_velocity();
         double distance(Atom* otherAtom);
         double distance_pbc(Atom *otherAtom);
-        void hard_walls();
         void pbc();
+        void hard_walls();
         double kinetic_energy();
         void random_move(double stepSize);
+        Eigen::Vector3d get_disp(Atom* otherAtom);
 
 };
 /** @}*/

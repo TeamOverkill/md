@@ -3,8 +3,8 @@
   <compounddef id="group___harmonic" kind="group">
     <compoundname>Harmonic</compoundname>
     <title>Harmonic</title>
-    <innernamespace refid="namespaceenergy_1_1harmonic">energy::harmonic</innernamespace>
-    <innergroup refid="group___lennard-_jones">Lennard-Jones</innergroup>
+    <innerclass refid="structpotentials_1_1harmonic" prot="public">potentials::harmonic</innerclass>
+    <innergroup refid="group___coulomb">Coulomb</innergroup>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

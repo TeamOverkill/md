@@ -90,7 +90,7 @@
 <p class="caption"><span class="caption-text">Modules:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="atom.html">Atom</a></li>
-<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="potentials.html">Potentials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mdEngine.html">mdEngine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="frame.html">Frame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="base.html">Base</a></li>
@@ -162,9 +162,9 @@
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
- | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#P"><strong>P</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -174,26 +174,20 @@
 </li>
       <li><a href="atom.html#_CPPv2N4Atom4AtomEv">Atom::Atom (C++ function)</a>
 </li>
-      <li><a href="atom.html#_CPPv2N4Atom6chargeE">Atom::charge (C++ member)</a>
-</li>
       <li><a href="atom.html#_CPPv2N4Atom8distanceEP4Atom">Atom::distance (C++ function)</a>
 </li>
       <li><a href="atom.html#_CPPv2N4Atom12distance_pbcEP4Atom">Atom::distance_pbc (C++ function)</a>
 </li>
-      <li><a href="atom.html#_CPPv2N4Atom9distancesE">Atom::distances (C++ member)</a>
-</li>
       <li><a href="atom.html#_CPPv2N4Atom5forceE">Atom::force (C++ member)</a>
-</li>
-      <li><a href="atom.html#_CPPv2N4Atom11forceMatrixE">Atom::forceMatrix (C++ member)</a>
 </li>
       <li><a href="atom.html#_CPPv2N4Atom10hard_wallsEv">Atom::hard_walls (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="atom.html#_CPPv2N4Atom10initializeEPP4Atom">Atom::initialize (C++ function)</a>
+      <li><a href="atom.html#_CPPv2N4Atom5indexE">Atom::index (C++ member)</a>
 </li>
       <li><a href="atom.html#_CPPv2N4Atom14kinetic_energyEv">Atom::kinetic_energy (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="atom.html#_CPPv2N4Atom4massE">Atom::mass (C++ member)</a>
 </li>
       <li><a href="atom.html#_CPPv2N4Atom8oldForceE">Atom::oldForce (C++ member)</a>
@@ -202,11 +196,13 @@
 </li>
       <li><a href="atom.html#_CPPv2N4Atom3posE">Atom::pos (C++ member)</a>
 </li>
+      <li><a href="atom.html#_CPPv2N4Atom1qE">Atom::q (C++ member)</a>
+</li>
       <li><a href="atom.html#_CPPv2N4Atom6radiusE">Atom::radius (C++ member)</a>
 </li>
-      <li><a href="atom.html#_CPPv2N4Atom12set_velocityEv">Atom::set_velocity (C++ function)</a>
+      <li><a href="atom.html#_CPPv2N4Atom11random_moveEd">Atom::random_move (C++ function)</a>
 </li>
-      <li><a href="atom.html#_CPPv2N4Atom16update_distancesEPP4Atom">Atom::update_distances (C++ function)</a>
+      <li><a href="atom.html#_CPPv2N4Atom15set_mb_velocityEv">Atom::set_mb_velocity (C++ function)</a>
 </li>
       <li><a href="atom.html#_CPPv2N4Atom3velE">Atom::vel (C++ member)</a>
 </li>
@@ -224,7 +220,7 @@
 </li>
       <li><a href="base.html#_CPPv2N4Base10dimensionsE">Base::dimensions (C++ member)</a>
 </li>
-      <li><a href="base.html#_CPPv2N4Base10initializeEv">Base::initialize (C++ function)</a>
+      <li><a href="base.html#_CPPv2N4Base10initializeEi">Base::initialize (C++ function)</a>
 </li>
       <li><a href="base.html#_CPPv2N4Base10iterationsE">Base::iterations (C++ member)</a>
 </li>
@@ -232,8 +228,6 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="base.html#_CPPv2N4Base10numOfAtomsE">Base::numOfAtoms (C++ member)</a>
-</li>
       <li><a href="base.html#_CPPv2N4Base7outFreqE">Base::outFreq (C++ member)</a>
 </li>
       <li><a href="base.html#_CPPv2N4Base17potentialEnergiesE">Base::potentialEnergies (C++ member)</a>
@@ -251,48 +245,16 @@
   </ul></td>
 </tr></table>
 
-<h2 id="E">E</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="energy.html#_CPPv26energy">energy (C++ type)</a>
-</li>
-      <li><a href="energy.html#_CPPv2N6energy8harmonicE">energy::harmonic (C++ type)</a>
-</li>
-      <li><a href="energy.html#_CPPv2N6energy8harmonic6energyEPP4Atom">energy::harmonic::energy (C++ function)</a>
-</li>
-      <li><a href="energy.html#_CPPv2N6energy8harmonic6forcesEPP4Atom">energy::harmonic::forces (C++ function)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="energy.html#_CPPv2N6energy8harmonic14springConstantE">energy::harmonic::springConstant (C++ member)</a>
-</li>
-      <li><a href="energy.html#_CPPv2N6energy2LJE">energy::LJ (C++ type)</a>
-</li>
-      <li><a href="energy.html#_CPPv2N6energy2LJ6energyEPP4Atom">energy::LJ::energy (C++ function)</a>
-</li>
-      <li><a href="energy.html#_CPPv2N6energy2LJ6forcesEPP4Atom">energy::LJ::forces (C++ function)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="frame.html#_CPPv25Frame">Frame (C++ class)</a>
 </li>
-      <li><a href="frame.html#_CPPv2N5Frame5FrameEv">Frame::Frame (C++ function)</a>
-</li>
-      <li><a href="frame.html#_CPPv2N5Frame12frameCounterE">Frame::frameCounter (C++ member)</a>
-</li>
-      <li><a href="frame.html#_CPPv2N5Frame5fStepE">Frame::fStep (C++ member)</a>
+      <li><a href="frame.html#_CPPv2N5Frame5FrameEi">Frame::Frame (C++ function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="frame.html#_CPPv2N5Frame10initializeEi">Frame::initialize (C++ function)</a>
-</li>
-      <li><a href="frame.html#_CPPv2N5Frame10save_stateEPP4Atom">Frame::save_state (C++ function)</a>
-</li>
-      <li><a href="frame.html#_CPPv2N5Frame12save_to_fileEPP5Frame">Frame::save_to_file (C++ function)</a>
+      <li><a href="frame.html#_CPPv2N5Frame10save_stateER5Atoms">Frame::save_state (C++ function)</a>
 </li>
       <li><a href="frame.html#_CPPv2N5Frame5stateE">Frame::state (C++ member)</a>
 </li>
@@ -304,13 +266,37 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="mdEngine.html#_CPPv28mdEngine">mdEngine (C++ type)</a>
 </li>
-      <li><a href="mdEngine.html#_CPPv2N8mdEngine12get_pressureEv">mdEngine::get_pressure (C++ function)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="mdEngine.html#_CPPv2N8mdEngine3runERR1IRR1IR5AtomsR6FramesRR1P">mdEngine::run (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="potentials.html#_CPPv210potentials">potentials (C++ type)</a>
+</li>
+      <li><a href="potentials.html#_CPPv2N10potentials7coulombE">potentials::coulomb (C++ class)</a>
+</li>
+      <li><a href="potentials.html#_CPPv2N10potentials8harmonicE">potentials::harmonic (C++ class)</a>
+</li>
+      <li><a href="potentials.html#_CPPv2N10potentials2LJE">potentials::LJ (C++ class)</a>
+</li>
+      <li><a href="potentials.html#_CPPv2N10potentials2LJ6energyER5Atoms">potentials::LJ::energy (C++ function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="mdEngine.html#_CPPv2N8mdEngine15get_temperatureEPP4Atom">mdEngine::get_temperature (C++ function)</a>
+      <li><a href="potentials.html#_CPPv2N10potentials2LJ6forcesER5Atoms">potentials::LJ::forces (C++ function)</a>
 </li>
-      <li><a href="mdEngine.html#_CPPv2N8mdEngine3runERR1IRR1IRR1FPP4AtomPP5Frame">mdEngine::run (C++ function)</a>
+      <li><a href="potentials.html#_CPPv2N10potentials5LJRepE">potentials::LJRep (C++ class)</a>
+</li>
+      <li><a href="potentials.html#_CPPv2N10potentials5LJRep6forcesER5Atoms">potentials::LJRep::forces (C++ function)</a>
+</li>
+      <li><a href="potentials.html#_CPPv2N10potentials8magneticE">potentials::magnetic (C++ class)</a>
+</li>
+      <li><a href="potentials.html#_CPPv2N10potentials8magnetic14wall_potentialEP4Atom">potentials::magnetic::wall_potential (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>

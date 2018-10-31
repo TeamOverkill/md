@@ -8,6 +8,8 @@
 #include <time.h>
 #include "atom.h"
 #include "atoms.h"
+#include "particle.h"
+#include "particles.h"
 #include "parser.h"
 #include "potentialmanager.h"
 
@@ -16,22 +18,62 @@ int main(int argc, char *argv[]){
     parser.parse();
     Base::initialize(parser.numberOfFrames);
 
+    Particles particles;
+
     /*!< Initialize atom variables */
     Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
-    //atoms.remove_overlaps();
+
+
+    for(int i = 0; i < atoms.numOfAtoms; i++){
+        Particle *p1 = new Particle();
+/*        if(i < 2) {
+            if (i > 0 && i < 2) {
+                p1->push_back(atoms[i]);
+                p1->push_back(atoms[i - 1]);
+                p1->bonds.push_back(std::vector<int>());
+
+                //p1->bonds[0].resize(2);
+                p1->bonds[i - 1].push_back(i - 1);
+                p1->bonds[i - 1].push_back(i);
+            }
+        }
+        else {*/
+            p1->push_back(atoms[i]);
+        //}
+        particles.push_back(p1);
+    }
+    /*Particle *p1 = new Particle();
+    p1->push_back(atoms[0]);
+    p1->push_back(atoms[1]);
+    p1->bonds.push_back(std::vector<int>());
+    p1->bonds[0].push_back(0);
+    p1->bonds[0].push_back(1);
+
+    Particle *p2 = new Particle();
+    p2->push_back(atoms[2]);
+    p2->push_back(atoms[3]);
+    p2->bonds.push_back(std::vector<int>());
+    p2->bonds[0].push_back(0);
+    p2->bonds[0].push_back(1);
+
+
+    particles.push_back(p1);
+    particles.push_back(p2);*/
+    atoms.remove_overlaps();
+    //particles = atoms.read_frame("output_1.gro");
 
     /*!< Initialize Frames */
-    Frames frames(parser.numberOfFrames, parser.numOfAtoms, parser.saveFreq);
+    Frames frames(parser.numberOfFrames, atoms.numOfAtoms, parser.saveFreq);
 
     time_t start = time(NULL);
 
-    PotentialManager<potentials::LJ> pm;
+    /*!< Create potential manager object */
+    PotentialManager<potentials::magnetic> pm;
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, &potentials::LJ::forces,
-                 &potentials::LJ::energy, atoms, frames, &pm);
+    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, atoms, particles, frames, &pm);
 
     printf("Simulation took: %lu seconds.\n", time(NULL) - start);
 
