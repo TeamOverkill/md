@@ -31,7 +31,7 @@ namespace thermostats{
     struct berendsen{
         static void set_velocity(Atoms& atoms){
             double velScale;
-            double couplingPara = 100.0;
+            double couplingPara = 1.0;
             double inT = get_temperature(atoms);
 
             for(int i = 0; i < atoms.numOfAtoms; i++){

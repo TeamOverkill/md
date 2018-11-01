@@ -39,7 +39,7 @@ namespace mdEngine {
         double cummulativePress = 0;
         //Analysis* histo = new Density(100, "histo_1.txt");
 
-        Analysis* histo = new rdf(100, "rdf.txt");
+        Analysis* histo = new rdf(1000, "rdf.txt");
 
 
         std::vector<int> v = {0};
@@ -65,8 +65,9 @@ namespace mdEngine {
             Base::temperatures[i] = temperature;
 
             if(i % frames.fStep == 0){
-                
-                histo->sample(atoms, 1);
+                if(i > 100000) {
+                    histo->sample(atoms, 1);
+                }
                 Base::kineticEnergies[samples] = 0;
 
                 Base::kineticEnergies[samples] = atoms.kinetic_energy();

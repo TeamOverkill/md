@@ -243,7 +243,7 @@ namespace potentials{
     */
     struct magnetic {
     private:
-        static constexpr double dipoleC = 1e6;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
+        static constexpr double dipoleC = 50.0;//8.3145; // [kJ*nm^3*mol^(-1)] (example of what is used in Faunus at 300 Kelvin)        //!Dipole dipole product over the vacuum permittivity
     public:
         inline static void forces(Atoms& atoms) {
             Eigen::Vector3d dr;
@@ -281,7 +281,7 @@ namespace potentials{
             return energy;
         }
 
-        /*! Magnetic reulsion from walls, only works for two dimensions
+        /*! Magnetic repulsion from walls, only works for two dimensions
          *
          */
         inline static double wall_potential(Atom *atom){
@@ -309,7 +309,7 @@ namespace potentials{
         }
 
         inline static Eigen::Vector3d wall_force(Atom *atom){
-            double magneticConstant = 10.0; //magnetic potential per nm^2
+            double magneticConstant = 100.0; //magnetic potential per nm^2
             Eigen::Vector3d force;
             force.setZero();
             /*
