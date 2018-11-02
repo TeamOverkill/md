@@ -23,4 +23,28 @@ namespace barostats{
         pressure *= 1e-5; //Pa to bar
         return pressure; //[bar]
     }
+
+    struct mcBarostat{
+
+        double vMax = 0.0005;
+
+        void volume_move(){
+            //double oldEnergy = get_energy();
+            double lnNewVolume = std::log(Base::volume) + (ran2::get_random() - 0.5) * vMax;
+            double newVolume = std::exp(lnNewVolume);
+            double newLength = std::cbrt(newVolume);
+            double scaling = newLength / Base::boxDim;
+            scale_coordinates(scaling);
+            Base::boxDim = newLength;
+            //newEnergy = get_energy();
+            double prob = exp(-(newEnergy - oldEnergy) - 0.00243 * (newVolume - Base::volume) +
+                (Particle::numOfParticles + 1) * std::log(newVolume / Base::volume));
+        }
+
+        void scale_coordinates(double scaling){
+
+        }
+
+
+    };
 }

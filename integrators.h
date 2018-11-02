@@ -13,7 +13,7 @@ namespace integrators{
 
         for(int i = 0; i < particles.numOfParticles; i++){
             for(int j = 0; j < particles[i]->numOfAtoms; j++) {
-                particles[i]->atoms[j]->hard_walls();
+                particles[i]->atoms[j]->hard_walls();           //Move somewhere else
                 particles[i]->atoms[j]->vel +=
                         0.5 * Base::tStep * particles[i]->atoms[j]->oldForce / particles[i]->atoms[j]->mass; //[nm/ps]
                 particles[i]->atoms[j]->pos += Base::tStep * particles[i]->atoms[j]->vel;
