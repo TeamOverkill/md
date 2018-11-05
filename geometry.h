@@ -15,15 +15,16 @@ public:
             //distanceFunc = std::bind( &PBC<X,Y,Z>::vdist, this, _1, _2);
     virtual double get_dist(Eigen::Vector3d &a, Eigen::Vector3d &b) = 0;
     virtual Eigen::Vector3d get_disp(Eigen::Vector3d &a, Eigen::Vector3d &b) = 0;
-    virtual void collision(Eigen::Vector3d a);
+    virtual void collision(Eigen::Vector3d a) = 0;
 };
 
 template<bool x, bool y, bool z>
 class Box : public Geometry{
+public:
     Box() {
-        this.dist = std::bind(&PBC<x, y, z>::dist, this, std::placeholders::_1, std::placeholders::_2);
-        this.disp = std::bind(&PBC<x, y, z>::disp, this, std::placeholders::_1, std::placeholders::_2);
-        this.coll = std::bind(&PBC<x, y, z>::collision, this, std::placeholders::_1, std::placeholders::_2);
+        dist = std::bind(&PBC<x, y, z>::dist, this, std::placeholders::_1, std::placeholders::_2);
+        disp = std::bind(&PBC<x, y, z>::disp, this, std::placeholders::_1, std::placeholders::_2);
+        coll = std::bind(&PBC<x, y, z>::collision, this, std::placeholders::_1, std::placeholders::_2);
     }
 };
 
@@ -51,4 +52,9 @@ class PBC : public Box{
     void collision(Eigen::Vector3d a){
 
     }
+};
+
+template<bool x, bool y, bool z>
+PBC<x, y, z>::PBC(){
+
 };

@@ -6,6 +6,7 @@
 #include "frames.h"
 #include "analysis.h"
 #include "potentials.h"
+#include "geometries.h"
 /*!
  *  \addtogroup Main_modules
  *  @{
@@ -31,7 +32,7 @@ namespace mdEngine {
     \endcode
     */
     template<typename I1, typename I2, typename P>
-    void run(I1&& integrator_1, I2&& integrator_2, Atoms& atoms, Particles& particles, Frames& frames, P&& pm){
+    void run(I1&& integrator_1, I2&& integrator_2, Atoms& atoms, Particles& particles, Frames& frames, P&& pm, Geometry* geometry){
         double temperature;
         double pressure = 0;
         int samples = 0;

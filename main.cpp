@@ -1,6 +1,6 @@
 #include "integrators.h"
 #include "thermostats.h"
-#include "barostats.h"
+//#include "barostats.h"
 #include "potentials.h"
 #include "frames.h"
 #include "base.h"
@@ -12,6 +12,7 @@
 #include "particles.h"
 #include "parser.h"
 #include "potentialmanager.h"
+#include "geometries.h"
 
 int main(int argc, char *argv[]){
     Parser parser;
@@ -68,12 +69,14 @@ int main(int argc, char *argv[]){
 
     time_t start = time(NULL);
 
+    //Geometry geometry = new Box<true, true, true>();
+    Geometry* geometry = new Rectangular<true, true, true>();
     /*!< Create potential manager object */
     PotentialManager<potentials::magnetic> pm;
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, atoms, particles, frames, &pm);
+    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, atoms, particles, frames, &pm, geometry);
 
     printf("Simulation took: %lu seconds.\n", time(NULL) - start);
 
