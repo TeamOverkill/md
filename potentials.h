@@ -1,6 +1,7 @@
 #pragma once
 
 #include "base.h"
+#include "geometries.h"
 /*!
  *  \addtogroup Potentials
  *  @{
@@ -334,8 +335,16 @@ namespace potentials{
         static int kNum;
 
         template<typename T, typename G>
-        double dot(T vec1, G vec2){
+        static double dot(T vec1, G vec2){
             return vec1[0]*vec2[0] + vec1[1]*vec2[1] + vec1[2]*vec2[2];
+        }
+
+        template<typename T>
+        static double norm(T x){
+            double norm = 0;
+
+            norm = x[0]*x[0] + x[1]*x[1] + x[2]*x[2];
+            return sqrt(norm);
         }
 
         template<typename T>
@@ -368,7 +377,7 @@ namespace potentials{
             free(rkVec);
         }
 
-        static inline void initialize(Atoms& atoms){
+        static inline void initialize(Atoms& atoms, Geometry* geometry){
             int i = 0;
             double r = 0;
             double qq = 0;
@@ -381,7 +390,7 @@ namespace potentials{
             double factor = 1;
             std::vector<double> vec(3);
 
-            alpha = 5/Base::xL;
+            alpha = 5.0 / geometry->box[0];
 
             for(int kx = 0; kx <= kMax; kx++){
                 for(int ky = -kMax; ky <= kMax; ky++){
@@ -391,9 +400,9 @@ namespace potentials{
                             factor *= 2;
                         }
 
-                        vec[0] = (2.0 * constants::PI * kx/Base::xL);
-                        vec[1] = (2.0 * constants::PI * ky/Base::yL);
-                        vec[2] = (2.0 * constants::PI * kz/Base::zL);
+                        vec[0] = (2.0 * constants::PI * kx / geometry->box[0]);
+                        vec[1] = (2.0 * constants::PI * ky / geometry->box[1]);
+                        vec[2] = (2.0 * constants::PI * kz / geometry->box[2]);
                         k2 = dot(vec, vec);
 
                         if(fabs(k2) > 1e-5){
@@ -449,7 +458,6 @@ namespace potentials{
                 rkVec[k] -= rk_old * charge;
                 rkVec[k] += rk_new * charge;
             }
-            //printf("rk: %f\n", rkVec[kNum - 1].real() + rkVec[kNum - 1].imag());
         }
 
         static inline double get_reciprocal(){
@@ -466,7 +474,7 @@ namespace potentials{
             return self;
         }
 
-        static inline double energy(Atoms& atoms){
+        static inline double energy(Atoms& atoms, Geometry* geometry){
             double real = 0;
 
             double reciprocal = 0;
@@ -481,7 +489,7 @@ namespace potentials{
 
             for(int i = 0; i < atoms.numOfAtoms; i++){
                 for(int j = i + 1; j < atoms.numOfAtoms; j++){
-                    distance = Particle::distances[i][j];
+                    distance = geometry->dist(atoms[i]->pos, atoms[j]->pos);
                     if(distance <= 25){
                         energy = erfc_x(distance * alpha) / distance;
                         real += atoms[i]->q * atoms[j]->q * energy;
@@ -493,10 +501,13 @@ namespace potentials{
 
             }
 
+            /*
             corr = dipoleMoment.norm();
             corr *= corr;
-            corr = 2 * constants::PI * corr/(3 * Base::xL * Base::yL * Base::zL);
-            reciprocal = 2 * constants::PI/(Base::xL * Base::yL * Base::zL) * reciprocal;
+            corr = 2 * constants::PI * corr/(3 * geometry->box[0] * geometry->box[1] * geometry->box[2]);
+             */
+
+            reciprocal = 2 * constants::PI/(geometry->box[0] * geometry->box[1] * geometry->box[2]) * reciprocal;
 
             //return Base::lB * (real + reciprocal + corr) - selfTerm;    //vacuum
             return (real + reciprocal) - selfTerm;   //tinfoil
