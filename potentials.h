@@ -236,6 +236,9 @@ namespace potentials{
         }
     };
 
+
+
+
     /*!
      *  \addtogroup magnetic
      *  @{
@@ -324,7 +327,12 @@ namespace potentials{
         }
     };
 
+
+
+
     struct ewald{
+
+    private:
         static int kNumMax;
         static double selfTerm;
         static std::vector< std::vector<double> > kVec;
@@ -334,6 +342,7 @@ namespace potentials{
         static double alpha;
         static int kNum;
 
+    public:
         template<typename T, typename G>
         static double dot(T vec1, G vec2){
             return vec1[0]*vec2[0] + vec1[1]*vec2[1] + vec1[2]*vec2[2];

@@ -74,6 +74,8 @@ int main(int argc, char *argv[]){
     /*!< Create potential manager object */
     PotentialManager<potentials::magnetic> pm;
 
+    //potentials::ewald::initialize(atoms, geometry);
+
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
     mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, atoms, particles, frames, &pm, geometry);

@@ -58,8 +58,8 @@ namespace mdEngine {
             pm->get_forces(atoms);                                      /* Calculate new forces */
             //harmonic.forces(particles);
             integrator_2(particles);                                        /* Second half step of integrator */
-            thermostats::berendsen::set_velocity(atoms);                /* Apply thermostat */
-            temperature = thermostats::get_temperature(atoms);
+            thermostats::berendsen::set_velocity(particles);                /* Apply thermostat */
+            temperature = thermostats::get_temperature(particles);
             //pressure = barostats::get_pressure();
             cummulativeTemp += temperature;
             cummulativePress += pressure;
