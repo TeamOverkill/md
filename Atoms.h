@@ -4,8 +4,6 @@
 #include "atom.h"
 #include <fstream>
 #include <sstream>
-#include "particles.h"
-#include "particle.h"
 
 class Atoms{
 private:
@@ -23,13 +21,17 @@ public:
     void initialize(int numOfAtoms);
     void remove_overlaps();
     bool overlap(Atom* a);
-    Particles read_frame(std::string fileName);
+    //Particles read_frame(std::string fileName);
 
     Atom* operator[](int i){
         return atoms[i];
     }
     Atoms(){
         numOfAtoms = 0;
+    }
+    void push_back(Atom *atom){
+        atoms.push_back(atom);
+        this->numOfAtoms++;
     }
 
 };

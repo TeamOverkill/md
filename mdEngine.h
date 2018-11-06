@@ -32,7 +32,7 @@ namespace mdEngine {
     \endcode
     */
     template<typename I1, typename I2, typename P>
-    void run(I1&& integrator_1, I2&& integrator_2, Atoms& atoms, Particles& particles, Frames& frames, P&& pm, Geometry* geometry){
+    void run(I1&& integrator_1, I2&& integrator_2, Particles& particles, Frames& frames, P&& pm, Geometry* geometry){
         double temperature;
         double pressure = 0;
         int samples = 0;
@@ -53,9 +53,9 @@ namespace mdEngine {
 
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
-            atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
+            particles.atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
             integrator_1(particles);                                        /* First half step of integrator */
-            pm->get_forces(atoms);                                      /* Calculate new forces */
+            pm->get_forces(particles);                                      /* Calculate new forces */
             //harmonic.forces(particles);
             integrator_2(particles);                                        /* Second half step of integrator */
             thermostats::berendsen::set_velocity(particles);                /* Apply thermostat */
@@ -67,16 +67,16 @@ namespace mdEngine {
 
             if(i % frames.fStep == 0){
                 if(i > 100000) {
-                    histo->sample(atoms, 1);
+                    histo->sample(particles.atoms, 1);
                 }
                 Base::kineticEnergies[samples] = 0;
 
-                Base::kineticEnergies[samples] = atoms.kinetic_energy();
+                Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
 
 
                 //histo->sample(atoms, 0);
-                track->sample(atoms, 0);
-                Base::potentialEnergies[samples] = pm->get_energy(atoms);
+                track->sample(particles.atoms, 0);
+                Base::potentialEnergies[samples] = pm->get_energy(particles);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
 
                 printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",
@@ -84,11 +84,11 @@ namespace mdEngine {
                        Base::kineticEnergies[samples]);
                 fflush(stdout);
 
-                frames[frames.frameCounter]->save_state(atoms);
+                frames[frames.frameCounter]->save_state(particles.atoms);
                 frames.frameCounter++;
 
                 if(frames.frameCounter == frames.saveFreq){
-                    frames.save_to_file(atoms.numOfAtoms);
+                    frames.save_to_file(particles.atoms.numOfAtoms);
                 }
                 samples++;
             }

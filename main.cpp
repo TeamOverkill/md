@@ -1,3 +1,8 @@
+#include "atom.h"
+#include "atoms.h"
+#include "particle.h"
+#include "particles.h"
+#include "io.h"
 #include "integrators.h"
 #include "thermostats.h"
 //#include "barostats.h"
@@ -6,10 +11,7 @@
 #include "base.h"
 #include "mdEngine.h"
 #include <time.h>
-#include "atom.h"
-#include "atoms.h"
-#include "particle.h"
-#include "particles.h"
+
 #include "parser.h"
 #include "potentialmanager.h"
 #include "geometries.h"
@@ -25,6 +27,8 @@ int main(int argc, char *argv[]){
     Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
 
+    std::vector< std::vector<int> > bonds;
+    //particles.initialize(atoms, bonds);
 
     for(int i = 0; i < atoms.numOfAtoms; i++){
         Particle *p1 = new Particle();
@@ -44,6 +48,7 @@ int main(int argc, char *argv[]){
         //}
         particles.push_back(p1);
     }
+    particles.atoms = atoms;
     /*Particle *p1 = new Particle();
     p1->push_back(atoms[0]);
     p1->push_back(atoms[1]);
@@ -62,6 +67,8 @@ int main(int argc, char *argv[]){
     particles.push_back(p1);
     particles.push_back(p2);*/
     atoms.remove_overlaps();
+    //IO io;
+    //particles = io.read_frames("output_1.gro");
     //particles = atoms.read_frame("output_1.gro");
 
     /*!< Initialize Frames */
@@ -78,7 +85,7 @@ int main(int argc, char *argv[]){
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, atoms, particles, frames, &pm, geometry);
+    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, particles, frames, &pm, geometry);
 
     printf("Simulation took: %lu seconds.\n", time(NULL) - start);
 

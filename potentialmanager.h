@@ -9,32 +9,32 @@ public:
     template <class T, class... Args>
     class Extractor{
     public:
-        static double energies(Atoms& atoms){
-            double energy = T::energy(atoms);
-            energy += Extractor<Args...>::energies(atoms);
+        static double energies(Particles& particles){
+            double energy = T::energy(particles);
+            energy += Extractor<Args...>::energies(particles);
             return energy;
         }
-        static void forces(Atoms& atoms){
-            T::forces(atoms);
-            Extractor<Args...>::forces(atoms);
+        static void forces(Particles& particles){
+            T::forces(particles);
+            Extractor<Args...>::forces(particles);
         }
     };
 
     template <class T>
     class Extractor<T>{
     public:
-        double static energies(Atoms& atoms){
-            return T::energy(atoms);
+        double static energies(Particles& particles){
+            return T::energy(particles);
         }
-        void static forces(Atoms& atoms){
-            T::forces(atoms);
+        void static forces(Particles& particles){
+            T::forces(particles);
         }
     };
 
-    double get_energy(Atoms& atoms){
-        return Extractor<Policies...>().energies(atoms);
+    double get_energy(Particles& particles){
+        return Extractor<Policies...>().energies(particles);
     }
-    void get_forces(Atoms& atoms){
-        Extractor<Policies...>().forces(atoms);
+    void get_forces(Particles& particles){
+        Extractor<Policies...>().forces(particles);
     }
 };

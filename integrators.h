@@ -1,9 +1,5 @@
 #pragma once
 
-#include "base.h"
-#include "atoms.h"
-#include "particles.h"
-
 namespace integrators{
     inline void velocity_verlet_first(Particles& particles){
         /*!
