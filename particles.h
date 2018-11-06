@@ -21,8 +21,8 @@ public:
     }
 
     void push_back(Particle *particle){
-        particles.push_back(particle);
-        numOfParticles++;
+        this->particles.push_back(particle);
+        this->numOfParticles++;
     }
 /*
     static Particles initialize(Atoms atoms, std::vector< std::vector<int> > bonds){

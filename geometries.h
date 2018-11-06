@@ -9,11 +9,11 @@ public:
     virtual double dist(const Eigen::Vector3d &a, const Eigen::Vector3d &b) = 0;
 };
 
-template<bool x, bool y, bool z>
+template<bool X, bool Y, bool Z>
 class Rectangular : public Geometry{
 public:
-    Rectangular(){
-        box << 10, 10, 10;
+    Rectangular(double x, double y, double z){
+        this->box << x, y, z;
     }
 
     double dist(const Eigen::Vector3d &a, const Eigen::Vector3d &b){
@@ -22,23 +22,29 @@ public:
 
     Eigen::Vector3d disp(const Eigen::Vector3d &a, const Eigen::Vector3d &b){
         Eigen::Vector3d disp = a - b;
-        if(x){
-
+        if(X){
+            if(disp[0] > box[0] / 2.0){
+                disp[0] *= -1.0;
+            }
         }
 
-        if(y){
-
+        if(Y){
+            if(disp[1] > box[1] / 2.0){
+                disp[1] *= -1.0;
+            }
         }
 
-        if(z){
-
+        if(Z){
+            if(disp[2] > box[2] / 2.0){
+                disp[2] *= -1.0;
+            }
         }
 
         return disp;
     }
 
     void collision(Atom &a){
-        if(x){
+        if(X){
             if(a.pos[0] > box[0] - a.radius){
                 a.vel[0] *= -1;
             }
@@ -56,7 +62,7 @@ public:
         }
 
 
-        if(y){
+        if(Y){
             if(a.pos[1] > box[1] - a.radius){
                 a.vel[1] *= -1;
             }
@@ -74,7 +80,7 @@ public:
         }
 
 
-        if(z){
+        if(Z){
             if(a.pos[2] > box[2] - a.radius){
                 a.vel[2] *= -1;
             }

@@ -77,7 +77,7 @@ int main(int argc, char *argv[]){
     time_t start = time(NULL);
 
     //Geometry geometry = new Box<true, true, true>();
-    Geometry* geometry = new Rectangular<true, true, true>();
+    Geometry* geometry = new Rectangular<true, true, true>(10.0, 10.0, 10.0);
     /*!< Create potential manager object */
     PotentialManager<potentials::magnetic> pm;
 
