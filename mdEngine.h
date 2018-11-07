@@ -7,17 +7,27 @@
 #include "analysis.h"
 #include "potentials.h"
 #include "geometries.h"
+#include "potentialmanager.h"
 /*!
  *  \addtogroup Main_modules
  *  @{
  */
 
 /*! Molecular Dynamics Engine*/
-namespace mdEngine {
+template<typename I, typename P>
+class MDEngine {
    /*
    * This namespace should hold all MD specific algorithms, hence the 'engine' of the program
    */
 
+    I integrator;
+    P pm;
+    Geometry* geometry;
+
+public:
+    MDEngine(Geometry* geometry){
+        this->geometry = geometry;
+    }
 
     /*!
     * This function contains the main loop of the program which in essence is structured as follows:
@@ -31,8 +41,8 @@ namespace mdEngine {
       }
     \endcode
     */
-    template<typename I1, typename I2, typename P>
-    void run(I1&& integrator_1, I2&& integrator_2, Particles& particles, Frames& frames, P&& pm, Geometry* geometry){
+
+    void run(Particles& particles, Frames& frames){
         double temperature;
         double pressure = 0;
         int samples = 0;
@@ -50,14 +60,17 @@ namespace mdEngine {
         fclose(f);
 
         potentials::harmonic harmonic;
+        //SomeClass *inst = new SomeClass("Hi, i am ");
+        //std::function< void (std::string) > callback;
 
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
             particles.atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
-            integrator_1(particles);                                        /* First half step of integrator */
-            pm->get_forces(particles);                                      /* Calculate new forces */
+
+            integrator.first_step(particles, geometry);                                        /* First half step of integrator */
+            pm.get_forces(particles);                                      /* Calculate new forces */
             //harmonic.forces(particles);
-            integrator_2(particles);                                        /* Second half step of integrator */
+            integrator.second_step(particles);                                        /* Second half step of integrator */
             thermostats::berendsen::set_velocity(particles);                /* Apply thermostat */
             temperature = thermostats::get_temperature(particles);
             //pressure = barostats::get_pressure();
@@ -76,7 +89,7 @@ namespace mdEngine {
 
                 //histo->sample(atoms, 0);
                 track->sample(particles.atoms, 0);
-                Base::potentialEnergies[samples] = pm->get_energy(particles);
+                Base::potentialEnergies[samples] = pm.get_energy(particles);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
 
                 printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",
@@ -101,4 +114,4 @@ namespace mdEngine {
         //histo->save();
         printf("\n");    
     }
-}
+};

@@ -16,6 +16,8 @@
 #include "potentialmanager.h"
 #include "geometries.h"
 
+typedef PotentialManager<potentials::magnetic> PotMan;
+
 int main(int argc, char *argv[]){
     Parser parser;
     parser.parse();
@@ -74,18 +76,21 @@ int main(int argc, char *argv[]){
     /*!< Initialize Frames */
     Frames frames(parser.numberOfFrames, atoms.numOfAtoms, parser.saveFreq);
 
-    time_t start = time(NULL);
+    time_t start = time(NULL);  // Timer
 
-    //Geometry geometry = new Box<true, true, true>();
+    /*!< Create Geometry object*/
     Geometry* geometry = new Rectangular<true, true, true>(10.0, 10.0, 10.0);
+
     /*!< Create potential manager object */
-    PotentialManager<potentials::magnetic> pm;
+    PotMan pm;
 
     //potentials::ewald::initialize(atoms, geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, particles, frames, &pm, geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::LJ> > engine(geometry);
+    engine.run(particles, frames);
+    //mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, particles, frames, &pm, geometry);
 
     printf("Simulation took: %lu seconds.\n", time(NULL) - start);
 
