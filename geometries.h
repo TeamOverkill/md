@@ -6,6 +6,7 @@
 class Geometry{
 public:
     Eigen::Vector3d box;
+    double volume;
     virtual double dist(const Eigen::Vector3d &a, const Eigen::Vector3d &b) = 0;
     virtual Eigen::Vector3d disp(const Eigen::Vector3d &a, const Eigen::Vector3d &b) = 0;
     virtual void boundary(Atom* a) = 0;
@@ -16,6 +17,7 @@ class Rectangular : public Geometry{
 public:
     Rectangular(double x, double y, double z){
         box << x, y, z;
+        volume = box[0] * box[1] * box[2];
     }
 
     double dist(const Eigen::Vector3d &a, const Eigen::Vector3d &b){

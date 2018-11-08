@@ -88,9 +88,8 @@ int main(int argc, char *argv[]){
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::LJ> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald, potentials::LJ> > engine(geometry);
     engine.run(particles, frames);
-    //mdEngine::run(&integrators::velocity_verlet_first, &integrators::velocity_verlet_second, particles, frames, &pm, geometry);
 
     printf("Simulation took: %lu seconds.\n", time(NULL) - start);
 

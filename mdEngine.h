@@ -60,15 +60,14 @@ public:
         fclose(f);
 
         potentials::harmonic harmonic;
-        //SomeClass *inst = new SomeClass("Hi, i am ");
-        //std::function< void (std::string) > callback;
 
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
             particles.atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
 
             integrator.first_step(particles, geometry);                                        /* First half step of integrator */
-            pm.get_forces(particles);                                      /* Calculate new forces */
+
+            pm.get_forces(particles, geometry);                                      /* Calculate new forces */
             //harmonic.forces(particles);
             integrator.second_step(particles);                                        /* Second half step of integrator */
             thermostats::berendsen::set_velocity(particles);                /* Apply thermostat */
@@ -89,7 +88,7 @@ public:
 
                 //histo->sample(atoms, 0);
                 track->sample(particles.atoms, 0);
-                Base::potentialEnergies[samples] = pm.get_energy(particles);
+                Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
 
                 printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",

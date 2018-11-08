@@ -124,7 +124,7 @@ namespace potentials{
     public:
 
 
-        inline static void forces(Particles& particles) {
+        inline static void forces(Particles& particles, Geometry* geometry) {
             /*!
             * Calculate the forces using a Lennard-Jones potential
             */
@@ -138,7 +138,7 @@ namespace potentials{
 
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
-                    dr = particles.atoms[i]->pos - particles.atoms[j]->pos;                 // [nm]
+                    dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);                 // [nm]
                     double r2 = dr.dot(dr);                             // [nm^2]
                     double fr2 = sigma * sigma / r2;                    // unitless
                     double fr6 = fr2 * fr2 * fr2;                       // unitless
@@ -151,7 +151,7 @@ namespace potentials{
             }
         }
 
-        inline static double energy(Particles& particles) {
+        inline static double energy(Particles& particles, Geometry* geometry) {
             /*!
             * Calculate the energy using a Lennard-Jones potential
             */
@@ -162,7 +162,7 @@ namespace potentials{
 
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
-                    dr = particles.atoms[i]->pos - particles.atoms[j]->pos;     // [nm]
+                    dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);     // [nm]
                     distance = dr.norm();                   // [nm]
                     double fr = sigma / distance;           // unitless
                     double fr2 = fr * fr;                   // unitless
@@ -190,14 +190,14 @@ namespace potentials{
         /*!
         * Get the forces as given by the LJ potential
         */
-        inline static void forces(Particles& particles) {
+        inline static void forces(Particles& particles, Geometry* geometry) {
 
             Eigen::Vector3d dr;
 
 
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
-                    dr = particles.atoms[i]->pos - particles.atoms[j]->pos;                 // [nm]
+                    dr =geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);                 // [nm]
                     double r2 = dr.dot(dr);                             // [nm^2]
                     double fr2 = sigma * sigma / r2;                    // unitless
                     double fr6 = fr2 * fr2 * fr2;                       // unitless
@@ -215,7 +215,7 @@ namespace potentials{
             U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right)
         \f]
         */
-        inline static double energy(Particles& particles) {
+        inline static double energy(Particles& particles, Geometry* geometry) {
 
             double distance;
             double energy = 0;
@@ -223,7 +223,7 @@ namespace potentials{
 
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
-                    dr = particles.atoms[i]->pos - particles.atoms[j]->pos;     // [nm]
+                    dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);     // [nm]
                     distance = dr.norm();                   // [nm]
                     double fr = sigma / distance;           // unitless
                     double fr2 = fr * fr;                   // unitless
@@ -327,20 +327,19 @@ namespace potentials{
         }
     };
 
-/*
+
     struct ewald{
 
-    private:
+    public:
         static int kNumMax;
         static double selfTerm;
-        static std::vector< std::vector<double> > kVec;
+        static std::vector< Eigen::Vector3d > kVec;
         static std::complex<double> *rkVec;
         static double *kNorm;
         static double *resFac;
         static double alpha;
         static int kNum;
 
-    public:
         template<typename T, typename G>
         static double dot(T vec1, G vec2){
             return vec1[0]*vec2[0] + vec1[1]*vec2[1] + vec1[2]*vec2[2];
@@ -384,7 +383,7 @@ namespace potentials{
             free(rkVec);
         }
 
-        static inline void initialize(Atoms& atoms, Geometry* geometry){
+        static inline void initialize(Particles& particles, Geometry* geometry){
             int i = 0;
             double r = 0;
             double qq = 0;
@@ -395,7 +394,7 @@ namespace potentials{
             int kMax = 4;
 
             double factor = 1;
-            std::vector<double> vec(3);
+            Eigen::Vector3d vec;
 
             alpha = 5.0 / geometry->box[0];
 
@@ -432,45 +431,30 @@ namespace potentials{
             std::complex<double> charge;
             for(int k = 0; k < kNum; k++){
                 rho = 0;
-                for(int i = 0; i < atoms.numOfAtoms; i++){
-                    rk.imag(std::sin(dot(atoms[i]->pos, kVec[k])));
-                    rk.real(std::cos(dot(atoms[i]->pos, kVec[k])));
-                    charge = atoms[i]->q;
+                for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+                    rk.imag(std::sin(particles.atoms[i]->pos.dot(kVec[k])));
+                    rk.real(std::cos(particles.atoms[i]->pos.dot(kVec[k])));
+                    charge = particles.atoms[i]->q;
                     rk = rk * charge;
                     rho += rk;
                 }
+
                 rkVec[k] = rho;
             }
             selfTerm = 0;
-            for(int i = 0; i < atoms.numOfAtoms; i++){
-                selfTerm += get_self_correction(atoms[i]);
+            for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+                selfTerm += get_self_correction(particles.atoms[i]);
             }
             selfTerm = alpha/sqrt(constants::PI) * selfTerm;
-        }
 
-        static inline void update_reciprocal(Atom *_old, Atom *_new){
-            double energy = 0;
-            std::complex<double> rk_new;
-            std::complex<double> rk_old;
-            std::complex<double> charge = _new->q;
-
-            for(int k = 0; k < kNum; k++){
-
-                rk_new.imag(std::sin(dot(_new->pos, kVec[k])));
-                rk_new.real(std::cos(dot(_new->pos, kVec[k])));
-
-                rk_old.imag(std::sin(dot(_old->pos, kVec[k])));
-                rk_old.real(std::cos(dot(_old->pos, kVec[k])));
-
-                rkVec[k] -= rk_old * charge;
-                rkVec[k] += rk_new * charge;
-            }
         }
 
         static inline double get_reciprocal(){
             double energy = 0;
 
             for(int k = 0; k < kNum; k++){
+                //std::cout << "resfac: " << resFac[k] <<std::endl;
+                //std::cout << "rkVec: " << rkVec[k] <<std::endl;
                 energy += std::norm(rkVec[k]) * resFac[k];
             }
             return energy;
@@ -481,7 +465,7 @@ namespace potentials{
             return self;
         }
 
-        static inline double energy(Atom& atoms, Geometry* geometry){
+        static inline double energy(Particles& particles, Geometry* geometry){
             double real = 0;
 
             double reciprocal = 0;
@@ -494,54 +478,70 @@ namespace potentials{
 
             reciprocal = get_reciprocal();
 
-            for(int i = 0; i < atoms.numOfAtoms; i++){
-                for(int j = i + 1; j < atoms.numOfAtoms; j++){
-                    distance = geometry->dist(atoms[i]->pos, atoms[j]->pos);
+            for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+                for(int j = i + 1; j < particles.atoms.numOfAtoms; j++){
+                    distance = geometry->dist(particles.atoms[i]->pos, particles.atoms[j]->pos);
                     if(distance <= 25){
                         energy = erfc_x(distance * alpha) / distance;
-                        real += atoms[i]->q * atoms[j]->q * energy;
+                        real += particles.atoms[i]->q * particles.atoms[j]->q * energy;
                     }
                 }
-
-                dipoleMoment += atoms[i]->q * atoms[i]->pos;
-
-
             }
-
-
+            //printf("%lf\n", real);
+            //printf("%lf\n", reciprocal);
+            //printf("%lf\n", selfTerm);
             reciprocal = 2 * constants::PI/(geometry->box[0] * geometry->box[1] * geometry->box[2]) * reciprocal;
 
-
-            return (real + reciprocal) - selfTerm;   //tinfoil
+            return (real + reciprocal) - selfTerm;   //Tinfoil boundary conditions
         }
 
         static inline void forces(Particles& particles, Geometry* geometry){
+            reset();
+            initialize(particles, geometry);
             for(int i = 0; i < particles.numOfParticles; i++){
-                for(int j = 0; j < particles[i]->numOfAtoms; j++){
-                    particles[i]->atoms[j]->force += real_force() + reciprocal_force();
-                }
+                //std::cout << "Real: " << real_force(particles.atoms[i], particles, geometry) << std::endl;
+                //std::cout << "Rec: " << reciprocal_force(particles.atoms[i], particles, geometry) << std::endl;
+                particles.atoms[i]->force += real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry);
             }
         }
 
-        static inline Eigen::Vector3d real_force(){
+        static inline Eigen::Vector3d reciprocal_force(Atom* a, Particles& particles, Geometry* geometry){
             Eigen::Vector3d force;
-            force << 0, 0, 0;
+            force.setZero();
+            for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+                Eigen::Vector3d disp = geometry->disp(a->pos, particles.atoms[i]->pos);
+                for(int k = 0; k < kNum; k++){
+                    force += 4 * constants::PI * kVec[k] / (kNorm[k] * kNorm[k]) * std::exp(-1.0 * kNorm[k] * kNorm[k] / (4 * alpha)) * std::sin(kVec[k].dot(disp));
+                }
+                force *= particles.atoms[i]->q * 1.0 / geometry->volume;
+            }
+            force *= a->q;
             return force;
         }
 
-        static inline Eigen::Vector3d reciprocal_force(){
+        static inline Eigen::Vector3d real_force(Atom* a, Particles& particles, Geometry* geometry){
             Eigen::Vector3d force;
-            force << 0, 0, 0;
+            force.setZero();
+            for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+                if(a->index != i) {
+                    Eigen::Vector3d disp = geometry->disp(a->pos, particles.atoms[i]->pos);
+                    force += particles.atoms[i]->q * (2.0 * std::sqrt(alpha / constants::PI) *
+                                                      std::exp(-1.0 * alpha * disp.norm() * disp.norm()) +
+                                                      1.0 / disp.norm() * erfc_x(std::sqrt(alpha) * disp.norm())) *
+                                                        disp / (disp.norm() * disp.norm());
+                }
+            }
+            force *= a->q;
             return force;
         }
-
     };
+
     int ewald::kNumMax;
     double ewald::selfTerm;
-    std::vector< std::vector<double> > ewald::kVec;
+    std::vector< Eigen::Vector3d > ewald::kVec;
     std::complex<double> *ewald::rkVec;
     double *ewald::kNorm;
     double *ewald::resFac;
     double ewald::alpha;
-    int ewald::kNum;*/
+    int ewald::kNum;
 }
