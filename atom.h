@@ -27,6 +27,7 @@ class Atom{
         double q;
         int index;
         double radius, mass;
+        std::string name;
 
 
         void set_mb_velocity();

@@ -13,9 +13,11 @@ void Atoms::initialize(int numOfAtoms){
         this->atoms[i]->radius = 0.2;
         if(i % 2 == 0){
             this->atoms[i]->q = 1.0;
+            this->atoms[i]->name = "Na";
         }
         else{
             this->atoms[i]->q = -1.0;
+            this->atoms[i]->name = "Cl";
         }
 
         this->atoms[i]->pos[0] = ran2::get_random() * (Base::boxDim - 2 * this->atoms[i]->radius) + this->atoms[i]->radius;
@@ -114,7 +116,7 @@ void Atoms::remove_overlaps(){
         //Atom::update_distances(atoms, atoms[p]);
         if(this->atoms[p]->pos[0] < this->atoms[p]->radius || this->atoms[p]->pos[0] > Base::boxDim - this->atoms[p]->radius ||
                 this->atoms[p]->pos[1] < this->atoms[p]->radius || this->atoms[p]->pos[1] > Base::boxDim - this->atoms[p]->radius ||
-                //this->atoms[p]->pos[2] < this->atoms[p]->radius || this->atoms[p]->pos[2] > Base::boxDim - this->atoms[p]->radius ||
+                this->atoms[p]->pos[2] < this->atoms[p]->radius || this->atoms[p]->pos[2] > Base::boxDim - this->atoms[p]->radius ||
                 overlap(this->atoms[p])){
 
             this->atoms[p]->pos = oldPos;
@@ -122,7 +124,7 @@ void Atoms::remove_overlaps(){
         }
 
 
-        if(this->atoms[p]->pos[2] < 0 || this->atoms[p]->pos[1] < 0 || this->atoms[p]->pos[0] < 0){
+        if(this->atoms[p]->pos[2] < this->atoms[p]->radius || this->atoms[p]->pos[1] < this->atoms[p]->radius || this->atoms[p]->pos[0] < this->atoms[p]->radius){
             printf("Failed to equilibrate system, a particle was found outside the box...\n");
             std::cout << this->atoms[p]->pos << std::endl;
             exit(1);

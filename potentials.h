@@ -501,7 +501,7 @@ namespace potentials{
             for(int i = 0; i < particles.numOfParticles; i++){
                 //std::cout << "Real: " << real_force(particles.atoms[i], particles, geometry) << std::endl;
                 //std::cout << "Rec: " << reciprocal_force(particles.atoms[i], particles, geometry) << std::endl;
-                particles.atoms[i]->force += real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry);
+                particles.atoms[i]->force += (real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry));
             }
         }
 

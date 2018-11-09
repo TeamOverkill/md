@@ -28,6 +28,7 @@ int main(int argc, char *argv[]){
     /*!< Initialize atom variables */
     Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
+    atoms.remove_overlaps();
 
     std::vector< std::vector<int> > bonds;
     //particles.initialize(atoms, bonds);
@@ -50,6 +51,7 @@ int main(int argc, char *argv[]){
         //}
         particles.push_back(p1);
     }
+
     particles.atoms = atoms;
     /*Particle *p1 = new Particle();
     p1->push_back(atoms[0]);
@@ -68,7 +70,7 @@ int main(int argc, char *argv[]){
 
     particles.push_back(p1);
     particles.push_back(p2);*/
-    atoms.remove_overlaps();
+
     //IO io;
     //particles = io.read_frames("output_1.gro");
     //particles = atoms.read_frame("output_1.gro");
@@ -88,7 +90,7 @@ int main(int argc, char *argv[]){
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald, potentials::LJ> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald, potentials::LJRep> > engine(geometry);
     engine.run(particles, frames);
 
     printf("Simulation took: %lu seconds.\n", time(NULL) - start);

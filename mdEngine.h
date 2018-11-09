@@ -60,7 +60,8 @@ public:
         fclose(f);
 
         potentials::harmonic harmonic;
-
+        time_t start_t = time(NULL);
+        time_t end_t;
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
             particles.atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
@@ -90,17 +91,18 @@ public:
                 track->sample(particles.atoms, 0);
                 Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
-
-                printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf\r",
+                end_t = time(NULL);
+                printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf, Simulation speed: %.1lf ns / h\r",
                       (double)i/Base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, Base::potentialEnergies[samples],
-                       Base::kineticEnergies[samples]);
+                       Base::kineticEnergies[samples], frames.fStep * Base::tStep / ((end_t - start_t) / 3600.0));
                 fflush(stdout);
+                start_t = time(NULL);
 
                 frames[frames.frameCounter]->save_state(particles.atoms);
                 frames.frameCounter++;
 
                 if(frames.frameCounter == frames.saveFreq){
-                    frames.save_to_file(particles.atoms.numOfAtoms);
+                    frames.save_to_file(particles);
                 }
                 samples++;
             }
