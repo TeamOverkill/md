@@ -7,7 +7,7 @@ public:
     int numOfAtoms;
     int numberOfFrames;
     int saveFreq;
-
+    int boxDim;
     void parse() {
         std::string fileName = "config.mo";
         //Base base;
@@ -38,7 +38,7 @@ public:
 
             printf("Keyword: %s, value: %lf\n", keyword.c_str(), value);
         }
-
+        boxDim = Base::boxDim;
         if(saveFreq > numberOfFrames){
             printf("The frame save frequency can be higher than the number of frames!\n");
             exit(0);

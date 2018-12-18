@@ -10,6 +10,7 @@ public:
     virtual double dist(const Eigen::Vector3d &a, const Eigen::Vector3d &b) = 0;
     virtual Eigen::Vector3d disp(const Eigen::Vector3d &a, const Eigen::Vector3d &b) = 0;
     virtual void boundary(Atom* a) = 0;
+    //virtual void volume_move(double dv) = 0;
 };
 
 template<bool X, bool Y, bool Z>

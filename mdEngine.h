@@ -43,6 +43,7 @@ public:
     */
 
     void run(Particles& particles, Frames& frames){
+        int k = 0;
         double temperature;
         double pressure = 0;
         int samples = 0;
@@ -52,7 +53,6 @@ public:
 
         Analysis* histo = new rdf(1000, "rdf.txt");
 
-
         std::vector<int> v = {0};
         Analysis *track = new Track(v, "track.txt");
 
@@ -60,8 +60,8 @@ public:
         fclose(f);
 
         potentials::harmonic harmonic;
-        time_t start_t = time(NULL);
-        time_t end_t;
+        double start_t = omp_get_wtime();
+        double end_t;
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
             particles.atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
@@ -82,21 +82,19 @@ public:
                 if(i > 100000) {
                     histo->sample(particles.atoms, 1);
                 }
-                Base::kineticEnergies[samples] = 0;
 
                 Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
-
 
                 //histo->sample(atoms, 0);
                 track->sample(particles.atoms, 0);
                 Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
-                end_t = time(NULL);
+                end_t = omp_get_wtime();
                 printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf, Simulation speed: %.1lf ns / h\r",
                       (double)i/Base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, Base::potentialEnergies[samples],
-                       Base::kineticEnergies[samples], frames.fStep * Base::tStep / ((end_t - start_t) / 3600.0));
+                       Base::kineticEnergies[samples], k * Base::tStep / ((end_t - start_t) / 3600.0));
                 fflush(stdout);
-                start_t = time(NULL);
+                start_t = omp_get_wtime();
 
                 frames[frames.frameCounter]->save_state(particles.atoms);
                 frames.frameCounter++;
@@ -105,7 +103,9 @@ public:
                     frames.save_to_file(particles);
                 }
                 samples++;
+                k = 0;
             }
+            k++;
         }
 
         histo->save();

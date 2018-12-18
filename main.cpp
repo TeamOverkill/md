@@ -11,7 +11,7 @@
 #include "base.h"
 #include "mdEngine.h"
 #include <time.h>
-
+#include <omp.h>
 #include "parser.h"
 #include "potentialmanager.h"
 #include "geometries.h"
@@ -78,22 +78,18 @@ int main(int argc, char *argv[]){
     /*!< Initialize Frames */
     Frames frames(parser.numberOfFrames, atoms.numOfAtoms, parser.saveFreq);
 
-    time_t start = time(NULL);  // Timer
-
     /*!< Create Geometry object*/
-    Geometry* geometry = new Rectangular<true, true, true>(10.0, 10.0, 10.0);
-
-    /*!< Create potential manager object */
-    PotMan pm;
+    Geometry* geometry = new Rectangular<true, true, true>(parser.boxDim, parser.boxDim, parser.boxDim);
 
     //potentials::ewald::initialize(atoms, geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald, potentials::LJRep> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::LJ> > engine(geometry);
+    double start_time = omp_get_wtime();
     engine.run(particles, frames);
-
-    printf("Simulation took: %lu seconds.\n", time(NULL) - start);
+    printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);
+    //printf("Simulation took: %lu seconds.\n", time(NULL) - start);
 
     //Save stuff, will be moved later
     FILE *f = fopen("energies.txt", "w");

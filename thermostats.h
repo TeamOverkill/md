@@ -38,7 +38,7 @@ namespace thermostats{
     struct berendsen{
         static void set_velocity(Particles& particles){
             double velScale;
-            double couplingPara = 1.0;
+            double couplingPara = 0.01;
             double inT = get_temperature(particles);
 
             for(int i = 0; i < particles.numOfParticles; i++) {

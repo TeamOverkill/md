@@ -183,31 +183,46 @@ namespace potentials{
     */
     struct LJ {
     private:
-            static constexpr double epsilon = 1.5;  //[kJ/mol] LJ parameter epsilon
-            static constexpr double sigma = 1.0;      //[nm] LJ parameter sigma
+        static constexpr double epsilon = 1.5;  //[kJ/mol] LJ parameter epsilon
+        static constexpr double sigma = 1.0;      //[nm] LJ parameter sigma
     public:
 
         /*!
         * Get the forces as given by the LJ potential
         */
-        inline static void forces(Particles& particles, Geometry* geometry) {
+        inline static void forces(Particles &particles, Geometry *geometry) {
 
             Eigen::Vector3d dr;
 
+            #pragma omp parallel if(particles.atoms.numOfAtoms > 900)
+            {
+                std::vector<Eigen::Vector3d> private_forces(particles.atoms.numOfAtoms);
+                #pragma omp for schedule(dynamic, 100)
+                for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
+                    for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
+                        dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);                 // [nm]
+                        double r2 = dr.dot(dr);                             // [nm^2]
+                        double fr2 = sigma * sigma / r2;                    // unitless
+                        double fr6 = fr2 * fr2 * fr2;                       // unitless
+                        double fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;  // [kJ/(nm^2*mol)]
 
-            for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
-                for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
-                    dr =geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);                 // [nm]
-                    double r2 = dr.dot(dr);                             // [nm^2]
-                    double fr2 = sigma * sigma / r2;                    // unitless
-                    double fr6 = fr2 * fr2 * fr2;                       // unitless
-                    double fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;  // [kJ/(nm^2*mol)]
-
-                    particles.atoms[i]->force += fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
-                    particles.atoms[j]->force -= fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
-                    particles.atoms.forceMatrix(i, j) = (fr * dr).norm();
+                        //particles.atoms[i]->force +=
+                        //        fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
+                        //particles.atoms[j]->force -=
+                        //        fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
+                        //particles.atoms.forceMatrix(i, j) = (fr * dr).norm();
+                        private_forces[i] = fr * dr;
+                        private_forces[j] = fr * dr;
+                    }
                 }
-            }
+
+                #pragma omp critical
+                {
+                    for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
+                        particles.atoms[i]->force += private_forces[i];
+                    }
+                }
+             }
         }
 
         /*! Calculate the energy using a Lennard-Jones potential which is given by
@@ -487,9 +502,7 @@ namespace potentials{
                     }
                 }
             }
-            //printf("%lf\n", real);
-            //printf("%lf\n", reciprocal);
-            //printf("%lf\n", selfTerm);
+
             reciprocal = 2 * constants::PI/(geometry->box[0] * geometry->box[1] * geometry->box[2]) * reciprocal;
 
             return (real + reciprocal) - selfTerm;   //Tinfoil boundary conditions
@@ -499,8 +512,6 @@ namespace potentials{
             reset();
             initialize(particles, geometry);
             for(int i = 0; i < particles.numOfParticles; i++){
-                //std::cout << "Real: " << real_force(particles.atoms[i], particles, geometry) << std::endl;
-                //std::cout << "Rec: " << reciprocal_force(particles.atoms[i], particles, geometry) << std::endl;
                 particles.atoms[i]->force += (real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry));
             }
         }
