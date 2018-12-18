@@ -35,20 +35,18 @@ int main(int argc, char *argv[]){
 
     for(int i = 0; i < atoms.numOfAtoms; i++){
         Particle *p1 = new Particle();
-/*        if(i < 2) {
-            if (i > 0 && i < 2) {
-                p1->push_back(atoms[i]);
-                p1->push_back(atoms[i - 1]);
-                p1->bonds.push_back(std::vector<int>());
+        /*p1->bonds.push_back(std::vector<int>());
+        //p1->bonds[i].resize(2);
 
-                //p1->bonds[0].resize(2);
-                p1->bonds[i - 1].push_back(i - 1);
-                p1->bonds[i - 1].push_back(i);
-            }
-        }
-        else {*/
-            p1->push_back(atoms[i]);
-        //}
+        p1->push_back(atoms[i]);
+        p1->push_back(atoms[i + 1]);
+
+        p1->bonds[0].push_back(0);
+        p1->bonds[0].push_back(1);
+
+        printf("bonds %d %d\n", p1->bonds[0][0], p1->bonds[0][1]);
+        i++;*/
+        
         particles.push_back(p1);
     }
 
@@ -79,13 +77,13 @@ int main(int argc, char *argv[]){
     Frames frames(parser.numberOfFrames, atoms.numOfAtoms, parser.saveFreq);
 
     /*!< Create Geometry object*/
-    Geometry* geometry = new Rectangular<true, true, true>(parser.boxDim, parser.boxDim, parser.boxDim);
+    Geometry* geometry = new Rectangular<false, false, false>(parser.boxDim, parser.boxDim, parser.boxDim);
 
     //potentials::ewald::initialize(atoms, geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::LJ> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic> > engine(geometry);
     double start_time = omp_get_wtime();
     engine.run(particles, frames);
     printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);

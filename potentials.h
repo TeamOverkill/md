@@ -46,28 +46,25 @@ namespace potentials{
         static constexpr double springConstant = 1.0;        // [kJ * nm^(-2) * mol^(-1)]
 
     public:
-        inline static double energy(Particles& particles){
+        inline static double energy(Particles& particles, Geometry* geometry){
             double energy = 0;
             energy = 0.5 * springConstant * particles.atoms[0]->pos.norm();   // [kJ/mol]
 
             return energy;
         }
 
-        inline static void forces(Particles& particles) {
+        inline static void forces(Particles& particles, Geometry* geometry) {
             /*!
             * Harmonic potential
             */
             for(int i = 0; i < particles.numOfParticles; i++){
                 for(auto bond : particles[i]->bonds){
-
-                    Eigen::Vector3d disp = particles[i]->atoms[bond[0]]->get_disp(particles[i]->atoms[bond[1]]);
-                    particles[i]->atoms[bond[0]]->force += disp.normalized() * (disp.norm() - 0.1) * springConstant;
-                    particles[i]->atoms[bond[1]]->force -= disp.normalized() * (disp.norm() - 0.1) * springConstant;
-
+                    Eigen::Vector3d disp = geometry->disp(particles[i]->atoms[bond[0]]->pos, particles[i]->atoms[bond[1]]->pos);
+                    particles[i]->atoms[bond[0]]->force += disp.normalized() * (0.01 - disp.norm()) * springConstant;
+                    particles[i]->atoms[bond[1]]->force -= disp.normalized() * (0.01 - disp.norm()) * springConstant;
                 }
             }
         }
-
     };
 
     /*!
@@ -81,7 +78,7 @@ namespace potentials{
         static constexpr double cFactor = 138935.4299040527746429;  //[kJ * nm * mol^-1]
 
     public:
-        inline static double energy(Particles& particles){
+        inline static double energy(Particles& particles, Geometry* geometry){
             double energy = 0;
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
                 for(int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
@@ -92,7 +89,7 @@ namespace potentials{
             return energy * cFactor;
         }
 
-        inline static void forces(Particles& particles){
+        inline static void forces(Particles& particles, Geometry* geometry){
             double magnitude = 0;
             double distance = 0;
             Eigen::Vector3d disp;
@@ -192,27 +189,34 @@ namespace potentials{
         */
         inline static void forces(Particles &particles, Geometry *geometry) {
 
-            Eigen::Vector3d dr;
-
-            #pragma omp parallel if(particles.atoms.numOfAtoms > 900)
+            #pragma omp parallel default(none) shared(particles) if(particles.atoms.numOfAtoms >= 400)
             {
+                double r2;
+                double fr2;
+                double fr6;
+                double fr;
+                Eigen::Vector3d dr;
                 std::vector<Eigen::Vector3d> private_forces(particles.atoms.numOfAtoms);
-                #pragma omp for schedule(dynamic, 100)
+                for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+                    private_forces[i].setZero();
+                }
+                #pragma omp for schedule(dynamic, 50)
                 for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
+
                     for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
                         dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);                 // [nm]
-                        double r2 = dr.dot(dr);                             // [nm^2]
-                        double fr2 = sigma * sigma / r2;                    // unitless
-                        double fr6 = fr2 * fr2 * fr2;                       // unitless
-                        double fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;  // [kJ/(nm^2*mol)]
+                        r2 = dr.dot(dr);                             // [nm^2]
+                        fr2 = sigma * sigma / r2;                    // unitless
+                        fr6 = fr2 * fr2 * fr2;                       // unitless
+                        fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;  // [kJ/(nm^2*mol)]
 
-                        //particles.atoms[i]->force +=
-                        //        fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
-                        //particles.atoms[j]->force -=
-                        //        fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
-                        //particles.atoms.forceMatrix(i, j) = (fr * dr).norm();
-                        private_forces[i] = fr * dr;
-                        private_forces[j] = fr * dr;
+                        /*particles.atoms[i]->force +=
+                                fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
+                        particles.atoms[j]->force -=
+                                fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
+                        particles.atoms.forceMatrix(i, j) = (fr * dr).norm();*/
+                        private_forces[i] += fr * dr;
+                        private_forces[j] -= fr * dr;
                     }
                 }
 
@@ -235,7 +239,7 @@ namespace potentials{
             double distance;
             double energy = 0;
             Eigen::Vector3d dr;
-
+            #pragma omp parallel for reduction(+:energy) schedule(dynamic, 50) private(distance, dr) shared(particles) if(particles.atoms.numOfAtoms >= 400)
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
                     dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);     // [nm]
@@ -243,7 +247,8 @@ namespace potentials{
                     double fr = sigma / distance;           // unitless
                     double fr2 = fr * fr;                   // unitless
                     double fr6 = fr2 * fr2 * fr2;           // unitless
-                    energy += fr6 * (fr6 - 1);              // unitless
+
+                    energy += fr6 * (fr6 - 1);  // unitless
 
                 }
             }

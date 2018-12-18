@@ -71,7 +71,7 @@ public:
             pm.get_forces(particles, geometry);                                      /* Calculate new forces */
             //harmonic.forces(particles);
             integrator.second_step(particles);                                        /* Second half step of integrator */
-            thermostats::berendsen::set_velocity(particles);                /* Apply thermostat */
+            //thermostats::berendsen::set_velocity(particles);                /* Apply thermostat */
             temperature = thermostats::get_temperature(particles);
             //pressure = barostats::get_pressure();
             cummulativeTemp += temperature;
