@@ -51,10 +51,10 @@ public:
         double cummulativePress = 0;
         //Analysis* histo = new Density(100, "histo_1.txt");
 
-        Analysis* histo = new rdf(1000, "rdf.txt");
+        Analysis* histo = new rdf(1000, "rdf.txt", geometry);
 
         std::vector<int> v = {0};
-        Analysis *track = new Track(v, "track.txt");
+        //Analysis *track = new Track(v, "track.txt");
 
         FILE *f = fopen("output.gro", "w");
         fclose(f);
@@ -86,7 +86,7 @@ public:
                 Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
 
                 //histo->sample(atoms, 0);
-                track->sample(particles.atoms, 0);
+                //track->sample(particles.atoms, 0);
                 Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
                 end_t = omp_get_wtime();
@@ -110,7 +110,7 @@ public:
 
         histo->save();
 
-        track->save();
+        //track->save();
 
         //histo->save();
         printf("\n");    

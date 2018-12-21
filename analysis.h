@@ -6,15 +6,19 @@ class Analysis{
     int bins;
     double binWidth;
     std::string name;
-
+    Geometry* geometry;
     virtual void sample(Atoms& atoms, int d) = 0;
     virtual void save() = 0;
+
+    Analysis(Geometry* geometry){
+        this->geometry = geometry;
+    }
 };
 
 class Density : public Analysis{
 
     public:
-    Density(int bins, std::string name){
+    Density(int bins, std::string name, Geometry* geometry) : Analysis(geometry){
         this->name = name;
         this->bins = bins;
         this->binWidth = Base::boxDim / bins;
@@ -58,7 +62,7 @@ class Density : public Analysis{
 class rdf : public Analysis{
 
     public:
-    rdf(int bins, std::string name){
+    rdf(int bins, std::string name, Geometry* geometry) : Analysis(geometry){
         this->name = name;
         this->bins = bins;
         this->binWidth = Base::boxDim*2 / bins;
@@ -105,7 +109,7 @@ class Track : public Analysis{
     std::vector<Eigen::Vector3d> positions;
 
 public:
-    Track(std::vector<int> indices, std::string name){
+    Track(std::vector<int> indices, std::string name, Geometry* geometry) : Analysis(geometry){
         this->indices = indices;
         this->name = name;
     }

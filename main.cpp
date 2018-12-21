@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
 
         printf("bonds %d %d\n", p1->bonds[0][0], p1->bonds[0][1]);
         i++;*/
-        
+
         particles.push_back(p1);
     }
 
