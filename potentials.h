@@ -75,14 +75,15 @@ namespace potentials{
     */
     struct coulomb{
     private:
-        static constexpr double cFactor = 138935.4299040527746429;  //[kJ * nm * mol^-1]
+        static constexpr double cFactor = 1000.0;  //[kJ * nm * mol^-1]
 
     public:
         inline static double energy(Particles& particles, Geometry* geometry){
             double energy = 0;
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
                 for(int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
-                    energy += particles.atoms[i]->q * particles.atoms[j]->q / (particles.atoms[i]->pos - particles.atoms[j]->pos).norm();
+                    energy += particles.atoms[i]->q * particles.atoms[j]->q /
+                                                geometry->dist(particles.atoms[i]->pos, particles.atoms[j]->pos);
                 }
             }
 
@@ -95,7 +96,7 @@ namespace potentials{
             Eigen::Vector3d disp;
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
                 for(int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
-                    disp = (particles.atoms[i]->pos - particles.atoms[j]->pos);
+                    disp = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);
                     distance = disp.norm();
                     magnitude = cFactor * particles.atoms[i]->q * particles.atoms[j]->q / (distance * distance);
                     disp.normalize();
@@ -128,10 +129,6 @@ namespace potentials{
 
 
             Eigen::Vector3d dr;
-
-            /*for (int i = 0; i < atoms.numOfAtoms; i++) {
-                atoms[i]->force.setZero();
-            }*/
 
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
@@ -239,6 +236,7 @@ namespace potentials{
             double distance;
             double energy = 0;
             Eigen::Vector3d dr;
+
             #pragma omp parallel for reduction(+:energy) schedule(dynamic, 50) private(distance, dr) shared(particles) if(particles.atoms.numOfAtoms >= 400)
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {

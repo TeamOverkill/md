@@ -26,6 +26,7 @@ class Atom{
         Eigen::Vector3d force;      /*!< Current force */
         double q;
         int index;
+        int particle;
         double radius, mass;
         std::string name;
 

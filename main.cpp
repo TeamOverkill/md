@@ -24,7 +24,9 @@ int main(int argc, char *argv[]){
     Base::initialize(parser.numberOfFrames);
 
     Particles particles;
-
+    IO io;
+    particles = io.read_frame("output_1.gro");
+    exit(0);
     /*!< Initialize atom variables */
     Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
@@ -51,27 +53,7 @@ int main(int argc, char *argv[]){
     }
 
     particles.atoms = atoms;
-    /*Particle *p1 = new Particle();
-    p1->push_back(atoms[0]);
-    p1->push_back(atoms[1]);
-    p1->bonds.push_back(std::vector<int>());
-    p1->bonds[0].push_back(0);
-    p1->bonds[0].push_back(1);
 
-    Particle *p2 = new Particle();
-    p2->push_back(atoms[2]);
-    p2->push_back(atoms[3]);
-    p2->bonds.push_back(std::vector<int>());
-    p2->bonds[0].push_back(0);
-    p2->bonds[0].push_back(1);
-
-
-    particles.push_back(p1);
-    particles.push_back(p2);*/
-
-    //IO io;
-    //particles = io.read_frames("output_1.gro");
-    //particles = atoms.read_frame("output_1.gro");
 
     /*!< Initialize Frames */
     Frames frames(parser.numberOfFrames, atoms.numOfAtoms, parser.saveFreq);
@@ -83,11 +65,10 @@ int main(int argc, char *argv[]){
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::coulomb, potentials::LJRep> > engine(geometry);
     double start_time = omp_get_wtime();
     engine.run(particles, frames);
     printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);
-    //printf("Simulation took: %lu seconds.\n", time(NULL) - start);
 
     //Save stuff, will be moved later
     FILE *f = fopen("energies.txt", "w");

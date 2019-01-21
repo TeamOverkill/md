@@ -14,7 +14,6 @@ namespace integrators{
             #pragma omp parallel for if(particles.atoms.numOfAtoms > 6000)
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
 
-                //particles[i]->atoms[j]->hard_walls();           //Move somewhere else
                 geometry->boundary(particles.atoms[i]);
 
                 particles.atoms[i]->vel +=

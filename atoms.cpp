@@ -43,6 +43,7 @@ void Atoms::initialize(int numOfAtoms){
     printf("Created %d atoms\n", i);
     /*!< Initialize the distance matrix */
     distances.resize(numOfAtoms, numOfAtoms);
+
     /*!< Initialize the force matrix */
     forceMatrix.resize(numOfAtoms, numOfAtoms);
 }
@@ -65,12 +66,9 @@ double Atoms::kinetic_energy(){
 /*! Updates the triangluar matrix which holds all the distances calculated by distance()
 */
 void Atoms::update_distances(){
-    int k = 0;
     for(int i = 0; i < numOfAtoms; i++){
-        k = i + 1;
         for(int j = i + 1; j < numOfAtoms; j++){
-            distances(i, k) = this->atoms[i]->distance(this->atoms[k]);
-            k++;
+            distances(i, j) = this->atoms[i]->distance(this->atoms[j]);
         }
     }
 }
