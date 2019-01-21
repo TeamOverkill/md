@@ -71,7 +71,6 @@ struct IO{
                     exit(1);
                 }
 
-                printf("Bond: %i, %i\n", atom_1, atom_2);
                 particles[atoms[atom_1]->particle]->bonds.push_back(std::vector<int>());
                 particles[atoms[atom_1]->particle]->bonds.back().push_back(atom_1);
                 particles[atoms[atom_1]->particle]->bonds.back().push_back(atom_2);
@@ -85,6 +84,14 @@ struct IO{
             exit(1);
         }
 
+    /*                  Only for testing
+        for(int i = 0; i < particles.numOfParticles; i++){
+            for(int j = 0; j < particles[i]->numOfAtoms; j++){
+                printf("particle: %i, atom: %i\n", i, particles[i]->atoms[j]->index);
+            }
+        }
+*/
+        particles.atoms = atoms;
         /*!< Initialize the distance matrix */
         atoms.distances.resize(atoms.numOfAtoms, atoms.numOfAtoms);
         /*!< Initialize the force matrix */
