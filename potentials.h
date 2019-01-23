@@ -194,9 +194,11 @@ namespace potentials{
                 double fr;
                 Eigen::Vector3d dr;
                 std::vector<Eigen::Vector3d> private_forces(particles.atoms.numOfAtoms);
+
                 for(int i = 0; i < particles.atoms.numOfAtoms; i++){
                     private_forces[i].setZero();
                 }
+
                 #pragma omp for schedule(dynamic, 50)
                 for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
 

@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 
     Particles particles;
     IO io;
-    particles = io.read_frame("output_2.gro");
+    particles = io.read_frame("output_1.gro");
 
     /*!< Initialize atom variables */
     /*Atoms atoms;

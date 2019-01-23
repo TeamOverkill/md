@@ -49,15 +49,18 @@ struct IO{
                 }
                 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+                //Check if molecule is already created
                 std::vector<int>::iterator molIt = std::find(molecules.begin(), molecules.end(), molecule);
                 molIndex = std::distance(molecules.begin(), molIt);
 
+                //Create molecule
                 if (molIt == molecules.end()) {
                     molecules.push_back(molecule);
                     Particle *p1 = new Particle();
                     p1->push_back(atoms[j]);
                     particles.push_back(p1);
                 }
+                //Molecule is already created to add atom
                 else{
                     particles[molIndex]->push_back(atoms[j]);
                 }
@@ -65,16 +68,15 @@ struct IO{
                 j++;
             }
 
+            /// BOX DIMENSIONS ///
             if(i == c + 2) {
                 std::istringstream iss(line);
                 if ((iss >> xDim >> yDim >> zDim)) {
                     printf("Read cuboid box dimensions, %lf, %lf, %lf from file.\n", xDim, yDim, zDim);
-                    exit(1);
                 }
 
                 else if ((iss >> xDim >> yDim >> zDim >> aAng >> bAng >> cAng)) {
                     printf("Read parallelepiped box dimensions, %lf, %lf, %lf from file.\n", xDim, yDim, zDim);
-                    exit(1);
                 }
                 else{
                     printf("Could not read box dimentions...\n");
@@ -82,6 +84,7 @@ struct IO{
                 }
             }
 
+            /// BONDS ///
             if(i > c + 3){
 
                 std::istringstream iss(line);
@@ -111,6 +114,8 @@ struct IO{
             exit(1);
         }
 
+        particles.atoms = atoms;
+        printf("Read %i atoms, %i molecules and %i bonds from file.\n", particles.atoms.numOfAtoms, particles.numOfParticles, i - c - 4);
     /*                  Only for testing
         for(int i = 0; i < particles.numOfParticles; i++){
             for(int j = 0; j < particles[i]->numOfAtoms; j++){
@@ -118,12 +123,30 @@ struct IO{
             }
         }
 */
-        particles.atoms = atoms;
+
+    ///     PLZ MOVE AND/OR REWRITE     ///
+        for(int i = 0; i < particles.numOfParticles; i++){
+            for(int j = 0; j < particles[i]->numOfAtoms; j++){
+                particles[i]->atoms[j]->localIndex = j;
+            }
+            for(auto& bond : particles[i]->bonds){
+                printf("%i\n", particles.atoms[bond[0]]->localIndex);
+                bond[0] = particles.atoms[bond[0]]->localIndex;
+                bond[1] = particles.atoms[bond[1]]->localIndex;
+            }
+        }
+
+        for(int i = 0; i < particles.numOfParticles; i++){
+            printf("particle: %i\n", i);
+            particles[i]->find_far_neighbours();
+        }
+    ////////////////////////////////////////
+
         /*!< Initialize the distance matrix */
         atoms.distances.resize(atoms.numOfAtoms, atoms.numOfAtoms);
         /*!< Initialize the force matrix */
         atoms.forceMatrix.resize(atoms.numOfAtoms, atoms.numOfAtoms);
-        printf("Read %i atoms, %i molecules and %i bonds from file.\n", particles.atoms.numOfAtoms, particles.numOfParticles, i - c - 4);
+
         return particles;
     }
 
