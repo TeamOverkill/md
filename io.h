@@ -130,14 +130,12 @@ struct IO{
                 particles[i]->atoms[j]->localIndex = j;
             }
             for(auto& bond : particles[i]->bonds){
-                printf("%i\n", particles.atoms[bond[0]]->localIndex);
                 bond[0] = particles.atoms[bond[0]]->localIndex;
                 bond[1] = particles.atoms[bond[1]]->localIndex;
             }
         }
 
         for(int i = 0; i < particles.numOfParticles; i++){
-            printf("particle: %i\n", i);
             particles[i]->find_far_neighbours();
         }
     ////////////////////////////////////////
