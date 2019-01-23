@@ -409,12 +409,12 @@ namespace potentials{
             kNumMax = 1000000;
             kNum = 0;
             resFac = (double*) malloc(kNumMax * sizeof(double));
-            int kMax = 4;
+            int kMax = 11;  //half of the third root of number of reciprocal vectors
 
             double factor = 1;
             Eigen::Vector3d vec;
 
-            alpha = 5.0 / geometry->box[0];
+            alpha = 8.0 / geometry->box[0];
 
             for(int kx = 0; kx <= kMax; kx++){
                 for(int ky = -kMax; ky <= kMax; ky++){
@@ -485,12 +485,7 @@ namespace potentials{
 
         static inline double energy(Particles& particles, Geometry* geometry){
             double real = 0;
-
             double reciprocal = 0;
-
-            Eigen::Vector3d dipoleMoment;
-            dipoleMoment.setZero();
-            double corr = 0;
             double distance = 0;
             double energy = 0;
 
@@ -506,17 +501,24 @@ namespace potentials{
                 }
             }
 
-            reciprocal = 2 * constants::PI/(geometry->box[0] * geometry->box[1] * geometry->box[2]) * reciprocal;
+            reciprocal = 2.0 * constants::PI/(geometry->box[0] * geometry->box[1] * geometry->box[2]) * reciprocal;
 
-            return (real + reciprocal) - selfTerm;   //Tinfoil boundary conditions
+            // DEBUGGING
+            /*printf("real: %lf\n", real);
+            printf("reciprocal: %lf\n", reciprocal);
+            printf("self: %lf\n", selfTerm);
+            printf("ewald energy: %lf\n", 0.1 * ((real + reciprocal) - selfTerm));*/
+
+            return ((real + reciprocal) - selfTerm) * 0.1;   //Tinfoil boundary conditions
         }
 
         static inline void forces(Particles& particles, Geometry* geometry){
-            reset();
-            initialize(particles, geometry);
+            //reset();
+            //initialize(particles, geometry);
             for(int i = 0; i < particles.numOfParticles; i++){
-                particles.atoms[i]->force += (real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry));
+                particles.atoms[i]->force += ((real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry))) * 0.1;
             }
+            //printf("Ewald force x: %lf, y: %lf\n", particles.atoms[0]->force[0], particles.atoms[0]->force[1]);
         }
 
         static inline Eigen::Vector3d reciprocal_force(Atom* a, Particles& particles, Geometry* geometry){
@@ -527,7 +529,7 @@ namespace potentials{
                 for(int k = 0; k < kNum; k++){
                     force += 4 * constants::PI * kVec[k] / (kNorm[k] * kNorm[k]) * std::exp(-1.0 * kNorm[k] * kNorm[k] / (4 * alpha)) * std::sin(kVec[k].dot(disp));
                 }
-                force *= particles.atoms[i]->q * 1.0 / geometry->volume;
+                force *= particles.atoms[i]->q / geometry->volume;
             }
             force *= a->q;
             return force;

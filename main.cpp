@@ -24,31 +24,39 @@ int main(int argc, char *argv[]){
     Base::initialize(parser.numberOfFrames);
 
     Particles particles;
-
-    /*!< Read starting configuration from file */
-    //IO io;
-    //particles = io.read_frame("output_1.gro");
+    IO io;
+    particles = io.read_frame("output_2.gro");
 
     /*!< Initialize atom variables */
-    Atoms atoms;
+    /*Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
     atoms.remove_overlaps();
 
-    particles.atoms = atoms;
+    std::vector< std::vector<int> > bonds;
+
+    for(int i = 0; i < atoms.numOfAtoms; i++){
+        Particle *p1 = new Particle();
+        p1->push_back(atoms[i]);
+        atoms[i]->particle = i;
+        particles.push_back(p1);
+    }
+
+    particles.atoms = atoms;*/
 
     /*!< Initialize Frames */
     Frames frames(parser.numberOfFrames, particles.atoms.numOfAtoms, parser.saveFreq);
 
     /*!< Create Geometry object*/
-    Geometry* geometry = new Rectangular<false, false, false>(parser.boxDim, parser.boxDim, parser.boxDim);
+    Geometry* geometry = new Rectangular<true, true, true>(parser.boxDim, parser.boxDim, parser.boxDim);
 
-    //potentials::ewald::initialize(particles.atoms, geometry);
+    potentials::ewald::initialize(particles, geometry);
 
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald> > engine(geometry);
+
+    /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::coulomb, potentials::LJRep> > engine(geometry);
 
     double start_time = omp_get_wtime();
-    /*!< Call run() with the specified integrator and energy function */
     engine.run(particles, frames);
     printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);
 

@@ -2,7 +2,8 @@ struct IO{
 
     Particles read_frame(std::string fileName){
         int c, i = 0, ind, j = 0, atom_1, atom_2, molecule, molIndex;
-        double xPos, yPos, zPos, xVel, yVel, zVel;
+        double xPos, yPos, zPos, xVel, yVel, zVel, xDim, yDim, zDim,
+                    aAng, bAng, cAng;
         std::string atom, line;
         std::vector<int> molecules;
         std::ifstream infile(fileName);
@@ -39,6 +40,15 @@ struct IO{
                 atoms[j]->index = j;
                 atoms[j]->particle = molecule - 1;
 
+                ////////////////////////////////////      REMOVE      /////////////////////////////////////////////////
+                if(j % 2 == 0){
+                    atoms[j]->q = -1.0;
+                }
+                else{
+                    atoms[j]->q = 1.0;
+                }
+                //////////////////////////////////////////////////////////////////////////////////////////////////////
+
                 std::vector<int>::iterator molIt = std::find(molecules.begin(), molecules.end(), molecule);
                 molIndex = std::distance(molecules.begin(), molIt);
 
@@ -53,6 +63,23 @@ struct IO{
                 }
 
                 j++;
+            }
+
+            if(i == c + 2) {
+                std::istringstream iss(line);
+                if ((iss >> xDim >> yDim >> zDim)) {
+                    printf("Read cuboid box dimensions, %lf, %lf, %lf from file.\n", xDim, yDim, zDim);
+                    exit(1);
+                }
+
+                else if ((iss >> xDim >> yDim >> zDim >> aAng >> bAng >> cAng)) {
+                    printf("Read parallelepiped box dimensions, %lf, %lf, %lf from file.\n", xDim, yDim, zDim);
+                    exit(1);
+                }
+                else{
+                    printf("Could not read box dimentions...\n");
+                    exit(1);
+                }
             }
 
             if(i > c + 3){
@@ -96,7 +123,11 @@ struct IO{
         atoms.distances.resize(atoms.numOfAtoms, atoms.numOfAtoms);
         /*!< Initialize the force matrix */
         atoms.forceMatrix.resize(atoms.numOfAtoms, atoms.numOfAtoms);
-        printf("Read %i atoms, %i molecules and %i bonds from file.\n", c, particles.numOfParticles, i - c - 4);
+        printf("Read %i atoms, %i molecules and %i bonds from file.\n", particles.atoms.numOfAtoms, particles.numOfParticles, i - c - 4);
         return particles;
+    }
+
+    void write_frame(){
+
     }
 };

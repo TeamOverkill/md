@@ -44,7 +44,7 @@ public:
             fprintf(f, "%d\n", particles.atoms.numOfAtoms);
             for(i = 0; i < particles.atoms.numOfAtoms; i++){
                 //printf("Saving state %d\n", i);
-                fprintf(f, "%5d%-5s%5s%5d%8.3f%8.3f%8.3f%8.4f%8.4f%8.4f\n", 1, "ion", particles.atoms[i]->name.c_str(), i + 1, frames[j]->state[i][0], frames[j]->state[i][1], frames[j]->state[i][2], \
+                fprintf(f, "%5d%-5s%5s%5d%8.3f%8.3f%8.3f%8.4f%8.4f%8.4f\n", particles.atoms[i]->particle, "ion", particles.atoms[i]->name.c_str(), i + 1, frames[j]->state[i][0], frames[j]->state[i][1], frames[j]->state[i][2], \
                 frames[j]->state[i][3], frames[j]->state[i][4], frames[j]->state[i][5]);
             }
             fprintf(f, "%lf    %lf     %lf\n", Base::boxDim, Base::boxDim, Base::boxDim);

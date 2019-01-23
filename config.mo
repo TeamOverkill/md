@@ -1,5 +1,5 @@
-nop 4
-boxdim 5
+nop 2
+boxdim 1
 iter 10000
 temperature 900
 nof 1000
