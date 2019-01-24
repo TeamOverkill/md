@@ -67,6 +67,47 @@ namespace potentials{
         }
     };
 
+    struct angular_harmonic{
+
+    private:
+        static constexpr double k = 1.0;
+
+    public:
+        inline static double energy(Particles& particles, Geometry* geometry){
+            double energy = 0;
+            for(int i = 0; i < particles.numOfParticles; i++) {
+                for (auto angle : particles[i]->angles) {
+                    Eigen::Vector3d ab_disp = geometry->disp(particles[i]->atoms[angle[0]]->pos,
+                                                             particles[i]->atoms[angle[1]]->pos);
+                    Eigen::Vector3d bc_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos,
+                                                             particles[i]->atoms[angle[2]]->pos);
+                    double ab_dist = ab_disp.norm();
+                    double bc_dist = bc_disp.norm();
+
+                    double theta = std::acos(ab_disp.dot(bc_disp) / (ab_dist * bc_dist));
+
+                    energy += k * (theta - 3.14) * (theta - 3.14);
+                }
+            }
+            return energy;
+        }
+        
+        inline static void forces(Particles& particles, Geometry* geometry) {
+            for(int i = 0; i < particles.numOfParticles; i++){
+                for(auto angle : particles[i]->angles){
+                    Eigen::Vector3d ab_disp = geometry->disp(particles[i]->atoms[angle[0]]->pos, particles[i]->atoms[angle[1]]->pos);
+                    Eigen::Vector3d bc_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos, particles[i]->atoms[angle[2]]->pos);
+                    double ab_dist = ab_disp.norm();
+                    double bc_dist = bc_disp.norm();
+
+                    double theta = std::acos(ab_disp.dot(bc_disp) / (ab_dist * bc_dist));
+
+                    particles[i]->atoms[angle[0]]->force = k * (theta - 3.14) * 1.0 / ab_dist * ab_disp.cross(ab_disp.cross(bc_disp));
+                }
+            }
+        }
+    };
+
     /*!
      *  \addtogroup Coulomb
      *  @{

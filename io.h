@@ -57,7 +57,7 @@ struct IO{
                        particles[particles.atoms[atom1]->particle]->bonds.back()[1]);
             }
 
-            
+
             else{
                 printf("Malformed parameter file...\n");
                 exit(1);
