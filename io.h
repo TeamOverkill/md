@@ -11,7 +11,8 @@ struct IO{
 
             std::istringstream iss(line);
 
-            //Angle
+
+            ///         ANGLE           ///
             if(iss >> atom1 >> atom2 >> atom3) {
                 atom1--;
                 atom2--;
@@ -36,7 +37,8 @@ struct IO{
             iss.clear();
             iss.seekg(std::ios::beg);
 
-            //Bond
+
+            ///             BOND            ///
             if(iss >> atom1 >> atom2){
 
                 atom1--;   //Since format index starts from 1 and program from 0
@@ -55,14 +57,33 @@ struct IO{
                        particles[particles.atoms[atom1]->particle]->bonds.back()[1]);
             }
 
+            
             else{
                 printf("Malformed parameter file...\n");
                 exit(1);
             }
-            i++;
         }
+
+        ///     Set correct indexes in angles and bonds
+        for(int i = 0; i < particles.numOfParticles; i++){
+            for(int j = 0; j < particles[i]->numOfAtoms; j++){
+                particles[i]->atoms[j]->localIndex = j;
+            }
+            for(auto& bond : particles[i]->bonds){
+                bond[0] = particles.atoms[bond[0]]->localIndex;
+                bond[1] = particles.atoms[bond[1]]->localIndex;
+            }
+            for(auto& angle : particles[i]->angles){
+                angle[0] = particles.atoms[angle[0]]->localIndex;
+                angle[1] = particles.atoms[angle[1]]->localIndex;
+                angle[2] = particles.atoms[angle[2]]->localIndex;
+            }
+        }
+
         exit(0);
     }
+
+
     Particles read_frame(std::string fileName){
         int c, i = 0, ind, j = 0, atom_1, atom_2, molecule, molIndex;
         double xPos, yPos, zPos, xVel, yVel, zVel, xDim, yDim, zDim,
@@ -151,28 +172,6 @@ struct IO{
                 }
             }
 
-            /// BONDS ///
-            /*if(i > c + 3){
-
-                std::istringstream iss(line);
-                if(!(iss >> atom_1 >> atom_2)){
-                    break;
-                }
-
-                atom_1--;   //Since format index starts from 1 and program from 0
-                atom_2--;
-
-                if(atoms[atom_1]->particle != atoms[atom_2]->particle){
-                    printf("Atoms %i and %i does not belong to the same molecule so there can't be any bond between them!\n",
-                    atom_1, atom_2);
-                    exit(1);
-                }
-
-                particles[atoms[atom_1]->particle]->bonds.push_back(std::vector<int>());
-                particles[atoms[atom_1]->particle]->bonds.back().push_back(atom_1);
-                particles[atoms[atom_1]->particle]->bonds.back().push_back(atom_2);
-                //printf("Bond: %i, %i\n", particles[atoms[atom_1]->particle]->bonds.back()[0], particles[atoms[atom_1]->particle]->bonds.back()[1]);
-            }*/
             i++;
         }
         if(c != atoms.numOfAtoms){
@@ -191,17 +190,6 @@ struct IO{
         }
 */
 
-    ///     PLZ MOVE AND/OR REWRITE     ///
-        for(int i = 0; i < particles.numOfParticles; i++){
-            for(int j = 0; j < particles[i]->numOfAtoms; j++){
-                particles[i]->atoms[j]->localIndex = j;
-            }
-            for(auto& bond : particles[i]->bonds){
-                bond[0] = particles.atoms[bond[0]]->localIndex;
-                bond[1] = particles.atoms[bond[1]]->localIndex;
-            }
-        }
-    ////////////////////////////////////////
 
         /*!< Initialize the distance matrix */
         atoms.distances.resize(atoms.numOfAtoms, atoms.numOfAtoms);
