@@ -24,4 +24,12 @@ public:
         this->particles.push_back(particle);
         this->numOfParticles++;
     }
+
+    void initialize(){
+
+        //Find atoms separated by 3 or more bonds
+        for(int i = 0; i < this->numOfParticles; i++){
+            this->particles[i]->find_far_neighbours();
+        }
+    }
 };

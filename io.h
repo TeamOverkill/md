@@ -1,5 +1,68 @@
 struct IO{
 
+    void read_par(std::string fileName, Particles& particles){
+        int i = 0, atom1, atom2, atom3, a1, a2, a3;
+        std::string line;
+        std::ifstream infile(fileName);
+
+        while (std::getline(infile, line)) {
+            if(line[0] == '#') continue;
+            if(line.empty()) continue;
+
+            std::istringstream iss(line);
+
+            //Angle
+            if(iss >> atom1 >> atom2 >> atom3) {
+                atom1--;
+                atom2--;
+                atom3--;
+
+                if (particles.atoms[atom1]->particle != particles.atoms[atom2]->particle !=
+                    particles.atoms[atom3]->particle) {
+                    printf("Atoms %i, %i and %i does not belong to the same molecule so there can't be any fixed angle "
+                           "between them!\n", atom1, atom2, atom3);
+                    exit(1);
+                }
+                particles[particles.atoms[atom1]->particle]->angles.push_back(std::vector<int>());
+                particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom1);
+                particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom2);
+                particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom3);
+                printf("Angle: %i, %i, %i\n", particles[particles.atoms[atom1]->particle]->angles.back()[0],
+                       particles[particles.atoms[atom1]->particle]->angles.back()[1],
+                       particles[particles.atoms[atom1]->particle]->angles.back()[2]);
+                continue;
+            }
+
+            iss.clear();
+            iss.seekg(std::ios::beg);
+
+            //Bond
+            if(iss >> atom1 >> atom2){
+
+                atom1--;   //Since format index starts from 1 and program from 0
+                atom2--;
+
+                if(particles.atoms[atom1]->particle != particles.atoms[atom2]->particle){
+                    printf("Atoms %i and %i does not belong to the same molecule so there can't be any bond between them!\n",
+                           atom1, atom2);
+                    exit(1);
+                }
+
+                particles[particles.atoms[atom1]->particle]->bonds.push_back(std::vector<int>());
+                particles[particles.atoms[atom1]->particle]->bonds.back().push_back(atom1);
+                particles[particles.atoms[atom1]->particle]->bonds.back().push_back(atom2);
+                printf("Bond: %i, %i\n", particles[particles.atoms[atom1]->particle]->bonds.back()[0],
+                       particles[particles.atoms[atom1]->particle]->bonds.back()[1]);
+            }
+
+            else{
+                printf("Malformed parameter file...\n");
+                exit(1);
+            }
+            i++;
+        }
+        exit(0);
+    }
     Particles read_frame(std::string fileName){
         int c, i = 0, ind, j = 0, atom_1, atom_2, molecule, molIndex;
         double xPos, yPos, zPos, xVel, yVel, zVel, xDim, yDim, zDim,
@@ -11,6 +74,9 @@ struct IO{
         Atoms atoms;
 
         while (std::getline(infile, line)) {
+            if(line[0] == '#') continue;
+            if(line.empty()) continue;
+
             if(i == 1){
                 std::istringstream iss(line);
                 if (!(iss >> c)) {
@@ -73,6 +139,7 @@ struct IO{
                 std::istringstream iss(line);
                 if ((iss >> xDim >> yDim >> zDim)) {
                     printf("Read cuboid box dimensions, %lf, %lf, %lf from file.\n", xDim, yDim, zDim);
+                    break;
                 }
 
                 else if ((iss >> xDim >> yDim >> zDim >> aAng >> bAng >> cAng)) {
@@ -85,7 +152,7 @@ struct IO{
             }
 
             /// BONDS ///
-            if(i > c + 3){
+            /*if(i > c + 3){
 
                 std::istringstream iss(line);
                 if(!(iss >> atom_1 >> atom_2)){
@@ -104,8 +171,8 @@ struct IO{
                 particles[atoms[atom_1]->particle]->bonds.push_back(std::vector<int>());
                 particles[atoms[atom_1]->particle]->bonds.back().push_back(atom_1);
                 particles[atoms[atom_1]->particle]->bonds.back().push_back(atom_2);
-                printf("Bond: %i, %i\n", particles[atoms[atom_1]->particle]->bonds.back()[0], particles[atoms[atom_1]->particle]->bonds.back()[1]);
-            }
+                //printf("Bond: %i, %i\n", particles[atoms[atom_1]->particle]->bonds.back()[0], particles[atoms[atom_1]->particle]->bonds.back()[1]);
+            }*/
             i++;
         }
         if(c != atoms.numOfAtoms){
@@ -133,10 +200,6 @@ struct IO{
                 bond[0] = particles.atoms[bond[0]]->localIndex;
                 bond[1] = particles.atoms[bond[1]]->localIndex;
             }
-        }
-
-        for(int i = 0; i < particles.numOfParticles; i++){
-            particles[i]->find_far_neighbours();
         }
     ////////////////////////////////////////
 
