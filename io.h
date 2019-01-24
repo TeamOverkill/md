@@ -79,8 +79,6 @@ struct IO{
                 angle[2] = particles.atoms[angle[2]]->localIndex;
             }
         }
-
-        exit(0);
     }
 
 

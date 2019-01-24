@@ -43,12 +43,20 @@ namespace potentials{
 
     struct harmonic{
     private:
-        static constexpr double springConstant = 1.0;        // [kJ * nm^(-2) * mol^(-1)]
+        static constexpr double springConstant = 100.0;        // [kJ * nm^(-2) * mol^(-1)]
 
     public:
         inline static double energy(Particles& particles, Geometry* geometry){
             double energy = 0;
-            energy = 0.5 * springConstant * particles.atoms[0]->pos.norm();   // [kJ/mol]
+
+            for(int i = 0; i < particles.numOfParticles; i++){
+                for(auto bond : particles[i]->bonds){
+                    double dist = geometry->dist(particles[i]->atoms[bond[0]]->pos, particles[i]->atoms[bond[1]]->pos);
+                    energy += 0.5 * springConstant * std::pow((dist - 0.1), 2);   // [kJ/mol]
+                }
+            }
+
+
 
             return energy;
         }
@@ -60,8 +68,8 @@ namespace potentials{
             for(int i = 0; i < particles.numOfParticles; i++){
                 for(auto bond : particles[i]->bonds){
                     Eigen::Vector3d disp = geometry->disp(particles[i]->atoms[bond[0]]->pos, particles[i]->atoms[bond[1]]->pos);
-                    particles[i]->atoms[bond[0]]->force += disp.normalized() * (0.01 - disp.norm()) * springConstant;
-                    particles[i]->atoms[bond[1]]->force -= disp.normalized() * (0.01 - disp.norm()) * springConstant;
+                    particles[i]->atoms[bond[0]]->force += disp.normalized() * (0.1 - disp.norm()) * springConstant;
+                    particles[i]->atoms[bond[1]]->force -= disp.normalized() * (0.1 - disp.norm()) * springConstant;
                 }
             }
         }
@@ -70,39 +78,54 @@ namespace potentials{
     struct angular_harmonic{
 
     private:
-        static constexpr double k = 1.0;
+        static constexpr double k = 1000.0;
 
     public:
         inline static double energy(Particles& particles, Geometry* geometry){
             double energy = 0;
             for(int i = 0; i < particles.numOfParticles; i++) {
                 for (auto angle : particles[i]->angles) {
-                    Eigen::Vector3d ab_disp = geometry->disp(particles[i]->atoms[angle[0]]->pos,
-                                                             particles[i]->atoms[angle[1]]->pos);
-                    Eigen::Vector3d bc_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos,
+                    Eigen::Vector3d ab_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos,
+                                                             particles[i]->atoms[angle[0]]->pos);
+                    Eigen::Vector3d cb_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos,
                                                              particles[i]->atoms[angle[2]]->pos);
+
                     double ab_dist = ab_disp.norm();
-                    double bc_dist = bc_disp.norm();
+                    double cb_dist = cb_disp.norm();
 
-                    double theta = std::acos(ab_disp.dot(bc_disp) / (ab_dist * bc_dist));
+                    double theta = std::acos(ab_disp.dot(cb_disp) / (ab_dist * cb_dist));
 
-                    energy += k * (theta - 3.14) * (theta - 3.14);
+                    energy += k * std::pow((theta - 1.5), 2);
                 }
             }
             return energy;
         }
-        
+
         inline static void forces(Particles& particles, Geometry* geometry) {
             for(int i = 0; i < particles.numOfParticles; i++){
                 for(auto angle : particles[i]->angles){
-                    Eigen::Vector3d ab_disp = geometry->disp(particles[i]->atoms[angle[0]]->pos, particles[i]->atoms[angle[1]]->pos);
-                    Eigen::Vector3d bc_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos, particles[i]->atoms[angle[2]]->pos);
+                    Eigen::Vector3d ab_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos,
+                                                             particles[i]->atoms[angle[0]]->pos);
+                    Eigen::Vector3d bc_disp = geometry->disp(particles[i]->atoms[angle[2]]->pos,
+                                                             particles[i]->atoms[angle[1]]->pos);
+                    Eigen::Vector3d ba_disp = - ab_disp;
+                    Eigen::Vector3d cb_disp = - bc_disp;
+
                     double ab_dist = ab_disp.norm();
                     double bc_dist = bc_disp.norm();
+                    double cb_dist = bc_dist;
 
-                    double theta = std::acos(ab_disp.dot(bc_disp) / (ab_dist * bc_dist));
+                    double theta = std::acos(ab_disp.dot(cb_disp) / (ab_dist * cb_dist));
 
-                    particles[i]->atoms[angle[0]]->force = k * (theta - 3.14) * 1.0 / ab_dist * ab_disp.cross(ab_disp.cross(bc_disp));
+                    particles[i]->atoms[angle[0]]->force += - 2 * k * (theta - 1.5) / ab_dist *
+                                                                ba_disp.cross(ba_disp.cross(bc_disp)).normalized();
+                    particles[i]->atoms[angle[2]]->force += - 2 * k * (theta - 1.5) / bc_dist *
+                                                                cb_disp.cross(ba_disp.cross(bc_disp)).normalized();
+
+                    particles[i]->atoms[angle[1]]->force -= particles[i]->atoms[angle[0]]->force +
+                                                            particles[i]->atoms[angle[2]]->force;
+                    //particles[i]->atoms[angle[1]]->force += ba_disp.cross(particles[i]->atoms[angle[0]]->force) +
+                    //                                       bc_disp.cross(particles[i]->atoms[angle[2]]->force);
                 }
             }
         }
@@ -452,12 +475,12 @@ namespace potentials{
             kNumMax = 1000000;
             kNum = 0;
             resFac = (double*) malloc(kNumMax * sizeof(double));
-            int kMax = 11;  //half of the third root of number of reciprocal vectors
+            int kMax = 4;  //half of the third root of number of reciprocal vectors
 
             double factor = 1;
             Eigen::Vector3d vec;
 
-            alpha = 8.0 / geometry->box[0];
+            alpha = 5.0 / geometry->box[0];
 
             for(int kx = 0; kx <= kMax; kx++){
                 for(int ky = -kMax; ky <= kMax; ky++){

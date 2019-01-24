@@ -49,11 +49,11 @@ int main(int argc, char *argv[]){
     Frames frames(parser.numberOfFrames, particles.atoms.numOfAtoms, parser.saveFreq);
 
     /*!< Create Geometry object*/
-    Geometry* geometry = new Rectangular<true, true, true>(parser.boxDim, parser.boxDim, parser.boxDim);
+    Geometry* geometry = new Rectangular<false, false, false>(parser.boxDim, parser.boxDim, parser.boxDim);
 
     potentials::ewald::initialize(particles, geometry);
 
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic> > engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
