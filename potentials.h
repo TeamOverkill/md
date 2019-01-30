@@ -52,12 +52,9 @@ namespace potentials{
             for(int i = 0; i < particles.numOfParticles; i++){
                 for(auto bond : particles[i]->bonds){
                     double dist = geometry->dist(particles[i]->atoms[bond[0]]->pos, particles[i]->atoms[bond[1]]->pos);
-                    energy += 0.5 * springConstant * std::pow((dist - 0.1), 2);   // [kJ/mol]
+                    energy += springConstant * std::pow((dist - 0.5), 2);   // [kJ/mol]
                 }
             }
-
-
-
             return energy;
         }
 
@@ -68,8 +65,10 @@ namespace potentials{
             for(int i = 0; i < particles.numOfParticles; i++){
                 for(auto bond : particles[i]->bonds){
                     Eigen::Vector3d disp = geometry->disp(particles[i]->atoms[bond[0]]->pos, particles[i]->atoms[bond[1]]->pos);
-                    particles[i]->atoms[bond[0]]->force += disp.normalized() * (0.1 - disp.norm()) * springConstant;
-                    particles[i]->atoms[bond[1]]->force -= disp.normalized() * (0.1 - disp.norm()) * springConstant;
+
+                    Eigen::Vector3d a_force = -2.0 * springConstant * disp.normalized() * (disp.norm() - 0.5);
+                    particles[i]->atoms[bond[0]]->force +=  a_force;
+                    particles[i]->atoms[bond[1]]->force += -a_force;
                 }
             }
         }
@@ -85,17 +84,17 @@ namespace potentials{
             double energy = 0;
             for(int i = 0; i < particles.numOfParticles; i++) {
                 for (auto angle : particles[i]->angles) {
-                    Eigen::Vector3d ab_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos,
-                                                             particles[i]->atoms[angle[0]]->pos);
-                    Eigen::Vector3d cb_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos,
-                                                             particles[i]->atoms[angle[2]]->pos);
+                    Eigen::Vector3d ba_disp = geometry->disp(particles[i]->atoms[angle[0]]->pos,
+                                                             particles[i]->atoms[angle[1]]->pos);
+                    Eigen::Vector3d bc_disp = geometry->disp(particles[i]->atoms[angle[2]]->pos,
+                                                             particles[i]->atoms[angle[1]]->pos);
 
-                    double ab_dist = ab_disp.norm();
-                    double cb_dist = cb_disp.norm();
+                    double ba_dist = ba_disp.norm();
+                    double bc_dist = bc_disp.norm();
 
-                    double theta = std::acos(ab_disp.dot(cb_disp) / (ab_dist * cb_dist));
+                    double theta = std::acos(ba_disp.dot(bc_disp) / (ba_dist * bc_dist));
 
-                    energy += k * std::pow((theta - 1.5), 2);
+                    energy += k * std::pow((theta - 3.14), 2);
                 }
             }
             return energy;
@@ -108,24 +107,26 @@ namespace potentials{
                                                              particles[i]->atoms[angle[0]]->pos);
                     Eigen::Vector3d bc_disp = geometry->disp(particles[i]->atoms[angle[2]]->pos,
                                                              particles[i]->atoms[angle[1]]->pos);
-                    Eigen::Vector3d ba_disp = - ab_disp;
-                    Eigen::Vector3d cb_disp = - bc_disp;
+                    Eigen::Vector3d ba_disp = -1.0 * ab_disp;
+                    Eigen::Vector3d cb_disp = -1.0 * bc_disp;
 
                     double ab_dist = ab_disp.norm();
                     double bc_dist = bc_disp.norm();
+                    double ba_dist = ab_dist;
                     double cb_dist = bc_dist;
 
-                    double theta = std::acos(ab_disp.dot(cb_disp) / (ab_dist * cb_dist));
+                    double theta = std::acos(ba_disp.dot(bc_disp) / (ba_dist * bc_dist));
 
-                    particles[i]->atoms[angle[0]]->force += - 2 * k * (theta - 1.5) / ab_dist *
-                                                                ba_disp.cross(ba_disp.cross(bc_disp)).normalized();
-                    particles[i]->atoms[angle[2]]->force += - 2 * k * (theta - 1.5) / bc_dist *
-                                                                cb_disp.cross(ba_disp.cross(bc_disp)).normalized();
+                    Eigen::Vector3d a_force = -2 * k * (theta - 3.14) / ab_dist *
+                            (ba_disp.cross(ba_disp.cross(bc_disp))).normalized();
+                    Eigen::Vector3d c_force = -2 * k * (theta - 3.14) / bc_dist *
+                            (cb_disp.cross(ba_disp.cross(bc_disp))).normalized();
 
-                    particles[i]->atoms[angle[1]]->force -= particles[i]->atoms[angle[0]]->force +
-                                                            particles[i]->atoms[angle[2]]->force;
-                    //particles[i]->atoms[angle[1]]->force += ba_disp.cross(particles[i]->atoms[angle[0]]->force) +
-                    //                                       bc_disp.cross(particles[i]->atoms[angle[2]]->force);
+                    particles[i]->atoms[angle[0]]->force += a_force;
+                    particles[i]->atoms[angle[2]]->force += c_force;
+                    particles[i]->atoms[angle[1]]->force += - a_force - c_force;
+                    //particles[i]->atoms[angle[1]]->force += -1.0 * (particles[i]->atoms[angle[0]]->force +
+                    //                                        particles[i]->atoms[angle[2]]->force);
                 }
             }
         }
@@ -204,7 +205,7 @@ namespace potentials{
 
                     particles.atoms[i]->force += fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     particles.atoms[j]->force -= fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
-                    particles.atoms.forceMatrix(i, j) = (fr * dr).norm();
+                    //particles.atoms.forceMatrix(i, j) = (fr * dr).norm();
                 }
             }
         }

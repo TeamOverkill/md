@@ -124,7 +124,12 @@ struct IO{
                 atoms[j]->radius = 1.0;
                 atoms[j]->index = j;
                 atoms[j]->particle = molecule - 1;
-
+                if(j % 2 == 0){
+                    atoms[j]->q = 1.0;
+                }
+                else{
+                    atoms[j]->q = -1.0;
+                }
                 ////////////////////////////////////      REMOVE      /////////////////////////////////////////////////
                 if(j % 2 == 0){
                     atoms[j]->q = -1.0;

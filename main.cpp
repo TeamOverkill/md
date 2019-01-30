@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
 
     potentials::ewald::initialize(particles, geometry);
 
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::angular_harmonic, potentials::harmonic> > engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
