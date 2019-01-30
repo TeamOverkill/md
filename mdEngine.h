@@ -55,7 +55,7 @@ public:
 
         std::vector<int> v = {0};
         //Analysis *track = new Track(v, "track.txt");
-
+                
         FILE *f = fopen("output.gro", "w");
         fclose(f);
 
