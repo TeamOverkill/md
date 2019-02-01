@@ -182,11 +182,10 @@ namespace potentials{
     struct LJRep{
 
     private:
-        static constexpr double epsilon = 1.5;  //![kJ/mol] LJ parameter epsilon
+        static constexpr double epsilon = 1.0;  //![kJ/mol] LJ parameter epsilon
         static constexpr double sigma = 1.0;      //![nm] LJ parameter sigma
+
     public:
-
-
         inline static void forces(Particles& particles, Geometry* geometry) {
             /*!
             * Calculate the forces using a Lennard-Jones potential
@@ -476,20 +475,20 @@ namespace potentials{
             kNumMax = 1000000;
             kNum = 0;
             resFac = (double*) malloc(kNumMax * sizeof(double));
-            int kMax = 4;  //half of the third root of number of reciprocal vectors
+            int kMax = 11;  //half of the third root of number of reciprocal vectors
 
             double factor = 1;
             Eigen::Vector3d vec;
 
-            alpha = 5.0 / geometry->box[0];
+            alpha = 8.0 / geometry->box[0];
 
-            for(int kx = 0; kx <= kMax; kx++){
+            for(int kx = -kMax; kx <= kMax; kx++){
                 for(int ky = -kMax; ky <= kMax; ky++){
                     for(int kz = -kMax; kz <= kMax; kz++){
                         factor = 1.0;
-                        if(kx > 0){
-                            factor *= 2;
-                        }
+                        //if(kx > 0){
+                        //    factor *= 2;
+                        //}
 
                         vec[0] = (2.0 * constants::PI * kx / geometry->box[0]);
                         vec[1] = (2.0 * constants::PI * ky / geometry->box[1]);
@@ -534,6 +533,28 @@ namespace potentials{
 
         }
 
+
+
+        static inline void update_factors(Particles& particles){
+            std::complex<double> rho;
+            std::complex<double> rk;
+            std::complex<double> charge;
+            for(int k = 0; k < kNum; k++){
+                rho = 0;
+                for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+                    rk.imag(std::sin(particles.atoms[i]->pos.dot(kVec[k])));
+                    rk.real(std::cos(particles.atoms[i]->pos.dot(kVec[k])));
+                    charge = particles.atoms[i]->q;
+                    rk = rk * charge;
+                    rho += rk;
+                }
+
+                rkVec[k] = rho;
+            }
+
+        }
+
+
         static inline double get_reciprocal(){
             double energy = 0;
 
@@ -561,45 +582,73 @@ namespace potentials{
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
                 for(int j = i + 1; j < particles.atoms.numOfAtoms; j++){
                     distance = geometry->dist(particles.atoms[i]->pos, particles.atoms[j]->pos);
-                    if(distance <= 25){
+                    //if(distance <= 25){
                         energy = erfc_x(distance * alpha) / distance;
                         real += particles.atoms[i]->q * particles.atoms[j]->q * energy;
-                    }
+                    //}
                 }
             }
 
-            reciprocal = 2.0 * constants::PI/(geometry->box[0] * geometry->box[1] * geometry->box[2]) * reciprocal;
+            reciprocal *= 2.0 * constants::PI / geometry->volume;
 
             // DEBUGGING
             /*printf("real: %lf\n", real);
             printf("reciprocal: %lf\n", reciprocal);
-            printf("self: %lf\n", selfTerm);
-            printf("ewald energy: %lf\n", 0.1 * ((real + reciprocal) - selfTerm));*/
+            printf("self: %lf\n", selfTerm);*/
+            printf("Tinfoil Energy: %.10lf\n", (real + reciprocal) - selfTerm);
 
-            return ((real + reciprocal) - selfTerm) * 0.1;   //Tinfoil boundary conditions
+            return 0.1 * (real + reciprocal) - selfTerm;
         }
 
         static inline void forces(Particles& particles, Geometry* geometry){
             //reset();
             //initialize(particles, geometry);
-            for(int i = 0; i < particles.numOfParticles; i++){
-                particles.atoms[i]->force += ((real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry))) * 0.1;
+            //update_factors(particles);
+            for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+                particles.atoms[i]->force += (real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry));
+                //particles.atoms[i]->force += reciprocal_force(particles.atoms[i], particles, geometry);
             }
-            //printf("Ewald force x: %lf, y: %lf\n", particles.atoms[0]->force[0], particles.atoms[0]->force[1]);
+            printf("Ewald force x: %lf, y: %lf\n", particles.atoms[0]->force[0], particles.atoms[0]->force[1]);
         }
+
+
+
+        ////// Use resFac instead of exp() terms since it is multiplied by a factor which is probably missing here  ///////////////
 
         static inline Eigen::Vector3d reciprocal_force(Atom* a, Particles& particles, Geometry* geometry){
             Eigen::Vector3d force;
             force.setZero();
+            Eigen::Vector3d factor1;
+            factor1.setZero();
+            double factor2;
+            double factor3;
+            /*
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
                 Eigen::Vector3d disp = geometry->disp(a->pos, particles.atoms[i]->pos);
                 for(int k = 0; k < kNum; k++){
                     force += 4 * constants::PI * kVec[k] / (kNorm[k] * kNorm[k]) * std::exp(-1.0 * kNorm[k] * kNorm[k] / (4 * alpha)) * std::sin(kVec[k].dot(disp));
                 }
+
                 force *= particles.atoms[i]->q / geometry->volume;
             }
             force *= a->q;
-            return force;
+            */
+
+            for(int k = 0; k < kNum; k++){
+                factor1 = a->q * kVec[k] * resFac[k];// / (kNorm[k] * kNorm[k]) * std::exp(-1.0 * kVec[k].dot(kVec[k]) / (4 * alpha * alpha));
+                factor2 = 0;
+                factor3 = 0;
+                for(int j = 0; j < particles.atoms.numOfAtoms; j++){
+                    factor2 += particles.atoms[j]->q * std::cos(kVec[k].dot(particles.atoms[j]->pos));
+                }
+                factor2 = std::sin(kVec[k].dot(a->pos)) * factor2;
+                for(int j = 0; j < particles.atoms.numOfAtoms; j++){
+                    factor3 += particles.atoms[j]->q * std::sin(kVec[k].dot(particles.atoms[j]->pos));
+                }
+                factor3 = std::cos(kVec[k].dot(a->pos)) * factor3;
+                force += factor1 * (factor2 - factor3);
+            }
+            return force * 4.0 * constants::PI / geometry->volume;
         }
 
         static inline Eigen::Vector3d real_force(Atom* a, Particles& particles, Geometry* geometry){
@@ -608,10 +657,14 @@ namespace potentials{
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
                 if(a->index != i) {
                     Eigen::Vector3d disp = geometry->disp(a->pos, particles.atoms[i]->pos);
-                    force += particles.atoms[i]->q * (2.0 * std::sqrt(alpha / constants::PI) *
+                    /*force += particles.atoms[i]->q * (2.0 * std::sqrt(alpha / constants::PI) *
                                                       std::exp(-1.0 * alpha * disp.norm() * disp.norm()) +
-                                                      1.0 / disp.norm() * erfc_x(std::sqrt(alpha) * disp.norm())) *
-                                                        disp / (disp.norm() * disp.norm());
+                                                      erfc_x(std::sqrt(alpha) * disp.norm()) / disp.norm()) *
+                                                        disp / (disp.dot(disp));*/
+                    force += particles.atoms[i]->q * (2 * alpha / std::sqrt(constants::PI) *
+                                                      std::exp(-alpha * alpha * disp.dot(disp))
+                                                      + erfc_x(alpha * disp.norm()) / disp.norm()) *
+                                                      disp / disp.dot(disp);
                 }
             }
             force *= a->q;

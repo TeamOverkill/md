@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 
     Particles particles;
     IO io;
-    particles = io.read_frame("output_1.gro");
+    particles = io.read_frame("output_2.gro");
     io.read_par("params.par", particles);
     particles.initialize();
 
@@ -49,11 +49,11 @@ int main(int argc, char *argv[]){
     Frames frames(parser.numberOfFrames, particles.atoms.numOfAtoms, parser.saveFreq);
 
     /*!< Create Geometry object*/
-    Geometry* geometry = new Rectangular<false, false, false>(parser.boxDim, parser.boxDim, parser.boxDim);
+    Geometry* geometry = new Rectangular<true, true, true>(parser.boxDim, parser.boxDim, parser.boxDim);
 
     potentials::ewald::initialize(particles, geometry);
 
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::angular_harmonic, potentials::harmonic> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald> > engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
