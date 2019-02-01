@@ -11,10 +11,9 @@ namespace integrators{
             * Velocity Verlet integrator
             * First half step
             */
-
+            #pragma omp parallel for if(particles.atoms.numOfAtoms > 6000)
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
 
-                //particles[i]->atoms[j]->hard_walls();           //Move somewhere else
                 geometry->boundary(particles.atoms[i]);
 
                 particles.atoms[i]->vel +=
@@ -28,7 +27,6 @@ namespace integrators{
                     std::cout << particles.atoms[i]->pos << std::endl;
                     exit(1);
                 }
-
             }
         }
 
@@ -37,7 +35,7 @@ namespace integrators{
             * Velocity Verlet integrator
             * Second half step
             */
-
+            #pragma omp parallel for if(particles.atoms.numOfAtoms > 6000)
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                     particles.atoms[i]->vel +=
                             0.5 * Base::tStep * particles.atoms[i]->force / particles.atoms[i]->mass;

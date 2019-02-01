@@ -11,7 +11,7 @@
 #include "base.h"
 #include "mdEngine.h"
 #include <time.h>
-
+#include <omp.h>
 #include "parser.h"
 #include "potentialmanager.h"
 #include "geometries.h"
@@ -24,76 +24,43 @@ int main(int argc, char *argv[]){
     Base::initialize(parser.numberOfFrames);
 
     Particles particles;
+    IO io;
+    particles = io.read_frame("output_1.gro");
+    io.read_par("params.par", particles);
+    particles.initialize();
 
     /*!< Initialize atom variables */
-    Atoms atoms;
+    /*Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
     atoms.remove_overlaps();
 
     std::vector< std::vector<int> > bonds;
-    //particles.initialize(atoms, bonds);
 
     for(int i = 0; i < atoms.numOfAtoms; i++){
         Particle *p1 = new Particle();
-/*        if(i < 2) {
-            if (i > 0 && i < 2) {
-                p1->push_back(atoms[i]);
-                p1->push_back(atoms[i - 1]);
-                p1->bonds.push_back(std::vector<int>());
-
-                //p1->bonds[0].resize(2);
-                p1->bonds[i - 1].push_back(i - 1);
-                p1->bonds[i - 1].push_back(i);
-            }
-        }
-        else {*/
-            p1->push_back(atoms[i]);
-        //}
+        p1->push_back(atoms[i]);
+        atoms[i]->particle = i;
         particles.push_back(p1);
     }
 
-    particles.atoms = atoms;
-    /*Particle *p1 = new Particle();
-    p1->push_back(atoms[0]);
-    p1->push_back(atoms[1]);
-    p1->bonds.push_back(std::vector<int>());
-    p1->bonds[0].push_back(0);
-    p1->bonds[0].push_back(1);
-
-    Particle *p2 = new Particle();
-    p2->push_back(atoms[2]);
-    p2->push_back(atoms[3]);
-    p2->bonds.push_back(std::vector<int>());
-    p2->bonds[0].push_back(0);
-    p2->bonds[0].push_back(1);
-
-
-    particles.push_back(p1);
-    particles.push_back(p2);*/
-
-    //IO io;
-    //particles = io.read_frames("output_1.gro");
-    //particles = atoms.read_frame("output_1.gro");
+    particles.atoms = atoms;*/
 
     /*!< Initialize Frames */
-    Frames frames(parser.numberOfFrames, atoms.numOfAtoms, parser.saveFreq);
-
-    time_t start = time(NULL);  // Timer
+    Frames frames(parser.numberOfFrames, particles.atoms.numOfAtoms, parser.saveFreq);
 
     /*!< Create Geometry object*/
-    Geometry* geometry = new Rectangular<true, true, true>(5.0, 5.0, 5.0);
+    Geometry* geometry = new Rectangular<false, false, false>(parser.boxDim, parser.boxDim, parser.boxDim);
 
-    /*!< Create potential manager object */
-    PotMan pm;
+    potentials::ewald::initialize(particles, geometry);
 
-    //potentials::ewald::initialize(atoms, geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::angular_harmonic, potentials::harmonic> > engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald, potentials::LJRep> > engine(geometry);
-    engine.run(particles, frames);
 
-    printf("Simulation took: %lu seconds.\n", time(NULL) - start);
+    double start_time = omp_get_wtime();
+    engine.run(particles, frames);
+    printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);
 
     //Save stuff, will be moved later
     FILE *f = fopen("energies.txt", "w");

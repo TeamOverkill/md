@@ -43,6 +43,7 @@ public:
     */
 
     void run(Particles& particles, Frames& frames){
+        int k = 0;
         double temperature;
         double pressure = 0;
         int samples = 0;
@@ -53,25 +54,35 @@ public:
         Analysis* histo = new rdf(100, particles.atoms.numOfAtoms, "rdf.txt", geometry);
 
 
-        std::vector<int> v = {0};
-        Analysis *track = new Track(v, "track.txt", geometry);
+        //std::vector<int> v = {0};
+        //Analysis *track = new Track(v, "track.txt", geometry);
+
+        //Analysis* histo = new rdf(1000, "rdf.txt", geometry);
 
         FILE *f = fopen("output.gro", "w");
         fclose(f);
 
-        potentials::harmonic harmonic;
-        time_t start_t = time(NULL);
-        time_t end_t;
+        double start_t = omp_get_wtime();
+        double end_t;
+
+        //geometry->update_distances(particles);
+
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
             particles.atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
 
             integrator.first_step(particles, geometry);                                        /* First half step of integrator */
 
+            /*First integrator step is the only place where atoms are moved.
+             * So only need to calculate distances after this, same thing with displacements*/
+            //geometry->update_displacements(particles);    //Add this plzzz
+            //geometry->update_distances(particles);
+
             pm.get_forces(particles, geometry);                                      /* Calculate new forces */
-            //harmonic.forces(particles);
+
             integrator.second_step(particles);                                        /* Second half step of integrator */
             thermostats::berendsen::set_velocity(particles);                    //berendsen::set_velocity(particles);                /* Apply thermostat */
+            //thermostats::berendsen::set_velocity(particles);                /* Apply thermostat */
             temperature = thermostats::get_temperature(particles);
             //pressure = barostats::get_pressure();
             cummulativeTemp += temperature;
@@ -83,20 +94,28 @@ public:
                 //if(i > 1000) {
                 //    histo->sample(particles, 0);
                 //}
-                Base::kineticEnergies[samples] = 0;
+                //Base::kineticEnergies[samples] = 0;
+
+                //Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
+
+                //histo->sample(particles, 0);
+                //track->sample(particles, 0);
+                if(i > 100000) {
+                    histo->sample(particles, 1);
+                }
 
                 Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
 
-                histo->sample(particles, 0);
-                track->sample(particles, 0);
+                //histo->sample(atoms, 0);
+                //track->sample(particles.atoms, 0);
                 Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
-                end_t = time(NULL);
+                end_t = omp_get_wtime();
                 printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf, Simulation speed: %.1lf ns / h\r",
                       (double)i/Base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, Base::potentialEnergies[samples],
-                       Base::kineticEnergies[samples], frames.fStep * Base::tStep / ((end_t - start_t) / 3600.0));
+                       Base::kineticEnergies[samples], k * Base::tStep / ((end_t - start_t) / 3600.0));
                 fflush(stdout);
-                start_t = time(NULL);
+                start_t = omp_get_wtime();
 
                 frames[frames.frameCounter]->save_state(particles.atoms);
                 frames.frameCounter++;
@@ -105,12 +124,14 @@ public:
                     frames.save_to_file(particles);
                 }
                 samples++;
+                k = 0;
             }
+            k++;
         }
 
         histo->save();
 
-        track->save();
+        //track->save();
 
         //histo->save();
         printf("\n");    
