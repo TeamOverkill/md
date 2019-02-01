@@ -118,9 +118,9 @@ class rdf : public Analysis{
             double avgConc;
             if (i==bins-1){ 
                 avgConc = this->numOfAtoms/(Base::boxDim*Base::boxDim*Base::boxDim);
-                printf("Average number of Cl atoms is: %f\n", avgConc/2);
+                //printf("Average number of Cl atoms is: %f\n", avgConc/2);
             }
-            printf("Surface area: %f\n", 4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth);
+            //printf("Surface area: %f\n", 4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth);
             this->histo[i] = this->histo[i] / (4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth * pow(this->numOfAtoms,2)/4 * this->numOfSamples) * (Base::boxDim*Base::boxDim*Base::boxDim);
                        //histo[i] / this->numOfAtoms / (4 * constants::PI * (i + 1) * this->binWidth * (i + 1) * this->binWidth * this->binWidth);
         }  

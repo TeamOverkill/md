@@ -57,8 +57,6 @@ public:
         //std::vector<int> v = {0};
         //Analysis *track = new Track(v, "track.txt", geometry);
 
-        //Analysis* histo = new rdf(1000, "rdf.txt", geometry);
-
         FILE *f = fopen("output.gro", "w");
         fclose(f);
 
@@ -70,8 +68,8 @@ public:
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
             particles.atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
-            pm.get_energy(particles, geometry);
-            pm.get_forces(particles, geometry);                                      /* Calculate new forces */
+            //pm.get_energy(particles, geometry);
+            //pm.get_forces(particles, geometry);                                      /* Calculate new forces */
 
             integrator.first_step(particles, geometry);                                        /* First half step of integrator */
 
@@ -83,7 +81,7 @@ public:
             pm.get_forces(particles, geometry);                                      /* Calculate new forces */
 
             integrator.second_step(particles);                                        /* Second half step of integrator */
-            thermostats::berendsen::set_velocity(particles);                    //berendsen::set_velocity(particles);                /* Apply thermostat */
+            //thermostats::berendsen::set_velocity(particles);                    //berendsen::set_velocity(particles);                /* Apply thermostat */
             //thermostats::berendsen::set_velocity(particles);                /* Apply thermostat */
             temperature = thermostats::get_temperature(particles);
             //pressure = barostats::get_pressure();
@@ -92,24 +90,14 @@ public:
             Base::temperatures[i] = temperature;
 
             if(i % frames.fStep == 0){
-                //printf("%d, %d, %d \n", i, frames.fStep, i % frames.fStep);
-                //if(i > 1000) {
-                //    histo->sample(particles, 0);
-                //}
-                //Base::kineticEnergies[samples] = 0;
-
-                //Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
-
-                //histo->sample(particles, 0);
-                //track->sample(particles, 0);
                 if(i > 100000) {
                     histo->sample(particles, 1);
                 }
 
-                Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
+                //histo->sample(particles, 0);
+                //track->sample(particles, 0);
 
-                //histo->sample(atoms, 0);
-                //track->sample(particles.atoms, 0);
+                Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
                 Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
                 end_t = omp_get_wtime();
@@ -132,10 +120,8 @@ public:
         }
 
         histo->save();
-
         //track->save();
 
-        //histo->save();
         printf("\n");    
     }
 };

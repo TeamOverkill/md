@@ -1,8 +1,18 @@
 # Parameters
+# No comments are allowed inside each section....
 
-#   BONDS
-#1 2
-#2 3
+BONDS
+1 2
+2 3
 
-# Angles
-#1 2 3
+ANGLES
+1 2 3
+
+MASS
+OW 16.0
+HW 1.008
+
+#Type       #strength       #Equilibrium length
+HARMONIC
+OW-HW        529.58              1.012
+HW-HW          0.0               1.633

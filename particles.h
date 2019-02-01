@@ -30,6 +30,7 @@ public:
         //Find atoms separated by 3 or more bonds
         for(int i = 0; i < this->numOfParticles; i++){
             this->particles[i]->find_far_neighbours();
+            printf("particle %d contains %d atoms\n", i, this->particles[i]->numOfAtoms);
         }
     }
 };

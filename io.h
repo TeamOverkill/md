@@ -1,9 +1,15 @@
+#include <map>
+
+
 struct IO{
 
     void read_par(std::string fileName, Particles& particles){
         int i = 0, atom1, atom2, atom3, a1, a2, a3;
-        std::string line;
+        double d1, d2;
+        std::string line, keyWord, name;
         std::ifstream infile(fileName);
+
+        std::map<std::string, std::map<std::string, std::vector<double> > > parameters;
 
         while (std::getline(infile, line)) {
             if(line[0] == '#') continue;
@@ -11,58 +17,127 @@ struct IO{
 
             std::istringstream iss(line);
 
-
-            ///         ANGLE           ///
-            if(iss >> atom1 >> atom2 >> atom3) {
-                atom1--;
-                atom2--;
-                atom3--;
-
-                if (particles.atoms[atom1]->particle != particles.atoms[atom2]->particle !=
-                    particles.atoms[atom3]->particle) {
-                    printf("Atoms %i, %i and %i does not belong to the same molecule so there can't be any fixed angle "
-                           "between them!\n", atom1, atom2, atom3);
-                    exit(1);
-                }
-                particles[particles.atoms[atom1]->particle]->angles.push_back(std::vector<int>());
-                particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom1);
-                particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom2);
-                particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom3);
-                printf("Angle: %i, %i, %i\n", particles[particles.atoms[atom1]->particle]->angles.back()[0],
-                       particles[particles.atoms[atom1]->particle]->angles.back()[1],
-                       particles[particles.atoms[atom1]->particle]->angles.back()[2]);
-                continue;
-            }
-
-            iss.clear();
-            iss.seekg(std::ios::beg);
+            if(iss >> keyWord) {
 
 
-            ///             BOND            ///
-            if(iss >> atom1 >> atom2){
+                if(keyWord == "ANGLES"){
+                    while(true){
+                        std::getline(infile, line);
+                        std::istringstream iss(line);
+                        //iss.clear();
+                        //iss.seekg(std::ios::beg);
+                        if(iss >> atom1 >> atom2 >> atom3) {
+                            atom1--;
+                            atom2--;
+                            atom3--;
 
-                atom1--;   //Since format index starts from 1 and program from 0
-                atom2--;
-
-                if(particles.atoms[atom1]->particle != particles.atoms[atom2]->particle){
-                    printf("Atoms %i and %i does not belong to the same molecule so there can't be any bond between them!\n",
-                           atom1, atom2);
-                    exit(1);
+                            if (particles.atoms[atom1]->particle != particles.atoms[atom2]->particle ||
+                                particles.atoms[atom2]->particle != particles.atoms[atom3]->particle) {
+                                printf("Atoms %i, %i and %i does not belong to the same molecule so there can't be any fixed angle "
+                                       "between them!\n", atom1, atom2, atom3);
+                                exit(1);
+                            }
+                            particles[particles.atoms[atom1]->particle]->angles.push_back(std::vector<int>());
+                            particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom1);
+                            particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom2);
+                            particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom3);
+                            printf("Angle: %i, %i, %i\n", particles[particles.atoms[atom1]->particle]->angles.back()[0],
+                                   particles[particles.atoms[atom1]->particle]->angles.back()[1],
+                                   particles[particles.atoms[atom1]->particle]->angles.back()[2]);
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
                 }
 
-                particles[particles.atoms[atom1]->particle]->bonds.push_back(std::vector<int>());
-                particles[particles.atoms[atom1]->particle]->bonds.back().push_back(atom1);
-                particles[particles.atoms[atom1]->particle]->bonds.back().push_back(atom2);
-                printf("Bond: %i, %i\n", particles[particles.atoms[atom1]->particle]->bonds.back()[0],
-                       particles[particles.atoms[atom1]->particle]->bonds.back()[1]);
-            }
 
+                else if(keyWord == "BONDS"){
+                    while(true){
+                        std::getline(infile, line);
+                        std::istringstream iss(line);
+
+                        if(iss >> atom1 >> atom2){
+
+                            atom1--;   //Since format index starts from 1 and program from 0
+                            atom2--;
+
+                            if(particles.atoms[atom1]->particle != particles.atoms[atom2]->particle){
+                                printf("Atoms %i and %i does not belong to the same molecule so there can't be any bond between them!\n",
+                                       atom1, atom2);
+                                exit(1);
+                            }
+
+                            particles[particles.atoms[atom1]->particle]->bonds.push_back(std::vector<int>());
+                            particles[particles.atoms[atom1]->particle]->bonds.back().push_back(atom1);
+                            particles[particles.atoms[atom1]->particle]->bonds.back().push_back(atom2);
+                            printf("Bond: %i, %i\n", particles[particles.atoms[atom1]->particle]->bonds.back()[0],
+                                   particles[particles.atoms[atom1]->particle]->bonds.back()[1]);
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
+
+
+                else if(keyWord == "MASS"){
+                    while(true){
+                        std::getline(infile, line);
+                        std::istringstream iss(line);
+
+                        if(iss >> name >> d1){
+                            parameters[name]["mass"].push_back(d1);
+                        }
+
+                        else{
+                            break;
+                        }
+                    }
+                }
+
+
+                else if(keyWord == "HARMONIC"){
+                    while(true){
+                        std::getline(infile, line);
+                        std::istringstream iss(line);
+
+                        if(iss >> name >> d1 >> d2){
+                            parameters[name]["harmonic"].push_back(d1);
+                            parameters[name]["harmonic"].push_back(d2);
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
+
+
+                else{
+                    printf("Unknown keyword \"%s\" in parameter file\n", keyWord.c_str());
+                    exit(1);
+                }
+
+            }
 
             else{
                 printf("Malformed parameter file...\n");
                 exit(1);
             }
         }
+
+
+        for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+            try {
+                particles.atoms[i]->mass = parameters[particles.atoms[i]->name]["mass"][0];
+                printf("atom %i, %s has mass %lf\n", i, particles.atoms[i]->name.c_str(), particles.atoms[i]->mass);
+            }
+            catch(const std::overflow_error& e){
+
+            }
+        }
+
 
         ///     Set correct indexes in angles and bonds
         for(int i = 0; i < particles.numOfParticles; i++){
@@ -120,11 +195,12 @@ struct IO{
                 atoms[j]->vel[1] = yVel;
                 atoms[j]->vel[2] = zVel;
 
-                atoms[j]->mass = 28.0134;
+                atoms[j]->name = atom;
+                atoms[j]->mass = 18.0134;
                 atoms[j]->radius = 1.0;
                 atoms[j]->index = j;
                 atoms[j]->particle = molecule - 1;
-
+                printf("Atom %d belongs to molecule %d\n", atoms[j]->index, atoms[j]->particle);
                 ////////////////////////////////////      REMOVE      /////////////////////////////////////////////////
                 if(j % 2 == 0){
                     atoms[j]->q = -1.0;
@@ -179,7 +255,7 @@ struct IO{
         }
 
         particles.atoms = atoms;
-        printf("Read %i atoms, %i molecules and %i bonds from file.\n", particles.atoms.numOfAtoms, particles.numOfParticles, i - c - 4);
+        printf("Read %i atoms, %i molecules.\n", particles.atoms.numOfAtoms, particles.numOfParticles);
     /*                  Only for testing
         for(int i = 0; i < particles.numOfParticles; i++){
             for(int j = 0; j < particles[i]->numOfAtoms; j++){

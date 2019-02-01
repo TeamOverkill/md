@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 
     Particles particles;
     IO io;
-    particles = io.read_frame("output_2.gro");
+    particles = io.read_frame("output_1.gro");
     io.read_par("params.par", particles);
     particles.initialize();
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
 
     potentials::ewald::initialize(particles, geometry);
 
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic, potentials::LJ> > engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
