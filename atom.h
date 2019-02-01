@@ -29,6 +29,7 @@ class Atom{
         int localIndex;
         int particle;
         double radius, mass;
+
         std::string name;
 
 

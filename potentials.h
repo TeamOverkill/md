@@ -43,7 +43,7 @@ namespace potentials{
 
     struct harmonic{
     private:
-        static constexpr double springConstant = 1000.0;        // [kJ * nm^(-2) * mol^(-1)]
+        static constexpr double springConstant = 100.0;        // [kJ * nm^(-2) * mol^(-1)]
         static constexpr double eDist = 0.5;
 
     public:
