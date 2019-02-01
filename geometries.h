@@ -28,19 +28,31 @@ public:
         Eigen::Vector3d disp = a - b;
         if(X){
             if(disp[0] > box[0] / 2.0){
-                disp[0] *= -1.0;
+                disp[0] -= box[0];
+            }
+            
+            if(disp[0] < -box[0] / 2.0){
+                disp[0] += box[0];
             }
         }
 
         if(Y){
             if(disp[1] > box[1] / 2.0){
-                disp[1] *= -1.0;
+                disp[1] -= box[1];
+            }
+            
+            if(disp[1] < -box[1] / 2.0){
+                disp[1] += box[1];
             }
         }
 
         if(Z){
             if(disp[2] > box[2] / 2.0){
-                disp[2] *= -1.0;
+                disp[2] -= box[2];
+            }
+            
+            if(disp[2] < -box[2] / 2.0){
+                disp[2] += box[2];
             }
         }
 

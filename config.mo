@@ -1,8 +1,8 @@
-nop 50
-boxdim 8
-iter 10000
+nop 34
+boxdim 5.0
+iter 500
 temperature 300
-nof 100
-outfreq 100
+nof 100 
+outfreq 1
 timestep 0.001
 dof 3

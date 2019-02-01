@@ -50,11 +50,11 @@ public:
         double cummulativePress = 0;
         //Analysis* histo = new Density(100, "histo_1.txt");
 
-        Analysis* histo = new rdf(1000, "rdf.txt");
+        Analysis* histo = new rdf(100, particles.atoms.numOfAtoms, "rdf.txt", geometry);
 
 
         std::vector<int> v = {0};
-        Analysis *track = new Track(v, "track.txt");
+        Analysis *track = new Track(v, "track.txt", geometry);
 
         FILE *f = fopen("output.gro", "w");
         fclose(f);
@@ -71,7 +71,7 @@ public:
             pm.get_forces(particles, geometry);                                      /* Calculate new forces */
             //harmonic.forces(particles);
             integrator.second_step(particles);                                        /* Second half step of integrator */
-            thermostats::berendsen::set_velocity(particles);                /* Apply thermostat */
+            thermostats::berendsen::set_velocity(particles);                    //berendsen::set_velocity(particles);                /* Apply thermostat */
             temperature = thermostats::get_temperature(particles);
             //pressure = barostats::get_pressure();
             cummulativeTemp += temperature;
@@ -79,16 +79,16 @@ public:
             Base::temperatures[i] = temperature;
 
             if(i % frames.fStep == 0){
-                if(i > 100000) {
-                    histo->sample(particles.atoms, 1);
-                }
+                //printf("%d, %d, %d \n", i, frames.fStep, i % frames.fStep);
+                //if(i > 1000) {
+                //    histo->sample(particles, 0);
+                //}
                 Base::kineticEnergies[samples] = 0;
 
                 Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
 
-
-                //histo->sample(atoms, 0);
-                track->sample(particles.atoms, 0);
+                histo->sample(particles, 0);
+                track->sample(particles, 0);
                 Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
                 end_t = time(NULL);

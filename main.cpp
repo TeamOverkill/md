@@ -81,7 +81,7 @@ int main(int argc, char *argv[]){
     time_t start = time(NULL);  // Timer
 
     /*!< Create Geometry object*/
-    Geometry* geometry = new Rectangular<true, true, true>(10.0, 10.0, 10.0);
+    Geometry* geometry = new Rectangular<true, true, true>(5.0, 5.0, 5.0);
 
     /*!< Create potential manager object */
     PotMan pm;
