@@ -21,7 +21,7 @@ namespace thermostats{
     struct andersen{
         static void set_velocity(Particles& particles){
             double ran_u;
-            double freq = 0.1 * Base::tStep;
+            double freq = 1.0 * Base::tStep; //0.1
 
             for(int i = 0; i < particles.numOfParticles; i++){
                 for(int j = 0; j < particles[i]->numOfAtoms; j++){

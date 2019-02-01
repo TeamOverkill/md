@@ -3,18 +3,21 @@ class Analysis{
 
     std::vector<double> histo;
     int numOfSamples;
+    int numOfAtoms;
     int bins;
     double binWidth;
+    int cnt1, cnt2;
     std::string name;
     Geometry* geometry;
-    virtual void sample(Atoms& atoms, int d) = 0;
+
+    virtual void sample(Particles& particles, int d) = 0;
     virtual void save() = 0;
 
     Analysis(Geometry* geometry){
         this->geometry = geometry;
     }
 };
-
+/*
 class Density : public Analysis{
 
     public:
@@ -22,18 +25,18 @@ class Density : public Analysis{
         this->name = name;
         this->bins = bins;
         this->binWidth = Base::boxDim / bins;
-        this->histo.resize(bins);
+        this->histo.resize(bins+5);
     }
+    
+    void sample(Particles& particles, int d){
 
-    void sample(Atoms& atoms, int d){
-
-        for(int i = 0; i < atoms.numOfAtoms; i++){
-            this->histo[(int)(atoms[i]->pos[d]/binWidth)]++;
-            if(atoms[i]->q < 0){
-                this->histo[(int)(atoms[i]->pos[d]/binWidth)]++;
+        for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+            this->histo[(int)(particles.atoms[i]->pos[d]/binWidth)]++;
+            if(particles.atoms[i]->q < 0){
+                this->histo[(int)(particles.atoms[i]->pos[d]/binWidth)]++;
             }
-            else if(atoms[i]->q > 0){
-                this->histo[(int)(atoms[i]->pos[d]/binWidth)]++;
+            else if(particles.atoms[i]->q > 0){
+                this->histo[(int)(particles.atoms[i]->pos[d]/binWidth)]++;
             }
         }
          
@@ -58,39 +61,71 @@ class Density : public Analysis{
 
     }
 };
-
+*/
 class rdf : public Analysis{
 
     public:
-    rdf(int bins, std::string name, Geometry* geometry) : Analysis(geometry){
+    rdf(int bins, int numOfAtoms, std::string name, Geometry* geometry) : Analysis(geometry){ 
         this->name = name;
         this->bins = bins;
-        this->binWidth = Base::boxDim*2 / bins;
-        this->histo.resize(bins+10);
+        this->numOfAtoms = numOfAtoms; 
+        this->name = name;
+        this->binWidth = sqrt(3*Base::boxDim*Base::boxDim) / bins;
+        this->cnt1 = 0;
+        this->histo.resize(bins);
         std::fill(this->histo.begin(), this->histo.end(), 0);   //Set all bins to zero
     }
-
-    void sample(Atoms& atoms, int d){
-        for(int i = 0; i < atoms.numOfAtoms; i=i+2){ 
-            for(int j = 1; j < atoms.numOfAtoms; j=j+2){
+    /*    
+    void sample(Particles& particles, int d){
+        for(int i = 0; i < particles.atoms.numOfAtoms; i=i+2){ 
+            for(int j = 1; j < particles.atoms.numOfAtoms; j=j+2){
                 if(i != j) {
-                    double distance = (atoms[i]->pos - atoms[j]->pos).norm();
+                    double distance = (particles.atoms[i]->pos - particles.atoms[j]->pos).norm();
                     this->histo[(int) (distance / binWidth)]++;
                 }
-             }
+            }
         }
-  
         this->numOfSamples++;
     }
+    */
+    
+    void sample(Particles& particles, int d){
+        //printf("test\n");
+        for(int i = 0; i < particles.atoms.numOfAtoms; i++){ 
+            if(particles.atoms[i]->name == "Na") {
+                for(int j = 0; j < particles.atoms.numOfAtoms; j++){
+                    if(particles.atoms[j]->name == "Cl") {  
+                        double distance = geometry->dist(particles.atoms[i]->pos, particles.atoms[j]->pos);
+                        //double distance = (particles.atoms[i]->pos - particles.atoms[j]->pos).norm();
+                        //printf("%f\n", distance);
+                        this->histo[(int) (distance / binWidth)]++;
+                    
+                        //printf("%f\n", this->histo[(int) (distance / binWidth)]);
+                    }
+                } 
+            } 
+        }
+        this->numOfSamples++;
+        //if(i == particles.atoms.numOfAtoms){
+          //this->cnt1 = particles.atoms.numOfAtoms/2;
+          //printf("Number of Na is: %d\n", cnt1);
+        //}
+    }
+    
+    
     void save(){
-        
-        
         for(int i = 0; i < bins; i++){
-            histo[i] = histo[i] / 50 / (4 * constants::PI * (i + 1) * this->binWidth * (i + 1) * this->binWidth * this->binWidth);
+            double avgConc;
+            if (i==bins-1){ 
+                avgConc = this->numOfAtoms/(Base::boxDim*Base::boxDim*Base::boxDim);
+                printf("Average number of Cl atoms is: %f\n", avgConc/2);
+            }
+            printf("Surface area: %f\n", 4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth);
+            this->histo[i] = this->histo[i] / (4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth * pow(this->numOfAtoms,2)/4 * this->numOfSamples) * (Base::boxDim*Base::boxDim*Base::boxDim);
+                       //histo[i] / this->numOfAtoms / (4 * constants::PI * (i + 1) * this->binWidth * (i + 1) * this->binWidth * this->binWidth);
         }  
         int i = 0;
            
-              
         FILE *f = fopen(this->name.c_str(), "w");
         if(f == NULL){
             printf("Can't open file!\n");
@@ -98,7 +133,7 @@ class rdf : public Analysis{
         }
 
         for(i = 0; i < bins; i++){
-            fprintf(f, "%lf     %lf\n", (double)i * this->binWidth, (double)this->histo[i] * Base::boxDim * Base::boxDim * this->binWidth /  this->numOfSamples);
+            fprintf(f, "%lf     %lf\n", (double)i * this->binWidth, this->histo[i]);
         }
         fclose(f);
     }
@@ -114,10 +149,10 @@ public:
         this->name = name;
     }
 
-    void sample(Atoms& atoms, int d){
+    void sample(Particles& particles, int d){
 
         for(auto index : indices){
-            positions.push_back(atoms[index]->pos);
+            positions.push_back(particles.atoms[index]->pos);
         }
         this->numOfSamples++;
 

@@ -411,6 +411,8 @@ namespace potentials{
         }
     };
 
+    
+     
 
     struct ewald{
 

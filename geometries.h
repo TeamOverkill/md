@@ -40,6 +40,7 @@ public:
             if(disp[0] > box[0] / 2.0){
                 disp[0] -= box[0];
             }
+
             if(disp[0] < -box[0] / 2.0){
                 disp[0] += box[0];
             }
@@ -49,6 +50,7 @@ public:
             if(disp[1] > box[1] / 2.0){
                 disp[1] -= box[1];
             }
+            
             if(disp[1] < -box[1] / 2.0){
                 disp[1] += box[1];
             }
@@ -58,6 +60,7 @@ public:
             if(disp[2] > box[2] / 2.0){
                 disp[2] -= box[2];
             }
+            
             if(disp[2] < -box[2] / 2.0){
                 disp[2] += box[2];
             }
