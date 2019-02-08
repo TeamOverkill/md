@@ -43,4 +43,22 @@ namespace integrators{
             }
         }
     };
+
+    struct NoseHoover{
+    private:
+        static constexpr double couplingStrength = 1.0;
+        double epsilon;
+
+    public:
+        static inline void integrate(Particles &particles){
+
+            epsilon += thermostats::get_temperature - Base::T;
+
+            for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+                particles[i].vel += -epsilon / couplingStrength * particles.atoms[i].vel;
+            }
+        }
+    };
 }
+
+

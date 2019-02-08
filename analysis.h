@@ -17,6 +17,7 @@ class Analysis{
         this->geometry = geometry;
     }
 };
+
 /*
 class Density : public Analysis{
 
