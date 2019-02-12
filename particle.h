@@ -42,7 +42,7 @@ public:
         }
 
         /// SET UP MATRIX
-        for (auto &bond : bonds) {
+        for (auto const &bond : bonds) {
             adjacency[atoms[bond[0]]->localIndex][atoms[bond[1]]->localIndex] = 1;
             adjacency[atoms[bond[1]]->localIndex][atoms[bond[0]]->localIndex] = 1;
         }

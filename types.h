@@ -12,6 +12,10 @@ public:
     int& operator[](int i){
         return atoms[i];
     }
+
+    int operator[](int i) const{
+        return atoms[i];
+    }
 /*
     void operator=(int i){
         return atoms[i]&;
