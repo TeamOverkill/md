@@ -43,7 +43,7 @@ namespace potentials{
 
     struct harmonic{
     private:
-        static constexpr double springConstant = 100.0;        // [kJ * nm^(-2) * mol^(-1)]
+        static constexpr double springConstant = 12657.0;        // [kJ * nm^(-2) * mol^(-1)]
         static constexpr double eDist = 0.5;
 
     public:
@@ -78,8 +78,8 @@ namespace potentials{
     struct angular_harmonic{
 
     private:
-        static constexpr double k = 1000.0;
-        static constexpr double eAng = 1.55;
+        static constexpr double k = 9.07;
+        static constexpr double eAng = 0.3145 * 2.0 * 3.14;
 
     public:
         inline static double energy(Particles& particles, Geometry* geometry){
@@ -243,7 +243,7 @@ namespace potentials{
     */
     struct LJ {
     private:
-        static constexpr double epsilon = 10.5;  //[kJ/mol] LJ parameter epsilon
+        static constexpr double epsilon = 1.5;  //[kJ/mol] LJ parameter epsilon
         static constexpr double sigma = 1.0;      //[nm] LJ parameter sigma
     public:
 
@@ -270,17 +270,17 @@ namespace potentials{
                     for(int j = i + 1; j < particles.numOfParticles; j++){
                         for(int ia = 0; ia < particles[i]->numOfAtoms; ia++){
                             for(int ja = 0; ja < particles[j]->numOfAtoms; ja++){
-                                dr = geometry->disp(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);                 // [nm]
+                                dr = geometry->disp(particles[i]->atoms[ia]->pos,
+                                                    particles[j]->atoms[ja]->pos);                 // [nm]
                                 r2 = dr.dot(dr);                             // [nm^2]
                                 fr2 = sigma * sigma / r2;                    // unitless
                                 fr6 = fr2 * fr2 * fr2;                       // unitless
                                 fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;  // [kJ/(nm^2*mol)]
                                 particles[i]->atoms[ia]->force += fr * dr;
                                 particles[j]->atoms[ja]->force -= fr * dr;
-
-                                //private_forces[i] += fr * dr;
-                                //private_forces[j] -= fr * dr;
                             }
+                            //private_forces[i] += fr * dr;
+                            //private_forces[j] -= fr * dr;
                         }
                     }
                 }

@@ -1,9 +1,10 @@
+#pragma once
 #include <map>
-
+#include "types.h"
 
 struct IO{
 
-    void read_par(std::string fileName, Particles& particles){
+    std::map<std::string, std::map<std::string, std::vector<double> > > read_par(std::string fileName, Particles& particles){
         int i = 0, atom1, atom2, atom3, a1, a2, a3;
         double d1, d2;
         std::string line, keyWord, name;
@@ -37,6 +38,7 @@ struct IO{
                                        "between them!\n", atom1, atom2, atom3);
                                 exit(1);
                             }
+
                             particles[particles.atoms[atom1]->particle]->angles.push_back(std::vector<int>());
                             particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom1);
                             particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom2);
@@ -53,7 +55,10 @@ struct IO{
                 }
 
 
+
+
                 else if(keyWord == "BONDS"){
+
                     while(true){
                         std::getline(infile, line);
                         std::istringstream iss(line);
@@ -69,7 +74,7 @@ struct IO{
                                 exit(1);
                             }
 
-                            particles[particles.atoms[atom1]->particle]->bonds.push_back(std::vector<int>());
+                            particles[particles.atoms[atom1]->particle]->bonds.push_back(Bond());
                             particles[particles.atoms[atom1]->particle]->bonds.back().push_back(atom1);
                             particles[particles.atoms[atom1]->particle]->bonds.back().push_back(atom2);
                             printf("Bond: %i, %i\n", particles[particles.atoms[atom1]->particle]->bonds.back()[0],
@@ -80,6 +85,8 @@ struct IO{
                         }
                     }
                 }
+
+
 
 
                 else if(keyWord == "MASS"){
@@ -98,6 +105,8 @@ struct IO{
                 }
 
 
+
+
                 else if(keyWord == "HARMONIC"){
                     while(true){
                         std::getline(infile, line);
@@ -114,6 +123,44 @@ struct IO{
                 }
 
 
+
+
+
+                else if(keyWord == "ANGULAR_HARMONIC"){
+                    while(true){
+                        std::getline(infile, line);
+                        std::istringstream iss(line);
+
+                        if(iss >> name >> d1 >> d2){
+                            parameters[name]["angular harmonic"].push_back(d1);
+                            parameters[name]["angular harmonic"].push_back(d2);
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
+
+
+
+
+                else if(keyWord == "LJ"){
+                    while(true){
+                        std::getline(infile, line);
+                        std::istringstream iss(line);
+
+                        if(iss >> name >> d1 >> d2){
+                            parameters[name]["lj"].push_back(d1);
+                            parameters[name]["lj"].push_back(d2);
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
+
+
+
                 else{
                     printf("Unknown keyword \"%s\" in parameter file\n", keyWord.c_str());
                     exit(1);
@@ -124,17 +171,6 @@ struct IO{
             else{
                 printf("Malformed parameter file...\n");
                 exit(1);
-            }
-        }
-
-
-        for(int i = 0; i < particles.atoms.numOfAtoms; i++){
-            try {
-                particles.atoms[i]->mass = parameters[particles.atoms[i]->name]["mass"][0];
-                printf("atom %i, %s has mass %lf\n", i, particles.atoms[i]->name.c_str(), particles.atoms[i]->mass);
-            }
-            catch(const std::overflow_error& e){
-
             }
         }
 
@@ -154,7 +190,17 @@ struct IO{
                 angle[2] = particles.atoms[angle[2]]->localIndex;
             }
         }
+        return parameters;
     }
+
+
+
+
+
+
+
+
+
 
 
     Particles read_frame(std::string fileName){

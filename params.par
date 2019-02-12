@@ -6,16 +6,10 @@ BONDS
 2 3
 4 5
 5 6
-7 8
-8 9
-10 11
-11 12
 
 ANGLES
 1 2 3
 4 5 6
-7 8 9
-10 11 12
 
 MASS
 OW 16.0
@@ -24,4 +18,11 @@ HW 1.008
 #Type       #strength       #Equilibrium length
 HARMONIC
 OW-HW        529.58              1.012
-HW-HW          0.0               1.633
+
+ANGULAR_HARMONIC
+HW-OW-HW      37.95              113.24
+
+#               A                   B
+LJ
+OW            1.7767             0.1554
+HW             0.0                 0.0

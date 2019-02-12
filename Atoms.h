@@ -26,9 +26,11 @@ public:
     Atom* operator[](int i){
         return atoms[i];
     }
+
     Atoms(){
         numOfAtoms = 0;
     }
+
     void push_back(Atom *atom){
         atoms.push_back(atom);
         this->numOfAtoms++;

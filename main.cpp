@@ -26,8 +26,8 @@ int main(int argc, char *argv[]){
     Particles particles;
     IO io;
     particles = io.read_frame("output_1.gro");
-    io.read_par("params.par", particles);
-    particles.initialize();
+    std::map<std::string, std::map<std::string, std::vector<double> > > params = io.read_par("params.par", particles);
+    particles.initialize(params);
 
     /*!< Initialize atom variables */
     /*Atoms atoms;

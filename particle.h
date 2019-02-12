@@ -1,10 +1,11 @@
 #pragma once
+#include "types.h"
 
 class Particle{
 public:
     int numOfAtoms;
-    std::vector<Atom*> atoms;
-    std::vector< std::vector<int> > bonds;
+    std::vector< Atom* > atoms;
+    std::vector< Bond > bonds;
     std::vector< std::vector<int> > angles;
     std::vector< std::vector<int> > torsions;
     std::vector< std::vector<int> > farNeighbours;
@@ -41,7 +42,7 @@ public:
         }
 
         /// SET UP MATRIX
-        for (auto bond : bonds) {
+        for (auto &bond : bonds) {
             adjacency[atoms[bond[0]]->localIndex][atoms[bond[1]]->localIndex] = 1;
             adjacency[atoms[bond[1]]->localIndex][atoms[bond[0]]->localIndex] = 1;
         }
