@@ -5,7 +5,7 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include "constants.h"
-#include "ran2_lib.cpp"
+#include "ran2_lib.h"
 #include <omp.h>
 
 /*! This class contains all parameters set by the user.

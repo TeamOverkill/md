@@ -63,7 +63,7 @@ public:
             }
 
             //Set bonded constants
-            for(auto &bond : particle->bonds){
+            for(auto const &bond : particle->bonds){
                 printf("Getting bonded constants\n");
 
                 printf("%s\n", (atoms[bond[0]]->name + "-" + atoms[bond[1]]->name).c_str());
