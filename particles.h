@@ -55,7 +55,7 @@ public:
                 std::string name = atoms[angle[0]]->name + "-" + atoms[angle[1]]->name + "-" + atoms[angle[2]]->name;
                 if ( params.find(name) == params.end() ) {
                     printf("Oops, you specified an angle between %s, %s and %s but did not give any parameters for it...\n",
-                           atoms[bond[0]]->name.c_str(), atoms[bond[1]]->name.c_str(), atoms[bond[2]]->name.c_str());
+                           atoms[angle[0]]->name.c_str(), atoms[angle[1]]->name.c_str(), atoms[angle[2]]->name.c_str());
                 }
                 double k = params[name]["angular harmonic"][0];
                 double ang = params[name]["angular harmonic"][1];

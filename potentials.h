@@ -244,8 +244,8 @@ namespace potentials{
     */
     struct LJ {
     private:
-        static constexpr double epsilon = 1.5;  //[kJ/mol] LJ parameter epsilon
-        static constexpr double sigma = 1.0;      //[nm] LJ parameter sigma
+        //static constexpr double epsilon = 1.5;  //[kJ/mol] LJ parameter epsilon
+        //static constexpr double sigma = 1.0;      //[nm] LJ parameter sigma
     public:
 
         /*!
@@ -271,6 +271,9 @@ namespace potentials{
                     for(int j = i + 1; j < particles.numOfParticles; j++){
                         for(int ia = 0; ia < particles[i]->numOfAtoms; ia++){
                             for(int ja = 0; ja < particles[j]->numOfAtoms; ja++){
+                                double sigma =  (particles[i]->atoms[ia]->lj.first + particles[j]->atoms[ja]->lj.first) / 2.0;
+                                double epsilon = std::sqrt(particles[i]->atoms[ia]->lj.first * particles[j]->atoms[ja]->lj.first);
+
                                 dr = geometry->disp(particles[i]->atoms[ia]->pos,
                                                     particles[j]->atoms[ja]->pos);                 // [nm]
                                 r2 = dr.dot(dr);                             // [nm^2]
@@ -322,13 +325,16 @@ namespace potentials{
                 for (int j = i + 1; j < particles.numOfParticles; j++) {
                     for (int ia = 0; ia < particles[i]->numOfAtoms; ia++) {
                         for (int ja = 0; ja < particles[j]->numOfAtoms; ja++) {
+                            double sigma =  (particles[i]->atoms[ia]->lj.first + particles[j]->atoms[ja]->lj.first) / 2.0;
+                            double epsilon = std::sqrt(particles[i]->atoms[ia]->lj.first * particles[j]->atoms[ja]->lj.first);
+
                             dr = geometry->disp(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);     // [nm]
                             distance = dr.norm();                   // [nm]
                             double fr = sigma / distance;           // unitless
                             double fr2 = fr * fr;                   // unitless
                             double fr6 = fr2 * fr2 * fr2;           // unitless
 
-                            energy += fr6 * (fr6 - 1);  // unitless
+                            energy += epsilon * fr6 * (fr6 - 1);  // unitless
                         }
                     }
                 }
@@ -346,7 +352,7 @@ namespace potentials{
 
                 }
             }*/
-            return 4 * epsilon * energy;    // [kJ/mol]
+            return 4.0 * energy;    // [kJ/mol]
         }
     };
 

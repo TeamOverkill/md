@@ -22,7 +22,7 @@ OW-HW        529.58              0.1012
 ANGULAR_HARMONIC
 HW-OW-HW      37.95              113.24
 
-#               A                   B
+#             sigma              epsilon
 LJ
 OW            1.7767             0.1554
 HW             0.0                 0.0
