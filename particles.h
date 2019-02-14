@@ -42,7 +42,7 @@ public:
             }
         }
 
-        //              Super ugly plz change               //
+        //////////////////////////              Super ugly plz change               /////////////////////////////
         for(auto &particle : particles){
 
 
@@ -52,10 +52,11 @@ public:
             for(auto &angle : particle->angles){
                 printf("Getting angular constants\n");
 
-
-
                 std::string name = atoms[angle[0]]->name + "-" + atoms[angle[1]]->name + "-" + atoms[angle[2]]->name;
-
+                if ( params.find(name) == params.end() ) {
+                    printf("Oops, you specified an angle between %s, %s and %s but did not give any parameters for it...\n",
+                           atoms[bond[0]]->name.c_str(), atoms[bond[1]]->name.c_str(), atoms[bond[2]]->name.c_str());
+                }
                 double k = params[name]["angular harmonic"][0];
                 double ang = params[name]["angular harmonic"][1];
                 printf("%s, %lf, %lf\n", name.c_str(), k, ang);
@@ -90,6 +91,7 @@ public:
             }
         }
 
+        // Set LJ parameters
         for(auto const& [key, val] : params){
             for(int i = 0; i < atoms.numOfAtoms; i++) {
                 if (atoms[i]->name == key) {

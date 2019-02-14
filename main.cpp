@@ -26,10 +26,14 @@ int main(int argc, char *argv[]){
     Particles particles;
     IO io;
     particles = io.read_frame("output_1.gro");
+
+    /// Get parameters from parameter file
     std::map<std::string, std::map<std::string, std::vector<double> > > params = io.read_par("params.par", particles);
+
+    ///Initialize particles and set all parameters
     particles.initialize(params);
 
-    /*!< Initialize atom variables */
+    /*!< Initialize atom variables, remove soon. Is not used */
     /*Atoms atoms;
     atoms.initialize(parser.numOfAtoms);
     atoms.remove_overlaps();
@@ -62,7 +66,13 @@ int main(int argc, char *argv[]){
     engine.run(particles, frames);
     printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);
 
-    //Save stuff, will be moved later
+
+
+
+
+
+
+    ///////////////////            Save stuff, will be moved later plz move!       /////////////////////////
     FILE *f = fopen("energies.txt", "w");
     if(f == NULL){
         printf("Can't open file!\n");
