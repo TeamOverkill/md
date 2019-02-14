@@ -43,8 +43,7 @@ namespace potentials{
 
     struct harmonic{
     private:
-        static constexpr double springConstant = 12657.0;        // [kJ * nm^(-2) * mol^(-1)]
-        static constexpr double eDist = 0.5;
+        //static constexpr double springConstant = 12657.0;        // [kJ * nm^(-2) * mol^(-1)]
 
     public:
         inline static double energy(Particles& particles, Geometry* geometry){
@@ -53,7 +52,7 @@ namespace potentials{
             for(int i = 0; i < particles.numOfParticles; i++){
                 for(auto bond : particles[i]->bonds){
                     double dist = geometry->dist(particles[i]->atoms[bond[0]]->pos, particles[i]->atoms[bond[1]]->pos);
-                    energy += springConstant * std::pow((dist - eDist), 2);   // [kJ/mol]
+                    energy += bond.k * std::pow((dist - bond.length), 2);   // [kJ/mol]
                 }
             }
             return energy;
@@ -67,7 +66,7 @@ namespace potentials{
                 for(auto bond : particles[i]->bonds){
                     Eigen::Vector3d disp = geometry->disp(particles[i]->atoms[bond[0]]->pos, particles[i]->atoms[bond[1]]->pos);
 
-                    Eigen::Vector3d a_force = -2.0 * springConstant * disp.normalized() * (disp.norm() - eDist);
+                    Eigen::Vector3d a_force = -2.0 * bond.k * disp.normalized() * (disp.norm() - bond.length);
                     particles[i]->atoms[bond[0]]->force +=  a_force;
                     particles[i]->atoms[bond[1]]->force += -a_force;
                 }
@@ -78,8 +77,8 @@ namespace potentials{
     struct angular_harmonic{
 
     private:
-        static constexpr double k = 9.07;
-        static constexpr double eAng = 0.3145 * 2.0 * 3.14;
+        //static constexpr double k = 9.07;
+        //static constexpr double eAng = 0.3145 * 2.0 * 3.14;
 
     public:
         inline static double energy(Particles& particles, Geometry* geometry){
@@ -96,13 +95,15 @@ namespace potentials{
 
                     double theta = std::acos(ba_disp.dot(bc_disp) / (ba_dist * bc_dist));
 
-                    energy += k * std::pow((theta - eAng), 2);
+                    energy += angle.k * std::pow((theta - angle.angle), 2);
                 }
             }
             return energy;
         }
 
         inline static void forces(Particles& particles, Geometry* geometry) {
+            double ab_dist, bc_dist, ba_dist, cb_dist, theta;
+
             for(int i = 0; i < particles.numOfParticles; i++){
                 for(auto angle : particles[i]->angles){
                     Eigen::Vector3d ab_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos,
@@ -112,16 +113,16 @@ namespace potentials{
                     Eigen::Vector3d ba_disp = -1.0 * ab_disp;
                     Eigen::Vector3d cb_disp = -1.0 * bc_disp;
 
-                    double ab_dist = ab_disp.norm();
-                    double bc_dist = bc_disp.norm();
-                    double ba_dist = ab_dist;
-                    double cb_dist = bc_dist;
+                    ab_dist = ab_disp.norm();
+                    bc_dist = bc_disp.norm();
+                    ba_dist = ab_dist;
+                    cb_dist = bc_dist;
 
-                    double theta = std::acos(ba_disp.dot(bc_disp) / (ba_dist * bc_dist));
+                    theta = std::acos(ba_disp.dot(bc_disp) / (ba_dist * bc_dist));
 
-                    Eigen::Vector3d a_force = -2 * k * (theta - eAng) / ab_dist *
+                    Eigen::Vector3d a_force = -2 * angle.k * (theta - angle.angle) / ab_dist *
                             (ba_disp.cross(ba_disp.cross(bc_disp))).normalized();
-                    Eigen::Vector3d c_force = -2 * k * (theta - eAng) / bc_dist *
+                    Eigen::Vector3d c_force = -2 * angle.k * (theta - angle.angle) / bc_dist *
                             (cb_disp.cross(ba_disp.cross(bc_disp))).normalized();
 
                     particles[i]->atoms[angle[0]]->force += a_force;

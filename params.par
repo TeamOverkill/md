@@ -17,7 +17,7 @@ HW 1.008
 
 #Type       #strength       #Equilibrium length
 HARMONIC
-OW-HW        529.58              1.012
+OW-HW        529.58              0.1012
 
 ANGULAR_HARMONIC
 HW-OW-HW      37.95              113.24

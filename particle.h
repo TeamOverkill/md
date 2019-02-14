@@ -6,7 +6,7 @@ public:
     int numOfAtoms;
     std::vector< Atom* > atoms;
     std::vector< Bond > bonds;
-    std::vector< std::vector<int> > angles;
+    std::vector< Angle> angles;
     std::vector< std::vector<int> > torsions;
     std::vector< std::vector<int> > farNeighbours;
 

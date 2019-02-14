@@ -39,7 +39,7 @@ struct IO{
                                 exit(1);
                             }
 
-                            particles[particles.atoms[atom1]->particle]->angles.push_back(std::vector<int>());
+                            particles[particles.atoms[atom1]->particle]->angles.push_back(Angle());
                             particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom1);
                             particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom2);
                             particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom3);
