@@ -95,9 +95,11 @@ public:
         for(auto const& [key, val] : params){
             for(int i = 0; i < atoms.numOfAtoms; i++) {
                 if (atoms[i]->name == key) {
-                    atoms[i]->lj.first = params[key]["lj"][0];         //A
-                    atoms[i]->lj.second = params[key]["lj"][1];        //B
-                    printf("LJ: %s %lf %lf\n", atoms[i]->name.c_str(), atoms[i]->lj.first, atoms[i]->lj.second);
+                    atoms[i]->lj.first = params[key]["lj"][0];         //sigma
+                    atoms[i]->lj.second = params[key]["lj"][1];        //epsilon
+                    atoms[i]->q = params[key]["charge"][0];
+
+                    printf("%s: q = %lf LJ: %lf %lf\n", atoms[i]->name.c_str(),atoms[i]->q, atoms[i]->lj.first, atoms[i]->lj.second);
                 }
             }
         }

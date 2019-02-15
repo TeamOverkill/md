@@ -159,6 +159,20 @@ struct IO{
                     }
                 }
 
+                else if(keyWord == "CHARGE"){
+                    while(true){
+                        std::getline(infile, line);
+                        std::istringstream iss(line);
+
+                        if(iss >> name >> d1){
+                            parameters[name]["charge"].push_back(d1);
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
+
 
 
                 else{
@@ -210,6 +224,10 @@ struct IO{
         std::string atom, line;
         std::vector<int> molecules;
         std::ifstream infile(fileName);
+        if(infile.fail()){
+            printf("Error, could not find file: %s\n", fileName.c_str());
+            exit(1);
+        }
         Particles particles;
         Atoms atoms;
 

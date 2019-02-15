@@ -462,10 +462,19 @@ namespace potentials{
         static double alpha;
         static int kNum;
 
+
+
+
+
         template<typename T, typename G>
         static double dot(T vec1, G vec2){
             return vec1[0]*vec2[0] + vec1[1]*vec2[1] + vec1[2]*vec2[2];
         }
+
+
+
+
+
 
         template<typename T>
         static double norm(T x){
@@ -474,6 +483,10 @@ namespace potentials{
             norm = x[0]*x[0] + x[1]*x[1] + x[2]*x[2];
             return sqrt(norm);
         }
+
+
+
+
 
         template<typename T>
         static inline T erfc_x( T x )
@@ -493,10 +506,18 @@ namespace potentials{
         }
 
 
+
+
+
+
         template<typename T>
         static inline T erf_x( T x ) {
             return (1 - erfc_x(x));
         }
+
+
+
+
 
         static inline void reset(){
             kVec.clear();
@@ -504,6 +525,10 @@ namespace potentials{
             free(kNorm);
             free(rkVec);
         }
+
+
+
+
 
         static inline void initialize(Particles& particles, Geometry* geometry){
             int i = 0;
@@ -520,13 +545,13 @@ namespace potentials{
 
             alpha = 8.0 / geometry->box[0];
 
-            for(int kx = -kMax; kx <= kMax; kx++){
+            for(int kx = 0; kx <= kMax; kx++){
                 for(int ky = -kMax; ky <= kMax; ky++){
                     for(int kz = -kMax; kz <= kMax; kz++){
                         factor = 1.0;
-                        //if(kx > 0){
-                        //    factor *= 2;
-                        //}
+                        if(kx > 0){
+                            factor *= 2;
+                        }
 
                         vec[0] = (2.0 * constants::PI * kx / geometry->box[0]);
                         vec[1] = (2.0 * constants::PI * ky / geometry->box[1]);
@@ -573,6 +598,7 @@ namespace potentials{
 
 
 
+
         static inline void update_factors(Particles& particles){
             std::complex<double> rho;
             std::complex<double> rk;
@@ -593,6 +619,9 @@ namespace potentials{
         }
 
 
+
+
+
         static inline double get_reciprocal(){
             double energy = 0;
 
@@ -604,10 +633,18 @@ namespace potentials{
             return energy;
         }
 
+
+
+
+
         static inline double get_self_correction(Atom *p){
             double self = p->q * p->q;
             return self;
         }
+
+
+
+
 
         static inline double energy(Particles& particles, Geometry* geometry){
             double real = 0;
@@ -638,16 +675,23 @@ namespace potentials{
             return 0.1 * (real + reciprocal) - selfTerm;
         }
 
+
+
+
+
+
         static inline void forces(Particles& particles, Geometry* geometry){
             //reset();
             //initialize(particles, geometry);
             //update_factors(particles);
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
-                particles.atoms[i]->force += (real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry));
+                particles.atoms[i]->force += 0.1 * (real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry));
                 //particles.atoms[i]->force += reciprocal_force(particles.atoms[i], particles, geometry);
             }
             printf("Ewald force x: %lf, y: %lf\n", particles.atoms[0]->force[0], particles.atoms[0]->force[1]);
         }
+
+
 
 
 
@@ -660,17 +704,7 @@ namespace potentials{
             factor1.setZero();
             double factor2;
             double factor3;
-            /*
-            for(int i = 0; i < particles.atoms.numOfAtoms; i++){
-                Eigen::Vector3d disp = geometry->disp(a->pos, particles.atoms[i]->pos);
-                for(int k = 0; k < kNum; k++){
-                    force += 4 * constants::PI * kVec[k] / (kNorm[k] * kNorm[k]) * std::exp(-1.0 * kNorm[k] * kNorm[k] / (4 * alpha)) * std::sin(kVec[k].dot(disp));
-                }
 
-                force *= particles.atoms[i]->q / geometry->volume;
-            }
-            force *= a->q;
-            */
 
             for(int k = 0; k < kNum; k++){
                 factor1 = a->q * kVec[k] * resFac[k];// / (kNorm[k] * kNorm[k]) * std::exp(-1.0 * kVec[k].dot(kVec[k]) / (4 * alpha * alpha));
@@ -689,16 +723,17 @@ namespace potentials{
             return force * 4.0 * constants::PI / geometry->volume;
         }
 
+
+
+
+
+
         static inline Eigen::Vector3d real_force(Atom* a, Particles& particles, Geometry* geometry){
             Eigen::Vector3d force;
             force.setZero();
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
                 if(a->index != i) {
                     Eigen::Vector3d disp = geometry->disp(a->pos, particles.atoms[i]->pos);
-                    /*force += particles.atoms[i]->q * (2.0 * std::sqrt(alpha / constants::PI) *
-                                                      std::exp(-1.0 * alpha * disp.norm() * disp.norm()) +
-                                                      erfc_x(std::sqrt(alpha) * disp.norm()) / disp.norm()) *
-                                                        disp / (disp.dot(disp));*/
                     force += particles.atoms[i]->q * (2 * alpha / std::sqrt(constants::PI) *
                                                       std::exp(-alpha * alpha * disp.dot(disp))
                                                       + erfc_x(alpha * disp.norm()) / disp.norm()) *

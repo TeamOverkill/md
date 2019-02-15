@@ -68,15 +68,14 @@ public:
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++){
             particles.atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
-            //pm.get_energy(particles, geometry);
-            //pm.get_forces(particles, geometry);                                      /* Calculate new forces */
+            pm.get_energy(particles, geometry);
+            pm.get_forces(particles, geometry);                                      /* Calculate new forces */
             integrator.first_step(particles, geometry);                                        /* First half step of integrator */
 
             /*First integrator step is the only place where atoms are moved.
              * So only need to calculate distances after this, same thing with displacements*/
             //geometry->update_displacements(particles);    //Add this plzzz
             //geometry->update_distances(particles);
-
             pm.get_forces(particles, geometry);                                      /* Calculate new forces */
 
             integrator.second_step(particles);                                        /* Second half step of integrator */

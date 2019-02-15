@@ -1,28 +1,40 @@
 # Parameters
 # No comments are allowed inside each section....
 
-BONDS
-1 2
-2 3
-4 5
-5 6
+#BONDS
+#1 2
+#2 3
+#4 5
+#5 6
 
-ANGLES
-1 2 3
-4 5 6
+#ANGLES
+#1 2 3
+#4 5 6
 
 MASS
-OW 16.0
-HW 1.008
+Na 1.0
+Cl 1.0
+
+#OW 16.0
+#HW 1.008
 
 #Type       #strength       #Equilibrium length
-HARMONIC
-OW-HW        529.58              0.1012
+#HARMONIC
+#OW-HW        529.58              0.1012
 
-ANGULAR_HARMONIC
-HW-OW-HW      37.95              113.24
+#ANGULAR_HARMONIC
+#HW-OW-HW      37.95              113.24
 
 #             sigma              epsilon
 LJ
-OW            1.7767             0.1554
-HW             0.0                 0.0
+Na 1.0 1.0
+Cl 1.0 1.0
+
+#OW            1.7767             0.1554
+#HW             0.0                 0.0
+
+CHARGE
+Na 1.0
+Cl -1.0
+
+# END OF FILE

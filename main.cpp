@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 
     Particles particles;
     IO io;
-    particles = io.read_frame("output_1.gro");
+    particles = io.read_frame("test.gro");
 
     /// Get parameters from parameter file
     std::map<std::string, std::map<std::string, std::vector<double> > > params = io.read_par("params.par", particles);
@@ -57,7 +57,8 @@ int main(int argc, char *argv[]){
 
     potentials::ewald::initialize(particles, geometry);
 
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic, potentials::LJ> > engine(geometry);
+    //MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic, potentials::LJ, potentials::ewald> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald> > engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
