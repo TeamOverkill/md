@@ -71,14 +71,15 @@ public:
 
     void boundary(Atom* a){
         if(X){
-            if(a->pos[0] > box[0] - a->radius){
+            if(a->pos[0] > box[0]){
                 a->pos[0] -= box[0];
             }
-            else if(a->pos[0] < a->radius){
+            else if(a->pos[0] < 0){
                 a->pos[0] += box[0];
             }
-
         }
+
+
         else{
             if(a->pos[0] > box[0] - a->radius){
                 a->vel[0] *= -1;
@@ -90,14 +91,15 @@ public:
 
 
         if(Y){
-            if(a->pos[1] > box[1] - a->radius){
+            if(a->pos[1] > box[1]){
                 a->pos[1] -= box[1];
             }
-            else if(a->pos[1] < a->radius){
+            else if(a->pos[1] < 0){
                 a->pos[1] += box[1];
             }
-
         }
+
+
         else{
             if(a->pos[1] > box[1] - a->radius){
                 a->vel[1] *= -1;
@@ -109,15 +111,15 @@ public:
 
 
         if(Z){
-            if(a->pos[2] > box[2] - a->radius){
+            if(a->pos[2] > box[2]){
                 a->pos[2] -= box[2];
             }
-            else if(a->pos[2] < a->radius){
+            else if(a->pos[2] < 0){
                 a->pos[2] += box[2];
             }
-
-
         }
+
+
         else{
             if(a->pos[2] > box[2] - a->radius){
                 a->vel[2] *= -1;

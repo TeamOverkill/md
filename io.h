@@ -173,6 +173,19 @@ struct IO{
                     }
                 }
 
+                else if(keyWord == "RADIUS"){
+                    while(true){
+                        std::getline(infile, line);
+                        std::istringstream iss(line);
+
+                        if(iss >> name >> d1){
+                            parameters[name]["radius"].push_back(d1);
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
 
 
                 else{
@@ -260,19 +273,10 @@ struct IO{
                 atoms[j]->vel[2] = zVel;
 
                 atoms[j]->name = atom;
-                atoms[j]->mass = 18.0134;
-                atoms[j]->radius = 1.0;
                 atoms[j]->index = j;
                 atoms[j]->particle = molecule - 1;
                 printf("Atom %d belongs to molecule %d\n", atoms[j]->index, atoms[j]->particle);
-                ////////////////////////////////////      REMOVE      /////////////////////////////////////////////////
-                if(j % 2 == 0){
-                    atoms[j]->q = -1.0;
-                }
-                else{
-                    atoms[j]->q = 1.0;
-                }
-                //////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
                 //Check if molecule is already created
                 std::vector<int>::iterator molIt = std::find(molecules.begin(), molecules.end(), molecule);

@@ -185,8 +185,8 @@ namespace potentials{
     struct LJRep{
 
     private:
-        static constexpr double epsilon = 1.0;  //![kJ/mol] LJ parameter epsilon
-        static constexpr double sigma = 1.0;      //![nm] LJ parameter sigma
+        //static constexpr double epsilon = 1.0;  //![kJ/mol] LJ parameter epsilon
+        //static constexpr double sigma = 1.0;      //![nm] LJ parameter sigma
 
     public:
         inline static void forces(Particles& particles, Geometry* geometry) {
@@ -199,6 +199,8 @@ namespace potentials{
 
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
+                    double sigma =  (particles.atoms[i]->lj.first + particles.atoms[j]->lj.first) / 2.0;
+                    double epsilon = std::sqrt(particles.atoms[i]->lj.first * particles.atoms[j]->lj.first);
                     dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);                 // [nm]
                     double r2 = dr.dot(dr);                             // [nm^2]
                     double fr2 = sigma * sigma / r2;                    // unitless
@@ -223,16 +225,19 @@ namespace potentials{
 
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
+                    double sigma =  (particles.atoms[i]->lj.first + particles.atoms[j]->lj.first) / 2.0;
+                    double epsilon = std::sqrt(particles.atoms[i]->lj.first * particles.atoms[j]->lj.first);
                     dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);     // [nm]
                     distance = dr.norm();                   // [nm]
                     double fr = sigma / distance;           // unitless
                     double fr2 = fr * fr;                   // unitless
                     double fr6 = fr2 * fr2 * fr2;           // unitless
                     energy += fr6 * fr6;              // unitless
+                    energy *= epsilon;
 
                 }
             }
-            return 4 * epsilon * energy;    // [kJ/mol]
+            return 4.0 * energy;    // [kJ/mol]
         }
     };
 
@@ -538,12 +543,12 @@ namespace potentials{
             kNumMax = 1000000;
             kNum = 0;
             resFac = (double*) malloc(kNumMax * sizeof(double));
-            int kMax = 11;  //half of the third root of number of reciprocal vectors
+            int kMax = 6;  //half of the third root of number of reciprocal vectors
 
             double factor = 1;
             Eigen::Vector3d vec;
 
-            alpha = 8.0 / geometry->box[0];
+            alpha = 5.0 / geometry->box[0];
 
             for(int kx = 0; kx <= kMax; kx++){
                 for(int ky = -kMax; ky <= kMax; ky++){
@@ -670,9 +675,9 @@ namespace potentials{
             /*printf("real: %lf\n", real);
             printf("reciprocal: %lf\n", reciprocal);
             printf("self: %lf\n", selfTerm);*/
-            printf("Tinfoil Energy: %.10lf\n", (real + reciprocal) - selfTerm);
+            //printf("Tinfoil Energy: %.10lf\n", (real + reciprocal) - selfTerm);
 
-            return 0.1 * (real + reciprocal) - selfTerm;
+            return 1.0 * (real + reciprocal) - selfTerm;
         }
 
 
@@ -683,12 +688,12 @@ namespace potentials{
         static inline void forces(Particles& particles, Geometry* geometry){
             //reset();
             //initialize(particles, geometry);
-            //update_factors(particles);
+            update_factors(particles);
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
-                particles.atoms[i]->force += 0.1 * (real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry));
+                particles.atoms[i]->force += 1.0 * (real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry));
                 //particles.atoms[i]->force += reciprocal_force(particles.atoms[i], particles, geometry);
             }
-            printf("Ewald force x: %lf, y: %lf\n", particles.atoms[0]->force[0], particles.atoms[0]->force[1]);
+            //printf("Ewald force x: %lf, y: %lf\n", particles.atoms[0]->force[0], particles.atoms[0]->force[1]);
         }
 
 

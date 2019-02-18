@@ -25,8 +25,8 @@ class Atom{
         Eigen::Vector3d oldForce;   /*!< Force from previous iteration */
         Eigen::Vector3d force;      /*!< Current force */
         double q;
-        int index;
-        int localIndex;
+        int index;                  /*!< Refers to index in atoms object */
+        int localIndex;             /*!< Refers to index inside a particle */
         int particle;
         double radius, mass;
         std::pair<double, double> lj;

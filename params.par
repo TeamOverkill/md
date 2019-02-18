@@ -12,7 +12,7 @@
 #4 5 6
 
 MASS
-Na 1.0
+Na 0.5
 Cl 1.0
 
 #OW 16.0
@@ -36,5 +36,9 @@ Cl 1.0 1.0
 CHARGE
 Na 1.0
 Cl -1.0
+
+RADIUS
+Na 1.0
+Cl 1.0
 
 # END OF FILE

@@ -30,6 +30,7 @@ public:
     void initialize(std::map<std::string, std::map<std::string, std::vector<double> > > params){
 
 
+        /// Move to collect all general parameters!!
         // Set masses from params file
         for(int i = 0; i < atoms.numOfAtoms; i++){
             try {
@@ -91,15 +92,16 @@ public:
             }
         }
 
-        // Set LJ parameters
+        // Set LJ parameters. charge and radius
         for(auto const& [key, val] : params){
             for(int i = 0; i < atoms.numOfAtoms; i++) {
                 if (atoms[i]->name == key) {
                     atoms[i]->lj.first = params[key]["lj"][0];         //sigma
                     atoms[i]->lj.second = params[key]["lj"][1];        //epsilon
                     atoms[i]->q = params[key]["charge"][0];
+                    atoms[i]->radius = params[key]["radius"][0];
 
-                    printf("%s: q = %lf LJ: %lf %lf\n", atoms[i]->name.c_str(),atoms[i]->q, atoms[i]->lj.first, atoms[i]->lj.second);
+                    printf("%s: q = %lf, radius = %lf LJ: %lf %lf\n", atoms[i]->name.c_str(), atoms[i]->q, atoms[i]->radius,atoms[i]->lj.first, atoms[i]->lj.second);
                 }
             }
         }
