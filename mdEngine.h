@@ -52,7 +52,7 @@ public:
         //Analysis* histo = new Density(100, "histo_1.txt");
 
         Analysis* histo = new rdf(100, particles.atoms.numOfAtoms, "rdf.txt", geometry);
-
+        Analysis* dp = new diffusion(particles.numOfParticles, "diffusion.txt", geometry);
 
         //std::vector<int> v = {0};
         //Analysis *track = new Track(v, "track.txt", geometry);

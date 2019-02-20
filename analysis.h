@@ -4,6 +4,7 @@ class Analysis{
     std::vector<double> histo;
     int numOfSamples;
     int numOfAtoms;
+    int numOfParticles;
     int bins;
     double binWidth;
     int cnt1, cnt2;
@@ -63,6 +64,43 @@ class Density : public Analysis{
     }
 };
 */
+
+class diffusion : public Analysis {
+    std::vector<double> dp;
+    public:
+    diffusion(int numOfParticles, std::string name, Geometry* geometry) : Analysis(geometry){
+        this->name = name;
+        this->numOfParticles = numOfParticles;
+        dp.resize(numOfParticles);
+    }
+
+    void sample(Particles& particles, int d) {
+        for(int i = 0; i < particles.numOfParticles; i++) {
+            dp[i] += (particles[i]->cm - particles[i]->find_cm()).norm();
+        }
+        this->numOfSamples++;
+    }
+
+    void save(){
+        for(int i = 0; i < numOfParticles; i++) {
+            dp[i] /= numOfSamples;    
+        }
+        FILE *f = fopen(this->name.c_str(), "w");
+        if(f == NULL){
+            printf("Can't open file!\n");
+            exit(1);
+        }
+
+        for(int i = 0; i < numOfParticles; i++){
+            fprintf(f, "%d     %lf\n", i, dp[i]);
+        }
+        fclose(f);
+    }
+};
+
+
+
+
 class rdf : public Analysis{
 
     public:
@@ -70,7 +108,6 @@ class rdf : public Analysis{
         this->name = name;
         this->bins = bins;
         this->numOfAtoms = numOfAtoms; 
-        this->name = name;
         this->binWidth = sqrt(3*Base::boxDim*Base::boxDim) / bins;
         this->cnt1 = 0;
         this->histo.resize(bins);

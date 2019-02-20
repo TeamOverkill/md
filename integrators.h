@@ -43,7 +43,7 @@ namespace integrators{
             }
         }
     };
-
+/*
     struct NoseHoover{
     private:
         static constexpr double couplingStrength = 1.0;
@@ -59,6 +59,7 @@ namespace integrators{
             }
         }
     };
+    */
 }
 
 
