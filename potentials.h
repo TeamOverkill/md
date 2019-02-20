@@ -143,15 +143,21 @@ namespace potentials{
     */
     struct coulomb{
     private:
-        static constexpr double cFactor = 1000.0;  //[kJ * nm * mol^-1]
+        static constexpr double cFactor = constants::E * constants::E / (4 * constants::PI * 78.0 * constants::VP);  //[kJ * nm * mol^-1]
 
     public:
         inline static double energy(Particles& particles, Geometry* geometry){
             double energy = 0;
-            for(int i = 0; i < particles.atoms.numOfAtoms; i++){
-                for(int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
-                    energy += particles.atoms[i]->q * particles.atoms[j]->q /
-                                                geometry->dist(particles.atoms[i]->pos, particles.atoms[j]->pos);
+            //#pragma omp for schedule(dynamic, 50)
+            for(int i = 0; i < particles.numOfParticles; i++){
+                for(int j = i + 1; j < particles.numOfParticles; j++){
+                    for(int ia = 0; ia < particles[i]->numOfAtoms; ia++) {
+                        for (int ja = 0; ja < particles[j]->numOfAtoms; ja++) {
+
+                            energy += particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q /
+                                      geometry->dist(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);
+                        }
+                    }
                 }
             }
 
@@ -162,14 +168,20 @@ namespace potentials{
             double magnitude = 0;
             double distance = 0;
             Eigen::Vector3d disp;
-            for(int i = 0; i < particles.atoms.numOfAtoms; i++){
-                for(int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
-                    disp = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);
-                    distance = disp.norm();
-                    magnitude = cFactor * particles.atoms[i]->q * particles.atoms[j]->q / (distance * distance);
-                    disp.normalize();
-                    particles.atoms[i]->force += magnitude * disp;
-                    particles.atoms[j]->force -= magnitude * disp;
+            //#pragma omp for schedule(dynamic, 50)
+            for(int i = 0; i < particles.numOfParticles; i++){
+                for(int j = i + 1; j < particles.numOfParticles; j++){
+                    for(int ia = 0; ia < particles[i]->numOfAtoms; ia++) {
+                        for (int ja = 0; ja < particles[j]->numOfAtoms; ja++) {
+
+                            disp = geometry->disp(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);
+                            distance = disp.norm();
+                            magnitude = cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q / (distance * distance);
+                            disp.normalize();
+                            particles[i]->atoms[ia]->force += magnitude * disp;
+                            particles[j]->atoms[ja]->force -= magnitude * disp;
+                        }
+                    }
                 }
             }
         }
@@ -200,7 +212,7 @@ namespace potentials{
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
                     double sigma =  (particles.atoms[i]->lj.first + particles.atoms[j]->lj.first) / 2.0;
-                    double epsilon = std::sqrt(particles.atoms[i]->lj.first * particles.atoms[j]->lj.first);
+                    double epsilon = std::sqrt(particles.atoms[i]->lj.second * particles.atoms[j]->lj.second);
                     dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);                 // [nm]
                     double r2 = dr.dot(dr);                             // [nm^2]
                     double fr2 = sigma * sigma / r2;                    // unitless
@@ -226,7 +238,7 @@ namespace potentials{
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                 for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
                     double sigma =  (particles.atoms[i]->lj.first + particles.atoms[j]->lj.first) / 2.0;
-                    double epsilon = std::sqrt(particles.atoms[i]->lj.first * particles.atoms[j]->lj.first);
+                    double epsilon = std::sqrt(particles.atoms[i]->lj.second * particles.atoms[j]->lj.second);
                     dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);     // [nm]
                     distance = dr.norm();                   // [nm]
                     double fr = sigma / distance;           // unitless
@@ -277,7 +289,7 @@ namespace potentials{
                         for(int ia = 0; ia < particles[i]->numOfAtoms; ia++){
                             for(int ja = 0; ja < particles[j]->numOfAtoms; ja++){
                                 double sigma =  (particles[i]->atoms[ia]->lj.first + particles[j]->atoms[ja]->lj.first) / 2.0;
-                                double epsilon = std::sqrt(particles[i]->atoms[ia]->lj.first * particles[j]->atoms[ja]->lj.first);
+                                double epsilon = std::sqrt(particles[i]->atoms[ia]->lj.second * particles[j]->atoms[ja]->lj.second);
 
                                 dr = geometry->disp(particles[i]->atoms[ia]->pos,
                                                     particles[j]->atoms[ja]->pos);                 // [nm]
@@ -331,7 +343,7 @@ namespace potentials{
                     for (int ia = 0; ia < particles[i]->numOfAtoms; ia++) {
                         for (int ja = 0; ja < particles[j]->numOfAtoms; ja++) {
                             double sigma =  (particles[i]->atoms[ia]->lj.first + particles[j]->atoms[ja]->lj.first) / 2.0;
-                            double epsilon = std::sqrt(particles[i]->atoms[ia]->lj.first * particles[j]->atoms[ja]->lj.first);
+                            double epsilon = std::sqrt(particles[i]->atoms[ia]->lj.second * particles[j]->atoms[ja]->lj.second);
 
                             dr = geometry->disp(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);     // [nm]
                             distance = dr.norm();                   // [nm]

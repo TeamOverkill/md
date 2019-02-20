@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 
     Particles particles;
     IO io;
-    particles = io.read_frame("test.gro");
+    particles = io.read_frame("output_1.gro");
 
     /// Get parameters from parameter file
     std::map<std::string, std::map<std::string, std::vector<double> > > params = io.read_par("params.par", particles);
