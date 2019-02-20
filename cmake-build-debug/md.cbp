@@ -47,7 +47,7 @@
 					<Add directory="/Users/samuel/Documents/md/."/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
@@ -70,7 +70,7 @@
 					<Add directory="/Users/samuel/Documents/md/."/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
@@ -78,52 +78,6 @@
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 md/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="random">
-				<Option output="/Users/samuel/Documents/md/cmake-build-debug/librandom.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/samuel/Documents/md/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/samuel/Documents/md/."/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 random"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="random/fast">
-				<Option output="/Users/samuel/Documents/md/cmake-build-debug/librandom.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/samuel/Documents/md/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/samuel/Documents/md/."/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 random/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/samuel/Documents/md/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -157,6 +111,9 @@
 		<Unit filename="/Users/samuel/Documents/md/frames.h">
 			<Option target="md"/>
 		</Unit>
+		<Unit filename="/Users/samuel/Documents/md/geometries.h">
+			<Option target="md"/>
+		</Unit>
 		<Unit filename="/Users/samuel/Documents/md/integrators.h">
 			<Option target="md"/>
 		</Unit>
@@ -175,11 +132,10 @@
 		<Unit filename="/Users/samuel/Documents/md/potentials.h">
 			<Option target="md"/>
 		</Unit>
-		<Unit filename="/Users/samuel/Documents/md/ran2.f">
-			<Option target="md"/>
-			<Option target="random"/>
-		</Unit>
 		<Unit filename="/Users/samuel/Documents/md/ran2_lib.cpp">
+			<Option target="md"/>
+		</Unit>
+		<Unit filename="/Users/samuel/Documents/md/ran2_lib.h">
 			<Option target="md"/>
 		</Unit>
 		<Unit filename="/Users/samuel/Documents/md/thermostats.h">

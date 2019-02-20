@@ -5,7 +5,11 @@
 
 /*! Constructor
 */
-Atom::Atom() {}
+Atom::Atom() {
+    this-> q = 0;
+    this->radius = 1.0;
+    this->mass = 1.0;
+}
 
 void Atom::set_mb_velocity(){
     double ran_u1 = ran2::get_random();

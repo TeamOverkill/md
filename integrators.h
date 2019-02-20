@@ -58,6 +58,7 @@ namespace integrators{
                 particles[i].vel += -epsilon / couplingStrength * particles.atoms[i].vel;
             }
         }
+<<<<<<< HEAD
     };
     */
 }
