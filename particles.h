@@ -61,7 +61,7 @@ public:
                 double k = params[name]["angular harmonic"][0];
                 double ang = params[name]["angular harmonic"][1];
                 printf("%s, %lf, %lf\n", name.c_str(), k, ang);
-                angle.angle = ang / 360.0 * 2.0 *  constants::PI;
+                angle.angle = ang;// / 360.0 * 2.0 *  constants::PI;
                 angle.k = k;
             }
 
