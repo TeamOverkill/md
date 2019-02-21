@@ -2,6 +2,7 @@
 
 #include <Eigen/Dense>
 
+
 class Geometry{
 public:
     Eigen::Vector3d box;
@@ -25,13 +26,13 @@ public:
         return disp(a, b).norm();
     }
 
-    void update_distances(Particles& particles){
-        for(int i = 0; i < particles.atoms.numOfAtoms; i++){
-            for(int j = i + 1; j < particles.atoms.numOfAtoms; j++){
-                particles.atoms.distances(i, j) = dist(particles.atoms[i]->pos, particles.atoms[i]->pos);
-            }
-        }
-    }
+//    void update_distances(Particles& particles){
+//        for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+//            for(int j = i + 1; j < particles.atoms.numOfAtoms; j++){
+//                particles.atoms.distances(i, j) = dist(particles.atoms[i]->pos, particles.atoms[i]->pos);
+//            }
+//        }
+//    }
 
     Eigen::Vector3d disp(const Eigen::Vector3d &a, const Eigen::Vector3d &b){
         Eigen::Vector3d disp = a - b;

@@ -1,7 +1,6 @@
 #include "base.h"
 
 double Base::boxDim;
-double Base::volume;
 int Base::iterations;
 int Base::outFreq;
 int Base::dimensions;
@@ -20,7 +19,6 @@ void Base::initialize(int numberOfSamples){
     Base::potentialEnergies = (double*) malloc(numberOfSamples * sizeof(double));
     Base::totalEnergies = (double*) malloc(numberOfSamples * sizeof(double));
     Base::temperatures = (double*) malloc(Base::iterations * sizeof(double));
-    Base::volume = boxDim * boxDim * boxDim;
 
     if(dimensions == 1){
         Base::dimensionality << 1, 0, 0;

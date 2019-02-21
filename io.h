@@ -231,11 +231,11 @@ struct IO{
 
 
     Particles read_frame(std::string fileName){
-        int c, i = 0, ind, j = 0, atom_1, atom_2, molecule, molIndex;
+        int c, i = 0, ind, j = 0, atom_1, atom_2, molIndex;
         double xPos, yPos, zPos, xVel, yVel, zVel, xDim, yDim, zDim,
                     aAng, bAng, cAng;
-        std::string atom, line;
-        std::vector<int> molecules;
+        std::string atom, line, molecule;
+        std::vector<std::string> molecules;
         std::ifstream infile(fileName);
         if(infile.fail()){
             printf("Error, could not find file: %s\n", fileName.c_str());
@@ -255,12 +255,25 @@ struct IO{
                     exit(1);
                 } // error
             }
+
             if(i > 1 && i <= c + 1){
 
                 std::istringstream iss(line);
                 if (!(iss >> molecule >> atom >> ind >> xPos >> yPos >> zPos >> xVel >> yVel >> zVel)) {
-                    printf("Malformed input: check the coordinate section...\n");
-                    exit(1);
+                    //iss.clear();
+                    //iss.str(line);
+                    iss.clear();
+                    iss.seekg(std::ios::beg);
+                    std::cout << line << std::endl;
+                    if (!(iss >> molecule >> atom >> ind >> xPos >> yPos >> zPos)) {
+                        printf("Malformed input: check the coordinate section. Failed reading row %i.\n", i);
+                        exit(1);
+                    }
+                    else{
+                        xVel = 0.0;
+                        yVel = 0.0;
+                        zVel = 0.0;
+                    }
                 }
 
                 atoms.push_back(new Atom());
@@ -274,14 +287,13 @@ struct IO{
 
                 atoms[j]->name = atom;
                 atoms[j]->index = j;
-                atoms[j]->particle = molecule - 1;
-                printf("Atom %d belongs to molecule %d\n", atoms[j]->index, atoms[j]->particle);
-
+                //atoms[j]->particle = molecule - 1;
 
                 //Check if molecule is already created
-                std::vector<int>::iterator molIt = std::find(molecules.begin(), molecules.end(), molecule);
+                std::vector<std::string>::iterator molIt = std::find(molecules.begin(), molecules.end(), molecule);
                 molIndex = std::distance(molecules.begin(), molIt);
-
+                atoms[j]->particle = molIndex;
+                printf("Atom %d belongs to molecule %d\n", atoms[j]->index, atoms[j]->particle);
                 //Create molecule
                 if (molIt == molecules.end()) {
                     molecules.push_back(molecule);
