@@ -5,6 +5,7 @@
 #include "io.h"
 #include "integrators.h"
 #include "thermostats.h"
+#include "preprocessor.h"
 //#include "barostats.h"
 #include "potentials.h"
 #include "frames.h"
@@ -19,6 +20,16 @@
 typedef PotentialManager<potentials::magnetic> PotMan;
 
 int main(int argc, char *argv[]){
+    Preprocessor prep;
+    if(argc > 1){
+        std::cout << argv[0] << " " <<  argv[1] << " " << argc << std::endl;
+        if(std::strcmp(argv[1], "prep") == 0){
+            printf("Running preprocessor...\n");
+            prep.prep_water();
+        }
+        exit(1);
+    }
+
     Parser parser;
     parser.parse();
     Base::initialize(parser.numberOfFrames);
