@@ -65,36 +65,43 @@ class Density : public Analysis{
 };
 */
 
-class diffusion : public Analysis {
-    std::vector<double> dp;
+class calc_msd : public Analysis {
+    std::vector<std::vector<double>> msd;
+    
     public:
-    diffusion(int numOfParticles, std::string name, Geometry* geometry) : Analysis(geometry){
+    calc_msd(int numOfParticles, std::string name, Geometry* geometry) : Analysis(geometry){
         this->name = name;
         this->numOfParticles = numOfParticles;
-        dp.resize(numOfParticles);
     }
 
     void sample(Particles& particles, int d) {
+        std::vector<double> rows;
         for(int i = 0; i < particles.numOfParticles; i++) {
-            dp[i] += (particles[i]->cm - particles[i]->find_cm()).norm();
+            rows.push_back((particles[i]->cm - particles[i]->find_cm()).norm()*(particles[i]->cm - particles[i]->find_cm()).norm());
         }
+        msd.push_back(rows);
         this->numOfSamples++;
     }
 
     void save(){
-        for(int i = 0; i < numOfParticles; i++) {
-            dp[i] /= numOfSamples;    
-        }
+            //for(int i = 0; i < numOfParticles; i++) {
+            //    msd[i] /= numOfSamples;    
+            //}
         FILE *f = fopen(this->name.c_str(), "w");
         if(f == NULL){
             printf("Can't open file!\n");
             exit(1);
         }
-
-        for(int i = 0; i < numOfParticles; i++){
-            fprintf(f, "%d     %lf\n", i, dp[i]);
+        
+        for(int i = 0; i < numOfParticles; i++) {
+            std::string row = ""; 
+            for(int j = 0; j < numOfSamples; j++){
+                row += std::to_string(msd[i][j])+" ";
+            }
+            fprintf(f, "%s\n", row.c_str());
         }
         fclose(f);
+        
     }
 };
 

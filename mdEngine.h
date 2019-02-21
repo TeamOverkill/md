@@ -52,7 +52,7 @@ public:
         //Analysis* histo = new Density(100, "histo_1.txt");
 
         Analysis* histo = new rdf(100, particles.atoms.numOfAtoms, "rdf.txt", geometry);
-        Analysis* dp = new diffusion(particles.numOfParticles, "diffusion.txt", geometry);
+        Analysis* msd = new calc_msd(particles.numOfParticles, "msd.txt", geometry);
 
         //std::vector<int> v = {0};
         //Analysis *track = new Track(v, "track.txt", geometry);
@@ -87,8 +87,9 @@ public:
             Base::temperatures[i] = temperature;
 
             if(i % frames.fStep == 0){
-                if(i > 100000) {
+                if(i > 10000) {
                     histo->sample(particles, 1);
+                    msd->sample(particles, 1);
                 }
 
                 //histo->sample(particles, 0);
@@ -118,7 +119,7 @@ public:
 
         histo->save();
         //track->save();
-
+        msd->save();
         printf("\n");    
     }
 };

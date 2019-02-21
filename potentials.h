@@ -143,7 +143,7 @@ namespace potentials{
     */
     struct coulomb{
     private:
-        static constexpr double cFactor = constants::E * constants::E / (4 * constants::PI * 78.0 * constants::VP);  //[kJ * nm * mol^-1]
+        static constexpr double cFactor = 1; //constants::E * constants::E / (4 * constants::PI * 78.0 * constants::VP);  //[kJ * nm * mol^-1]
 
     public:
         inline static double energy(Particles& particles, Geometry* geometry){
