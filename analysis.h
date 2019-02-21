@@ -4,6 +4,7 @@ class Analysis{
     std::vector<double> histo;
     int numOfSamples;
     int numOfAtoms;
+    int numOfParticles;
     int bins;
     double binWidth;
     int cnt1, cnt2;
@@ -63,6 +64,50 @@ class Density : public Analysis{
     }
 };
 */
+
+class calc_msd : public Analysis {
+    std::vector<std::vector<double>> msd;
+    
+    public:
+    calc_msd(int numOfParticles, std::string name, Geometry* geometry) : Analysis(geometry){
+        this->name = name;
+        this->numOfParticles = numOfParticles;
+    }
+
+    void sample(Particles& particles, int d) {
+        std::vector<double> rows;
+        for(int i = 0; i < particles.numOfParticles; i++) {
+            rows.push_back((particles[i]->cm - particles[i]->find_cm()).norm()*(particles[i]->cm - particles[i]->find_cm()).norm());
+        }
+        msd.push_back(rows);
+        this->numOfSamples++;
+    }
+
+    void save(){
+            //for(int i = 0; i < numOfParticles; i++) {
+            //    msd[i] /= numOfSamples;    
+            //}
+        FILE *f = fopen(this->name.c_str(), "w");
+        if(f == NULL){
+            printf("Can't open file!\n");
+            exit(1);
+        }
+        
+        for(int i = 0; i < numOfParticles; i++) {
+            std::string row = ""; 
+            for(int j = 0; j < numOfSamples; j++){
+                row += std::to_string(msd[i][j])+" ";
+            }
+            fprintf(f, "%s\n", row.c_str());
+        }
+        fclose(f);
+        
+    }
+};
+
+
+
+
 class rdf : public Analysis{
 
     public:
@@ -70,7 +115,6 @@ class rdf : public Analysis{
         this->name = name;
         this->bins = bins;
         this->numOfAtoms = numOfAtoms; 
-        this->name = name;
         this->binWidth = sqrt(3*Base::boxDim*Base::boxDim) / bins;
         this->cnt1 = 0;
         this->histo.resize(bins);

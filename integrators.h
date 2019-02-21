@@ -14,7 +14,7 @@ namespace integrators{
             #pragma omp parallel for if(particles.atoms.numOfAtoms > 6000)
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
 
-                geometry->boundary(particles.atoms[i]);
+                geometry->boundary(particles.atoms[i]->pos, particles.atoms[i]->vel);
 
                 particles.atoms[i]->vel +=
                         0.5 * Base::tStep * particles.atoms[i]->oldForce / particles.atoms[i]->mass; //[nm/ps]
@@ -58,7 +58,9 @@ namespace integrators{
                 particles[i].vel += -epsilon / couplingStrength * particles.atoms[i].vel;
             }
         }
-    };*/
+<<<<<<< HEAD
+    };
+    */
 }
 
 

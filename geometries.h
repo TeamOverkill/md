@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Eigen/Dense>
-#include "atom.h"
 
 class Geometry{
 public:
@@ -9,8 +8,8 @@ public:
     double volume;
     virtual double dist(const Eigen::Vector3d &a, const Eigen::Vector3d &b) = 0;
     virtual Eigen::Vector3d disp(const Eigen::Vector3d &a, const Eigen::Vector3d &b) = 0;
-    virtual void boundary(Atom* a) = 0;
-    virtual void update_distances(Particles& particles) = 0;
+    virtual void boundary(Eigen::Vector3d &pos, Eigen::Vector3d &vel) = 0;
+    //virtual void update_distances(Particles& particles) = 0;
     //virtual void volume_move(double dv) = 0;
 };
 
@@ -69,64 +68,64 @@ public:
         return disp;
     }
 
-    void boundary(Atom* a){
+    void boundary(Eigen::Vector3d &pos, Eigen::Vector3d &vel){
         if(X){
-            if(a->pos[0] > box[0]){
-                a->pos[0] -= box[0];
+            if(pos[0] > box[0]){
+                pos[0] -= box[0];
             }
-            else if(a->pos[0] < 0){
-                a->pos[0] += box[0];
+            else if(pos[0] < 0){
+                pos[0] += box[0];
             }
         }
 
 
         else{
-            if(a->pos[0] > box[0] - a->radius){
-                a->vel[0] *= -1;
+            if(pos[0] > box[0]){
+                vel[0] *= -1;
             }
-            else if(a->pos[0] < a->radius){
-                a->vel[0] *= -1;
+            else if(pos[0] < 0){
+                vel[0] *= -1;
             }
         }
 
 
         if(Y){
-            if(a->pos[1] > box[1]){
-                a->pos[1] -= box[1];
+            if(pos[1] > box[1]){
+                pos[1] -= box[1];
             }
-            else if(a->pos[1] < 0){
-                a->pos[1] += box[1];
+            else if(pos[1] < 0){
+                pos[1] += box[1];
             }
         }
 
 
         else{
-            if(a->pos[1] > box[1] - a->radius){
-                a->vel[1] *= -1;
+            if(pos[1] > box[1]){
+                vel[1] *= -1;
             }
-            else if(a->pos[1] < a->radius){
-                a->vel[1] *= -1;
+            else if(pos[1] < 0){
+                vel[1] *= -1;
             }
         }
 
 
         if(Z){
-            if(a->pos[2] > box[2]){
-                a->pos[2] -= box[2];
+            if(pos[2] > box[2]){
+                pos[2] -= box[2];
             }
-            else if(a->pos[2] < 0){
-                a->pos[2] += box[2];
+            else if(pos[2] < 0){
+                pos[2] += box[2];
             }
         }
 
 
         else{
-            if(a->pos[2] > box[2] - a->radius){
-                a->vel[2] *= -1;
+            if(pos[2] > box[2]){
+                vel[2] *= -1;
             }
 
-            else if(a->pos[2] < a->radius){
-                a->vel[2] *= -1;
+            else if(pos[2] < 0){
+                vel[2] *= -1;
             }
         }
     }
