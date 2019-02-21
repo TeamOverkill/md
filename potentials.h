@@ -76,10 +76,6 @@ namespace potentials{
 
     struct angular_harmonic{
 
-    private:
-        //static constexpr double k = 9.07;
-        //static constexpr double eAng = 0.3145 * 2.0 * 3.14;
-
     public:
         inline static double energy(Particles& particles, Geometry* geometry){
             double energy = 0;
@@ -143,7 +139,7 @@ namespace potentials{
     */
     struct coulomb{
     private:
-        static constexpr double cFactor = 1; //constants::E * constants::E / (4 * constants::PI * 78.0 * constants::VP);  //[kJ * nm * mol^-1]
+        static constexpr double cFactor = 1.0;//constants::E * constants::E / (4 * constants::PI * 78.0 * constants::VP);  //[kJ * nm * mol^-1]
 
     public:
         inline static double energy(Particles& particles, Geometry* geometry){
@@ -195,10 +191,6 @@ namespace potentials{
     /*! Repulsive part of the Lennard Jones potential
     */
     struct LJRep{
-
-    private:
-        //static constexpr double epsilon = 1.0;  //![kJ/mol] LJ parameter epsilon
-        //static constexpr double sigma = 1.0;      //![nm] LJ parameter sigma
 
     public:
         inline static void forces(Particles& particles, Geometry* geometry) {
