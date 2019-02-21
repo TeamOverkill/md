@@ -1,6 +1,9 @@
 # Parameters
 # No comments are allowed inside each section....
 
+############
+# TOPOLOGY #
+############
 BONDS
 1 2
 2 3
@@ -27,17 +30,23 @@ MASS
 OW 16.0
 HW 1.008
 
+##########
+# BONDED #
+##########
 #Type        strength        Equilibrium length
 HARMONIC
-OW-HW        529.58              0.1012
+OW-HW        221576          0.10120
 
 ANGULAR_HARMONIC
-HW-OW-HW      37.95              113.24
+HW-OW-HW     158.78          1.976
 
+##############
+# NON-BONDED #
+##############
 #             sigma              epsilon
 LJ
-OW            0.7767             10.1554
-HW             0.0                 0.0
+OW            0.150093           0.01422
+HW            0.000000           0.00000
 
 CHARGE
 OW -0.8
