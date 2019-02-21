@@ -66,8 +66,9 @@ class Density : public Analysis{
 */
 
 class calc_msd : public Analysis {
-    std::vector<std::vector<double>> msd;
-    
+    std::vector<double> msd;
+    double msd_avg=0;
+    double msd_avg_acc=0;
     public:
     calc_msd(int numOfParticles, std::string name, Geometry* geometry) : Analysis(geometry){
         this->name = name;
@@ -75,11 +76,14 @@ class calc_msd : public Analysis {
     }
 
     void sample(Particles& particles, int d) {
-        std::vector<double> rows;
         for(int i = 0; i < particles.numOfParticles; i++) {
-            rows.push_back((particles[i]->cm - particles[i]->find_cm()).norm()*(particles[i]->cm - particles[i]->find_cm()).norm());
+            msd_avg += geometry->dist(particles[i]->cm, particles[i]->find_cm())*geometry->dist(particles[i]->cm, particles[i]->find_cm());
         }
-        msd.push_back(rows);
+        if (numOfSamples == 0) 
+            msd.push_back(0);
+        msd_avg /= numOfParticles;
+        msd_avg_acc += msd_avg;
+        msd.push_back(msd_avg_acc);
         this->numOfSamples++;
     }
 
@@ -93,13 +97,13 @@ class calc_msd : public Analysis {
             exit(1);
         }
         
-        for(int i = 0; i < numOfParticles; i++) {
-            std::string row = ""; 
-            for(int j = 0; j < numOfSamples; j++){
-                row += std::to_string(msd[i][j])+" ";
-            }
-            fprintf(f, "%s\n", row.c_str());
+            //std::string row = ""; 
+        for(int i = 0; i <= numOfSamples; i++){
+            
+            fprintf(f, "%f  %f\n", i*Base::tStep*1000, msd[i]);
+                //row += std::to_string(msd[i][j])+" ";
         }
+        //fprintf(f, "%s\n", row.c_str());
         fclose(f);
         
     }

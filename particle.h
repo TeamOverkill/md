@@ -22,7 +22,7 @@ public:
         for(int i=0; i<this->numOfAtoms; i++) { 
             cmNew += this->atoms[i]->pos*this->atoms[i]->mass;
         }
-        return cmNew/(mass*this->numOfAtoms);
+        return cmNew/mass;
         
     }
     void push_back(Atom* atom){
