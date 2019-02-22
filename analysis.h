@@ -78,9 +78,12 @@ class calc_msd : public Analysis {
     void sample(Particles& particles, int d) {
         for(int i = 0; i < particles.numOfParticles; i++) {
             msd_avg += geometry->dist(particles[i]->cm, particles[i]->find_cm())*geometry->dist(particles[i]->cm, particles[i]->find_cm());
+            //std::cout << "current cm: " << particles[i]->cm << "\nNew cm: " <<  particles[i]->find_cm() << "\n";
         }
         if (numOfSamples == 0) 
             msd.push_back(0);
+        else
+            msd_avg = cm[numOfSamples]
         msd_avg /= numOfParticles;
         msd_avg_acc += msd_avg;
         msd.push_back(msd_avg_acc);
