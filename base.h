@@ -14,7 +14,6 @@ class Base{
 public:
     static void initialize(int numberOfSamples);
     static double boxDim;   /*!< Box dimension, currently only cubic boxes */
-    static double volume;   /*!< Volume of the box */
     static int iterations;  /*!< number of iterations */
     static int outFreq;
     static double tStep;    /*!< Time step in picoseconds */

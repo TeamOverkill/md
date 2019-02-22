@@ -21,25 +21,39 @@ typedef PotentialManager<potentials::magnetic> PotMan;
 
 int main(int argc, char *argv[]){
     Preprocessor prep;
+    std::string structureFile;
+    std::string paramsFile;
     if(argc > 1){
         std::cout << argv[0] << " " <<  argv[1] << " " << argc << std::endl;
         if(std::strcmp(argv[1], "prep") == 0){
             printf("Running preprocessor...\n");
-            prep.prep_water();
+            prep.prep_water(std::string(argv[2]));
+            exit(1);
         }
-        exit(1);
+        else if(argc > 2){
+            structureFile = argv[1];
+            paramsFile = argv[2];
+        }
+        else{
+            printf("Too few arguments, need 2...\n");
+            exit(1);
+        }
     }
 
+    else{
+        printf("Too few arguments, need 2...\n");
+        exit(1);
+    }
     Parser parser;
     parser.parse();
     Base::initialize(parser.numberOfFrames);
 
     Particles particles;
     IO io;
-    particles = io.read_frame("output_1.gro");
+    particles = io.read_frame(structureFile);
 
     /// Get parameters from parameter file
-    std::map<std::string, std::map<std::string, std::vector<double> > > params = io.read_par("params.par", particles);
+    std::map<std::string, std::map<std::string, std::vector<double> > > params = io.read_par(paramsFile, particles);
 
     ///Initialize particles and set all parameters
     particles.initialize(params);
@@ -64,7 +78,7 @@ int main(int argc, char *argv[]){
     Frames frames(parser.numberOfFrames, particles.atoms.numOfAtoms, parser.saveFreq);
 
     /*!< Create Geometry object*/
-    Geometry* geometry = new Rectangular<true, true, true>(parser.boxDim, parser.boxDim, parser.boxDim);
+    Geometry* geometry = new Rectangular<true, true, true>(1.86893, 1.85529, 1.85963);//parser.boxDim, parser.boxDim, parser.boxDim);
 
     potentials::ewald::initialize(particles, geometry);
 

@@ -82,11 +82,8 @@ class calc_msd : public Analysis {
         }
         if (numOfSamples == 0) 
             msd.push_back(0);
-        else
-            msd_avg = cm[numOfSamples]
         msd_avg /= numOfParticles;
-        msd_avg_acc += msd_avg;
-        msd.push_back(msd_avg_acc);
+        msd.push_back(msd_avg);
         this->numOfSamples++;
     }
 
