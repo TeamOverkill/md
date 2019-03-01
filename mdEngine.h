@@ -66,17 +66,26 @@ public:
         //geometry->update_distances(particles);
 
         /* Main MD loop */
-        for(int i = 0; i < Base::iterations; i++){
+        for(int i = 0; i < Base::iterations; i++) {
+            //pm.get_forces(particles, geometry);
+            //printf("Energy: %lf\n", pm.get_energy(particles, geometry));
+            //exit(1);
+            //std::cout << particles.atoms.forceMatrix << std::endl;
+            //printf("Determinant = %lf\n", particles.atoms.forceMatrix.determinant());
             particles.atoms.set_forces_zero();                                    /* Set all forces to zero in the beginning of each iteration.*/
 
-            integrator.first_step(particles, geometry);                                        /* First half step of integrator */
+            integrator.first_step(particles,
+                                  geometry);                                        /* First half step of integrator */
 
             /*First integrator step is the only place where atoms are moved.
              * So only need to calculate distances after this, same thing with displacements*/
             //geometry->update_displacements(particles);    //Add this plzzz
             //geometry->update_distances(particles);
+            //particles.update_distances(geometry);
+            //particles.update_displacements(geometry);
             pm.get_forces(particles, geometry);                                      /* Calculate new forces */
-            integrator.second_step(particles);                                        /* Second half step of integrator */
+            integrator.second_step(
+                    particles);                                        /* Second half step of integrator */
 
             //thermostats::berendsen::set_velocity(particles);              /* Apply thermostat */
             temperature = thermostats::get_temperature(particles);
@@ -86,8 +95,8 @@ public:
             cummulativePress += pressure;
             Base::temperatures[i] = temperature;
 
-            if(i % frames.fStep == 0){
-                if(i > 10000) {
+            if (i % frames.fStep == 0) {
+                if (i > 10000) {
                     histo->sample(particles, 1);
                     msd->sample(particles, 1);
                 }
@@ -99,8 +108,9 @@ public:
                 Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
                 end_t = omp_get_wtime();
-                printf("Progress: %.1lf%% Temperature: %.1lf Average temperature: %.1lf Average pressure: %.2lf Potential Energy: %.5lf Kinetic Energy: %.3lf, Simulation speed: %.1lf ns / h\r",
-                      (double)i/Base::iterations * 100.0, temperature, cummulativeTemp/i, cummulativePress/i, Base::potentialEnergies[samples],
+                printf("Progress: %.1lf%% Temp: %.1lf Avg. temp: %.1lf  Pot Energy: %.5lf Kin Energy: %.3lf, Speed: %.1lf ns / h\r",
+                       (double) i / Base::iterations * 100.0, temperature, cummulativeTemp / i,
+                       Base::potentialEnergies[samples],
                        Base::kineticEnergies[samples], k * Base::tStep / ((end_t - start_t) / 3600.0));
                 fflush(stdout);
                 start_t = omp_get_wtime();
@@ -108,7 +118,7 @@ public:
                 frames[frames.frameCounter]->save_state(particles.atoms);
                 frames.frameCounter++;
 
-                if(frames.frameCounter == frames.saveFreq){
+                if (frames.frameCounter == frames.saveFreq) {
                     frames.save_to_file(particles);
                 }
                 samples++;
@@ -116,7 +126,6 @@ public:
             }
             k++;
         }
-
         histo->save();
         //track->save();
         msd->save();

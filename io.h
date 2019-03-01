@@ -9,9 +9,11 @@ struct IO{
         double d1, d2;
         std::string line, keyWord, name;
         std::ifstream infile(fileName);
-
+        if(infile.fail()){
+            printf("Cannot read parameter file...\n");
+        }
         std::map<std::string, std::map<std::string, std::vector<double> > > parameters;
-
+        printf("Reading parameter file\n");
         while (std::getline(infile, line)) {
             if(line[0] == '#') continue;
             if(line.empty()) continue;
@@ -22,6 +24,7 @@ struct IO{
 
 
                 if(keyWord == "ANGLES"){
+                    printf("Reading angles\n");
                     while(true){
                         std::getline(infile, line);
                         std::istringstream iss(line);
@@ -43,9 +46,9 @@ struct IO{
                             particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom1);
                             particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom2);
                             particles[particles.atoms[atom1]->particle]->angles.back().push_back(atom3);
-                            printf("Angle: %i, %i, %i\n", particles[particles.atoms[atom1]->particle]->angles.back()[0],
-                                   particles[particles.atoms[atom1]->particle]->angles.back()[1],
-                                   particles[particles.atoms[atom1]->particle]->angles.back()[2]);
+                            //printf("Angle: %i, %i, %i\n", particles[particles.atoms[atom1]->particle]->angles.back()[0],
+                            //       particles[particles.atoms[atom1]->particle]->angles.back()[1],
+                            //       particles[particles.atoms[atom1]->particle]->angles.back()[2]);
                             continue;
                         }
                         else{
@@ -58,7 +61,7 @@ struct IO{
 
 
                 else if(keyWord == "BONDS"){
-
+                    printf("Reading bonds\n");
                     while(true){
                         std::getline(infile, line);
                         std::istringstream iss(line);
@@ -77,8 +80,8 @@ struct IO{
                             particles[particles.atoms[atom1]->particle]->bonds.push_back(Bond());
                             particles[particles.atoms[atom1]->particle]->bonds.back().push_back(atom1);
                             particles[particles.atoms[atom1]->particle]->bonds.back().push_back(atom2);
-                            printf("Bond: %i, %i\n", particles[particles.atoms[atom1]->particle]->bonds.back()[0],
-                                   particles[particles.atoms[atom1]->particle]->bonds.back()[1]);
+                            //printf("Bond: %i, %i\n", particles[particles.atoms[atom1]->particle]->bonds.back()[0],
+                            //       particles[particles.atoms[atom1]->particle]->bonds.back()[1]);
                         }
                         else{
                             break;
@@ -264,7 +267,7 @@ struct IO{
                     //iss.str(line);
                     iss.clear();
                     iss.seekg(std::ios::beg);
-                    std::cout << line << std::endl;
+                    //std::cout << line << std::endl;
                     if (!(iss >> molecule >> atom >> ind >> xPos >> yPos >> zPos)) {
                         printf("Malformed input: check the coordinate section. Failed reading row %i.\n", i);
                         exit(1);
@@ -293,7 +296,7 @@ struct IO{
                 std::vector<std::string>::iterator molIt = std::find(molecules.begin(), molecules.end(), molecule);
                 molIndex = std::distance(molecules.begin(), molIt);
                 atoms[j]->particle = molIndex;
-                printf("Atom %d belongs to molecule %d\n", atoms[j]->index, atoms[j]->particle);
+                //printf("Atom %d belongs to molecule %d\n", atoms[j]->index, atoms[j]->particle);
                 //Create molecule
                 if (molIt == molecules.end()) {
                     molecules.push_back(molecule);

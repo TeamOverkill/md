@@ -23,6 +23,7 @@ namespace thermostats{
             double ran_u;
             double freq = 1.0 * Base::tStep; //0.1
 
+
             for(int i = 0; i < particles.numOfParticles; i++){
                 for(int j = 0; j < particles[i]->numOfAtoms; j++){
                     ran_u = ran2::get_random();
@@ -38,7 +39,7 @@ namespace thermostats{
     struct berendsen{
         static void set_velocity(Particles& particles){
             double velScale;
-            double couplingPara = 10.0;
+            double couplingPara = 1.0;
             double inT = get_temperature(particles);
 
             for(int i = 0; i < particles.numOfParticles; i++) {
