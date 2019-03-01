@@ -11,10 +11,12 @@ private:
 
 public:
     int numOfAtoms;
+    Eigen::Vector3d pos;
     Eigen::MatrixXd distances;   /*!< Triangular distance matrix containing all distances*/
     //3DMatrix displacements;   //Should really add this
     Eigen::MatrixXd forceMatrix; /*!< Force matrix containing all forces */
-
+    
+    
     void set_forces_zero();
     double kinetic_energy();
     void update_distances();
@@ -22,6 +24,14 @@ public:
     void initialize(int numOfAtoms);
     void remove_overlaps();
     bool overlap(Atom* a);
+     
+    Eigen::Vector3d find_pos(int i) {
+        Eigen::Vector3d posNew;
+        posNew.setZero();
+        posNew = this[i].pos;
+        return posNew;
+    }
+
 
     Atom* operator[](int i){
         return atoms[i];
@@ -35,5 +45,5 @@ public:
         atoms.push_back(atom);
         this->numOfAtoms++;
     }
-
+    
 };

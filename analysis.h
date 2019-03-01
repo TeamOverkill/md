@@ -68,13 +68,14 @@ class Density : public Analysis{
 class calc_msd : public Analysis {
     std::vector<double> msd;
     double msd_avg=0;
+    std::vector<Eigen::Vector3d> oldPos;
     double msd_avg_acc=0;
     public:
     calc_msd(int numOfParticles, std::string name, Geometry* geometry) : Analysis(geometry){
         this->name = name;
         this->numOfParticles = numOfParticles;
     }
-
+    /* 
     void sample(Particles& particles, int d) {
         for(int i = 0; i < particles.numOfParticles; i++) {
             msd_avg += geometry->dist(particles[i]->cm, particles[i]->find_cm())*geometry->dist(particles[i]->cm, particles[i]->find_cm());
@@ -83,9 +84,33 @@ class calc_msd : public Analysis {
         if (numOfSamples == 0) 
             msd.push_back(0);
         msd_avg /= numOfParticles;
-        msd.push_back(msd_avg);
+        msd_avg_acc += msd_avg;
+        msd.push_back(msd_avg_acc);
         this->numOfSamples++;
     }
+    */
+    void sample(Particles& particles, int d) {
+        for(int i = 0; i < particles.numOfParticles; i++) {
+            if(particles.atoms[i]->name == "O") {
+                if (numOfSamples==0){
+                    oldPos.push_back(particles.atoms[i]->pos);
+                }
+                else {
+                    msd_avg += geometry->dist(particles.atoms[i]->pos, oldPos[i])*geometry->dist(particles.atoms[i]->pos, oldPos[i]);
+                    oldPos.push_back(particles.atoms[i]->pos);
+                }
+            } //std::cout << "current cm: " << particles[i]->cm << "\nNew cm: " <<  particles[i]->find_cm() << "\n";
+        }
+        if (numOfSamples == 0) 
+            msd.push_back(0);
+        else {
+            msd_avg /= numOfParticles;
+            msd_avg_acc += msd_avg;
+            msd.push_back(msd_avg_acc);
+        }
+        this->numOfSamples++;
+    }
+
 
     void save(){
             //for(int i = 0; i < numOfParticles; i++) {

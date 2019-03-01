@@ -78,7 +78,7 @@ public:
             pm.get_forces(particles, geometry);                                      /* Calculate new forces */
             integrator.second_step(particles);                                        /* Second half step of integrator */
 
-            //thermostats::berendsen::set_velocity(particles);              /* Apply thermostat */
+            thermostats::andersen::set_velocity(particles);              /* Apply thermostat */
             temperature = thermostats::get_temperature(particles);
 
             //pressure = barostats::get_pressure();
@@ -87,7 +87,7 @@ public:
             Base::temperatures[i] = temperature;
 
             if(i % frames.fStep == 0){
-                if(i > 10000) {
+                if(i > 1000) {
                     histo->sample(particles, 1);
                     msd->sample(particles, 1);
                 }

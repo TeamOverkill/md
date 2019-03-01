@@ -41,6 +41,13 @@ class Atom{
         double kinetic_energy();
         void random_move(double stepSize);
         Eigen::Vector3d get_disp(Atom* otherAtom);
-
+        /*
+        Eigen::Vector3d find_pos() {
+            Eigen::Vector3d posNew;
+            posNew.setZero();
+            posNew = this->atoms->pos;
+            return posNew;
+        }
+        */
 };
 /** @}*/

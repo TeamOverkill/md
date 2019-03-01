@@ -25,6 +25,7 @@ public:
         return cmNew/mass;
         
     }
+    
     void push_back(Atom* atom){
         atoms.push_back(atom);
         numOfAtoms++;

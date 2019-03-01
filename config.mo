@@ -1,4 +1,4 @@
-nop 36
+nop 648
 boxdim 10
 iter 10000
 temperature 300
