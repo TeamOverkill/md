@@ -4,56 +4,39 @@
 ############
 # TOPOLOGY #
 ############
-BONDS
-1 2
-2 3
-4 5
-5 6
-7 8
-8 9
-10 11
-11 12
-13 14
-14 15
-16 17
-17 18
 
-ANGLES
-1 2 3
-4 5 6
-7 8 9
-10 11 12
-13 14 15
-16 17 18
 
 MASS
-OW 16.0
-HW 1.008
+Na 16.0
+Cl 1.008
 
 ##########
 # BONDED #
 ##########
 #Type        strength        Equilibrium length
 HARMONIC
-OW-HW        221576          0.10120
+
 
 ANGULAR_HARMONIC
-HW-OW-HW     158.78          1.976
+
 
 ##############
 # NON-BONDED #
 ##############
 #             sigma              epsilon
 LJ
-OW            0.150093           0.01422
-HW            0.000000           0.00000
+Na            0.3165492          0.650299
+Cl            0.000000           0.00000
+
+#OW            0.3165492          0.650299
 
 CHARGE
-OW -0.82
-HW 0.41
+Na -1.0
+Cl 1.0
 
 RADIUS
-OW 1.0
-HW 1.0
+Na 1.0
+Cl 1.0
+
 
 # END OF FILE

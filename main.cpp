@@ -52,7 +52,7 @@ int main(int argc, char *argv[]){
     Particles particles;
     IO io;
     particles = io.read_frame(structureFile);
-
+    printf("Done reading frame\n");
     /// Get parameters from parameter file
     std::map<std::string, std::map<std::string, std::vector<double> > > params = io.read_par(paramsFile, particles);
 
@@ -81,7 +81,7 @@ int main(int argc, char *argv[]){
     /*!< Create Geometry object*/
     Geometry* geometry = new Rectangular<true, true, true>(1.86893, 1.85529, 1.85963);//parser.boxDim, parser.boxDim, parser.boxDim);
 
-    potentials::ewald::initialize(particles, geometry);
+    //potentials::ewald::initialize(particles, geometry);
 
     MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic, potentials::LJ, potentials::coulomb> > engine(geometry);
     //MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald, potentials::LJRep> > engine(geometry);

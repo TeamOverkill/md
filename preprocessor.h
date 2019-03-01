@@ -107,7 +107,7 @@ public:
 
 
                                                          /// Print params file ///
-        FILE *f = fopen("params_prep.mo", "w");
+        FILE *f = fopen("params_prep.par", "w");
 
         if(f == NULL){
             printf("Can't open file!\n");
