@@ -22,7 +22,7 @@ namespace integrators{
                 particles.atoms[i]->pos = particles.atoms[i]->pos.cwiseProduct(
                         Base::dimensionality);   //Multiply with dimensionality
 
-                if (particles.atoms[i]->pos.norm() > sqrt(3) * Base::boxDim + 1) {
+                if (particles.atoms[i]->pos.norm() > sqrt(3) * geometry->box[0] + 1) {
                     printf("\nAtom outside box\n");
                     std::cout << particles.atoms[i]->pos << std::endl;
                     exit(1);
@@ -58,7 +58,6 @@ namespace integrators{
                 particles[i].vel += -epsilon / couplingStrength * particles.atoms[i].vel;
             }
         }
-<<<<<<< HEAD
     };
     */
 }

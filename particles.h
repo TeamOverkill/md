@@ -123,13 +123,15 @@ public:
             distances[i].resize(atoms.numOfAtoms);
         }
 
-        displacements.resize(atoms.numOfAtoms);
-        for(int i = 0; i < atoms.numOfAtoms; i++){
-            displacements[i].resize(atoms.numOfAtoms);
+        this->atoms.displacements.resize(atoms.numOfAtoms);
+        std::for_each(this->atoms.displacements.begin(), this->atoms.displacements.end(), [=](std::vector<Eigen::Vector3d> &row){ row.resize(this->atoms.numOfAtoms); });
+        /*for(int i = 0; i < atoms.numOfAtoms; i++){
+            atoms.displacements[i].resize(atoms.numOfAtoms);
             for(int j = 0; j < atoms.numOfAtoms; j++){
-                displacements[i][j] = Eigen::Vector3d(0, 0, 0);
+                atoms.displacements[i][j] = Eigen::Vector3d(0, 0, 0);
             }
-        }
+        }*/
+        this->atoms.forceMatrix.resize(this->atoms.numOfAtoms, this->atoms.numOfAtoms);
     }
 
     void update_distances(Geometry *geometry){
@@ -142,11 +144,18 @@ public:
     }
 
     void update_displacements(Geometry *geometry){
-        for(int i = 0; i < atoms.numOfAtoms; i++){
-            for(int j = i + 1; j < atoms.numOfAtoms; j++){
-                displacements[i][j] = geometry->disp(atoms[i]->pos, atoms[j]->pos);
-                displacements[j][i] = -1.0 * displacements[i][j];
+        for(int i = 0; i < this->atoms.numOfAtoms; i++){
+            for(int j = i + 1; j < this->atoms.numOfAtoms; j++){
+                this->atoms.displacements[i][j] = geometry->disp(this->atoms[i]->pos, this->atoms[j]->pos);
+                this->atoms.displacements[j][i] = -1.0 * this->atoms.displacements[i][j];
             }
         }
+        /*
+        for(int i = 0; i < displacements.size(); i++){
+            for(int j = 0; j < displacements[i].size(); j++){
+                std::cout << i << " " << j << " " << displacements[i][j] << std::endl;
+            }
+        }
+         */
     }
 };

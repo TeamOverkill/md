@@ -115,7 +115,7 @@ class rdf : public Analysis{
         this->name = name;
         this->bins = bins;
         this->numOfAtoms = numOfAtoms; 
-        this->binWidth = sqrt(3*Base::boxDim*Base::boxDim) / bins;
+        this->binWidth = sqrt(3.0 * geometry->box[0] * geometry->box[1]) / bins;
         this->cnt1 = 0;
         this->histo.resize(bins);
         std::fill(this->histo.begin(), this->histo.end(), 0);   //Set all bins to zero
@@ -161,12 +161,12 @@ class rdf : public Analysis{
     void save(){
         for(int i = 0; i < bins; i++){
             double avgConc;
-            if (i==bins-1){ 
-                avgConc = this->numOfAtoms/(Base::boxDim*Base::boxDim*Base::boxDim);
+            if (i == bins - 1){
+                avgConc = this->numOfAtoms/(Base::boxDim * Base::boxDim * Base::boxDim);
                 //printf("Average number of Cl atoms is: %f\n", avgConc/2);
             }
             //printf("Surface area: %f\n", 4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth);
-            this->histo[i] = this->histo[i] / (4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth * pow(this->numOfAtoms,2)/4 * this->numOfSamples) * (Base::boxDim*Base::boxDim*Base::boxDim);
+            this->histo[i] = this->histo[i] / (4.0 * constants::PI * (i + 1) * this->binWidth * (i + 1) * this->binWidth * this->binWidth * pow(this->numOfAtoms, 2) / 4.0 * this->numOfSamples) * (Base::boxDim * Base::boxDim * Base::boxDim);
                        //histo[i] / this->numOfAtoms / (4 * constants::PI * (i + 1) * this->binWidth * (i + 1) * this->binWidth * this->binWidth);
         }  
         int i = 0;

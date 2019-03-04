@@ -42,7 +42,7 @@ double Atom::distance(Atom* otherAtom){
 
 /*! Calculates the distance between two atoms using the minimum image convention:
 */
-double Atom::distance_pbc(Atom *otherAtom){
+/*double Atom::distance_pbc(Atom *otherAtom){
     Eigen::Vector3d disp;
     disp = otherAtom->pos - this->pos;
 
@@ -65,7 +65,7 @@ double Atom::distance_pbc(Atom *otherAtom){
         disp[2] -= Base::boxDim;
     }
     return disp.norm();
-}
+}*/
 
 /*! Calculates the kinetic energy of an atom:
 \f[ K = \frac{m * |v|}{2} = \frac{m * \sqrt{v_x^2 + v_y^2 + v_z^2}}{2}^2
@@ -99,6 +99,9 @@ double Atom::kinetic_energy(){
     }
 \endcode
 */
+
+
+/*
 void Atom::pbc(){
     if(this->pos[0] > Base::boxDim){
         this->pos[0] -= Base::boxDim;
@@ -119,13 +122,16 @@ void Atom::pbc(){
         this->pos[2] += Base::boxDim;
     }
 }
+*/
+
 
 /*!
 * Checks for wall collisions and uses perfect elastic collision.
 */
+/*
 void Atom::hard_walls(){
-    if(this->pos[0] >= Base::boxDim - this->radius){    /*! If atom is touching or outside the wall in the x-dimension*/
-        this->vel[0] *= -1;                             /*! Reverse velocity in the x-dimension*/
+    if(this->pos[0] >= Base::boxDim - this->radius){
+        this->vel[0] *= -1;
     }
     if(this->pos[0] <= this->radius){ ;
         this->vel[0] *= -1;
@@ -143,7 +149,9 @@ void Atom::hard_walls(){
         this->vel[2] *= -1;
     }
 }
+*/
 
+/*
 Eigen::Vector3d Atom::get_disp(Atom *otherAtom){
     Eigen::Vector3d disp;
     disp = otherAtom->pos - this->pos;
@@ -168,6 +176,7 @@ Eigen::Vector3d Atom::get_disp(Atom *otherAtom){
     }
     return disp;
 }
+*/
 
 void Atom::random_move(double stepSize){
     this->pos[0] += (ran2::get_random() * 2.0 - 1.0) * stepSize;
