@@ -17,7 +17,7 @@
 #include "potentialmanager.h"
 #include "geometries.h"
 
-//typedef PotentialManager<potentials::magnetic> PotMan;
+typedef Geometry<Rectangular<true, true, true>> Rect;
 
 int main(int argc, char *argv[]){
 
@@ -96,11 +96,14 @@ int main(int argc, char *argv[]){
     Frames frames(parser.numberOfFrames, particles.atoms.numOfAtoms, parser.saveFreq);
 
     /*!< Create Geometry object*/
-    Geometry* geometry = new Rectangular<true, true, true>(box[0], box[1], box[2]);//parser.boxDim, parser.boxDim, parser.boxDim);
+    Rect* geometry = new Rectangular<true, true, true>(box[0], box[1], box[2]);
+    //parser.boxDim, parser.boxDim, parser.boxDim);
 
     //potentials::ewald::initialize(particles, geometry);
 
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic, potentials::LJ> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::LJRep, potentials::coulomb>,
+            Rect> engine(geometry);
+
     //MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald, potentials::LJRep> > engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */

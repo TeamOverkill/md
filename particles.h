@@ -134,7 +134,10 @@ public:
         this->atoms.forceMatrix.resize(this->atoms.numOfAtoms, this->atoms.numOfAtoms);
     }
 
-    void update_distances(Geometry *geometry){
+
+
+    template<typename T>
+    void update_distances(T *geometry){
         for(int i = 0; i < atoms.numOfAtoms; i++){
             for(int j = i + 1; j < atoms.numOfAtoms; j++){
                 distances[i][j] = geometry->dist(atoms[i]->pos, atoms[j]->pos);
@@ -143,7 +146,9 @@ public:
         }
     }
 
-    void update_displacements(Geometry *geometry){
+
+    template<typename T>
+    void update_displacements(T *geometry){
         for(int i = 0; i < this->atoms.numOfAtoms; i++){
             for(int j = i + 1; j < this->atoms.numOfAtoms; j++){
                 this->atoms.displacements[i][j] = geometry->disp(this->atoms[i]->pos, this->atoms[j]->pos);

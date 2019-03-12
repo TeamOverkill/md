@@ -14,7 +14,7 @@
  */
 
 /*! Molecular Dynamics Engine*/
-template<typename I, typename P>
+template<typename I, typename P, typename G>
 class MDEngine {
    /*
    * This namespace should hold all MD specific algorithms, hence the 'engine' of the program
@@ -22,10 +22,11 @@ class MDEngine {
 
     I integrator;
     P pm;
-    Geometry* geometry;
+    G* geometry;
 
 public:
-    MDEngine(Geometry* geometry){
+    template<typename T>
+    MDEngine(T* geometry){
         this->geometry = geometry;
     }
 
@@ -51,7 +52,7 @@ public:
         double cummulativePress = 0;
         //Analysis* histo = new Density(100, "histo_1.txt");
 
-        Analysis* histo = new rdf(100, particles.atoms.numOfAtoms, "rdf.txt", geometry);
+        //Analysis* histo = new rdf(100, particles.atoms.numOfAtoms, "rdf.txt", geometry);
         Analysis* msd = new calc_msd(particles.numOfParticles, "msd.txt", geometry);
 
         //std::vector<int> v = {0};
@@ -85,7 +86,7 @@ public:
             pm.get_forces(particles, geometry);                                      /* Calculate new forces */
             integrator.second_step(particles);                                        /* Second half step of integrator */
 
-            //thermostats::berendsen::set_velocity(particles);              /* Apply thermostat */
+            thermostats::berendsen::set_velocity(particles);              /* Apply thermostat */
             temperature = thermostats::get_temperature(particles);
 
             //pressure = barostats::get_pressure();
@@ -95,7 +96,7 @@ public:
 
             if (i % frames.fStep == 0) {
                 if (i > 10000) {
-                    histo->sample(particles, 1);
+                    //histo->sample(particles, 1);
                     msd->sample(particles, 1);
                 }
 
@@ -106,7 +107,7 @@ public:
                 Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
                 Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
                 end_t = omp_get_wtime();
-                printf("Progress: %.1lf%% Temp: %.1lf Avg. temp: %.1lf  Pot Energy: %.5lf Kin Energy: %.3lf, Speed: %.1lf ns / h\r",
+                printf("Progress: %.1lf%% Temp: %.1lf Avg. temp: %.1lf  Pot Energy: %.5lf Kin Energy: %.3lf, Speed: %.1lf ps / h\r",
                        (double) i / Base::iterations * 100.0, temperature, cummulativeTemp / i,
                        Base::potentialEnergies[samples],
                        Base::kineticEnergies[samples], k * Base::tStep / ((end_t - start_t) / 3600.0));
@@ -124,7 +125,7 @@ public:
             }
             k++;
         }
-        histo->save();
+        //histo->save();
         //track->save();
         msd->save();
         printf("\n");    

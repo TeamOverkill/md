@@ -9,12 +9,13 @@ class Analysis{
     double binWidth;
     int cnt1, cnt2;
     std::string name;
-    Geometry* geometry;
+    Geometry<Rectangular<true, true, true>>* geometry;
 
     virtual void sample(Particles& particles, int d) = 0;
     virtual void save() = 0;
 
-    Analysis(Geometry* geometry){
+    //template<typename T>
+    Analysis(Geometry<Rectangular<true, true, true>>* geometry){
         this->geometry = geometry;
     }
 };
@@ -69,7 +70,8 @@ class calc_msd : public Analysis {
     std::vector<std::vector<double>> msd;
     
     public:
-    calc_msd(int numOfParticles, std::string name, Geometry* geometry) : Analysis(geometry){
+    template<typename T>
+    calc_msd(int numOfParticles, std::string name, T geometry) : Analysis(geometry){
         this->name = name;
         this->numOfParticles = numOfParticles;
     }
@@ -111,7 +113,8 @@ class calc_msd : public Analysis {
 class rdf : public Analysis{
 
     public:
-    rdf(int bins, int numOfAtoms, std::string name, Geometry* geometry) : Analysis(geometry){ 
+    template<typename T>
+    rdf(int bins, int numOfAtoms, std::string name, T* geometry) : Analysis(geometry){
         this->name = name;
         this->bins = bins;
         this->numOfAtoms = numOfAtoms; 
@@ -120,19 +123,6 @@ class rdf : public Analysis{
         this->histo.resize(bins);
         std::fill(this->histo.begin(), this->histo.end(), 0);   //Set all bins to zero
     }
-    /*    
-    void sample(Particles& particles, int d){
-        for(int i = 0; i < particles.atoms.numOfAtoms; i=i+2){ 
-            for(int j = 1; j < particles.atoms.numOfAtoms; j=j+2){
-                if(i != j) {
-                    double distance = (particles.atoms[i]->pos - particles.atoms[j]->pos).norm();
-                    this->histo[(int) (distance / binWidth)]++;
-                }
-            }
-        }
-        this->numOfSamples++;
-    }
-    */
     
     void sample(Particles& particles, int d){
         //printf("test\n");
@@ -166,7 +156,9 @@ class rdf : public Analysis{
                 //printf("Average number of Cl atoms is: %f\n", avgConc/2);
             }
             //printf("Surface area: %f\n", 4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth);
-            this->histo[i] = this->histo[i] / (4.0 * constants::PI * (i + 1) * this->binWidth * (i + 1) * this->binWidth * this->binWidth * pow(this->numOfAtoms, 2) / 4.0 * this->numOfSamples) * (Base::boxDim * Base::boxDim * Base::boxDim);
+            this->histo[i] = this->histo[i] / (4.0 * constants::PI * (i + 1) * this->binWidth * (i + 1) *
+                        this->binWidth * this->binWidth * pow(this->numOfAtoms, 2) / 4.0 * this->numOfSamples) *
+                             (Base::boxDim * Base::boxDim * Base::boxDim);
                        //histo[i] / this->numOfAtoms / (4 * constants::PI * (i + 1) * this->binWidth * (i + 1) * this->binWidth * this->binWidth);
         }  
         int i = 0;
@@ -184,12 +176,18 @@ class rdf : public Analysis{
     }
 };
 
+
+
+
+
+
 class Track : public Analysis{
     std::vector<int> indices;
     std::vector<Eigen::Vector3d> positions;
 
 public:
-    Track(std::vector<int> indices, std::string name, Geometry* geometry) : Analysis(geometry){
+    template<typename T>
+    Track(std::vector<int> indices, std::string name, T* geometry) : Analysis(geometry){
         this->indices = indices;
         this->name = name;
     }

@@ -46,7 +46,8 @@ namespace potentials{
         //static constexpr double springConstant = 12657.0;        // [kJ * nm^(-2) * mol^(-1)]
 
     public:
-        inline static double energy(Particles& particles, Geometry* geometry){
+        template<typename T>
+        inline static double energy(Particles& particles, T* geometry){
             double energy = 0;
 
 
@@ -59,7 +60,8 @@ namespace potentials{
             return energy;
         }
 
-        inline static void forces(Particles& particles, Geometry* geometry) {
+        template<typename T>
+        inline static void forces(Particles& particles, T* geometry) {
             /*!
             * Harmonic potential
             */
@@ -96,7 +98,8 @@ namespace potentials{
     struct angular_harmonic{
 
     public:
-        inline static double energy(Particles& particles, Geometry* geometry){
+        template<typename T>
+        inline static double energy(Particles& particles, T* geometry){
             double energy = 0;
             for(int i = 0; i < particles.numOfParticles; i++) {
                 for (auto angle : particles[i]->angles) {
@@ -116,7 +119,8 @@ namespace potentials{
             return energy;
         }
 
-        inline static void forces(Particles& particles, Geometry* geometry) {
+        template<typename T>
+        inline static void forces(Particles& particles, T* geometry) {
             double ab_dist, bc_dist, ba_dist, cb_dist, theta;
             Eigen::Vector3d a_force, c_force, ab_disp, bc_disp, ba_disp, cb_disp;
 
@@ -160,7 +164,8 @@ namespace potentials{
                                             //(4.0 * 3.141592653589793238 * 8.854187817E-12) * 1E6 * 6.02214085774E23;//constants::E * constants::E / (4 * constants::PI * 78.0 * constants::VP);  //[kJ * nm * mol^-1]
 
     public:
-        inline static double energy(Particles& particles, Geometry* geometry){
+        template<typename T>
+        inline static double energy(Particles& particles, T* geometry){
             double energy = 0;
             //#pragma omp for schedule(dynamic, 50)
             for(int i = 0; i < particles.numOfParticles; i++){
@@ -177,7 +182,8 @@ namespace potentials{
             return energy * cFactor;
         }
 
-        inline static void forces(Particles& particles, Geometry* geometry){
+        template<typename T>
+        inline static void forces(Particles& particles, T* geometry){
             double magnitude = 0;
             Eigen::Vector3d disp;
             //#pragma omp for schedule(dynamic, 50)
@@ -216,7 +222,8 @@ namespace potentials{
     struct LJRep{
 
     public:
-        inline static void forces(Particles& particles, Geometry* geometry) {
+        template<typename T>
+        inline static void forces(Particles& particles, T* geometry) {
             /*!
             * Calculate the forces using a Lennard-Jones potential
             */
@@ -232,7 +239,7 @@ namespace potentials{
                     double r2 = dr.dot(dr);                             // [nm^2]
                     double fr2 = sigma * sigma / r2;                    // unitless
                     double fr6 = fr2 * fr2 * fr2;                       // unitless
-                    double fr = 48 * epsilon * fr6 * fr6 / r2;  // [kJ/(nm^2*mol)]
+                    double fr = 48.0 * epsilon * fr6 * fr6 / r2;  // [kJ/(nm^2*mol)]
 
                     particles.atoms[i]->force += fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
                     particles.atoms[j]->force -= fr * dr;                         //[(kJ/(nm*mol)] = [dalton * nm/ps^2]
@@ -241,7 +248,8 @@ namespace potentials{
             }
         }
 
-        inline static double energy(Particles& particles, Geometry* geometry) {
+        template<typename T>
+        inline static double energy(Particles& particles, T* geometry) {
             /*!
             * Calculate the energy using a Lennard-Jones potential
             */
@@ -281,7 +289,8 @@ namespace potentials{
         /*!
         * Get the forces as given by the LJ potential
         */
-        inline static void forces(Particles &particles, Geometry *geometry) {
+        template<typename T>
+        inline static void forces(Particles &particles, T* geometry) {
 
             //#pragma omp parallel default(none) shared(particles) if(particles.atoms.numOfAtoms >= 400)
             //{
@@ -299,7 +308,7 @@ namespace potentials{
                     for(int j = i + 1; j < particles.numOfParticles; j++){
                         for(int ia = 0; ia < particles[i]->numOfAtoms; ia++){
                             for(int ja = 0; ja < particles[j]->numOfAtoms; ja++){
-                                asm("#it begins here!");
+                                asm("#Lennard Jones begin!");
                                 sigma =  (particles[i]->atoms[ia]->lj.first + particles[j]->atoms[ja]->lj.first) / 2.0;
                                 epsilon = std::sqrt(particles[i]->atoms[ia]->lj.second * particles[j]->atoms[ja]->lj.second);
                                 dr = geometry->disp(particles[i]->atoms[ia]->pos,
@@ -313,7 +322,7 @@ namespace potentials{
                                 particles[j]->atoms[ja]->force -= fr * dr;
                                 //private_forces[particles[i]->atoms[ia]->index] += fr * dr;
                                 //private_forces[particles[j]->atoms[ja]->index] -= fr * dr;
-                                asm("#it ends here!");
+                                asm("#Lennard Jones end!");
                             }
                         }
                     }
@@ -333,7 +342,8 @@ namespace potentials{
             U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right)
         \f]
         */
-        inline static double energy(Particles& particles, Geometry* geometry) {
+        template<typename T>
+        inline static double energy(Particles& particles, T* geometry) {
 
             double distance;
             double energy = 0;
@@ -464,7 +474,7 @@ namespace potentials{
      
 
     struct ewald{
-
+        static constexpr double cFactor = 138.935457544094654;
     public:
         static int kNumMax;
         static double selfTerm;
@@ -542,8 +552,8 @@ namespace potentials{
 
 
 
-
-        static inline void initialize(Particles& particles, Geometry* geometry){
+        template<typename T>
+        static inline void initialize(Particles& particles, T* geometry){
             int i = 0;
             double r = 0;
             double qq = 0;
@@ -598,15 +608,15 @@ namespace potentials{
                     rk = rk * charge;
                     rho += rk;
                 }
-
                 rkVec[k] = rho;
             }
+
             selfTerm = 0;
+
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
                 selfTerm += get_self_correction(particles.atoms[i]);
             }
             selfTerm = alpha/sqrt(constants::PI) * selfTerm;
-
         }
 
 
@@ -658,8 +668,8 @@ namespace potentials{
 
 
 
-
-        static inline double energy(Particles& particles, Geometry* geometry){
+        template<typename T>
+        static inline double energy(Particles& particles, T* geometry){
             double real = 0;
             double reciprocal = 0;
             double distance = 0;
@@ -685,20 +695,21 @@ namespace potentials{
             printf("self: %lf\n", selfTerm);*/
             //printf("Tinfoil Energy: %.10lf\n", (real + reciprocal) - selfTerm);
 
-            return 1.0 * (real + reciprocal) - selfTerm;
+            return cFactor * ((real + reciprocal) - selfTerm);
         }
 
 
 
 
 
-
-        static inline void forces(Particles& particles, Geometry* geometry){
+        template<typename T>
+        static inline void forces(Particles& particles, T* geometry){
             //reset();
             //initialize(particles, geometry);
             update_factors(particles);
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){
-                particles.atoms[i]->force += 1.0 * (real_force(particles.atoms[i], particles, geometry) + reciprocal_force(particles.atoms[i], particles, geometry));
+                particles.atoms[i]->force += cFactor * (real_force(particles.atoms[i], particles, geometry) +
+                                                        reciprocal_force(particles.atoms[i], particles, geometry));
                 //particles.atoms[i]->force += reciprocal_force(particles.atoms[i], particles, geometry);
             }
             //printf("Ewald force x: %lf, y: %lf\n", particles.atoms[0]->force[0], particles.atoms[0]->force[1]);
@@ -709,8 +720,8 @@ namespace potentials{
 
 
         ////// Use resFac instead of exp() terms since it is multiplied by a factor which is probably missing here  ///////////////
-
-        static inline Eigen::Vector3d reciprocal_force(Atom* a, Particles& particles, Geometry* geometry){
+        template<typename T>
+        static inline Eigen::Vector3d reciprocal_force(Atom* a, Particles& particles, T* geometry){
             Eigen::Vector3d force;
             force.setZero();
             Eigen::Vector3d factor1;
@@ -740,8 +751,8 @@ namespace potentials{
 
 
 
-
-        static inline Eigen::Vector3d real_force(Atom* a, Particles& particles, Geometry* geometry){
+        template<typename T>
+        static inline Eigen::Vector3d real_force(Atom* a, Particles& particles, T* geometry){
             Eigen::Vector3d force;
             force.setZero();
             for(int i = 0; i < particles.atoms.numOfAtoms; i++){

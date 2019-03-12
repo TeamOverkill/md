@@ -5,8 +5,8 @@ namespace integrators{
     struct VelocityVerlet{
 
         //template <void (*boundary_func)(Atom &a)>
-
-        static inline void first_step(Particles &particles, Geometry *geometry) {
+        template<typename T>
+        static inline void first_step(Particles &particles, T *geometry) {
             /*!
             * Velocity Verlet integrator
             * First half step

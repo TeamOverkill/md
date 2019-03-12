@@ -2,7 +2,7 @@
 *.png
 *.gro
 *.txt
-
+*.s
 # Created by https://www.gitignore.io/api/c,c++,linux,macos,python
 ### CMAKE ###
 CMakeCache.txt
