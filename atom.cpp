@@ -21,6 +21,7 @@ void Atom::set_mb_velocity(){
     ran_u1 = ran2::get_random();
     random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);
     this->vel[1] = random_gauss * sqrt(constants::K_CORRECT * Base::temperature / this->mass);
+
     ran_u2 = ran2::get_random();
     ran_u1 = ran2::get_random();
     random_gauss = sqrt(-2 * log(ran_u1)) * sin(2 * constants::PI * ran_u2);

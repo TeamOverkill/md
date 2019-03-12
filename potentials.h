@@ -160,8 +160,7 @@ namespace potentials{
     */
     struct coulomb{
     private:
-        static constexpr double cFactor = 138.935457544094654;//1.6021766208E-19 * 1.6021766208E-19 /
-                                            //(4.0 * 3.141592653589793238 * 8.854187817E-12) * 1E6 * 6.02214085774E23;//constants::E * constants::E / (4 * constants::PI * 78.0 * constants::VP);  //[kJ * nm * mol^-1]
+        static constexpr double cFactor = 138.935457544094654;
 
     public:
         template<typename T>
@@ -192,17 +191,17 @@ namespace potentials{
                     for(int ia = 0; ia < particles[i]->numOfAtoms; ia++) {
                         for (int ja = 0; ja < particles[j]->numOfAtoms; ja++) {
 
-                            /*if(particles[i]->atoms[ia]->particle == particles[j]->atoms[ja]->particle){
-                                printf("Wrong coulomb\n");
-                                exit(1);
-                            }*/
-
                             disp = geometry->disp(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);
-                            //printf("distance: %lf\n", disp.norm());
-                            magnitude = cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q / (disp.squaredNorm());
-                            disp.normalize();
-                            particles[i]->atoms[ia]->force += magnitude * disp;
-                            particles[j]->atoms[ja]->force -= magnitude * disp;
+
+                            if (disp.norm() < 1.0) { 
+
+                                magnitude = cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q / disp.squaredNorm();
+                                disp.normalize();
+
+                                particles[i]->atoms[ia]->force += magnitude * disp;
+                                particles[j]->atoms[ja]->force -= magnitude * disp;
+
+                            }
                             //particles.atoms.forceMatrix(particles[i]->atoms[ia]->index, particles[j]->atoms[ja]->index) += magnitude;
                             //particles.atoms.forceMatrix(particles[j]->atoms[ja]->index, particles[i]->atoms[ia]->index) -= magnitude;
                         }
@@ -211,6 +210,88 @@ namespace potentials{
             }
         }
     };
+
+
+
+
+
+
+
+
+
+
+    /*!
+ *  \addtogroup Coulomb
+ *  @{
+*/
+    /*! Coulomb potential with cutoff
+    */
+    struct coulombCutoff{
+    private:
+        static constexpr double cFactor = 138.935457544094654;//1.6021766208E-19 * 1.6021766208E-19 /
+        //(4.0 * 3.141592653589793238 * 8.854187817E-12) * 1E6 * 6.02214085774E23;//constants::E * constants::E / (4 * constants::PI * 78.0 * constants::VP);  //[kJ * nm * mol^-1]
+
+    public:
+        template<typename T>
+        inline static double energy(Particles& particles, T* geometry){
+            double energy = 0;
+            double distance;
+            //#pragma omp for schedule(dynamic, 50)
+            for(int i = 0; i < particles.numOfParticles; i++){
+                for(int j = i + 1; j < particles.numOfParticles; j++){
+                    for(int ia = 0; ia < particles[i]->numOfAtoms; ia++) {
+                        for (int ja = 0; ja < particles[j]->numOfAtoms; ja++) {
+                            if (geometry->dist(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos) < 1.0) {
+                                distance = geometry->dist(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);
+                                energy += particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q /
+                                          distance * std::pow(1.0 - geometry->dist(particles[i]->atoms[ia]->pos,
+                                                                                   particles[j]->atoms[ja]->pos), 2);
+                            }
+                        }
+                    }
+                }
+            }
+            return energy * cFactor;
+        }
+
+        template<typename T>
+        inline static void forces(Particles& particles, T* geometry){
+            double magnitude = 0;
+            Eigen::Vector3d disp;
+            //#pragma omp for schedule(dynamic, 50)
+            for(int i = 0; i < particles.numOfParticles; i++){
+                for(int j = i + 1; j < particles.numOfParticles; j++){
+                    for(int ia = 0; ia < particles[i]->numOfAtoms; ia++) {
+                        for (int ja = 0; ja < particles[j]->numOfAtoms; ja++) {
+
+                            disp = geometry->disp(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);
+                            if (disp.norm() < 1.0) {
+
+                                magnitude = (cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q) /
+                                        disp.squaredNorm();
+
+                                disp.normalize();
+
+                                particles[i]->atoms[ia]->force += (magnitude -
+                                        cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q) * disp;
+                                particles[j]->atoms[ja]->force -= (magnitude -
+                                        cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q) * disp;
+
+                            }
+                            //particles.atoms.forceMatrix(particles[i]->atoms[ia]->index, particles[j]->atoms[ja]->index) += magnitude;
+                            //particles.atoms.forceMatrix(particles[j]->atoms[ja]->index, particles[i]->atoms[ia]->index) -= magnitude;
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+
+
+
+
+
 
     /*!
      *  \addtogroup LJRep
@@ -276,6 +357,16 @@ namespace potentials{
         }
     };
 
+
+
+
+
+
+
+
+
+
+
     /*!
      *  \addtogroup Lennard-Jones
      *  @{
@@ -295,7 +386,7 @@ namespace potentials{
             //#pragma omp parallel default(none) shared(particles) if(particles.atoms.numOfAtoms >= 400)
             //{
                 /// Variables should stay inside the paralell region
-                double r2, fr2, fr6, fr, sigma, epsilon;
+                double rr2, fr2, fr6, fr, sigma, epsilon;
                 Eigen::Vector3d dr;
                 std::vector<Eigen::Vector3d> private_forces(particles.atoms.numOfAtoms);
 
@@ -313,15 +404,16 @@ namespace potentials{
                                 epsilon = std::sqrt(particles[i]->atoms[ia]->lj.second * particles[j]->atoms[ja]->lj.second);
                                 dr = geometry->disp(particles[i]->atoms[ia]->pos,
                                                     particles[j]->atoms[ja]->pos);                 // [nm]
-                                //dr = particles.atoms.displacements[particles[i]->atoms[ia]->index][particles[j]->atoms[ja]->index];                 // [nm]
-                                r2 = 1.0 / dr.squaredNorm();                             // [nm^2]
-                                fr2 = sigma * sigma * r2;                    // unitless
+                                rr2 = 1.0 / dr.dot(dr);                             // [nm^2]
+                                fr2 = sigma * sigma * rr2;                    // unitless
                                 fr6 = fr2 * fr2 * fr2;                       // unitless
-                                fr = 48 * epsilon * fr6 * (fr6 - 0.5) * r2;  // [kJ/(nm^2*mol)]
+                                fr = 48.0 * epsilon * fr6 * (fr6 - 0.5) * rr2;  // [kJ/(nm^2*mol)]
                                 particles[i]->atoms[ia]->force += fr * dr;
                                 particles[j]->atoms[ja]->force -= fr * dr;
+                                 
                                 //private_forces[particles[i]->atoms[ia]->index] += fr * dr;
                                 //private_forces[particles[j]->atoms[ja]->index] -= fr * dr;
+
                                 asm("#Lennard Jones end!");
                             }
                         }
@@ -345,22 +437,21 @@ namespace potentials{
         template<typename T>
         inline static double energy(Particles& particles, T* geometry) {
 
-            double distance;
+            double distance, fr, fr2, fr6, sigma, epsilon;
             double energy = 0;
-            Eigen::Vector3d dr;
+
             for(int i = 0; i < particles.numOfParticles; i++) {
                 for (int j = i + 1; j < particles.numOfParticles; j++) {
                     for (int ia = 0; ia < particles[i]->numOfAtoms; ia++) {
                         for (int ja = 0; ja < particles[j]->numOfAtoms; ja++) {
-                            double sigma =  (particles[i]->atoms[ia]->lj.first + particles[j]->atoms[ja]->lj.first) / 2.0;
-                            double epsilon = std::sqrt(particles[i]->atoms[ia]->lj.second * particles[j]->atoms[ja]->lj.second);
 
+                            sigma =  (particles[i]->atoms[ia]->lj.first + particles[j]->atoms[ja]->lj.first) / 2.0;
+                            epsilon = std::sqrt(particles[i]->atoms[ia]->lj.second * particles[j]->atoms[ja]->lj.second);
                             distance = geometry->dist(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);     // [nm]
-                            //distance = dr.norm();                   // [nm]
-                            //distance = particles.atoms.distances(particles[i]->atoms[ia]->index, particles[j]->atoms[ja]->index);
-                            double fr = sigma / distance;           // unitless
-                            double fr2 = fr * fr;                   // unitless
-                            double fr6 = fr2 * fr2 * fr2;           // unitless
+
+                            fr = sigma / distance;           // unitless
+                            fr2 = fr * fr;                   // unitless
+                            fr6 = fr2 * fr2 * fr2;           // unitless
 
                             energy += epsilon * fr6 * (fr6 - 1.0);  // unitless
                         }
@@ -383,6 +474,131 @@ namespace potentials{
             return 4.0 * energy;    // [kJ/mol]
         }
     };
+
+
+
+
+
+
+
+
+
+    /*!
+    *  \addtogroup Lennard-Jones
+    *  @{
+   */
+    /*! The Lennard-Jones (LJ) potential
+    */
+    struct LJCutoff {
+
+    public:
+
+        /*!
+        * Get the forces as given by the LJ potential
+        */
+        template<typename T>
+        inline static void forces(Particles &particles, T* geometry) {
+
+            //#pragma omp parallel default(none) shared(particles) if(particles.atoms.numOfAtoms >= 400)
+            //{
+            /// Variables should stay inside the paralell region
+            double rr2, fr2, fr6, fr, sigma, epsilon;
+            Eigen::Vector3d dr;
+            std::vector<Eigen::Vector3d> private_forces(particles.atoms.numOfAtoms);
+
+            //for(int i = 0; i < particles.atoms.numOfAtoms; i++){
+            //    private_forces[i].setZero();
+            //}
+
+            //#pragma omp for schedule(dynamic, 50)
+            for(int i = 0; i < particles.numOfParticles; i++){
+                for(int j = i + 1; j < particles.numOfParticles; j++){
+                    for(int ia = 0; ia < particles[i]->numOfAtoms; ia++){
+                        for(int ja = 0; ja < particles[j]->numOfAtoms; ja++){
+                            asm("#Lennard Jones cutoff begin!");
+                            sigma =  (particles[i]->atoms[ia]->lj.first + particles[j]->atoms[ja]->lj.first) * 0.5;
+                            epsilon = std::sqrt(particles[i]->atoms[ia]->lj.second * particles[j]->atoms[ja]->lj.second);
+                            dr = geometry->disp(particles[i]->atoms[ia]->pos,
+                                                particles[j]->atoms[ja]->pos);                 // [nm]
+                            if (dr.norm() < 1.0) {
+                                rr2 = 1.0 / dr.dot(dr);                             // [nm^2]
+                                fr2 = sigma * sigma * rr2;                    // unitless
+                                fr6 = fr2 * fr2 * fr2;                       // unitless
+                                fr = 48.0 * epsilon * fr6 * (fr6 - 0.5) * rr2 * (1.0 - dr.norm()) * (1.0 - dr.norm());  // [kJ/(nm^2*mol)]
+                                particles[i]->atoms[ia]->force += fr * dr;
+                                particles[j]->atoms[ja]->force -= fr * dr;
+
+                                //private_forces[particles[i]->atoms[ia]->index] += fr * dr;
+                                //private_forces[particles[j]->atoms[ja]->index] -= fr * dr;
+                            }
+
+                            asm("#Lennard Jones cutoff end!");
+                        }
+                    }
+                }
+            }
+
+            /*#pragma omp critical
+            {
+                for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
+                    particles.atoms[i]->force += private_forces[i];
+                }
+            }
+         }*/
+        }
+
+        /*! Calculate the energy using a Lennard-Jones potential which is given by
+        \f[
+            U_{ij}^{LJ} = 4 \pi \epsilon \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6\right)
+        \f]
+        */
+        template<typename T>
+        inline static double energy(Particles& particles, T* geometry) {
+
+            double distance;
+            double energy = 0;
+            Eigen::Vector3d dr;
+            for(int i = 0; i < particles.numOfParticles; i++) {
+                for (int j = i + 1; j < particles.numOfParticles; j++) {
+                    for (int ia = 0; ia < particles[i]->numOfAtoms; ia++) {
+                        for (int ja = 0; ja < particles[j]->numOfAtoms; ja++) {
+                            double sigma =  (particles[i]->atoms[ia]->lj.first + particles[j]->atoms[ja]->lj.first) / 2.0;
+                            double epsilon = std::sqrt(particles[i]->atoms[ia]->lj.second * particles[j]->atoms[ja]->lj.second);
+
+                            dr = geometry->disp(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);     // [nm]
+                            distance = dr.norm();                   // [nm]
+                            if (distance < 1.0) {
+                                double fr = sigma / distance;           // unitless
+                                double fr2 = fr * fr;                   // unitless
+                                double fr6 = fr2 * fr2 * fr2;           // unitless
+
+                                energy += epsilon * fr6 * (fr6 - 1.0) * (1.0 - distance) * (1.0 - distance);  // unitless
+                            }
+                        }
+                    }
+                }
+            }
+            /*#pragma omp parallel for reduction(+:energy) schedule(dynamic, 50) private(distance, dr) shared(particles) if(particles.atoms.numOfAtoms >= 400)
+            for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
+                for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
+                    dr = geometry->disp(particles.atoms[i]->pos, particles.atoms[j]->pos);     // [nm]
+                    distance = dr.norm();                   // [nm]
+                    double fr = sigma / distance;           // unitless
+                    double fr2 = fr * fr;                   // unitless
+                    double fr6 = fr2 * fr2 * fr2;           // unitless
+
+                    energy += fr6 * (fr6 - 1);  // unitless
+
+                }
+            }*/
+            return 4.0 * energy;    // [kJ/mol]
+        }
+    };
+
+
+
+
+
 
 
 

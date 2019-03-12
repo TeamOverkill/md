@@ -76,39 +76,21 @@ int main(int argc, char *argv[]){
     ///Initialize particles and set all parameters
     particles.initialize(params);
 
-    /*!< Initialize atom variables, remove soon. Is not used */
-    /*Atoms atoms;
-    atoms.initialize(parser.numOfAtoms);
-    atoms.remove_overlaps();
-
-    std::vector< std::vector<int> > bonds;
-
-    for(int i = 0; i < atoms.numOfAtoms; i++){
-        Particle *p1 = new Particle();
-        p1->push_back(atoms[i]);
-        atoms[i]->particle = i;
-        particles.push_back(p1);
-    }
-
-    particles.atoms = atoms;*/
 
     /*!< Initialize Frames */
     Frames frames(parser.numberOfFrames, particles.atoms.numOfAtoms, parser.saveFreq);
 
     /*!< Create Geometry object*/
     Rect* geometry = new Rectangular<true, true, true>(box[0], box[1], box[2]);
-    //parser.boxDim, parser.boxDim, parser.boxDim);
 
     //potentials::ewald::initialize(particles, geometry);
 
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::LJRep, potentials::coulomb>,
-            Rect> engine(geometry);
-
-    //MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald, potentials::LJRep> > engine(geometry);
+    /*! Create simulation object */
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic,
+            potentials::LJCutoff, potentials::coulombCutoff>, Rect> engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
-
     double start_time = omp_get_wtime();
     engine.run(particles, frames);
     printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);

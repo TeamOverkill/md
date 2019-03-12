@@ -3,9 +3,11 @@ class Analysis{
 
     std::vector<double> histo;
     int numOfSamples;
+    int numOfPairs;
     int numOfAtoms;
     int numOfParticles;
     int bins;
+    int sampleFreq;
     double binWidth;
     int cnt1, cnt2;
     std::string name;
@@ -67,23 +69,73 @@ class Density : public Analysis{
 */
 
 class calc_msd : public Analysis {
-    std::vector<std::vector<double>> msd;
-    
+    std::vector<double> msd;
+    std::vector<Eigen::Vector3d> oldPos;
+    double msd_avg=0;
+    double msd_avg_acc=0;
+    int cnt;
     public:
+
+
     template<typename T>
-    calc_msd(int numOfParticles, std::string name, T geometry) : Analysis(geometry){
+    calc_msd(int numOfParticles, int sampleFreq, std::string name, T geometry) : Analysis(geometry){
         this->name = name;
         this->numOfParticles = numOfParticles;
+        this->numOfSamples = 0;
+        this->sampleFreq = sampleFreq;
     }
-
+    /* 
     void sample(Particles& particles, int d) {
-        std::vector<double> rows;
         for(int i = 0; i < particles.numOfParticles; i++) {
-            rows.push_back((particles[i]->cm - particles[i]->find_cm()).norm()*(particles[i]->cm - particles[i]->find_cm()).norm());
+            msd_avg += geometry->dist(particles[i]->cm, particles[i]->find_cm())*geometry->dist(particles[i]->cm, particles[i]->find_cm());
+            //std::cout << "current cm: " << particles[i]->cm << "\nNew cm: " <<  particles[i]->find_cm() << "\n";
         }
-        msd.push_back(rows);
+        if (numOfSamples == 0) 
+            msd.push_back(0);
+        msd_avg /= numOfParticles;
+        msd_avg_acc += msd_avg;
+        msd.push_back(msd_avg_acc);
         this->numOfSamples++;
     }
+    */
+    void sample(Particles& particles, int d) { 
+        this->msd_avg=0.000; 
+        cnt=0;
+        for(int i = 0; i < particles.atoms.numOfAtoms; i++) {
+            if(particles.atoms[i]->name == "O") {
+                
+                if (this->numOfSamples==0){
+                    this->oldPos.push_back(particles.atoms[i]->pos);
+                    //std::cout << "Position of particle: " << particles.atoms[i]->pos << "\n";
+                }
+                else {
+                    //printf("index, %i\n", i);
+                    //printf("Number of atoms: %i\n", particles.atoms.numOfAtoms);
+                    this->msd_avg += geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt))*geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt));
+                    //if (cnt == particles.numOfParticles-1){
+                    //    std::cout << "Old pos: " << oldPos.at(cnt) << "\n";
+                    //}
+                    //if (numOfSamples%100==0) 
+
+                        //std::cout << "Displacement of particle: " << geometry->dist(particles.atoms[i]->pos, oldPos[i]) << "\n\n";                 
+                    
+                    this->oldPos.at(cnt) = particles.atoms[i]->pos;
+                }
+                cnt++;
+            } //std::cout << "current cm: " << particles[i]->cm << "\nNew cm: " <<  particles[i]->find_cm() << "\n";
+        }
+
+
+        if (this->numOfSamples == 0) 
+            this->msd.push_back(0);
+        else {
+            this->msd_avg /= this->numOfParticles;
+            this->msd_avg_acc += this->msd_avg;
+            this->msd.push_back(this->msd_avg_acc);
+        }
+        this->numOfSamples++;
+    }
+
 
     void save(){
             //for(int i = 0; i < numOfParticles; i++) {
@@ -95,13 +147,13 @@ class calc_msd : public Analysis {
             exit(1);
         }
         
-        for(int i = 0; i < numOfParticles; i++) {
-            std::string row = ""; 
-            for(int j = 0; j < numOfSamples; j++){
-                row += std::to_string(msd[i][j])+" ";
-            }
-            fprintf(f, "%s\n", row.c_str());
+            //std::string row = ""; 
+        for(int i = 0; i < this->numOfSamples; i++){
+            
+            fprintf(f, "%f  %.15lf\n", i*Base::tStep*this->sampleFreq, this->msd[i]);
+                //row += std::to_string(msd[i][j])+" ";
         }
+        //fprintf(f, "%s\n", row.c_str());
         fclose(f);
         
     }
@@ -113,11 +165,13 @@ class calc_msd : public Analysis {
 class rdf : public Analysis{
 
     public:
+
     template<typename T>
-    rdf(int bins, int numOfAtoms, std::string name, T* geometry) : Analysis(geometry){
+    rdf(int bins, int numOfParticles, std::string name, T* geometry) : Analysis(geometry){
         this->name = name;
         this->bins = bins;
-        this->numOfAtoms = numOfAtoms; 
+        this->numOfParticles = numOfParticles; 
+        this->binWidth = sqrt(3) * Base::boxDim / 2 / bins;
         this->binWidth = sqrt(3.0 * geometry->box[0] * geometry->box[1]) / bins;
         this->cnt1 = 0;
         this->histo.resize(bins);
@@ -126,6 +180,7 @@ class rdf : public Analysis{
     
     void sample(Particles& particles, int d){
         //printf("test\n");
+        /*
         for(int i = 0; i < particles.atoms.numOfAtoms; i++){ 
             if(particles.atoms[i]->name == "Na") {
                 for(int j = 0; j < particles.atoms.numOfAtoms; j++){
@@ -140,6 +195,21 @@ class rdf : public Analysis{
                 } 
             } 
         }
+        */
+        numOfPairs = 0;
+        for(int i = 0; i < particles.atoms.numOfAtoms; i++) {
+            if (particles.atoms[i]->name == "O") { 
+                for(int j = i+1; j < particles.atoms.numOfAtoms; j++) {
+                    if(particles.atoms[j]->name == "O") {
+                        double distance = geometry->dist(particles.atoms[i]->pos, particles.atoms[j]->pos);
+                        this->histo[(int) (distance / binWidth)]++;
+                        
+                        numOfPairs++;
+
+                    } 
+                }
+            } 
+        }
         this->numOfSamples++;
         //if(i == particles.atoms.numOfAtoms){
           //this->cnt1 = particles.atoms.numOfAtoms/2;
@@ -151,15 +221,19 @@ class rdf : public Analysis{
     void save(){
         for(int i = 0; i < bins; i++){
             double avgConc;
-            if (i == bins - 1){
-                avgConc = this->numOfAtoms/(Base::boxDim * Base::boxDim * Base::boxDim);
-                //printf("Average number of Cl atoms is: %f\n", avgConc/2);
+            if (i==0){ 
+                avgConc = this->numOfParticles/(Base::boxDim*Base::boxDim*Base::boxDim);
+                printf("Average conc of water molecules is: %f\n", avgConc);
             }
             //printf("Surface area: %f\n", 4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth);
+
             this->histo[i] = this->histo[i] / (4.0 * constants::PI * (i + 1) * this->binWidth * (i + 1) *
                         this->binWidth * this->binWidth * pow(this->numOfAtoms, 2) / 4.0 * this->numOfSamples) *
                              (Base::boxDim * Base::boxDim * Base::boxDim);
-                       //histo[i] / this->numOfAtoms / (4 * constants::PI * (i + 1) * this->binWidth * (i + 1) * this->binWidth * this->binWidth);
+
+            //this->histo[i] = this->histo[i] / (4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth * avgConc * numOfPairs * this->numOfSamples) * (this->numOfParticles-1);
+            //printf("Surface area: %f\n", 4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth);
+           //histo[i] / this->numOfAtoms / (4 * constants::PI * (i + 1) * this->binWidth * (i + 1) * this->binWidth * this->binWidth);
         }  
         int i = 0;
            

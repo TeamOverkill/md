@@ -10,26 +10,36 @@ public:
     std::vector< std::vector<int> > torsions;
     std::vector< std::vector<int> > farNeighbours;
     Eigen::Vector3d cm;
+    Eigen::Vector3d pos;
+
     double mass;
 
     Particle(){
         numOfAtoms = 0;
     }
+
+
     
     Eigen::Vector3d find_cm() {
         Eigen::Vector3d cmNew;
-        cmNew.setZero(); 
-        for(int i=0; i<this->numOfAtoms; i++) { 
-            cmNew += this->atoms[i]->pos*this->atoms[i]->mass;
+        cmNew.setZero();
+
+        for(int i = 0; i < this->numOfAtoms; i++) {
+            cmNew += this->atoms[i]->pos * this->atoms[i]->mass;
         }
-        return cmNew/(mass*this->numOfAtoms);
-        
+        return cmNew/mass;
     }
+
+
+
     void push_back(Atom* atom){
         atoms.push_back(atom);
         numOfAtoms++;
         mass += atom->mass;
     }
+
+
+
 
     int minDistance(std::vector<int>& dist, bool sptSet[])
     {
@@ -42,6 +52,9 @@ public:
 
         return min_index;
     }
+
+
+
 
     void find_far_neighbours() {
         std::vector<std::vector<int> > adjacency(numOfAtoms, std::vector<int>(numOfAtoms, 1));

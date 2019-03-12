@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Eigen/Dense>
+#include "particle.h"
 
 /// Base class for Geometry
 template <class T>
@@ -149,5 +150,36 @@ public:
                 vel[2] *= -1.0;
             }
         }
+    }
+
+
+
+
+    void boundary(Particle &particle){
+
+        if(particle.pos[0] > this->box[0]){
+            particle.pos[0] -= this->box[0];
+        }
+        else if(particle.pos[0] < 0.0){
+            particle.pos[0] += this->box[0];
+        }
+
+
+
+        if(particle.pos[1] > this->box[1]){
+            particle.pos[1] -= this->box[1];
+        }
+        else if(particle.pos[1] < 0.0){
+            particle.pos[1] += this->box[1];
+        }
+
+
+        if(particle.pos[2] > this->box[2]){
+            particle.pos[2] -= this->box[2];
+        }
+        else if(particle.pos[2] < 0.0){
+            particle.pos[2] += this->box[2];
+        }
+
     }
 };

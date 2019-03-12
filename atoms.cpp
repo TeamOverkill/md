@@ -50,6 +50,7 @@ void Atoms::initialize(int numOfAtoms){
 
 void Atoms::set_forces_zero(){
     for(int i = 0; i < this->numOfAtoms; i++){
+        this->atoms[i]->oldForce = this->atoms[i]->force;
         this->atoms[i]->force.setZero();
     }
 }

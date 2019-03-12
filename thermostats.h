@@ -13,15 +13,16 @@ namespace thermostats{
             for(int j = 0; j < particles[i]->numOfAtoms; j++) {
                 temp += particles[i]->atoms[j]->mass * particles[i]->atoms[j]->vel.dot(particles[i]->atoms[j]->vel);
             }
-            temp = temp / particles[i]->numOfAtoms;
         }
+
+        temp = temp / particles.atoms.numOfAtoms;
         return temp / (3.0 * constants::K_CORRECT);
     }
 
     struct andersen{
         static void set_velocity(Particles& particles){
             double ran_u;
-            double freq = 1.0 * Base::tStep; //0.1
+            double freq = 10 * Base::tStep; // 0.1
 
 
             for(int i = 0; i < particles.numOfParticles; i++){
@@ -39,7 +40,7 @@ namespace thermostats{
     struct berendsen{
         static void set_velocity(Particles& particles){
             double velScale;
-            double couplingPara = 1.0;
+            double couplingPara = 10 * Base::tStep;
             double inT = get_temperature(particles);
 
             for(int i = 0; i < particles.numOfParticles; i++) {
