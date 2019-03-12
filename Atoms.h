@@ -13,7 +13,7 @@ public:
     int numOfAtoms;
     Eigen::Vector3d pos;
     Eigen::MatrixXd distances;   /*!< Triangular distance matrix containing all distances*/
-    //3DMatrix displacements;   //Should really add this
+    std::vector< std::vector< Eigen::Vector3d > > displacements;   //Should really add this
     Eigen::MatrixXd forceMatrix; /*!< Force matrix containing all forces */
     
     
@@ -33,7 +33,7 @@ public:
     }
 
 
-    Atom* operator[](int i){
+    Atom* operator[](std::size_t i){
         return atoms[i];
     }
 

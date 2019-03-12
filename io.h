@@ -233,13 +233,14 @@ struct IO{
 
 
 
-    Particles read_frame(std::string fileName){
+    auto read_frame(std::string fileName){
         int c, i = 0, ind, j = 0, atom_1, atom_2, molIndex;
         double xPos, yPos, zPos, xVel, yVel, zVel, xDim, yDim, zDim,
                     aAng, bAng, cAng;
         std::string atom, line, molecule;
         std::vector<std::string> molecules;
         std::ifstream infile(fileName);
+        std::vector<double> box(3);
         if(infile.fail()){
             printf("Error, could not find file: %s\n", fileName.c_str());
             exit(1);
@@ -317,6 +318,9 @@ struct IO{
                 std::istringstream iss(line);
                 if ((iss >> xDim >> yDim >> zDim)) {
                     printf("Read cuboid box dimensions, %lf, %lf, %lf from file.\n", xDim, yDim, zDim);
+                    box[0] = xDim;
+                    box[1] = xDim;
+                    box[2] = xDim;
                     break;
                 }
 
@@ -339,21 +343,23 @@ struct IO{
 
         particles.atoms = atoms;
         printf("Read %i atoms, %i molecules.\n", particles.atoms.numOfAtoms, particles.numOfParticles);
-    /*                  Only for testing
+
+        /*                  Only for testing
         for(int i = 0; i < particles.numOfParticles; i++){
             for(int j = 0; j < particles[i]->numOfAtoms; j++){
                 printf("particle: %i, atom: %i\n", i, particles[i]->atoms[j]->index);
             }
         }
-*/
+        */
 
 
         /*!< Initialize the distance matrix */
-        atoms.distances.resize(atoms.numOfAtoms, atoms.numOfAtoms);
+        //atoms.distances.resize(atoms.numOfAtoms, atoms.numOfAtoms);
         /*!< Initialize the force matrix */
-        atoms.forceMatrix.resize(atoms.numOfAtoms, atoms.numOfAtoms);
-
-        return particles;
+        //atoms.forceMatrix.resize(atoms.numOfAtoms, atoms.numOfAtoms);
+        //atoms.displacements.resize(atoms.numOfAtoms);
+        //std::for_each(atoms.displacements.begin(), atoms.displacements.end(), [=](std::vector<Eigen::Vector3d> &row){ row.resize(atoms.numOfAtoms); });
+        return std::make_pair(particles, box);
     }
 
     void write_frame(){

@@ -17,13 +17,29 @@
 #include "potentialmanager.h"
 #include "geometries.h"
 
-typedef PotentialManager<potentials::magnetic> PotMan;
+//typedef PotentialManager<potentials::magnetic> PotMan;
 
 int main(int argc, char *argv[]){
+
+    #ifdef EIGEN_VECTORIZE
+        printf("Eigen vectorization is enabled\n");
+    #else
+        printf("Eigen vectorization is NOT enabled");
+    #endif
+
     ran2::initialize();
+
+    /// Declare variables
+    Particles particles;
+    IO io;
+    Parser parser;
     Preprocessor prep;
+    std::vector<double> box;
     std::string structureFile;
     std::string paramsFile;
+
+
+    /// Run preprocessor or simulation?
     if(argc > 1){
         std::cout << argv[0] << " " <<  argv[1] << " " << argc << std::endl;
         if(std::strcmp(argv[1], "prep") == 0){
@@ -45,14 +61,15 @@ int main(int argc, char *argv[]){
         printf("Too few arguments, need 2...\n");
         exit(1);
     }
-    Parser parser;
+
+    /// Parse config file
     parser.parse();
     Base::initialize(parser.numberOfFrames);
 
-    Particles particles;
-    IO io;
-    particles = io.read_frame(structureFile);
+    /// Read initial structure
+    std::tie(particles, box) = io.read_frame(structureFile);
     printf("Done reading frame\n");
+
     /// Get parameters from parameter file
     std::map<std::string, std::map<std::string, std::vector<double> > > params = io.read_par(paramsFile, particles);
 
@@ -79,7 +96,7 @@ int main(int argc, char *argv[]){
     Frames frames(parser.numberOfFrames, particles.atoms.numOfAtoms, parser.saveFreq);
 
     /*!< Create Geometry object*/
-    Geometry* geometry = new Rectangular<true, true, true>(1.86893, 1.85529, 1.85963);//parser.boxDim, parser.boxDim, parser.boxDim);
+    Geometry* geometry = new Rectangular<true, true, true>(box[0], box[1], box[2]);//parser.boxDim, parser.boxDim, parser.boxDim);
 
     //potentials::ewald::initialize(particles, geometry);
 

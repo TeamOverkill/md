@@ -30,7 +30,7 @@ public:
     }
 
 
-    void save_to_file(Particles& particles){
+    void save_to_file(Particles& particles, Eigen::Vector3d box){
         int i = 0;
         FILE *f = fopen("output.gro", "a");
 
@@ -47,7 +47,7 @@ public:
                 fprintf(f, "%5d%-5s%5s%5d%8.3f%8.3f%8.3f%8.4f%8.4f%8.4f\n", particles.atoms[i]->particle, "ion", particles.atoms[i]->name.c_str(), i + 1, frames[j]->state[i][0], frames[j]->state[i][1], frames[j]->state[i][2], \
                 frames.at(j)->state[i][3], frames[j]->state[i][4], frames[j]->state[i][5]);
             }
-            fprintf(f, "%lf    %lf     %lf\n", Base::boxDim, Base::boxDim, Base::boxDim);
+            fprintf(f, "%lf    %lf     %lf\n", box[0], box[1], box[2]);
         }
         fclose(f);
         this->totalFrames += this->frameCounter;

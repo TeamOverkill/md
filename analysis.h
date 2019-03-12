@@ -164,8 +164,14 @@ class rdf : public Analysis{
     rdf(int bins, int numOfParticles, std::string name, Geometry* geometry) : Analysis(geometry){ 
         this->name = name;
         this->bins = bins;
+<<<<<<< HEAD
         this->numOfParticles = numOfParticles; 
         this->binWidth = sqrt(3) * Base::boxDim / 2 / bins;
+=======
+        this->numOfAtoms = numOfAtoms; 
+        this->binWidth = sqrt(3.0 * geometry->box[0] * geometry->box[1]) / bins;
+        this->cnt1 = 0;
+>>>>>>> b3292d3dcda2054695b63ad0b0d70672ee974336
         this->histo.resize(bins);
         std::fill(this->histo.begin(), this->histo.end(), 0);   //Set all bins to zero
     }
@@ -226,12 +232,14 @@ class rdf : public Analysis{
     void save(){
         for(int i = 0; i < bins; i++){
             double avgConc;
+<<<<<<< HEAD
             if (i==0){ 
                 avgConc = this->numOfParticles/(Base::boxDim*Base::boxDim*Base::boxDim);
                 printf("Average conc of water molecules is: %f\n", avgConc);
             }
             //printf("Surface area: %f\n", 4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth);
             this->histo[i] = this->histo[i] / (4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth * avgConc * numOfPairs * this->numOfSamples) * (this->numOfParticles-1);
+            //printf("Surface area: %f\n", 4 * constants::PI * (i+1) * this->binWidth * (i+1) * this->binWidth * this->binWidth);
                        //histo[i] / this->numOfAtoms / (4 * constants::PI * (i + 1) * this->binWidth * (i + 1) * this->binWidth * this->binWidth);
         }  
         int i = 0;
