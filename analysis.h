@@ -105,8 +105,8 @@ class MSD : public Analysis<G> {
     }
     */
     void sample(Particles& particles, int d) { 
-        this->msd_avg=0.000; 
-        cnt=0;
+        this->msd_avg = 0.000;
+        cnt = 0;
         for(int i = 0; i < particles.atoms.numOfAtoms; i++) {
             if(particles.atoms[i]->name == "O") {
                 

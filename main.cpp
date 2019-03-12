@@ -86,8 +86,8 @@ int main(int argc, char *argv[]){
     //potentials::ewald::initialize(particles, geometry);
 
     /*! Create simulation object */
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic,
-            potentials::LJCutoff, potentials::coulombCutoff>, Rect> engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::Harmonic, potentials::AngularHarmonic,
+            potentials::LJCutoff, potentials::CoulombCutoff>, Rect> engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");

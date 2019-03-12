@@ -17,7 +17,7 @@ namespace potentials{
     */
     /*! One dimensional harmonic potential
     */
-    struct harmonic_1D{
+    struct Harmonic_1D{
     private:
             static constexpr double springConstant = 1.0;        // [kJ * nm^(-2) * mol^(-1)]
 
@@ -41,7 +41,7 @@ namespace potentials{
         }
     };
 
-    struct harmonic{
+    struct Harmonic{
     private:
         //static constexpr double springConstant = 12657.0;        // [kJ * nm^(-2) * mol^(-1)]
 
@@ -95,7 +95,7 @@ namespace potentials{
         }
     };
 
-    struct angular_harmonic{
+    struct AngularHarmonic{
 
     public:
         template<typename T>
@@ -158,7 +158,7 @@ namespace potentials{
     */
     /*! Coulomb potential
     */
-    struct coulomb{
+    struct Coulomb{
     private:
         static constexpr double cFactor = 138.935457544094654;
 
@@ -226,7 +226,7 @@ namespace potentials{
 */
     /*! Coulomb potential with cutoff
     */
-    struct coulombCutoff{
+    struct CoulombCutoff{
     private:
         static constexpr double cFactor = 138.935457544094654;//1.6021766208E-19 * 1.6021766208E-19 /
         //(4.0 * 3.141592653589793238 * 8.854187817E-12) * 1E6 * 6.02214085774E23;//constants::E * constants::E / (4 * constants::PI * 78.0 * constants::VP);  //[kJ * nm * mol^-1]
@@ -689,7 +689,7 @@ namespace potentials{
     
      
 
-    struct ewald{
+    struct Ewald{
         static constexpr double cFactor = 138.935457544094654;
     public:
         static int kNumMax;
