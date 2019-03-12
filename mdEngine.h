@@ -57,7 +57,7 @@ public:
         //Analysis* msd = new calc_msd(particles.numOfParticles, "msd.txt", geometry);
 
         //Analysis* histo = new rdf(500, particles.numOfParticles, "rdf.txt", geometry);
-        Analysis* msd = new calc_msd(particles.numOfParticles, frames.fStep, "msd.txt", geometry);
+        Analysis<G>* msd = new MSD<G>(particles.numOfParticles, frames.fStep, "msd.txt", geometry);
 
 
         //std::vector<int> v = {0};

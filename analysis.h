@@ -1,9 +1,9 @@
+template <typename G>
 class Analysis{
     public:
 
     std::vector<double> histo;
     int numOfSamples;
-    int numOfPairs;
     int numOfAtoms;
     int numOfParticles;
     int bins;
@@ -11,13 +11,15 @@ class Analysis{
     double binWidth;
     int cnt1, cnt2;
     std::string name;
-    Geometry<Rectangular<true, true, true>>* geometry;
+    //Geometry<Rectangular<true, true, true>>* geometry;
+    G *geometry;
 
     virtual void sample(Particles& particles, int d) = 0;
     virtual void save() = 0;
 
     //template<typename T>
-    Analysis(Geometry<Rectangular<true, true, true>>* geometry){
+    //Analysis(Geometry<Rectangular<true, true, true>>* geometry){
+    Analysis(G *geometry){
         this->geometry = geometry;
     }
 };
@@ -68,7 +70,12 @@ class Density : public Analysis{
 };
 */
 
-class calc_msd : public Analysis {
+
+
+
+
+template <typename G>
+class MSD : public Analysis<G> {
     std::vector<double> msd;
     std::vector<Eigen::Vector3d> oldPos;
     double msd_avg=0;
@@ -77,8 +84,7 @@ class calc_msd : public Analysis {
     public:
 
 
-    template<typename T>
-    calc_msd(int numOfParticles, int sampleFreq, std::string name, T geometry) : Analysis(geometry){
+    MSD(int numOfParticles, int sampleFreq, std::string name, G *geometry) : Analysis<G>(geometry){
         this->name = name;
         this->numOfParticles = numOfParticles;
         this->numOfSamples = 0;
@@ -111,7 +117,8 @@ class calc_msd : public Analysis {
                 else {
                     //printf("index, %i\n", i);
                     //printf("Number of atoms: %i\n", particles.atoms.numOfAtoms);
-                    this->msd_avg += geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt))*geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt));
+                    this->msd_avg += this->geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt)) *
+                            this->geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt));
                     //if (cnt == particles.numOfParticles-1){
                     //    std::cout << "Old pos: " << oldPos.at(cnt) << "\n";
                     //}
@@ -162,16 +169,19 @@ class calc_msd : public Analysis {
 
 
 
-class rdf : public Analysis{
+
+
+template <typename G>
+class RDF : public Analysis<G>{
 
     public:
+    int numOfPairs;
 
-    template<typename T>
-    rdf(int bins, int numOfParticles, std::string name, T* geometry) : Analysis(geometry){
+    RDF(int bins, int numOfParticles, std::string name, G* geometry) : Analysis<G>(geometry){
         this->name = name;
         this->bins = bins;
         this->numOfParticles = numOfParticles; 
-        this->binWidth = sqrt(3) * Base::boxDim / 2 / bins;
+        this->binWidth = sqrt(3) * this->geometry->box[0] / 2.0 / bins;
         this->binWidth = sqrt(3.0 * geometry->box[0] * geometry->box[1]) / bins;
         this->cnt1 = 0;
         this->histo.resize(bins);
@@ -201,8 +211,8 @@ class rdf : public Analysis{
             if (particles.atoms[i]->name == "O") { 
                 for(int j = i+1; j < particles.atoms.numOfAtoms; j++) {
                     if(particles.atoms[j]->name == "O") {
-                        double distance = geometry->dist(particles.atoms[i]->pos, particles.atoms[j]->pos);
-                        this->histo[(int) (distance / binWidth)]++;
+                        double distance = this->geometry->dist(particles.atoms[i]->pos, particles.atoms[j]->pos);
+                        this->histo[(int) (distance / this->binWidth)]++;
                         
                         numOfPairs++;
 
@@ -219,7 +229,7 @@ class rdf : public Analysis{
     
     
     void save(){
-        for(int i = 0; i < bins; i++){
+        for(int i = 0; i < this->bins; i++){
             double avgConc;
             if (i==0){ 
                 avgConc = this->numOfParticles/(Base::boxDim*Base::boxDim*Base::boxDim);
@@ -243,7 +253,7 @@ class rdf : public Analysis{
             exit(1);
         }
 
-        for(i = 0; i < bins; i++){
+        for(i = 0; i < this->bins; i++){
             fprintf(f, "%lf     %lf\n", (double)i * this->binWidth, this->histo[i]);
         }
         fclose(f);
@@ -255,13 +265,13 @@ class rdf : public Analysis{
 
 
 
-class Track : public Analysis{
+template <typename G>
+class Track : public Analysis<G>{
     std::vector<int> indices;
     std::vector<Eigen::Vector3d> positions;
 
 public:
-    template<typename T>
-    Track(std::vector<int> indices, std::string name, T* geometry) : Analysis(geometry){
+    Track(std::vector<int> indices, std::string name, G* geometry) : Analysis<G>(geometry){
         this->indices = indices;
         this->name = name;
     }
