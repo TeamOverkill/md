@@ -83,7 +83,7 @@ int main(int argc, char *argv[]){
 
     //potentials::ewald::initialize(particles, geometry);
 
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic, potentials::LJ, potentials::coulomb> > engine(geometry);
+    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::harmonic, potentials::angular_harmonic, potentials::LJ, potentials::coulomb>> engine(geometry);
     //MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::ewald, potentials::LJRep> > engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */

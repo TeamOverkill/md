@@ -168,8 +168,10 @@ namespace potentials{
                 for(int j = i + 1; j < particles.numOfParticles; j++){
                     for(int ia = 0; ia < particles[i]->numOfAtoms; ia++) {
                         for (int ja = 0; ja < particles[j]->numOfAtoms; ja++) {
-                            energy += particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q /
-                                      geometry->dist(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);
+                            if (geometry->dist(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos) < 1.0) {
+                                energy += particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q /
+                                          geometry->dist(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos) * (1 - geometry->dist(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos)/1.0) * (1 - geometry->dist(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos)/1.0);
+                            }
                         }
                     }
                 }
@@ -194,10 +196,18 @@ namespace potentials{
 
                             disp = geometry->disp(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);
                             //printf("distance: %lf\n", disp.norm());
-                            magnitude = cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q / (disp.squaredNorm());
-                            disp.normalize();
-                            particles[i]->atoms[ia]->force += magnitude * disp;
-                            particles[j]->atoms[ja]->force -= magnitude * disp;
+                            if (disp.norm() < 1.0) { 
+                          
+                                //magnitude = (cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q) * (((1 - disp.norm()/1.0) * (1 - disp.norm()/1.0))/disp.squaredNorm()-2/1.0*(1-disp.norm()/1.0)/disp.norm()) ;
+                                magnitude = (cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q)/disp.squaredNorm();
+                                disp.normalize();
+                                //std::cout << "Magnitude: " << magnitude << "\n";
+                                //std::cout << "Constant subtracted: " << cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q  << "\n\n";
+
+                                particles[i]->atoms[ia]->force += (magnitude - cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q) * disp;
+                                particles[j]->atoms[ja]->force -= (magnitude - cFactor * particles[i]->atoms[ia]->q * particles[j]->atoms[ja]->q) * disp;
+
+                            }
                             //particles.atoms.forceMatrix(particles[i]->atoms[ia]->index, particles[j]->atoms[ja]->index) += magnitude;
                             //particles.atoms.forceMatrix(particles[j]->atoms[ja]->index, particles[i]->atoms[ia]->index) -= magnitude;
                         }
@@ -311,14 +321,17 @@ namespace potentials{
                                 //printf("epsilon = %lf\n", epsilon);
                                 dr = geometry->disp(particles[i]->atoms[ia]->pos,
                                                     particles[j]->atoms[ja]->pos);                 // [nm]
-                                r2 = dr.dot(dr);                             // [nm^2]
-                                fr2 = sigma * sigma / r2;                    // unitless
-                                fr6 = fr2 * fr2 * fr2;                       // unitless
-                                fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2;  // [kJ/(nm^2*mol)]
+                                if (dr.norm() < 1.0) {
+                                    r2 = dr.dot(dr);                             // [nm^2]
+                                    fr2 = sigma * sigma / r2;                    // unitless
+                                    fr6 = fr2 * fr2 * fr2;                       // unitless
+                                    fr = 48 * epsilon * fr6 * (fr6 - 0.5) / r2 * (1 - dr.norm()/1.0) * (1 - dr.norm()/1.0);  // [kJ/(nm^2*mol)]
                                 //particles[i]->atoms[ia]->force += fr * dr;
                                 //particles[j]->atoms[ja]->force -= fr * dr;
-                                private_forces[particles[i]->atoms[ia]->index] += fr * dr;
-                                private_forces[particles[j]->atoms[ja]->index] -= fr * dr;
+                                 
+                                    private_forces[particles[i]->atoms[ia]->index] += fr * dr;
+                                    private_forces[particles[j]->atoms[ja]->index] -= fr * dr;
+                                }
                             }
                         }
                     }
@@ -365,11 +378,13 @@ namespace potentials{
 
                             dr = geometry->disp(particles[i]->atoms[ia]->pos, particles[j]->atoms[ja]->pos);     // [nm]
                             distance = dr.norm();                   // [nm]
-                            double fr = sigma / distance;           // unitless
-                            double fr2 = fr * fr;                   // unitless
-                            double fr6 = fr2 * fr2 * fr2;           // unitless
+                            if (distance < 1.0) {
+                                double fr = sigma / distance;           // unitless
+                                double fr2 = fr * fr;                   // unitless
+                                double fr6 = fr2 * fr2 * fr2;           // unitless
 
-                            energy += epsilon * fr6 * (fr6 - 1.0);  // unitless
+                                energy += epsilon * fr6 * (fr6 - 1.0) * (1 - distance/1.0) * (1 - distance/1.0);  // unitless
+                            }
                         }
                     }
                 }

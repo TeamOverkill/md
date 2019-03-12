@@ -51,8 +51,8 @@ public:
         double cummulativePress = 0;
         //Analysis* histo = new Density(100, "histo_1.txt");
 
-        Analysis* histo = new rdf(100, particles.atoms.numOfAtoms, "rdf.txt", geometry);
-        Analysis* msd = new calc_msd(particles.numOfParticles, "msd.txt", geometry);
+        Analysis* histo = new rdf(500, particles.numOfParticles, "rdf.txt", geometry);
+        Analysis* msd = new calc_msd(particles.numOfParticles, frames.fStep, "msd.txt", geometry);
 
         //std::vector<int> v = {0};
         //Analysis *track = new Track(v, "track.txt", geometry);
@@ -63,8 +63,10 @@ public:
         double start_t = omp_get_wtime();
         double end_t;
 
+        temperature = thermostats::get_temperature(particles);
+        pm.get_forces(particles, geometry);
         //geometry->update_distances(particles);
-
+        printf("Temp: %lf \n", temperature);
         /* Main MD loop */
         for(int i = 0; i < Base::iterations; i++) {
             //pm.get_forces(particles, geometry);
@@ -87,7 +89,7 @@ public:
             integrator.second_step(
                     particles);                                        /* Second half step of integrator */
 
-            thermostats::andersen::set_velocity(particles);              /* Apply thermostat */
+            thermostats::berendsen::set_velocity(particles);              /* Apply thermostat */
             temperature = thermostats::get_temperature(particles);
 
             //pressure = barostats::get_pressure();
@@ -96,7 +98,7 @@ public:
             Base::temperatures[i] = temperature;
 
             if (i % frames.fStep == 0) {
-                if (i > 10000) {
+                if (i > 1) {
                     histo->sample(particles, 1);
                     msd->sample(particles, 1);
                 }

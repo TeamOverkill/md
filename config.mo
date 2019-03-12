@@ -1,6 +1,6 @@
-nop 648
-boxdim 10
-iter 10000
+nop 4
+boxdim 1.86893
+iter 50000
 temperature 300
 nof 1000
 outfreq 100
