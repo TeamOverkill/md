@@ -1,3 +1,5 @@
+#define EIGEN_NO_DEBUG
+
 #include "atom.h"
 #include "atoms.h"
 #include "particle.h"
@@ -87,17 +89,13 @@ int main(int argc, char *argv[]){
 
     /*! Create simulation object */
     MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::Harmonic, potentials::AngularHarmonic,
-            potentials::LJCutoff, potentials::CoulombCutoff>, Rect> engine(geometry);
+            potentials::LJ, potentials::Coulomb>, Rect> engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
     double start_time = omp_get_wtime();
     engine.run(particles, frames);
     printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);
-
-
-
-
 
 
 

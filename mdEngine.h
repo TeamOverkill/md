@@ -5,7 +5,6 @@
 #include "particles.h"
 #include "frames.h"
 #include "analysis.h"
-#include "potentials.h"
 #include "geometries.h"
 #include "potentialmanager.h"
 /*!
@@ -136,6 +135,6 @@ public:
         //histo->save();
         //track->save();
         msd->save();
-        printf("\n");    
+        printf("\n");
     }
 };

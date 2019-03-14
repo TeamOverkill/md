@@ -19,15 +19,16 @@ class Atom{
     public:
         Atom();
         //static Atom** create_atoms();
-        //Eigen::Vector3d* pos;        /*!< Coordinates */
+        Eigen::Vector3d pos;        /*!< Coordinates */
         Eigen::Vector3d com;
         Eigen::Vector3d vel;        /*!< Velocities */
         Eigen::Vector3d oldForce;   /*!< Force from previous iteration */
         Eigen::Vector3d force;      /*!< Current force */
-        double q;
+        double q;                   /*!< Charge */
         int index;                  /*!< Refers to index in atoms object */
         int localIndex;             /*!< Refers to index inside a particle */
-        int particle;
+        int particle;               /*!< Index of particle atom belongs to */
+        int type;                   /*!< Atom type from structure file */
         double radius, mass;
         std::pair<double, double> lj;
         std::string name;

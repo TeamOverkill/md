@@ -8,6 +8,7 @@ template <class T>
 class Geometry{
 public:
     Eigen::Vector3d box;
+    Eigen::Vector3d boxHalf;
     double volume;
 
     double dist(const Eigen::Vector3d &a, const Eigen::Vector3d &b){
@@ -36,10 +37,11 @@ class Rectangular : public Geometry< Rectangular<X, Y, Z> >{
 public:
     Rectangular(double x, double y, double z){
         this->box << x, y, z;
+        this->boxHalf = this->box * 0.5;
         this->volume = this->box[0] * this->box[1] * this->box[2];
     }
 
-    double dist(const Eigen::Vector3d &a, const Eigen::Vector3d &b){
+    inline double dist(const Eigen::Vector3d &a, const Eigen::Vector3d &b){
         return disp(a, b).norm();
     }
 
@@ -53,34 +55,35 @@ public:
 
 
 
-    Eigen::Vector3d disp(const Eigen::Vector3d &a, const Eigen::Vector3d &b){
+    inline Eigen::Vector3d disp(const Eigen::Vector3d &a, const Eigen::Vector3d &b){
         Eigen::Vector3d disp = a - b;
+
         if(X){
-            if(disp[0] > this->box[0] * 0.5){
+            if(disp[0] > this->boxHalf[0]){
                 disp[0] -= this->box[0];
             }
 
-            if(disp[0] < -this->box[0] * 0.5){
+            else if(disp[0] < -this->boxHalf[0]){
                 disp[0] += this->box[0];
             }
         }
 
         if(Y){
-            if(disp[1] > this->box[1] * 0.5){
+            if(disp[1] > this->boxHalf[0]){
                 disp[1] -= this->box[1];
             }
-            
-            if(disp[1] < -this->box[1] * 0.5){
+
+            else if(disp[1] < -this->boxHalf[0]){
                 disp[1] += this->box[1];
             }
         }
 
         if(Z){
-            if(disp[2] > this->box[2] * 0.5){
+            if(disp[2] > this->boxHalf[0]){
                 disp[2] -= this->box[2];
             }
-            
-            if(disp[2] < -this->box[2] * 0.5){
+
+            else if(disp[2] < -this->boxHalf[0]){
                 disp[2] += this->box[2];
             }
         }
@@ -90,7 +93,7 @@ public:
 
 
 
-    void boundary(Eigen::Vector3d &pos, Eigen::Vector3d &vel){
+    inline void boundary(Eigen::Vector3d &pos, Eigen::Vector3d &vel){
         if(X){
             if(pos[0] > this->box[0]){
                 pos[0] -= this->box[0];

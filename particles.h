@@ -46,6 +46,7 @@ public:
             }
         }
 
+        /*!< Set all parameters */
         //////////////////////////              Super ugly plz change               /////////////////////////////
         for(auto &particle : particles){
 
@@ -95,20 +96,45 @@ public:
             }
         }
 
-        // Set LJ parameters. charge and radius
+        /// Initialize epsilon matrix
+        atoms.ljEps.resize(params["lj"].size());
+        std::for_each(atoms.ljEps.begin(), atoms.ljEps.end(), [&](std::vector<double> &row) {
+            row.resize(params["lj"].size()); });
+        /// Initialize sigma matrix
+        atoms.ljSig.resize(params["lj"].size());
+        std::for_each(atoms.ljSig.begin(), atoms.ljSig.end(), [&](std::vector<double> &row) {
+            row.resize(params["lj"].size()); });
+        /// Set LJ params
+        int i = 0, j = 0;
+        for(auto const& [key1, val1] : params["lj"]){
+            j = 0;
+            for(auto const& [key2, val2] : params["lj"]) {
+                atoms.ljEps[i][j] = std::sqrt(params["lj"][key1][1] * params["lj"][key2][1]);
+                atoms.ljSig[i][j] = (params["lj"][key1][0] + params["lj"][key2][0]) * 0.5;
+                j++;
+            }
+            i++;
+        }
+        /// Set name, charge, radius, and atom type
+        j = 0;
+        bool atomic = false;
         for(auto const& [key, val] : params){
+            atomic = false;
             for(int i = 0; i < atoms.numOfAtoms; i++) {
                 if (atoms[i]->name == key) {
                     atoms[i]->lj.first = params[key]["lj"][0];         //sigma
                     atoms[i]->lj.second = params[key]["lj"][1];        //epsilon
                     atoms[i]->q = params[key]["charge"][0];
                     atoms[i]->radius = params[key]["radius"][0];
-
+                    atoms[i]->type = j;
                     //printf("%s: q = %lf, radius = %lf LJ: %lf %lf\n", atoms[i]->name.c_str(), atoms[i]->q, atoms[i]->radius,atoms[i]->lj.first, atoms[i]->lj.second);
+                    atomic = true;
                 }
             }
+            if(atomic){
+                j++;
+            }
         }
-
 
 
 
