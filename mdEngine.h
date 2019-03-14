@@ -73,7 +73,8 @@ public:
         pm.get_forces(particles, geometry);
         //geometry->update_distances(particles);
         printf("Temp: %lf \n", temperature);
-        /* Main MD loop */
+
+        /*! Main MD loop */
         for(int i = 0; i < Base::iterations; i++) {
             //printf("Determinant = %lf\n", particles.atoms.forceMatrix.determinant());
             particles.atoms.set_forces_zero();                                    /* Set all forces to zero and set oldforce = force.*/
@@ -86,11 +87,15 @@ public:
             //particles.update_distances(geometry);
             //particles.update_displacements(geometry);
 
-            pm.get_forces(particles, geometry);                                      /* Calculate new forces */
-            integrator.second_step(particles);                                        /* Second half step of integrator */
+            /*! Calculate new forces */
+            pm.get_forces(particles, geometry);
+
+            /*! Second half step of integrator */
+            integrator.second_step(particles);
+            temperature = thermostats::get_temperature(particles);
 
             //thermostats::berendsen::set_velocity(particles);              /* Apply thermostat */
-            temperature = thermostats::get_temperature(particles);
+
 
             //pressure = barostats::get_pressure();
             cummulativeTemp += temperature;

@@ -41,7 +41,7 @@ namespace thermostats{
         static void set_velocity(Particles& particles){
             double velScale;
             double couplingPara = 10 * Base::tStep;
-            double inT = get_temperature(particles);
+            double inT = Base::temperature;
 
             for(int i = 0; i < particles.numOfParticles; i++) {
                 for (int j = 0; j < particles[i]->numOfAtoms; j++) {

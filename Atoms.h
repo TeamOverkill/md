@@ -15,7 +15,14 @@ public:
     Eigen::MatrixXd distances;   /*!< Triangular distance matrix containing all distances*/
     std::vector< std::vector< Eigen::Vector3d > > displacements;   //Should really add this
     Eigen::MatrixXd forceMatrix; /*!< Force matrix containing all forces */
-    
+
+    /*!< Atomic variables */
+    Eigen::MatrixXd positions;
+    Eigen::MatrixXd velocities;
+    Eigen::MatrixXd forces;
+    Eigen::MatrixXd oldForces;
+    Eigen::VectorXd masses;
+
     
     void set_forces_zero();
     double kinetic_energy();

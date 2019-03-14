@@ -258,6 +258,12 @@ struct IO{
                     printf("The second line in the input file should be the total number of atoms!\n");
                     exit(1);
                 } // error
+                else{
+                    atoms.positions.resize(c, 3);
+                    atoms.velocities.resize(c, 3);
+                    atoms.forces.resize(c, 3);
+                    atoms.masses.resize(c);
+                }
             }
 
             if(i > 1 && i <= c + 1){
@@ -281,9 +287,16 @@ struct IO{
                 }
 
                 atoms.push_back(new Atom());
-                atoms[j]->pos[0] = xPos;
-                atoms[j]->pos[1] = yPos;
-                atoms[j]->pos[2] = zPos;
+                atoms.positions(j, 0) = xPos;
+                atoms.positions(j, 1) = yPos;
+                atoms.positions(j, 2) = zPos;
+                //atoms[j]->pos = atoms.positions.row(j).data();
+                //atoms[j]->pos[0] = atoms.positions(j, 0).data();
+                //atoms[j]->pos[1] = atoms.positions(j, 1).data();
+                //atoms[j]->pos[2] = atoms.positions(j, 2).data();
+                //atoms[j]->pos[0] = xPos;
+                //atoms[j]->pos[1] = yPos;
+                //atoms[j]->pos[2] = zPos;
 
                 atoms[j]->vel[0] = xVel;
                 atoms[j]->vel[1] = yVel;
@@ -297,15 +310,16 @@ struct IO{
                 std::vector<std::string>::iterator molIt = std::find(molecules.begin(), molecules.end(), molecule);
                 molIndex = std::distance(molecules.begin(), molIt);
                 atoms[j]->particle = molIndex;
-                //printf("Atom %d belongs to molecule %d\n", atoms[j]->index, atoms[j]->particle);
-                //Create molecule
+
+
+                //Molecule is not created so create it
                 if (molIt == molecules.end()) {
                     molecules.push_back(molecule);
                     Particle *p1 = new Particle();
                     p1->push_back(atoms[j]);
                     particles.push_back(p1);
                 }
-                //Molecule is already created to add atom
+                //Molecule is already created so add atom
                 else{
                     particles[molIndex]->push_back(atoms[j]);
                 }

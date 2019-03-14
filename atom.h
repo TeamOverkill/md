@@ -19,7 +19,7 @@ class Atom{
     public:
         Atom();
         //static Atom** create_atoms();
-        Eigen::Vector3d pos;        /*!< Coordinates */
+        //Eigen::Vector3d* pos;        /*!< Coordinates */
         Eigen::Vector3d com;
         Eigen::Vector3d vel;        /*!< Velocities */
         Eigen::Vector3d oldForce;   /*!< Force from previous iteration */

@@ -11,6 +11,13 @@
  * force function which calculates the force by differentiating the potential function
  */
 namespace potentials{
+
+
+
+
+
+
+
     /*!
      *  \addtogroup Harmonic
      *  @{
@@ -40,6 +47,16 @@ namespace potentials{
             particles.atoms[0]->force += force * forceDir.normalized();    // [(kJ / (nm * mol)] = [dalton * nm/ps^2]
         }
     };
+
+
+
+
+
+
+
+
+
+
 
     struct Harmonic{
     private:
@@ -94,6 +111,16 @@ namespace potentials{
             }*/
         }
     };
+
+
+
+
+
+
+
+
+
+
 
     struct AngularHarmonic{
 
@@ -151,6 +178,18 @@ namespace potentials{
             }
         }
     };
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*!
      *  \addtogroup Coulomb
