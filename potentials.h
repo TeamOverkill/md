@@ -90,25 +90,28 @@ namespace potentials{
                     private_forces[i].setZero();
                 }
                 #pragma omp for schedule(dynamic, 50)*/
-                for (int i = 0; i < particles.numOfParticles; i++) {
-                    for (auto bond : particles[i]->bonds) {
-                        Eigen::Vector3d disp = geometry->disp(particles[i]->atoms[bond[0]]->pos,
-                                                              particles[i]->atoms[bond[1]]->pos);
+            for (int i = 0; i < particles.numOfParticles; i++) {
+                for (auto bond : particles[i]->bonds) {
+                    Eigen::Vector3d disp = geometry->disp(particles[i]->atoms[bond[0]]->pos,
+                                                          particles[i]->atoms[bond[1]]->pos);
 
-                        Eigen::Vector3d a_force = -2.0 * bond.k * disp.normalized() * (disp.norm() - bond.length);
+                    Eigen::Vector3d a_force = -2.0 * bond.k * disp.normalized() * (disp.norm() - bond.length);
+
                         particles[i]->atoms[bond[0]]->force += a_force;
                         particles[i]->atoms[bond[1]]->force += -a_force;
-                        //private_forces[particles[i]->atoms[bond[0]]->index] += a_force;
-                        //private_forces[particles[i]->atoms[bond[1]]->index] += -a_force;
-                    }
+
+                    //private_forces[particles[i]->atoms[bond[0]]->index] += a_force;
+                    //private_forces[particles[i]->atoms[bond[1]]->index] += -a_force;
                 }
-                /*#pragma omp critical
-                {
-                    for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
-                        particles.atoms[i]->force += private_forces[i];
-                    }
+            }
+            /*#pragma omp critical
+            {
+                for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
+                    particles.atoms[i]->force += private_forces[i];
                 }
-            }*/
+            }
+        }*/
+
         }
     };
 
@@ -148,11 +151,12 @@ namespace potentials{
 
         template<typename T>
         static void forces(Particles& particles, T* geometry) {
+
             double ab_dist, bc_dist, ba_dist, cb_dist, theta;
             Eigen::Vector3d a_force, c_force, ab_disp, bc_disp, ba_disp, cb_disp;
 
-            for(int i = 0; i < particles.numOfParticles; i++){
-                for(auto angle : particles[i]->angles){
+            for (int i = 0; i < particles.numOfParticles; i++) {
+                for (auto angle : particles[i]->angles) {
 
                     ab_disp = geometry->disp(particles[i]->atoms[angle[1]]->pos,
                                              particles[i]->atoms[angle[0]]->pos);
@@ -167,13 +171,13 @@ namespace potentials{
                     theta = std::acos(ba_disp.dot(bc_disp) / (ab_dist * bc_dist));
 
                     a_force = -2 * angle.k * (theta - angle.angle) / ab_dist *
-                            (ba_disp.cross(ba_disp.cross(bc_disp))).normalized();
+                              (ba_disp.cross(ba_disp.cross(bc_disp))).normalized();
                     c_force = -2 * angle.k * (theta - angle.angle) / bc_dist *
-                            (cb_disp.cross(ba_disp.cross(bc_disp))).normalized();
+                              (cb_disp.cross(ba_disp.cross(bc_disp))).normalized();
 
-                    particles[i]->atoms[angle[0]]->force += a_force;
-                    particles[i]->atoms[angle[2]]->force += c_force;
-                    particles[i]->atoms[angle[1]]->force += - a_force - c_force;
+                        particles[i]->atoms[angle[0]]->force += a_force;
+                        particles[i]->atoms[angle[2]]->force += c_force;
+                        particles[i]->atoms[angle[1]]->force += -a_force - c_force;
                 }
             }
         }
@@ -254,7 +258,7 @@ namespace potentials{
                         }
                     }
                 }*/
-                #pragma omp for schedule(dynamic, 50)
+                #pragma omp for schedule(dynamic, 32)
                 for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                     for (int j = i + 1; j < particles.atoms.numOfAtoms; j++) {
                         if (particles.atoms[i]->particle == particles.atoms[j]->particle) continue;
@@ -460,7 +464,7 @@ namespace potentials{
                     private_forces[i].setZero();
                 }
 
-                #pragma omp for schedule(dynamic, 50)
+                #pragma omp for schedule(dynamic, 32)
                 for(int i = 0; i < particles.numOfParticles; i++){
                     for(int j = i + 1; j < particles.numOfParticles; j++){
                         for(int ia = 0; ia < particles[i]->numOfAtoms; ia++){

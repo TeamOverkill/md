@@ -42,7 +42,7 @@ public:
     \endcode
     */
 
-    void run(Particles& particles, Frames& frames){
+    void run(Particles& particles, Frames& frames) {
         int k = 0;
         double temperature;
         double pressure = 0;
@@ -56,7 +56,7 @@ public:
         //Analysis* msd = new calc_msd(particles.numOfParticles, "msd.txt", geometry);
 
         //Analysis* histo = new rdf(500, particles.numOfParticles, "rdf.txt", geometry);
-        Analysis<G>* msd = new MSD<G>(particles.numOfParticles, frames.fStep, "msd.txt", geometry);
+        Analysis<G> *msd = new MSD<G>(particles.numOfParticles, frames.fStep, "msd.txt", geometry);
 
 
         //std::vector<int> v = {0};
@@ -67,30 +67,31 @@ public:
 
         double start_t = omp_get_wtime();
         double end_t;
-
+        int thread;
         temperature = thermostats::get_temperature(particles);
         pm.get_forces(particles, geometry);
         //geometry->update_distances(particles);
         printf("Temp: %lf \n", temperature);
 
         /*! Main MD loop */
-        for(int i = 0; i < Base::iterations; i++) {
+        for (int i = 0; i < Base::iterations; i++) {
+
             //printf("Determinant = %lf\n", particles.atoms.forceMatrix.determinant());
             particles.atoms.set_forces_zero();                                    /* Set all forces to zero and set oldforce = force.*/
 
-            integrator.first_step(particles, geometry);                                        /* First half step of integrator */
+            integrator.first_step(particles,
+                                  geometry);                                        /* First half step of integrator */
 
-            /*First integrator step is the only place where atoms are moved.
+            /*! First integrator step is the only place where atoms are moved.
              * So only need to calculate distances after this, same thing with displacements*/
-
-            //particles.update_distances(geometry);
-            //particles.update_displacements(geometry);
 
             /*! Calculate new forces */
             pm.get_forces(particles, geometry);
 
             /*! Second half step of integrator */
             integrator.second_step(particles);
+
+            //#pragma omp task
             temperature = thermostats::get_temperature(particles);
 
             //thermostats::berendsen::set_velocity(particles);              /* Apply thermostat */
@@ -102,33 +103,47 @@ public:
             Base::temperatures[i] = temperature;
 
             if (i % frames.fStep == 0) {
-                if (i > 1000) {
-                    //histo->sample(particles, 1);
-                    msd->sample(particles, 1);
+                #pragma omp parallel
+                {
+                    #pragma omp single
+                    {
+                        frames[frames.frameCounter]->save_state(particles.atoms);
+                        frames.frameCounter++;
+
+                        if (frames.frameCounter == frames.saveFreq) {
+                            #pragma omp task
+                            frames.save_to_file(particles, geometry->box);
+                        }
+                        if (i > 1000) {
+                            //histo->sample(particles, 1);
+                            #pragma omp task
+                            msd->sample(particles, 1);
+                        }
+
+                        //histo->sample(particles, 0);
+                        //track->sample(particles, 0);
+
+                        Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
+
+                        /// Parallelize energy calculation instead of task!
+                        #pragma omp task
+                        Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
+
+                        Base::totalEnergies[samples] =
+                                Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
+                        end_t = omp_get_wtime();
+                        printf("Progress: %.1lf%% Temp: %.1lf Avg. temp: %.1lf  Pot Energy: %.5lf Kin Energy: %.3lf, Speed: %.1lf ps / h\r",
+                               (double) i / Base::iterations * 100.0, temperature, cummulativeTemp / i,
+                               Base::potentialEnergies[samples],
+                               Base::kineticEnergies[samples], k * Base::tStep / ((end_t - start_t) / 3600.0));
+                        fflush(stdout);
+                        start_t = omp_get_wtime();
+
+
+                        samples++;
+                        k = 0;
+                    }
                 }
-
-                //histo->sample(particles, 0);
-                //track->sample(particles, 0);
-
-                Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
-                Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
-                Base::totalEnergies[samples] = Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
-                end_t = omp_get_wtime();
-                printf("Progress: %.1lf%% Temp: %.1lf Avg. temp: %.1lf  Pot Energy: %.5lf Kin Energy: %.3lf, Speed: %.1lf ps / h\r",
-                       (double) i / Base::iterations * 100.0, temperature, cummulativeTemp / i,
-                       Base::potentialEnergies[samples],
-                       Base::kineticEnergies[samples], k * Base::tStep / ((end_t - start_t) / 3600.0));
-                fflush(stdout);
-                start_t = omp_get_wtime();
-
-                frames[frames.frameCounter]->save_state(particles.atoms);
-                frames.frameCounter++;
-
-                if (frames.frameCounter == frames.saveFreq) {
-                    frames.save_to_file(particles, geometry->box);
-                }
-                samples++;
-                k = 0;
             }
             k++;
         }

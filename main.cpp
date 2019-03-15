@@ -24,9 +24,14 @@ typedef Geometry<Rectangular<true, true, true>> Rect;
 int main(int argc, char *argv[]){
 
     #ifdef EIGEN_VECTORIZE
-        printf("Eigen vectorization is enabled\n");
+        printf("Vectorization is enabled\n");
     #else
-        printf("Eigen vectorization is NOT enabled");
+        printf("Vectorization is NOT enabled");
+    #endif
+    #ifdef _OPENMP
+        printf("OpenMP is enabled\n");
+    #else
+        printf("OpenMP is NOT enabled");
     #endif
 
     ran2::initialize();

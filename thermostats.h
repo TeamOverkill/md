@@ -11,7 +11,7 @@ namespace thermostats{
         double temp = 0;
         for(int i = 0; i < particles.numOfParticles; i++){
             for(int j = 0; j < particles[i]->numOfAtoms; j++) {
-                temp += particles[i]->atoms[j]->mass * particles[i]->atoms[j]->vel.dot(particles[i]->atoms[j]->vel);
+                temp += particles[i]->atoms[j]->mass * particles[i]->atoms[j]->vel.squaredNorm();
             }
         }
 

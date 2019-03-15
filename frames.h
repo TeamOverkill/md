@@ -33,7 +33,6 @@ public:
     void save_to_file(Particles& particles, Eigen::Vector3d box){
         int i = 0;
         FILE *f = fopen("output.gro", "a");
-
         if(f == NULL){
             printf("Can't open file!\n");
             exit(1);
