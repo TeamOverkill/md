@@ -39,15 +39,12 @@ namespace thermostats{
 
     struct berendsen{
         static void set_velocity(Particles& particles){
-            double velScale;
-            double couplingPara = 10 * Base::tStep;
-            double inT = Base::temperature;
+            double couplingPara = Base::tStep;
+            double inT = 10.0 * Base::temperatures.back();
+            double velScale = sqrt(1.0 + Base::tStep / couplingPara * (Base::temperature / inT - 1.0));
 
-            for(int i = 0; i < particles.numOfParticles; i++) {
-                for (int j = 0; j < particles[i]->numOfAtoms; j++) {
-                    velScale = sqrt(1.0 + Base::tStep / couplingPara * (Base::temperature / inT - 1.0));
-                    particles[i]->atoms[j]->vel *= velScale;
-                }
+            for(int i = 0; i < particles.atoms.numOfAtoms; i++) {
+                particles.atoms[i]->vel *= velScale;
             }
         }
     };

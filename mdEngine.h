@@ -76,11 +76,11 @@ public:
         /*! Main MD loop */
         for (int i = 0; i < Base::iterations; i++) {
 
-            //printf("Determinant = %lf\n", particles.atoms.forceMatrix.determinant());
-            particles.atoms.set_forces_zero();                                    /* Set all forces to zero and set oldforce = force.*/
+            /// Set all forces to zero and set oldforce = force.
+            particles.atoms.set_forces_zero();
 
-            integrator.first_step(particles,
-                                  geometry);                                        /* First half step of integrator */
+            /// First half step of integrator
+            integrator.first_step(particles, geometry);
 
             /*! First integrator step is the only place where atoms are moved.
              * So only need to calculate distances after this, same thing with displacements*/
@@ -91,16 +91,18 @@ public:
             /*! Second half step of integrator */
             integrator.second_step(particles);
 
-            //#pragma omp task
+            ///Get temperature before applying thermostat
             temperature = thermostats::get_temperature(particles);
+            Base::temperatures.push_back(temperature);
 
-            //thermostats::berendsen::set_velocity(particles);              /* Apply thermostat */
+            /// Thermostating
+            thermostats::berendsen::set_velocity(particles);
 
 
             //pressure = barostats::get_pressure();
             cummulativeTemp += temperature;
             cummulativePress += pressure;
-            Base::temperatures[i] = temperature;
+
 
             if (i % frames.fStep == 0) {
                 #pragma omp parallel

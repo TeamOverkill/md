@@ -15,11 +15,17 @@
 #include "mdEngine.h"
 #include <time.h>
 #include <omp.h>
-#include "parser.h"
+//#include "parser.h"
 #include "potentialmanager.h"
 #include "geometries.h"
+#include "enums.h"
 
-typedef Geometry<Rectangular<true, true, true>> Rect;
+using Rect =  Geometry<Rectangular<true, true, true>>;
+using HamB = PotentialManager<potentials::Harmonic>;
+using HamBA = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic>;
+using HamBALJ = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJ>;
+using HamBALJC = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJ, potentials::Coulomb>;
+
 
 int main(int argc, char *argv[]){
 
@@ -39,7 +45,7 @@ int main(int argc, char *argv[]){
     /// Declare variables
     Particles particles;
     IO io;
-    Parser parser;
+    //Parser parser;
     Preprocessor prep;
     std::vector<double> box;
     std::string structureFile;
@@ -70,8 +76,10 @@ int main(int argc, char *argv[]){
     }
 
     /// Parse config file
-    parser.parse();
-    Base::initialize(parser.numberOfFrames);
+    //parser.parse();
+    PotEnum potEnum = io.read_conf();
+
+    Base::initialize(io.numberOfFrames);
 
     /// Read initial structure
     std::tie(particles, box) = io.read_frame(structureFile);
@@ -85,7 +93,7 @@ int main(int argc, char *argv[]){
 
 
     /*!< Initialize Frames */
-    Frames frames(parser.numberOfFrames, particles.atoms.numOfAtoms, parser.saveFreq);
+    Frames frames(io.numberOfFrames, particles.atoms.numOfAtoms, io.saveFreq);
 
     /*!< Create Geometry object*/
     Rect* geometry = new Rectangular<true, true, true>(box[0], box[1], box[2]);
@@ -93,8 +101,7 @@ int main(int argc, char *argv[]){
     //potentials::ewald::initialize(particles, geometry);
 
     /*! Create simulation object */
-    MDEngine<integrators::VelocityVerlet, PotentialManager<potentials::Harmonic, potentials::AngularHarmonic,
-            potentials::LJ, potentials::Coulomb>, Rect> engine(geometry);
+    MDEngine<integrators::VelocityVerlet, HamBALJC, Rect> engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("Running simulation\n");
@@ -121,7 +128,7 @@ int main(int argc, char *argv[]){
         printf("Can't open file!\n");
         exit(1);
     }
-    for(int j = 0; j < Base::iterations; j++){
+    for(int j = 0; j < Base::temperatures.size(); j++){
         fprintf(fi, "%i    %lf\n", j, Base::temperatures[j]);
 
     }

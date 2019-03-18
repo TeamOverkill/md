@@ -9,7 +9,7 @@ double Base::temperature;
 double *Base::potentialEnergies;
 double *Base::kineticEnergies;
 double *Base::totalEnergies;
-double *Base::temperatures;
+std::vector<double> Base::temperatures;
 Eigen::Vector3d Base::dimensionality;
 
 /*! Allocates memory for the Base instance.
@@ -18,7 +18,7 @@ void Base::initialize(int numberOfSamples){
     Base::kineticEnergies = (double*) malloc(numberOfSamples * sizeof(double));
     Base::potentialEnergies = (double*) malloc(numberOfSamples * sizeof(double));
     Base::totalEnergies = (double*) malloc(numberOfSamples * sizeof(double));
-    Base::temperatures = (double*) malloc(Base::iterations * sizeof(double));
+    Base::temperatures.reserve(Base::iterations);
 
     if(dimensions == 1){
         Base::dimensionality << 1, 0, 0;

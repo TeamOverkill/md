@@ -57,7 +57,9 @@ namespace potentials{
 
 
 
-
+    /*!
+    * Harmonic potential
+    */
     struct Harmonic{
     private:
         //static constexpr double springConstant = 12657.0;        // [kJ * nm^(-2) * mol^(-1)]
@@ -79,9 +81,6 @@ namespace potentials{
 
         template<typename T>
         static void forces(Particles& particles, T* geometry) {
-            /*!
-            * Harmonic potential
-            */
 
             /*#pragma omp parallel default(none) shared(particles) if(particles.atoms.numOfAtoms >= 400)
             {
@@ -124,7 +123,9 @@ namespace potentials{
 
 
 
-
+    /*!
+    * Angular harmonic potential
+    */
     struct AngularHarmonic{
 
     public:
@@ -471,25 +472,19 @@ namespace potentials{
                             for(int ja = 0; ja < particles[j]->numOfAtoms; ja++){
                                 //asm("#Lennard Jones begin!");
 
-                                /*printf("%s eps: %lf, %s eps: %lf\n", particles[i]->atoms[ia]->name.c_str(), particles.atoms.ljEps[particles[i]->atoms[ia]->type][particles[i]->atoms[ia]->type],
-                                       particles[j]->atoms[ja]->name.c_str(), particles.atoms.ljEps[particles[j]->atoms[ja]->type][particles[j]->atoms[ja]->type]);
-                                printf("%s sig: %lf, %s sig: %lf\n", particles[i]->atoms[ia]->name.c_str(), particles.atoms.ljSig[particles[i]->atoms[ia]->type][particles[i]->atoms[ia]->type],
-                                       particles[j]->atoms[ja]->name.c_str(), particles.atoms.ljSig[particles[j]->atoms[ja]->type][particles[j]->atoms[ja]->type]);*/
                                 sigma = particles.atoms.ljSig[particles[i]->atoms[ia]->type][particles[j]->atoms[ja]->type];//(particles[i]->atoms[ia]->lj.first + particles[j]->atoms[ja]->lj.first) / 2.0;
                                 epsilon = particles.atoms.ljEps[particles[i]->atoms[ia]->type][particles[j]->atoms[ja]->type];//std::sqrt(particles[i]->atoms[ia]->lj.second * particles[j]->atoms[ja]->lj.second);
                                 dr = geometry->disp(particles[i]->atoms[ia]->pos,
                                                     particles[j]->atoms[ja]->pos);                 // [nm]
-                                //std::cout << dr << std::endl;
-                                //std::cout << dr.cwiseInverse() << std::endl;
-                                //exit(1);
+
                                 rr2 = 1.0 / dr.squaredNorm(); //(dr[0] * dr[0] + dr[1] * dr[1] + dr[2] * dr[2]);                           // [nm^2]
                                 fr2 = sigma * sigma * rr2;                    // unitless
                                 fr6 = fr2 * fr2 * fr2;                       // unitless
                                 fr = 48.0 * epsilon * fr6 * (fr6 - 0.5) * rr2;  // [kJ/(nm^2*mol)]
                                 //#pragma omp critical
                                 //{
-                                    particles[i]->atoms[ia]->force += fr * dr;
-                                    particles[j]->atoms[ja]->force -= fr * dr;
+                                    //particles[i]->atoms[ia]->force += fr * dr;
+                                    //particles[j]->atoms[ja]->force -= fr * dr;
                                 //}
                                 private_forces[particles[i]->atoms[ia]->index] += fr * dr;
                                 private_forces[particles[j]->atoms[ja]->index] -= fr * dr;

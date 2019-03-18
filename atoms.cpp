@@ -58,7 +58,7 @@ void Atoms::set_forces_zero(){
 double Atoms::kinetic_energy(){
     double energy = 0;
     for(int i = 0; i < this->numOfAtoms; i++){
-        energy += this->atoms[i]->mass * this->atoms[i]->vel.dot(this->atoms[i]->vel) * 0.5;
+        energy += this->atoms[i]->mass * this->atoms[i]->vel.squaredNorm() * 0.5;
     }
     return energy;
 }
