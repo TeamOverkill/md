@@ -452,7 +452,7 @@ namespace potentials{
         * Get the forces as given by the LJ potential
         */
         template<typename T>
-        inline static void forces(Particles &particles, T* geometry) {
+        static void forces(Particles &particles, T* geometry) {
 
             #pragma omp parallel default(none) shared(particles) if(particles.atoms.numOfAtoms >= 400)
             {

@@ -69,21 +69,21 @@ public:
         }
 
         if(Y){
-            if(disp[1] > this->boxHalf[0]){
+            if(disp[1] > this->boxHalf[1]){
                 disp[1] -= this->box[1];
             }
 
-            else if(disp[1] < -this->boxHalf[0]){
+            else if(disp[1] < -this->boxHalf[1]){
                 disp[1] += this->box[1];
             }
         }
 
         if(Z){
-            if(disp[2] > this->boxHalf[0]){
+            if(disp[2] > this->boxHalf[2]){
                 disp[2] -= this->box[2];
             }
 
-            else if(disp[2] < -this->boxHalf[0]){
+            else if(disp[2] < -this->boxHalf[2]){
                 disp[2] += this->box[2];
             }
         }

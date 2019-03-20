@@ -1,7 +1,6 @@
 #pragma once
 #include <map>
 #include "types.h"
-#include "enums.h"
 
 class IO{
 public:
@@ -10,10 +9,8 @@ public:
     int saveFreq;
     int boxDim;
 
-    PotEnum read_conf() {
-        std::string fileName = "config.mo";
-        //Base base;
-        PotEnum pots;
+    void read_conf(std::string fileName) {
+
         std::string keyword;
         std::string line;
         double value;
@@ -34,27 +31,22 @@ public:
             else if(keyword == "temperature") Base::temperature = value;
             else if(keyword == "timestep") Base::tStep = value;
             else if(keyword == "dof") Base::dimensions = (int)value;
-            else if(keyword == "bonds") pots.COULOMB = true;
-            else if(keyword == "angles") pots.COULOMB = true;
-            else if(keyword == "coulomb") pots.COULOMB = true;
-            else if(keyword == "lj") pots.COULOMB = true;
+
 
             else{
                 printf("Unknown keyword \"%s\" in config file.", keyword.c_str());
                 exit(1);
             }
-
-
             printf("Keyword: %s, value: %lf\n", keyword.c_str(), value);
         }
+
         boxDim = Base::boxDim;
+
         if(saveFreq > numberOfFrames){
             printf("The frame save frequency can't be higher than the number of frames!\n");
             exit(0);
         }
-        return pots;
     }
-
 
 
 

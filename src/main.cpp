@@ -18,7 +18,6 @@
 //#include "parser.h"
 #include "potentialmanager.h"
 #include "geometries.h"
-#include "enums.h"
 
 using Rect =  Geometry<Rectangular<true, true, true>>;
 using HamB = PotentialManager<potentials::Harmonic>;
@@ -50,7 +49,7 @@ int main(int argc, char *argv[]){
     std::vector<double> box;
     std::string structureFile;
     std::string paramsFile;
-
+    std::string configFile;
 
     /// Run preprocessor or simulation?
     if(argc > 1){
@@ -60,24 +59,25 @@ int main(int argc, char *argv[]){
             prep.prep_water(std::string(argv[2]));
             exit(1);
         }
-        else if(argc > 2){
+        else if(argc > 3){
             structureFile = argv[1];
             paramsFile = argv[2];
+            configFile = argv[3];
         }
         else{
-            printf("Too few arguments, need 2...\n");
+            printf("Too few arguments, need 3...\n");
             exit(1);
         }
     }
 
     else{
-        printf("Too few arguments, need 2...\n");
+        printf("Too few arguments, need 3...\n");
         exit(1);
     }
 
     /// Parse config file
     //parser.parse();
-    PotEnum potEnum = io.read_conf();
+    io.read_conf(configFile);
 
     Base::initialize(io.numberOfFrames);
 
