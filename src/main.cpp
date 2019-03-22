@@ -1,4 +1,6 @@
+#ifndef DEBUG1
 #define EIGEN_NO_DEBUG
+#endif
 
 #include "atom.h"
 #include "atoms.h"
@@ -24,15 +26,20 @@ using HamB = PotentialManager<potentials::Harmonic>;
 using HamBA = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic>;
 using HamBALJ = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJ>;
 using HamBALJC = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJ, potentials::Coulomb>;
-
+using HamBALJCC = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJCutoff, potentials::CoulombCutoff>;
 
 int main(int argc, char *argv[]){
+
+    #ifdef DEBUG3
+        printf("Running in level 3 debug mode.\n");
+    #endif
 
     #ifdef EIGEN_VECTORIZE
         printf("Vectorization is enabled\n");
     #else
         printf("Vectorization is NOT enabled");
     #endif
+
     #ifdef _OPENMP
         printf("OpenMP is enabled\n");
     #else
@@ -75,8 +82,7 @@ int main(int argc, char *argv[]){
         exit(1);
     }
 
-    /// Parse config file
-    //parser.parse();
+    /// Read config file
     io.read_conf(configFile);
 
     Base::initialize(io.numberOfFrames);
@@ -104,7 +110,7 @@ int main(int argc, char *argv[]){
     MDEngine<integrators::VelocityVerlet, HamBALJC, Rect> engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
-    printf("Running simulation\n");
+    printf("\n\nRunning simulation\n");
     double start_time = omp_get_wtime();
     engine.run(particles, frames);
     printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);

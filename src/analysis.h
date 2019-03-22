@@ -1,7 +1,9 @@
 template <typename G>
 class Analysis{
-    public:
 
+    public:
+    int numOfPairs;
+    int iterations;
     std::vector<double> histo;
     int numOfSamples;
     int numOfAtoms;
@@ -77,26 +79,30 @@ class Density : public Analysis{
 template <typename G>
 class MSD : public Analysis<G> {
     std::vector<double> msd;
+    std::vector<double> d_avg_vec;
+    std::vector<Eigen::Vector3d> vecSum;
     std::vector<Eigen::Vector3d> oldPos;
     double msd_avg=0;
     double msd_avg_acc=0;
+    double d_avg = 0;
     int cnt;
-    public:
-
-
-    MSD(int numOfParticles, int sampleFreq, std::string name, G *geometry) : Analysis<G>(geometry){
+public:
+    MSD(int numOfParticles, int sampleFreq, int iterations, std::string name, G* geometry) : Analysis<G>(geometry){
         this->name = name;
         this->numOfParticles = numOfParticles;
         this->numOfSamples = 0;
         this->sampleFreq = sampleFreq;
+        this->iterations = iterations;
+        this->msd.resize(this->numOfParticles);
     }
-    /* 
+
+    /*
     void sample(Particles& particles, int d) {
         for(int i = 0; i < particles.numOfParticles; i++) {
             msd_avg += geometry->dist(particles[i]->cm, particles[i]->find_cm())*geometry->dist(particles[i]->cm, particles[i]->find_cm());
             //std::cout << "current cm: " << particles[i]->cm << "\nNew cm: " <<  particles[i]->find_cm() << "\n";
         }
-        if (numOfSamples == 0) 
+        if (numOfSamples == 0)
             msd.push_back(0);
         msd_avg /= numOfParticles;
         msd_avg_acc += msd_avg;
@@ -104,28 +110,34 @@ class MSD : public Analysis<G> {
         this->numOfSamples++;
     }
     */
-    void sample(Particles& particles, int d) { 
-        this->msd_avg = 0.000;
-        cnt = 0;
+    void sample(Particles& particles, int d) {
+        msd_avg = 0.000;
+        d_avg = 0.000;
+        cnt=0;
         for(int i = 0; i < particles.atoms.numOfAtoms; i++) {
             if(particles.atoms[i]->name == "O") {
-                
+
                 if (this->numOfSamples==0){
                     this->oldPos.push_back(particles.atoms[i]->pos);
+                    this->vecSum.push_back(this->geometry->disp(particles.atoms[i]->pos, oldPos.at(cnt)));
+                    this->msd_avg += vecSum.at(cnt).squaredNorm();
+
                     //std::cout << "Position of particle: " << particles.atoms[i]->pos << "\n";
                 }
                 else {
                     //printf("index, %i\n", i);
                     //printf("Number of atoms: %i\n", particles.atoms.numOfAtoms);
-                    this->msd_avg += this->geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt)) *
-                            this->geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt));
+                    this->vecSum.at(cnt) += this->geometry->disp(particles.atoms[i]->pos, this->oldPos.at(cnt));
+                    this->msd_avg += this->vecSum.at(cnt).squaredNorm();
+                    //this->msd_avg += geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt))*geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt));
+                    //this->d_avg += geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt));
                     //if (cnt == particles.numOfParticles-1){
                     //    std::cout << "Old pos: " << oldPos.at(cnt) << "\n";
                     //}
-                    //if (numOfSamples%100==0) 
+                    //if (numOfSamples%100==0)
 
-                        //std::cout << "Displacement of particle: " << geometry->dist(particles.atoms[i]->pos, oldPos[i]) << "\n\n";                 
-                    
+                    //std::cout << "Displacement of particle: " << geometry->dist(particles.atoms[i]->pos, oldPos[i]) << "\n\n";
+
                     this->oldPos.at(cnt) = particles.atoms[i]->pos;
                 }
                 cnt++;
@@ -133,36 +145,28 @@ class MSD : public Analysis<G> {
         }
 
 
-        if (this->numOfSamples == 0) 
-            this->msd.push_back(0);
-        else {
-            this->msd_avg /= this->numOfParticles;
-            this->msd_avg_acc += this->msd_avg;
-            this->msd.push_back(this->msd_avg_acc);
-        }
+        this->msd_avg /= this->numOfParticles;
+        this->msd.push_back(this->msd_avg);
         this->numOfSamples++;
+
+        //std::cout << "Average displacement" << d_avg << std::endl;
     }
 
 
     void save(){
-            //for(int i = 0; i < numOfParticles; i++) {
-            //    msd[i] /= numOfSamples;    
-            //}
+
         FILE *f = fopen(this->name.c_str(), "w");
         if(f == NULL){
             printf("Can't open file!\n");
             exit(1);
         }
-        
-            //std::string row = ""; 
+
         for(int i = 0; i < this->numOfSamples; i++){
-            
-            fprintf(f, "%f  %.15lf\n", i*Base::tStep*this->sampleFreq, this->msd[i]);
-                //row += std::to_string(msd[i][j])+" ";
+            if (i > 200)
+                fprintf(f, "%f  %.15lf\n", i*Base::tStep*this->sampleFreq, this->msd[i]);
+
         }
-        //fprintf(f, "%s\n", row.c_str());
         fclose(f);
-        
     }
 };
 

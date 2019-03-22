@@ -153,7 +153,7 @@ namespace potentials{
         template<typename T>
         static void forces(Particles& particles, T* geometry) {
 
-            double ab_dist, bc_dist, ba_dist, cb_dist, theta;
+            double ab_dist, bc_dist, theta;
             Eigen::Vector3d a_force, c_force, ab_disp, bc_disp, ba_disp, cb_disp;
 
             for (int i = 0; i < particles.numOfParticles; i++) {
@@ -407,7 +407,7 @@ namespace potentials{
             * Calculate the energy using a Lennard-Jones potential
             */
 
-            double sigma, epsilon, rr2, fr2, fr6, fr, energy = 0, distance;
+            double sigma, epsilon, fr2, fr6, fr, energy = 0, distance;
             Eigen::Vector3d dr;
 
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
@@ -846,8 +846,6 @@ namespace potentials{
         template<typename T>
         static void initialize(Particles& particles, T* geometry){
             int i = 0;
-            double r = 0;
-            double qq = 0;
             double k2 = 0;
             kNumMax = 1000000;
             kNum = 0;

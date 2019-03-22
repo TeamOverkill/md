@@ -16,6 +16,7 @@ public:
         double value;
 
         std::ifstream infile(fileName);
+        printf("Reading config file:\n");
         while (std::getline(infile, line)) {
             /// Skip if comment or blank line
             if(line[0] == '#') continue;
@@ -46,6 +47,7 @@ public:
             printf("The frame save frequency can't be higher than the number of frames!\n");
             exit(0);
         }
+        printf("\n\n");
     }
 
 
@@ -55,7 +57,7 @@ public:
 
 
     std::map<std::string, std::map<std::string, std::vector<double> > > read_par(std::string fileName, Particles& particles){
-        int i = 0, atom1, atom2, atom3, a1, a2, a3;
+        int atom1, atom2, atom3;
         double d1, d2;
         std::string line, keyWord, name;
         std::ifstream infile(fileName);
@@ -286,7 +288,7 @@ public:
 
 
     auto read_frame(std::string fileName){
-        int c, i = 0, ind, j = 0, atom_1, atom_2, molIndex;
+        int c, i = 0, ind, j = 0, molIndex;
         double xPos, yPos, zPos, xVel, yVel, zVel, xDim, yDim, zDim,
                     aAng, bAng, cAng;
         std::string atom, line, molecule;

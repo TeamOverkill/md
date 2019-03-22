@@ -20,11 +20,13 @@ namespace integrators{
                 //particles.atoms[i]->pos = particles.atoms[i]->pos.cwiseProduct(
                 //        Base::dimensionality);   //Multiply with dimensionality
 
+                #ifdef DEBUG3
                 if (particles.atoms[i]->pos.norm() > sqrt(3) * geometry->box[0] + 1) {
                     printf("\nAtom outside box\n");
                     std::cout << particles.atoms[i]->pos << std::endl;
                     exit(1);
                 }
+                #endif
             }
         }
 
@@ -37,7 +39,6 @@ namespace integrators{
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
                     particles.atoms[i]->vel +=
                             0.5 * Base::tStep * (particles.atoms[i]->force + particles.atoms[i]->oldForce) / particles.atoms[i]->mass;
-                    //particles.atoms[i]->oldForce = particles.atoms[i]->force;
             }
         }
     };

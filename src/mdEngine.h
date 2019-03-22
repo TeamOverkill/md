@@ -56,8 +56,7 @@ public:
         //Analysis* msd = new calc_msd(particles.numOfParticles, "msd.txt", geometry);
 
         //Analysis* histo = new rdf(500, particles.numOfParticles, "rdf.txt", geometry);
-        Analysis<G> *msd = new MSD<G>(particles.numOfParticles, frames.fStep, "msd.txt", geometry);
-
+        Analysis<G> *msd = new MSD<G>(particles.numOfParticles, frames.fStep, Base::iterations, "msd.txt", geometry);
 
         //std::vector<int> v = {0};
         //Analysis *track = new Track(v, "track.txt", geometry);
@@ -67,7 +66,6 @@ public:
 
         double start_t = omp_get_wtime();
         double end_t;
-        int thread;
         temperature = thermostats::get_temperature(particles);
         pm.get_forces(particles, geometry);
         //geometry->update_distances(particles);
@@ -96,7 +94,7 @@ public:
             Base::temperatures.push_back(temperature);
 
             /// Thermostating
-            thermostats::berendsen::set_velocity(particles);
+            //thermostats::berendsen::set_velocity(particles);
 
 
             //pressure = barostats::get_pressure();
