@@ -16,7 +16,7 @@ public:
     Frames(int numOfFrames, int numOfAtoms, int saveFreq){
         this->totalFrames = 0;
         this->frameCounter = 0; //Counter which holds the number of frames created
-        this->fStep = Base::iterations/numOfFrames;    //Save frame to trajectory every fStep iteration
+        this->fStep = Base::iterations / numOfFrames;    //Save frame to trajectory every fStep iteration
         this->saveFreq = saveFreq;
 
         for(int i = 0; i < saveFreq; i++){
@@ -32,7 +32,7 @@ public:
 
     void save_to_file(Particles& particles, Eigen::Vector3d box){
         int i = 0;
-        FILE *f = fopen("output.gro", "a");
+        FILE *f = fopen(Base::outputFileName.c_str(), "a");
         if(f == NULL){
             printf("Can't open file!\n");
             exit(1);
@@ -43,8 +43,14 @@ public:
             fprintf(f, "%d\n", particles.atoms.numOfAtoms);
             for(i = 0; i < particles.atoms.numOfAtoms; i++){
                 //printf("Saving state %d\n", i);
-                fprintf(f, "%5d%-5s%5s%5d%8.3f%8.3f%8.3f%8.4f%8.4f%8.4f\n", particles.atoms[i]->particle, "ion", particles.atoms[i]->name.c_str(), i + 1, frames[j]->state[i][0], frames[j]->state[i][1], frames[j]->state[i][2], \
-                frames.at(j)->state[i][3], frames[j]->state[i][4], frames[j]->state[i][5]);
+                fprintf(f, "%5d%-5s%5s%5d%8.3f%8.3f%8.3f%8.4f%8.4f%8.4f\n", particles.atoms[i]->particle, "ion",
+                        particles.atoms[i]->name.c_str(), i + 1,
+                        frames[j]->state[i][0] + box[0] * 0.5,
+                        frames[j]->state[i][1] + box[1] * 0.5,
+                        frames[j]->state[i][2] + box[2] * 0.5,
+                        frames[j]->state[i][3],
+                        frames[j]->state[i][4],
+                        frames[j]->state[i][5]);
             }
             fprintf(f, "%lf    %lf     %lf\n", box[0], box[1], box[2]);
         }

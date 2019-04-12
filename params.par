@@ -4,11 +4,15 @@
 ############
 # TOPOLOGY #
 ############
+BONDS
+
+
+ANGLES
 
 
 MASS
 Na 16.0
-Cl 10.008
+Cl 16.0
 
 ##########
 # BONDED #
@@ -25,14 +29,12 @@ ANGULAR_HARMONIC
 ##############
 #             sigma              epsilon
 LJ
-Na            0.3165492          0.650299
-Cl            0.3165492           0.650299
-
-#OW            0.3165492          0.650299
+Na             0.252             0.6
+Cl             0.385             0.6
 
 CHARGE
-Na -1.0
-Cl 1.0
+Na  1.0
+Cl -1.0
 
 RADIUS
 Na 1.0

@@ -162,8 +162,7 @@ public:
         }
 
         for(int i = 0; i < this->numOfSamples; i++){
-            if (i > 200)
-                fprintf(f, "%f  %.15lf\n", i*Base::tStep*this->sampleFreq, this->msd[i]);
+            fprintf(f, "%f  %.15lf\n", i * Base::tStep * this->sampleFreq, this->msd[i]);
 
         }
         fclose(f);

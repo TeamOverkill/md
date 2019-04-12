@@ -21,6 +21,7 @@ public:
     static double *potentialEnergies;
     static double *kineticEnergies;
     static double *totalEnergies;
+    static std::string outputFileName;
     static std::vector<double> temperatures;
     static Eigen::Vector3d dimensionality;  /*!< A vector which determines the translational degrees of freedom.
                                              * In each time step the position of all atoms is multiplied with this

@@ -11,6 +11,7 @@ double *Base::kineticEnergies;
 double *Base::totalEnergies;
 std::vector<double> Base::temperatures;
 Eigen::Vector3d Base::dimensionality;
+std::string Base::outputFileName;
 
 /*! Allocates memory for the Base instance.
 */

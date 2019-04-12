@@ -5,6 +5,7 @@
 *.s
 main
 md
+*.ps
 # Created by https://www.gitignore.io/api/c,c++,linux,macos,python
 
 ### CMAKE ###

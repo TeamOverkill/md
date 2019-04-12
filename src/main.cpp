@@ -21,12 +21,17 @@
 #include "potentialmanager.h"
 #include "geometries.h"
 
-using Rect =  Geometry<Rectangular<true, true, true>>;
-using HamB = PotentialManager<potentials::Harmonic>;
-using HamBA = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic>;
-using HamBALJ = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJ>;
-using HamBALJC = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJ, potentials::Coulomb>;
-using HamBALJCC = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJCutoff, potentials::CoulombCutoff>;
+using Rect         = Geometry<Rectangular<true, true, true>>;
+using HamB         = PotentialManager<potentials::Harmonic>;
+using HamLJ        = PotentialManager<potentials::LJ>;
+using HamLJR       = PotentialManager<potentials::LJRep>;
+using HamBA        = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic>;
+using HamLJC       = PotentialManager<potentials::LJ,       potentials::Coulomb>;
+using HamLJRC      = PotentialManager<potentials::LJRep,    potentials::Coulomb>;
+using HamBALJ      = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJ>;
+using HamBALJCu    = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJCutoff>;
+using HamBALJC     = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJ,       potentials::Coulomb>;
+using HamBALJCuCCu = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJCutoff, potentials::CoulombCutoff>;
 
 int main(int argc, char *argv[]){
 
@@ -94,24 +99,23 @@ int main(int argc, char *argv[]){
     /// Get parameters from parameter file
     std::map<std::string, std::map<std::string, std::vector<double> > > params = io.read_par(paramsFile, particles);
 
+    /*!< Create Geometry object*/
+    Rect* geometry = new Rectangular<true, true, true>(box[0], box[1], box[2]);
+
     ///Initialize particles and set all parameters
     particles.initialize(params);
-
 
     /*!< Initialize Frames */
     Frames frames(io.numberOfFrames, particles.atoms.numOfAtoms, io.saveFreq);
 
-    /*!< Create Geometry object*/
-    Rect* geometry = new Rectangular<true, true, true>(box[0], box[1], box[2]);
-
     //potentials::ewald::initialize(particles, geometry);
 
     /*! Create simulation object */
-    MDEngine<integrators::VelocityVerlet, HamBALJC, Rect> engine(geometry);
+    MDEngine<integrators::VelocityVerlet, HamLJR, Rect> engine(geometry);
 
-    /*!< Call run() with the specified integrator and energy function */
     printf("\n\nRunning simulation\n");
     double start_time = omp_get_wtime();
+    /*!< Call run() with the specified integrator and energy function */
     engine.run(particles, frames);
     printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);
 
@@ -143,3 +147,4 @@ int main(int argc, char *argv[]){
     printf("Done\n");
     return 0;
 }
+

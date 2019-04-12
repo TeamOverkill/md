@@ -49,14 +49,9 @@ public:
         int samples = 0;
         double cummulativeTemp = 0;
         double cummulativePress = 0;
-        //Analysis* histo = new Density(100, "histo_1.txt");
 
-
-        //Analysis* histo = new rdf(100, particles.atoms.numOfAtoms, "rdf.txt", geometry);
-        //Analysis* msd = new calc_msd(particles.numOfParticles, "msd.txt", geometry);
-
-        //Analysis* histo = new rdf(500, particles.numOfParticles, "rdf.txt", geometry);
         Analysis<G> *msd = new MSD<G>(particles.numOfParticles, frames.fStep, Base::iterations, "msd.txt", geometry);
+        Analysis<G> *track = new Track<G>({0}, "track.txt", geometry);
 
         //std::vector<int> v = {0};
         //Analysis *track = new Track(v, "track.txt", geometry);
@@ -109,7 +104,7 @@ public:
                     {
                         frames[frames.frameCounter]->save_state(particles.atoms);
                         frames.frameCounter++;
-
+                        track->sample(particles, 1);
                         if (frames.frameCounter == frames.saveFreq) {
                             #pragma omp task
                             frames.save_to_file(particles, geometry->box);
@@ -123,14 +118,12 @@ public:
                         //histo->sample(particles, 0);
                         //track->sample(particles, 0);
 
+                        /// Get energies
                         Base::kineticEnergies[samples] = particles.atoms.kinetic_energy();
-
-                        /// Parallelize energy calculation instead of task!
-                        #pragma omp task
                         Base::potentialEnergies[samples] = pm.get_energy(particles, geometry);
-
                         Base::totalEnergies[samples] =
                                 Base::potentialEnergies[samples] + Base::kineticEnergies[samples];
+
                         end_t = omp_get_wtime();
                         printf("Progress: %.1lf%% Temp: %.1lf Avg. temp: %.1lf  Pot Energy: %.5lf Kin Energy: %.3lf, Speed: %.1lf ps / h\r",
                                (double) i / Base::iterations * 100.0, temperature, cummulativeTemp / i,
@@ -148,7 +141,7 @@ public:
             k++;
         }
         //histo->save();
-        //track->save();
+        track->save();
         msd->save();
         printf("\n");
     }
