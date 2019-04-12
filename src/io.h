@@ -21,6 +21,7 @@ public:
             printf("Cant read configuration file: %s\n", fileName.c_str());
             exit(1);
         }
+        Base::outputFileName = "";
 
         printf("Reading config file:\n");
         while (std::getline(infile, line)) {
@@ -62,6 +63,10 @@ public:
 
         if(saveFreq > numberOfFrames){
             printf("The frame save frequency can't be higher than the number of frames!\n");
+            exit(0);
+        }
+        if(Base::outputFileName.empty()){
+            printf("You didnt specify a name for the output trajectory!\n");
             exit(0);
         }
         printf("\n\n");

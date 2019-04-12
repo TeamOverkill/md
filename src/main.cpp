@@ -34,7 +34,8 @@ using HamBALJC     = PotentialManager<potentials::Harmonic, potentials::AngularH
 using HamBALJCuCCu = PotentialManager<potentials::Harmonic, potentials::AngularHarmonic, potentials::LJCutoff, potentials::CoulombCutoff>;
 
 int main(int argc, char *argv[]){
-
+    printf("\n");
+    
     #ifdef DEBUG3
         printf("Running in level 3 debug mode.\n");
     #endif
