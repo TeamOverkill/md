@@ -1,7 +1,9 @@
 #Simulation Setup:
-iter 50000
-temperature 430
-nof 1000
-outfreq 1000
+iter 200000
+temperature 300
+nof 100
+outfreq 100
 timestep 0.001
 dof 3
+out output_backward.gro
+simple 1

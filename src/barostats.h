@@ -55,7 +55,5 @@ namespace barostats{
         void scale_coordinates(double scaling){
 
         }
-
-
     };
 }

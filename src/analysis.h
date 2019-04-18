@@ -186,6 +186,7 @@ public:
 
         for(int i = 0; i < this->numOfSamples; i++){
             fprintf(f, "%f  %.15lf  %0.15lf  %0.15lf  %0.15lf\n", i*Base::tStep*this->sampleFreq, this->msd[i], this->msd_x.at(i), this->msd_y.at(i), this->msd_z.at(i));
+
         }
         fclose(f);
     }

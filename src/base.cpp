@@ -4,6 +4,7 @@ double Base::boxDim;
 int Base::iterations;
 int Base::outFreq;
 int Base::dimensions;
+int Base::simple;
 double Base::tStep;
 double Base::temperature;
 double *Base::potentialEnergies;
@@ -11,6 +12,7 @@ double *Base::kineticEnergies;
 double *Base::totalEnergies;
 std::vector<double> Base::temperatures;
 Eigen::Vector3d Base::dimensionality;
+std::string Base::outputFileName;
 
 /*! Allocates memory for the Base instance.
 */

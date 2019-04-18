@@ -16,11 +16,13 @@ public:
     static double boxDim;   /*!< Box dimension, currently only cubic boxes */
     static int iterations;  /*!< number of iterations */
     static int outFreq;
+    static int simple;
     static double tStep;    /*!< Time step in picoseconds */
     static double temperature;
     static double *potentialEnergies;
     static double *kineticEnergies;
     static double *totalEnergies;
+    static std::string outputFileName;
     static std::vector<double> temperatures;
     static Eigen::Vector3d dimensionality;  /*!< A vector which determines the translational degrees of freedom.
                                              * In each time step the position of all atoms is multiplied with this

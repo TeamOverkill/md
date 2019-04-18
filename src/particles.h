@@ -34,7 +34,8 @@ public:
 
 
         /// Move to collect all general parameters!!
-        // Set masses from params file
+
+        /// Set masses from params file
         for(int i = 0; i < atoms.numOfAtoms; i++){
             try {
                 atoms[i]->mass = params[atoms[i]->name]["mass"][0];
@@ -53,7 +54,7 @@ public:
 
 
 
-            //Set angular constants
+            ///Set angular constants
             for(auto &angle : particle->angles){
                 //printf("Getting angular constants\n");
 
@@ -72,7 +73,7 @@ public:
 
 
 
-            //Set bonded constants
+            ///Set bonded constants
             for(auto &bond : particle->bonds){
                 std::string name = atoms[bond[0]]->name + "-" + atoms[bond[1]]->name;
                 //printf("Getting bonded constants\n");
@@ -94,6 +95,10 @@ public:
                 bond.k = k;
                 bond.length = length;
             }
+
+            for(int i = 0; i < particle->numOfAtoms; i++){
+                particle->mass += particle->atoms[i]->mass;
+            }
         }
 
         /// Initialize epsilon matrix
@@ -104,7 +109,7 @@ public:
         atoms.ljSig.resize(params["lj"].size());
         std::for_each(atoms.ljSig.begin(), atoms.ljSig.end(), [&](std::vector<double> &row) {
             row.resize(params["lj"].size()); });
-        /// Set LJ params
+        /// Set LJ params, currently only LB mixing rules
         int i = 0, j = 0;
         for(auto const& [key1, val1] : params["lj"]){
             j = 0;
@@ -115,6 +120,8 @@ public:
             }
             i++;
         }
+
+
         /// Set name, charge, radius, and atom type
         j = 0;
         bool atomic = false;
@@ -138,12 +145,13 @@ public:
 
 
 
-        //Find atoms separated by 3 or more bonds
+        ///Find atoms separated by 3 or more bonds
         for(int i = 0; i < this->numOfParticles; i++){
             this->particles[i]->find_far_neighbours();
             //printf("particle %d contains %d atoms\n", i, this->particles[i]->numOfAtoms);
         }
 
+        ///////////////////// Not used at the moment ////////////////////////////////
         distances.resize(atoms.numOfAtoms);
         for(int i = 0; i < atoms.numOfAtoms; i++){
             distances[i].resize(atoms.numOfAtoms);
@@ -151,13 +159,8 @@ public:
 
         this->atoms.displacements.resize(atoms.numOfAtoms);
         std::for_each(this->atoms.displacements.begin(), this->atoms.displacements.end(), [=](std::vector<Eigen::Vector3d> &row){ row.resize(this->atoms.numOfAtoms); });
-        /*for(int i = 0; i < atoms.numOfAtoms; i++){
-            atoms.displacements[i].resize(atoms.numOfAtoms);
-            for(int j = 0; j < atoms.numOfAtoms; j++){
-                atoms.displacements[i][j] = Eigen::Vector3d(0, 0, 0);
-            }
-        }*/
         this->atoms.forceMatrix.resize(this->atoms.numOfAtoms, this->atoms.numOfAtoms);
+        /////////////////////////////////////////////////////
     }
 
 

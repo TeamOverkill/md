@@ -16,6 +16,7 @@ public:
 
     Particle(){
         numOfAtoms = 0;
+        mass = 0.0;
     }
 
 

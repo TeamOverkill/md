@@ -12,10 +12,17 @@ public:
     void read_conf(std::string fileName) {
 
         std::string keyword;
+        std::string valueS;
         std::string line;
         double value;
 
         std::ifstream infile(fileName);
+        if(!infile.is_open()){
+            printf("Cant read configuration file: %s\n", fileName.c_str());
+            exit(1);
+        }
+        Base::outputFileName = "";
+
         printf("Reading config file:\n");
         while (std::getline(infile, line)) {
             /// Skip if comment or blank line
@@ -24,15 +31,27 @@ public:
 
             std::istringstream iss(line);
             if (!(iss >> keyword >> value)) {
-                break;
+                iss.clear();
+                iss.seekg(std::ios::beg);
+                if ((iss >> keyword >> valueS)) {
+                    if (keyword == "out") {
+                        Base::outputFileName = valueS;
+                        printf("Keyword: %s, value: %s\n", keyword.c_str(), valueS.c_str());
+                        continue;
+                    }
+                }
+                else {
+                    break;
+                }
             }
+
             if(keyword == "iter") Base::iterations = (int)value;
             else if(keyword == "outfreq") saveFreq = (int)value;
             else if(keyword == "nof") numberOfFrames = (int)value;
             else if(keyword == "temperature") Base::temperature = value;
             else if(keyword == "timestep") Base::tStep = value;
             else if(keyword == "dof") Base::dimensions = (int)value;
-
+            else if(keyword == "simple") Base::simple = (int)value;
 
             else{
                 printf("Unknown keyword \"%s\" in config file.", keyword.c_str());
@@ -45,6 +64,10 @@ public:
 
         if(saveFreq > numberOfFrames){
             printf("The frame save frequency can't be higher than the number of frames!\n");
+            exit(0);
+        }
+        if(Base::outputFileName.empty()){
+            printf("You didnt specify a name for the output trajectory!\n");
             exit(0);
         }
         printf("\n\n");
@@ -61,9 +84,11 @@ public:
         double d1, d2;
         std::string line, keyWord, name;
         std::ifstream infile(fileName);
-        if(infile.fail()){
-            printf("Cannot read parameter file...\n");
+        if(!infile.is_open()){
+            printf("Cant read parameter file: %s\n", fileName.c_str());
+            exit(1);
         }
+
         std::map<std::string, std::map<std::string, std::vector<double> > > parameters;
         printf("Reading parameter file\n");
         while (std::getline(infile, line)) {
@@ -293,12 +318,14 @@ public:
                     aAng, bAng, cAng;
         std::string atom, line, molecule;
         std::vector<std::string> molecules;
-        std::ifstream infile(fileName);
         std::vector<double> box(3);
-        if(infile.fail()){
-            printf("Error, could not find file: %s\n", fileName.c_str());
+
+        std::ifstream infile(fileName);
+        if(!infile.is_open()){
+            printf("Cant read structure file: %s\n", fileName.c_str());
             exit(1);
         }
+
         Particles particles;
         Atoms atoms;
 
@@ -348,20 +375,20 @@ public:
                 atoms[j]->index = j;
                 //atoms[j]->particle = molecule - 1;
 
-                //Check if molecule is already created
+                ///Check if molecule is already created
                 std::vector<std::string>::iterator molIt = std::find(molecules.begin(), molecules.end(), molecule);
                 molIndex = std::distance(molecules.begin(), molIt);
                 atoms[j]->particle = molIndex;
 
 
-                //Molecule is not created so create it
+                ///Molecule is not created so create it
                 if (molIt == molecules.end()) {
                     molecules.push_back(molecule);
                     Particle *p1 = new Particle();
                     p1->push_back(atoms[j]);
                     particles.push_back(p1);
                 }
-                //Molecule is already created so add atom
+                ///Molecule is already created so add atom
                 else{
                     particles[molIndex]->push_back(atoms[j]);
                 }
@@ -375,13 +402,20 @@ public:
                 if ((iss >> xDim >> yDim >> zDim)) {
                     printf("Read cuboid box dimensions, %lf, %lf, %lf from file.\n", xDim, yDim, zDim);
                     box[0] = xDim;
-                    box[1] = xDim;
-                    box[2] = xDim;
+                    box[1] = yDim;
+                    box[2] = zDim;
+                    /// Center atoms around the origin
+                    for(int k = 0; k < j; k++){
+                        atoms[k]->pos[0] -= xDim * 0.5;
+                        atoms[k]->pos[1] -= yDim * 0.5;
+                        atoms[k]->pos[2] -= zDim * 0.5;
+                    }
                     break;
                 }
 
                 else if ((iss >> xDim >> yDim >> zDim >> aAng >> bAng >> cAng)) {
                     printf("Read parallelepiped box dimensions, %lf, %lf, %lf from file.\n", xDim, yDim, zDim);
+                    break;
                 }
                 else{
                     printf("Could not read box dimentions...\n");
