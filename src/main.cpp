@@ -35,7 +35,7 @@ using HamBALJCuCCu = PotentialManager<potentials::Harmonic, potentials::AngularH
 
 int main(int argc, char *argv[]){
     printf("\n");
-    
+
     #ifdef DEBUG3
         printf("Running in level 3 debug mode.\n");
     #endif
@@ -112,12 +112,19 @@ int main(int argc, char *argv[]){
     //potentials::ewald::initialize(particles, geometry);
 
     /*! Create simulation object */
-    MDEngine<integrators::VelocityVerlet, HamLJR, Rect> engine(geometry);
+    MDEngine<integrators::VelocityVerlet, HamBALJCuCCu, Rect> engine(geometry);
+    MDEngine<integrators::VelocityVerlet, HamLJR, Rect> engine2(geometry);
 
     printf("\n\nRunning simulation\n");
     double start_time = omp_get_wtime();
     /*!< Call run() with the specified integrator and energy function */
-    engine.run(particles, frames);
+    if(Base::simple == 1) {
+        engine2.run(particles, frames);
+    }
+    else{
+        engine.run(particles, frames);
+    }
+
     printf("Simulation took: %lf seconds.\n", omp_get_wtime() - start_time);
 
 

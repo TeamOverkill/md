@@ -16,6 +16,7 @@ public:
     static double boxDim;   /*!< Box dimension, currently only cubic boxes */
     static int iterations;  /*!< number of iterations */
     static int outFreq;
+    static int simple;
     static double tStep;    /*!< Time step in picoseconds */
     static double temperature;
     static double *potentialEnergies;

@@ -51,6 +51,7 @@ public:
             else if(keyword == "temperature") Base::temperature = value;
             else if(keyword == "timestep") Base::tStep = value;
             else if(keyword == "dof") Base::dimensions = (int)value;
+            else if(keyword == "simple") Base::simple = (int)value;
 
             else{
                 printf("Unknown keyword \"%s\" in config file.", keyword.c_str());

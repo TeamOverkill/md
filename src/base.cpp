@@ -4,6 +4,7 @@ double Base::boxDim;
 int Base::iterations;
 int Base::outFreq;
 int Base::dimensions;
+int Base::simple;
 double Base::tStep;
 double Base::temperature;
 double *Base::potentialEnergies;

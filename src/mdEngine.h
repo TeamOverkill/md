@@ -56,7 +56,7 @@ public:
         //std::vector<int> v = {0};
         //Analysis *track = new Track(v, "track.txt", geometry);
 
-        FILE *f = fopen("output.gro", "w");
+        FILE *f = fopen(Base::outputFileName.c_str(), "w");
         fclose(f);
 
         double start_t = omp_get_wtime();
