@@ -69,7 +69,7 @@ public:
         temperature = thermostats::get_temperature(particles);
         pm.get_forces(particles, geometry);
         //geometry->update_distances(particles);
-        printf("Temp: %lf \n", temperature);
+        printf("Initial temp: %lf \n", temperature);
 
         /*! Main MD loop */
         for (int i = 0; i < Base::iterations; i++) {
@@ -92,9 +92,10 @@ public:
             ///Get temperature before applying thermostat
             temperature = thermostats::get_temperature(particles);
             Base::temperatures.push_back(temperature);
-
+            
+            //if(i < 50000) 
             /// Thermostating
-            //thermostats::berendsen::set_velocity(particles);
+            thermostats::berendsen::set_velocity(particles);
 
 
             //pressure = barostats::get_pressure();

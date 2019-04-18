@@ -14,10 +14,9 @@ namespace integrators{
             #pragma omp parallel for if(particles.atoms.numOfAtoms > 6000)
             for (int i = 0; i < particles.atoms.numOfAtoms; i++) {
 
-                geometry->boundary(particles.atoms[i]->pos, particles.atoms[i]->vel);
-
                 particles.atoms[i]->pos += Base::tStep * particles.atoms[i]->vel + 0.5 * Base::tStep * Base::tStep * particles.atoms[i]->oldForce / particles.atoms[i]->mass; 
                 //particles.atoms[i]->pos = particles.atoms[i]->pos.cwiseProduct(
+                geometry->boundary(particles.atoms[i]->pos, particles.atoms[i]->vel);
                 //        Base::dimensionality);   //Multiply with dimensionality
 
                 #ifdef DEBUG3

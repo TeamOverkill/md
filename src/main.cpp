@@ -107,7 +107,7 @@ int main(int argc, char *argv[]){
     //potentials::ewald::initialize(particles, geometry);
 
     /*! Create simulation object */
-    MDEngine<integrators::VelocityVerlet, HamBALJC, Rect> engine(geometry);
+    MDEngine<integrators::VelocityVerlet, HamBALJCC, Rect> engine(geometry);
 
     /*!< Call run() with the specified integrator and energy function */
     printf("\n\nRunning simulation\n");

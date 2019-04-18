@@ -1,7 +1,7 @@
 #Simulation Setup:
-iter 5000
-temperature 300
+iter 50000
+temperature 430
 nof 1000
-outfreq 100
+outfreq 1000
 timestep 0.001
 dof 3

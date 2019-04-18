@@ -79,13 +79,20 @@ class Density : public Analysis{
 template <typename G>
 class MSD : public Analysis<G> {
     std::vector<double> msd;
+    std::vector<double> msd_x;
+    std::vector<double> msd_y;
+    std::vector<double> msd_z;
     std::vector<double> d_avg_vec;
     std::vector<Eigen::Vector3d> vecSum;
+    std::vector<double> vecX;
+    std::vector<double> vecY;
+    std::vector<double> vecZ;
     std::vector<Eigen::Vector3d> oldPos;
-    double msd_avg=0;
-    double msd_avg_acc=0;
-    double d_avg = 0;
-    int cnt;
+    double msd_avg;
+    double msd_x_avg;
+    double msd_y_avg;
+    double msd_z_avg;
+
 public:
     MSD(int numOfParticles, int sampleFreq, int iterations, std::string name, G* geometry) : Analysis<G>(geometry){
         this->name = name;
@@ -93,7 +100,6 @@ public:
         this->numOfSamples = 0;
         this->sampleFreq = sampleFreq;
         this->iterations = iterations;
-        this->msd.resize(this->numOfParticles);
     }
 
     /*
@@ -111,24 +117,35 @@ public:
     }
     */
     void sample(Particles& particles, int d) {
-        msd_avg = 0.000;
-        d_avg = 0.000;
-        cnt=0;
+        this->msd_avg = 0.000;
+        this->msd_x_avg = 0.000;
+        this->msd_y_avg = 0.000;
+        this->msd_z_avg = 0.000;
+        int cnt=0;
         for(int i = 0; i < particles.atoms.numOfAtoms; i++) {
             if(particles.atoms[i]->name == "O") {
-
                 if (this->numOfSamples==0){
                     this->oldPos.push_back(particles.atoms[i]->pos);
-                    this->vecSum.push_back(this->geometry->disp(particles.atoms[i]->pos, oldPos.at(cnt)));
-                    this->msd_avg += vecSum.at(cnt).squaredNorm();
 
+                    this->vecSum.push_back(this->geometry->disp(particles.atoms[i]->pos, oldPos.at(cnt)));
+                    this->vecX.push_back(vecSum.at(cnt)[0]);
+                    this->vecY.push_back(vecSum.at(cnt)[1]);
+                    this->vecZ.push_back(vecSum.at(cnt)[2]);
+                    this->msd_avg += vecSum.at(cnt).squaredNorm();
+                    
                     //std::cout << "Position of particle: " << particles.atoms[i]->pos << "\n";
                 }
                 else {
                     //printf("index, %i\n", i);
                     //printf("Number of atoms: %i\n", particles.atoms.numOfAtoms);
                     this->vecSum.at(cnt) += this->geometry->disp(particles.atoms[i]->pos, this->oldPos.at(cnt));
+                    this->vecX.at(cnt) = vecSum.at(cnt)[0];
+                    this->vecY.at(cnt) = vecSum.at(cnt)[1];
+                    this->vecZ.at(cnt) = vecSum.at(cnt)[2];
                     this->msd_avg += this->vecSum.at(cnt).squaredNorm();
+                    this->msd_x_avg += vecX.at(cnt) * vecX.at(cnt);
+                    this->msd_y_avg += vecY.at(cnt) * vecY.at(cnt);
+                    this->msd_z_avg += vecZ.at(cnt) * vecZ.at(cnt);
                     //this->msd_avg += geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt))*geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt));
                     //this->d_avg += geometry->dist(particles.atoms[i]->pos, this->oldPos.at(cnt));
                     //if (cnt == particles.numOfParticles-1){
@@ -147,6 +164,12 @@ public:
 
         this->msd_avg /= this->numOfParticles;
         this->msd.push_back(this->msd_avg);
+        this->msd_x_avg /= this->numOfParticles;
+        this->msd_y_avg /= this->numOfParticles;
+        this->msd_z_avg /= this->numOfParticles;
+        this->msd_x.push_back(this->msd_x_avg);
+        this->msd_y.push_back(this->msd_y_avg);
+        this->msd_z.push_back(this->msd_z_avg);
         this->numOfSamples++;
 
         //std::cout << "Average displacement" << d_avg << std::endl;
@@ -162,9 +185,7 @@ public:
         }
 
         for(int i = 0; i < this->numOfSamples; i++){
-            if (i > 200)
-                fprintf(f, "%f  %.15lf\n", i*Base::tStep*this->sampleFreq, this->msd[i]);
-
+            fprintf(f, "%f  %.15lf  %0.15lf  %0.15lf  %0.15lf\n", i*Base::tStep*this->sampleFreq, this->msd[i], this->msd_x.at(i), this->msd_y.at(i), this->msd_z.at(i));
         }
         fclose(f);
     }
